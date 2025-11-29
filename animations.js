@@ -54,9 +54,10 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// SLC Number Count-Up Animation
+// SLC Number Cycling Animation - Numbers rotate through their ranges
 document.addEventListener('DOMContentLoaded', function() {
     const numberElements = document.querySelectorAll('.slc-number-circle .number');
+    let intervals = [];
 
     // Intersection Observer to trigger animation when section comes into view
     const observerOptions = {
@@ -67,9 +68,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Animate all numbers when section is visible
-                numberElements.forEach(numberElement => {
-                    animateNumber(numberElement);
+                // Start cycling all numbers when section is visible
+                numberElements.forEach((numberElement, index) => {
+                    startCycling(numberElement, index);
                 });
                 // Stop observing after first trigger
                 observer.unobserve(entry.target);
@@ -83,31 +84,44 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(slcSection);
     }
 
-    function animateNumber(element) {
-        const target = parseInt(element.getAttribute('data-target'));
-        const duration = 1500; // 1.5 seconds
-        const startTime = performance.now();
-        const start = 0;
+    function startCycling(element, index) {
+        const min = parseInt(element.getAttribute('data-min'));
+        const max = parseInt(element.getAttribute('data-max'));
+        let current = parseInt(element.getAttribute('data-current'));
 
-        function updateNumber(currentTime) {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
+        // Different speeds for each circle (between 2-4 seconds)
+        const baseDelay = 2000 + (index * 300);
 
-            // Easing function for smooth animation
-            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-            const current = Math.floor(start + (target - start) * easeOutQuart);
+        // Random initial delay so they don't all change at once
+        const initialDelay = Math.random() * 2000;
 
-            element.textContent = current;
+        setTimeout(() => {
+            const interval = setInterval(() => {
+                // Increment and cycle back to min if exceeding max
+                current++;
+                if (current > max) {
+                    current = min;
+                }
 
-            if (progress < 1) {
-                requestAnimationFrame(updateNumber);
-            } else {
-                element.textContent = target; // Ensure final value is exact
-            }
-        }
+                // Smooth number transition with fade effect
+                element.style.opacity = '0.3';
 
-        requestAnimationFrame(updateNumber);
+                setTimeout(() => {
+                    element.textContent = current;
+                    element.setAttribute('data-current', current);
+                    element.style.opacity = '1';
+                }, 150);
+
+            }, baseDelay);
+
+            intervals.push(interval);
+        }, initialDelay);
     }
+
+    // Cleanup intervals on page unload
+    window.addEventListener('beforeunload', () => {
+        intervals.forEach(interval => clearInterval(interval));
+    });
 });
 
 // Physics-Based Bubble Bouncing Game
