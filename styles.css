@@ -682,11 +682,11 @@ body {
     min-height: 900px;
 }
 
-/* Main heading bubble - light blue, left side */
+/* Main heading bubble - light blue, overlapping with big bubble */
 .main-heading-bubble {
     position: absolute;
-    top: 50px;
-    left: 0;
+    top: 80px;
+    left: 180px;
     width: 520px;
     height: 380px;
     background-color: #b8d4d4;
@@ -748,34 +748,34 @@ body {
     margin: 0;
 }
 
-/* Individual bubble positioning and shapes */
+/* Individual bubble positioning and shapes - all INSIDE the big dark bubble */
 .bubble-1 {
     top: 200px;
-    left: 420px;
+    left: 520px;
     width: 300px;
     height: 320px;
     border-radius: 48% 52% 55% 45% / 45% 50% 50% 55%;
 }
 
 .bubble-2 {
-    top: 80px;
-    right: 150px;
+    top: 160px;
+    right: 80px;
     width: 350px;
     height: 280px;
     border-radius: 52% 48% 48% 52% / 55% 48% 52% 45%;
 }
 
 .bubble-3 {
-    top: 420px;
-    right: 100px;
+    top: 520px;
+    right: 120px;
     width: 320px;
     height: 340px;
     border-radius: 45% 55% 50% 50% / 52% 45% 55% 48%;
 }
 
 .bubble-4 {
-    bottom: 80px;
-    left: 380px;
+    top: 620px;
+    left: 480px;
     width: 380px;
     height: 320px;
     border-radius: 50% 50% 52% 48% / 48% 52% 48% 52%;
