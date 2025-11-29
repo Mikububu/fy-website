@@ -1,29 +1,21 @@
-// Load blog posts - automatically fetches from Substack RSS when hosted
+// Load blog posts - uses migrated posts from posts-data.json
 async function loadBlogPosts() {
     const blogGrid = document.getElementById('blog-grid');
 
     try {
-        // Check if we're on Netlify or a live server
-        const isLocalFile = window.location.protocol === 'file:';
-
         let posts = [];
 
-        if (!isLocalFile) {
-            // On live server - fetch from RSS via Netlify function
-            try {
-                const response = await fetch('/.netlify/functions/rss-proxy');
-
-                if (response.ok) {
-                    const xmlText = await response.text();
-                    posts = parseRSSFeed(xmlText);
-                }
-            } catch (error) {
-                console.log('Netlify function not available, using fallback data');
+        // Try to load from posts-data.json first
+        try {
+            const response = await fetch('/posts-data.json');
+            if (response.ok) {
+                posts = await response.json();
             }
+        } catch (error) {
+            console.log('posts-data.json not available, using fallback');
         }
 
-        // Fallback to hardcoded data if RSS fetch failed or viewing locally
-        // ALL 43 posts from Forbidden Yoga archive
+        // Fallback to hardcoded data if JSON failed
         if (posts.length === 0) {
             posts = [
     {
@@ -359,8 +351,12 @@ async function loadBlogPosts() {
             const card = document.createElement('article');
             card.className = 'blog-card';
 
+            // Use local URL if available, otherwise external link
+            const postUrl = post.url || post.link;
+            const isExternal = postUrl && postUrl.startsWith('http');
+
             card.innerHTML = `
-                <a href="${post.link}" target="_blank" rel="noopener noreferrer" class="blog-card-link">
+                <a href="${postUrl}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''} class="blog-card-link">
                     ${post.image ? `
                         <div class="blog-card-image">
                             <img src="${post.image}" alt="${post.title}" loading="lazy" onerror="this.parentElement.style.display='none'">
