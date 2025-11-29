@@ -173,8 +173,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 65%;
-    max-width: 350px;
+    width: 75%;
+    max-width: 400px;
     font-family: 'Roboto', sans-serif;
     font-size: 1.1rem;
     font-weight: 100;
@@ -224,8 +224,8 @@ body {
 
     .bubble-text {
         font-size: 0.95rem;
-        width: 68%;
-        max-width: 300px;
+        width: 75%;
+        max-width: 330px;
         line-height: 1.6;
     }
 }
@@ -262,8 +262,8 @@ body {
 
     .bubble-text {
         font-size: 0.8rem;
-        width: 70%;
-        max-width: 250px;
+        width: 78%;
+        max-width: 280px;
         line-height: 1.5;
         padding: 12px 15px;
     }
@@ -284,7 +284,7 @@ body {
 
 .what-we-do-heading {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
+    font-size: 6.5rem;
     font-weight: 700;
     color: #1a1a1a;
     margin-bottom: 40px;
@@ -326,7 +326,7 @@ body {
 
 @media (max-width: 1024px) {
     .what-we-do-heading {
-        font-size: 2.5rem;
+        font-size: 4.55rem;
         margin-bottom: 30px;
     }
 
@@ -348,7 +348,7 @@ body {
     }
 
     .what-we-do-heading {
-        font-size: 2rem;
+        font-size: 3.25rem;
         margin-bottom: 25px;
     }
 
@@ -367,7 +367,7 @@ body {
 
 @media (max-width: 600px) {
     .what-we-do-heading {
-        font-size: 1.8rem;
+        font-size: 2.5rem;
     }
 
     .blue-bubble {
