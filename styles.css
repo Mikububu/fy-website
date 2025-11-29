@@ -231,6 +231,7 @@ body {
     font-weight: 700;
     line-height: 1.3;
     text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .blog-card-description {
