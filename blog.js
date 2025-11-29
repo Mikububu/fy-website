@@ -369,7 +369,6 @@ async function loadBlogPosts() {
                     <div class="blog-card-content">
                         <h3 class="blog-card-title">${post.title}</h3>
                         <p class="blog-card-description">${post.description}</p>
-                        ${post.date ? `<time class="blog-card-date">${post.date}</time>` : ''}
                     </div>
                 </a>
             `;
