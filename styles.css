@@ -114,7 +114,7 @@ body {
 }
 
 .nasi-image {
-    width: 1500px;
+    width: 900px;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -128,7 +128,7 @@ body {
 
     .nasi-image {
         width: 90%;
-        max-width: 1500px;
+        max-width: 900px;
     }
 }
 
@@ -140,7 +140,7 @@ body {
 
     .nasi-image {
         width: 95%;
-        max-width: 1500px;
+        max-width: 900px;
     }
 }
 
