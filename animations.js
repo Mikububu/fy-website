@@ -53,3 +53,59 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// SLC Number Count-Up Animation
+document.addEventListener('DOMContentLoaded', function() {
+    const numberElements = document.querySelectorAll('.slc-number-circle .number');
+
+    // Intersection Observer to trigger animation when section comes into view
+    const observerOptions = {
+        threshold: 0.3,
+        rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Animate all numbers when section is visible
+                numberElements.forEach(numberElement => {
+                    animateNumber(numberElement);
+                });
+                // Stop observing after first trigger
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe the SLC section
+    const slcSection = document.querySelector('.slc-section');
+    if (slcSection) {
+        observer.observe(slcSection);
+    }
+
+    function animateNumber(element) {
+        const target = parseInt(element.getAttribute('data-target'));
+        const duration = 1500; // 1.5 seconds
+        const startTime = performance.now();
+        const start = 0;
+
+        function updateNumber(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // Easing function for smooth animation
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            const current = Math.floor(start + (target - start) * easeOutQuart);
+
+            element.textContent = current;
+
+            if (progress < 1) {
+                requestAnimationFrame(updateNumber);
+            } else {
+                element.textContent = target; // Ensure final value is exact
+            }
+        }
+
+        requestAnimationFrame(updateNumber);
+    }
+});
