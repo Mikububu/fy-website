@@ -131,9 +131,9 @@ body {
 
 .nasi-heading {
     font-family: 'Playfair Display', serif;
-    font-size: 5rem;
+    font-size: 6.5rem;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #423737;
     margin-bottom: 5px;
     text-transform: uppercase;
 }
@@ -178,9 +178,9 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 1.1rem;
     font-weight: 100;
-    color: white;
+    color: #E6DECA;
     text-align: center;
-    line-height: 1.5;
+    line-height: 1.7;
     padding: 15px 20px;
     overflow: hidden;
 }
@@ -207,7 +207,7 @@ body {
     }
 
     .nasi-heading {
-        font-size: 3.5rem;
+        font-size: 4.55rem;
     }
 
     .nasi-subheading {
@@ -226,7 +226,7 @@ body {
         font-size: 0.95rem;
         width: 68%;
         max-width: 300px;
-        line-height: 1.4;
+        line-height: 1.6;
     }
 }
 
@@ -245,7 +245,7 @@ body {
     }
 
     .nasi-heading {
-        font-size: 2.5rem;
+        font-size: 3.25rem;
     }
 
     .nasi-subheading {
@@ -264,7 +264,7 @@ body {
         font-size: 0.8rem;
         width: 70%;
         max-width: 250px;
-        line-height: 1.3;
+        line-height: 1.5;
         padding: 12px 15px;
     }
 }
@@ -288,7 +288,7 @@ body {
     font-weight: 700;
     color: #1a1a1a;
     margin-bottom: 40px;
-    text-transform: uppercase;
+    text-transform: none;
 }
 
 .blue-bubble-container {
@@ -315,9 +315,9 @@ body {
     width: 55%;
     max-width: 500px;
     font-family: 'Roboto', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     font-weight: 100;
-    color: white;
+    color: #423737;
     text-align: center;
     line-height: 1.6;
     padding: 20px;
@@ -335,7 +335,7 @@ body {
     }
 
     .blue-bubble-text {
-        font-size: 1rem;
+        font-size: 1.3rem;
         width: 58%;
         max-width: 450px;
         line-height: 1.5;
@@ -357,7 +357,7 @@ body {
     }
 
     .blue-bubble-text {
-        font-size: 0.85rem;
+        font-size: 1.1rem;
         width: 62%;
         max-width: 350px;
         line-height: 1.4;
@@ -375,7 +375,7 @@ body {
     }
 
     .blue-bubble-text {
-        font-size: 0.75rem;
+        font-size: 0.95rem;
         width: 65%;
         max-width: 300px;
         line-height: 1.3;
@@ -480,6 +480,7 @@ body {
     line-height: 1.4;
     margin-bottom: 0;
     font-weight: 100;
+    letter-spacing: 0.02em;
 }
 
 .blog-card-date {
