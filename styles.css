@@ -610,22 +610,13 @@ body {
     height: 800px;
 }
 
-.layer-sofa {
+.layer-sofa-woman {
     position: absolute;
-    left: 15%;
+    left: 10%;
     bottom: 160px;
-    width: 45%;
+    width: 85%;
     height: auto;
     z-index: 1;
-}
-
-.layer-woman {
-    position: absolute;
-    right: 8%;
-    bottom: 160px;
-    width: 48%;
-    height: auto;
-    z-index: 3;
 }
 
 .layer-freud {
@@ -697,14 +688,9 @@ body {
         font-size: 5rem;
     }
 
-    .layer-sofa {
-        width: 50%;
+    .layer-sofa-woman {
+        width: 80%;
         left: 10%;
-    }
-
-    .layer-woman {
-        width: 55%;
-        right: 5%;
     }
 
     .freud-bottom-text {
@@ -749,15 +735,9 @@ body {
         height: 600px;
     }
 
-    .layer-sofa {
-        width: 60%;
+    .layer-sofa-woman {
+        width: 90%;
         left: 5%;
-        bottom: 120px;
-    }
-
-    .layer-woman {
-        width: 65%;
-        right: 0;
         bottom: 120px;
     }
 
@@ -817,15 +797,9 @@ body {
         height: 500px;
     }
 
-    .layer-sofa {
-        width: 70%;
-        left: 3%;
-        bottom: 100px;
-    }
-
-    .layer-woman {
-        width: 75%;
-        right: -5%;
+    .layer-sofa-woman {
+        width: 95%;
+        left: 2.5%;
         bottom: 100px;
     }
 
