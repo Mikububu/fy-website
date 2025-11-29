@@ -1,0 +1,13 @@
+# macOS files
+.DS_Store
+._*
+
+# Node modules (if needed later)
+node_modules/
+
+# Netlify
+.netlify/
+
+# Large screenshots (not needed for deployment)
+screencapture.png
+screencapture*.jpg
