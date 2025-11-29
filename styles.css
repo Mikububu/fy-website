@@ -191,18 +191,21 @@ body {
 }
 
 .blog-card-title {
+    font-family: 'Playfair Display', serif;
     font-size: 0.95rem;
     color: #1a1a1a;
     margin-bottom: 8px;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.3;
 }
 
 .blog-card-description {
+    font-family: 'Playfair Display', serif;
     font-size: 0.95rem;
     color: #666;
     line-height: 1.5;
     margin-bottom: 0;
+    font-weight: 700;
 }
 
 .blog-card-date {
