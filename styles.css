@@ -389,6 +389,10 @@ body {
         display: none;
     }
 
+    .brown-bubble-container {
+        margin-top: -80px;
+    }
+
     .brown-bubble {
         width: 65%;
     }
@@ -482,7 +486,8 @@ body {
 
     .what-we-do-heading {
         font-size: 3.25rem;
-        margin-bottom: 25px;
+        margin-bottom: 60px;
+        margin-top: 20px;
     }
 
     .blue-bubble {
@@ -723,7 +728,7 @@ body {
 
     .freud-headline {
         font-size: 0.95rem;
-        top: 40px;
+        top: 140px;
         left: 5%;
     }
 
@@ -756,7 +761,9 @@ body {
     .freud-bottom-text {
         font-size: 1.2rem;
         right: 20px;
+        left: 20px;
         bottom: 60px;
+        text-align: center;
     }
 
     .freud-bottom-text strong {
@@ -785,7 +792,7 @@ body {
 
     .freud-headline {
         font-size: 0.85rem;
-        top: 30px;
+        top: 120px;
         left: 5%;
     }
 
@@ -1125,8 +1132,10 @@ body {
     }
 
     .slc-organic-bubble {
-        min-height: 500px;
+        min-height: 650px;
         padding: 40px 30px;
+        animation: none;
+        border-radius: 42% 58% 45% 55% / 52% 48% 52% 48%;
     }
 
     .slc-heading {
@@ -1139,59 +1148,60 @@ body {
     }
 
     .slc-numbers {
-        height: 400px;
+        height: 550px;
         margin-top: 60px;
     }
 
     .slc-number-circle {
-        width: 110px;
-        height: 110px;
-        padding: 15px;
+        width: 95px;
+        height: 95px;
+        padding: 10px;
+        animation: none !important;
     }
 
     .slc-number-circle .number {
-        font-size: 2.8rem;
+        font-size: 2.2rem !important;
     }
 
     .slc-number-circle .label {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 
     .slc-number-circle.client {
-        width: 140px;
-        height: 140px;
+        width: 120px;
+        height: 120px;
     }
 
     .slc-number-circle.client .number {
-        font-size: 3.8rem;
+        font-size: 3rem !important;
     }
 
     .slc-number-circle.guru {
-        top: -10px;
+        top: 10px;
     }
 
     .slc-number-circle.placeholders {
-        top: 80px;
-        left: -10px;
-    }
-
-    .slc-number-circle.weeks {
-        top: 80px;
-        right: -10px;
-    }
-
-    .slc-number-circle.location {
-        bottom: 80px;
+        top: 120px;
         left: 10px;
     }
 
-    .slc-number-circle.facilitators {
-        bottom: 80px;
+    .slc-number-circle.weeks {
+        top: 120px;
         right: 10px;
     }
 
+    .slc-number-circle.location {
+        bottom: 120px;
+        left: 15px;
+    }
+
+    .slc-number-circle.facilitators {
+        bottom: 120px;
+        right: 15px;
+    }
+
     .slc-number-circle.bodyworkers {
-        bottom: -10px;
+        bottom: 10px;
     }
 
     .slc-description {
@@ -1201,8 +1211,10 @@ body {
 
 @media (max-width: 600px) {
     .slc-organic-bubble {
-        min-height: 450px;
+        min-height: 550px;
         padding: 30px 20px;
+        animation: none;
+        border-radius: 42% 58% 45% 55% / 52% 48% 52% 48%;
     }
 
     .slc-title {
@@ -1214,30 +1226,59 @@ body {
     }
 
     .slc-numbers {
-        height: 350px;
+        height: 480px;
     }
 
     .slc-number-circle {
-        width: 90px;
-        height: 90px;
-        padding: 10px;
+        width: 75px;
+        height: 75px;
+        padding: 8px;
+        animation: none !important;
     }
 
     .slc-number-circle .number {
-        font-size: 2.2rem;
+        font-size: 1.8rem !important;
     }
 
     .slc-number-circle .label {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
     }
 
     .slc-number-circle.client {
-        width: 110px;
-        height: 110px;
+        width: 95px;
+        height: 95px;
     }
 
     .slc-number-circle.client .number {
-        font-size: 3rem;
+        font-size: 2.5rem !important;
+    }
+
+    .slc-number-circle.guru {
+        top: 10px;
+    }
+
+    .slc-number-circle.placeholders {
+        top: 100px;
+        left: 5px;
+    }
+
+    .slc-number-circle.weeks {
+        top: 100px;
+        right: 5px;
+    }
+
+    .slc-number-circle.location {
+        bottom: 100px;
+        left: 10px;
+    }
+
+    .slc-number-circle.facilitators {
+        bottom: 100px;
+        right: 10px;
+    }
+
+    .slc-number-circle.bodyworkers {
+        bottom: 10px;
     }
 
     .slc-description {
