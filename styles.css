@@ -451,7 +451,14 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: sepia(100%);
+}
+
+@media (hover: hover) {
+    .blog-card:hover .blog-card-image img {
+        filter: sepia(0%);
+    }
 }
 
 .blog-card:hover .blog-card-image img {
@@ -543,7 +550,7 @@ body {
 /* Mobile Phones */
 @media (max-width: 600px) {
     .blog-section {
-        padding: 80px 15px 40px;
+        padding: 80px 20px 40px;
     }
 
     .blog-title {
@@ -552,29 +559,37 @@ body {
 
     .blog-grid {
         grid-template-columns: 1fr;
-        gap: 16px;
+        gap: 30px;
+        max-width: 350px;
+        margin: 0 auto;
     }
 
     .blog-card {
         border-radius: 10px;
+        max-width: 100%;
     }
 
     .blog-card-image {
-        height: 200px;
+        height: 140px;
     }
 
     .blog-card-content {
-        padding: 14px;
+        padding: 12px;
     }
 
     .blog-card-title {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
         margin-bottom: 6px;
     }
 
     .blog-card-description {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
     }
+
+    .blog-card-image img {
+        filter: sepia(100%) !important;
+    }
+}
 
     .loading {
         padding: 30px;
