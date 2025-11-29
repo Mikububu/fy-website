@@ -582,7 +582,7 @@ body {
 
 .freud-headline {
     position: absolute;
-    top: 180px;
+    top: 80px;
     left: 18%;
     font-family: 'Playfair Display', serif;
     font-size: 1.3rem;
@@ -613,7 +613,7 @@ body {
 .layer-sofa {
     position: absolute;
     left: 15%;
-    bottom: 140px;
+    bottom: 160px;
     width: 45%;
     height: auto;
     z-index: 1;
@@ -622,7 +622,7 @@ body {
 .layer-woman {
     position: absolute;
     right: 8%;
-    bottom: 140px;
+    bottom: 160px;
     width: 48%;
     height: auto;
     z-index: 3;
@@ -664,6 +664,194 @@ body {
     font-weight: 700;
     font-size: 2.2rem;
     display: block;
+}
+
+/* Freud Section Mobile Responsive */
+@media (max-width: 1024px) {
+    .freud-section {
+        padding: 60px 30px;
+    }
+
+    .freud-top-circles {
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+    }
+
+    .circle-image {
+        width: 220px;
+        height: 220px;
+    }
+
+    .freud-main-composition {
+        min-height: 700px;
+    }
+
+    .freud-headline {
+        font-size: 1.1rem;
+        top: 60px;
+        left: 10%;
+    }
+
+    .nude-body {
+        font-size: 5rem;
+    }
+
+    .layer-sofa {
+        width: 50%;
+        left: 10%;
+    }
+
+    .layer-woman {
+        width: 55%;
+        right: 5%;
+    }
+
+    .freud-bottom-text {
+        font-size: 1.4rem;
+        right: 60px;
+    }
+
+    .freud-bottom-text strong {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .freud-section {
+        padding: 40px 20px;
+    }
+
+    .circle-image {
+        width: 180px;
+        height: 180px;
+    }
+
+    .circle-text {
+        font-size: 1.1rem;
+    }
+
+    .freud-main-composition {
+        min-height: 600px;
+    }
+
+    .freud-headline {
+        font-size: 0.95rem;
+        top: 40px;
+        left: 5%;
+    }
+
+    .nude-body {
+        font-size: 3.5rem;
+    }
+
+    .freud-layers {
+        height: 600px;
+    }
+
+    .layer-sofa {
+        width: 60%;
+        left: 5%;
+        bottom: 120px;
+    }
+
+    .layer-woman {
+        width: 65%;
+        right: 0;
+        bottom: 120px;
+    }
+
+    .layer-freud {
+        width: 18%;
+        left: 8%;
+        bottom: 90px;
+    }
+
+    .layer-book {
+        width: 22%;
+        left: 5%;
+        bottom: 30px;
+    }
+
+    .freud-bottom-text {
+        font-size: 1.2rem;
+        right: 20px;
+        bottom: 60px;
+    }
+
+    .freud-bottom-text strong {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .freud-top-circles {
+        gap: 30px;
+    }
+
+    .circle-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .circle-text {
+        font-size: 0.95rem;
+        max-width: 280px;
+    }
+
+    .freud-main-composition {
+        min-height: 500px;
+    }
+
+    .freud-headline {
+        font-size: 0.85rem;
+        top: 30px;
+        left: 5%;
+    }
+
+    .nude-body {
+        font-size: 2.5rem;
+    }
+
+    .freud-layers {
+        height: 500px;
+    }
+
+    .layer-sofa {
+        width: 70%;
+        left: 3%;
+        bottom: 100px;
+    }
+
+    .layer-woman {
+        width: 75%;
+        right: -5%;
+        bottom: 100px;
+    }
+
+    .layer-freud {
+        width: 20%;
+        left: 5%;
+        bottom: 70px;
+    }
+
+    .layer-book {
+        width: 25%;
+        left: 3%;
+        bottom: 20px;
+    }
+
+    .freud-bottom-text {
+        font-size: 1rem;
+        right: 15px;
+        bottom: 40px;
+        text-align: center;
+        left: 15px;
+    }
+
+    .freud-bottom-text strong {
+        font-size: 1.3rem;
+    }
 }
 
 /* SLC Example Section */
@@ -757,6 +945,85 @@ body {
     justify-content: center;
     text-align: center;
     padding: 20px;
+    animation: organicWobble 6s ease-in-out infinite;
+}
+
+/* Each circle gets a slightly different wobble */
+.slc-number-circle.guru {
+    animation: organicWobble1 5s ease-in-out infinite;
+}
+
+.slc-number-circle.placeholders {
+    animation: organicWobble2 6.5s ease-in-out infinite;
+}
+
+.slc-number-circle.weeks {
+    animation: organicWobble3 5.5s ease-in-out infinite;
+}
+
+.slc-number-circle.client {
+    animation: organicWobble4 7s ease-in-out infinite;
+}
+
+.slc-number-circle.location {
+    animation: organicWobble5 6s ease-in-out infinite;
+}
+
+.slc-number-circle.facilitators {
+    animation: organicWobble6 5.8s ease-in-out infinite;
+}
+
+.slc-number-circle.bodyworkers {
+    animation: organicWobble7 6.2s ease-in-out infinite;
+}
+
+@keyframes organicWobble1 {
+    0%, 100% { border-radius: 45% 55% 50% 50% / 50% 48% 52% 50%; }
+    25% { border-radius: 52% 48% 55% 45% / 48% 55% 45% 52%; }
+    50% { border-radius: 48% 52% 45% 55% / 55% 45% 55% 45%; }
+    75% { border-radius: 55% 45% 48% 52% / 52% 50% 50% 48%; }
+}
+
+@keyframes organicWobble2 {
+    0%, 100% { border-radius: 50% 50% 48% 52% / 52% 48% 50% 50%; }
+    25% { border-radius: 48% 52% 50% 50% / 50% 52% 48% 52%; }
+    50% { border-radius: 52% 48% 52% 48% / 48% 50% 52% 50%; }
+    75% { border-radius: 50% 50% 52% 48% / 52% 48% 48% 52%; }
+}
+
+@keyframes organicWobble3 {
+    0%, 100% { border-radius: 48% 52% 52% 48% / 48% 52% 52% 48%; }
+    25% { border-radius: 55% 45% 48% 52% / 52% 48% 55% 45%; }
+    50% { border-radius: 45% 55% 55% 45% / 55% 45% 45% 55%; }
+    75% { border-radius: 52% 48% 45% 55% / 48% 55% 52% 48%; }
+}
+
+@keyframes organicWobble4 {
+    0%, 100% { border-radius: 52% 48% 48% 52% / 50% 50% 48% 52%; }
+    25% { border-radius: 48% 52% 55% 45% / 52% 48% 52% 48%; }
+    50% { border-radius: 50% 50% 50% 50% / 55% 45% 55% 45%; }
+    75% { border-radius: 55% 45% 52% 48% / 48% 52% 50% 50%; }
+}
+
+@keyframes organicWobble5 {
+    0%, 100% { border-radius: 50% 50% 55% 45% / 52% 48% 52% 48%; }
+    25% { border-radius: 52% 48% 50% 50% / 48% 52% 48% 52%; }
+    50% { border-radius: 48% 52% 48% 52% / 55% 45% 55% 45%; }
+    75% { border-radius: 55% 45% 52% 48% / 50% 50% 50% 50%; }
+}
+
+@keyframes organicWobble6 {
+    0%, 100% { border-radius: 48% 52% 50% 50% / 55% 45% 48% 52%; }
+    25% { border-radius: 52% 48% 52% 48% / 50% 50% 52% 48%; }
+    50% { border-radius: 55% 45% 48% 52% / 48% 52% 55% 45%; }
+    75% { border-radius: 50% 50% 55% 45% / 52% 48% 50% 50%; }
+}
+
+@keyframes organicWobble7 {
+    0%, 100% { border-radius: 52% 48% 52% 48% / 48% 52% 50% 50%; }
+    25% { border-radius: 50% 50% 48% 52% / 55% 45% 52% 48%; }
+    50% { border-radius: 48% 52% 55% 45% / 50% 50% 48% 52%; }
+    75% { border-radius: 55% 45% 50% 50% / 52% 48% 55% 45%; }
 }
 
 .slc-number-circle .number {
@@ -767,7 +1034,7 @@ body {
     line-height: 1;
     display: block;
     text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, font-size 0.3s ease;
 }
 
 .slc-number-circle .label {
@@ -837,6 +1104,171 @@ body {
     color: #1a1a1a;
     line-height: 1.6;
     margin: 0;
+}
+
+/* SLC Mobile Responsive */
+@media (max-width: 1024px) {
+    .slc-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .slc-right {
+        flex: 1;
+        text-align: center;
+    }
+
+    .slc-organic-bubble {
+        min-height: 600px;
+    }
+
+    .slc-numbers {
+        height: 500px;
+    }
+
+    .slc-number-circle {
+        width: 130px;
+        height: 130px;
+    }
+
+    .slc-number-circle .number {
+        font-size: 3.5rem;
+    }
+
+    .slc-number-circle.client {
+        width: 160px;
+        height: 160px;
+    }
+
+    .slc-number-circle.client .number {
+        font-size: 4.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .slc-section {
+        padding: 60px 20px;
+    }
+
+    .slc-organic-bubble {
+        min-height: 500px;
+        padding: 40px 30px;
+    }
+
+    .slc-heading {
+        left: 30px;
+        top: 30px;
+    }
+
+    .slc-title {
+        font-size: 2.2rem;
+    }
+
+    .slc-numbers {
+        height: 400px;
+        margin-top: 60px;
+    }
+
+    .slc-number-circle {
+        width: 110px;
+        height: 110px;
+        padding: 15px;
+    }
+
+    .slc-number-circle .number {
+        font-size: 2.8rem;
+    }
+
+    .slc-number-circle .label {
+        font-size: 0.8rem;
+    }
+
+    .slc-number-circle.client {
+        width: 140px;
+        height: 140px;
+    }
+
+    .slc-number-circle.client .number {
+        font-size: 3.8rem;
+    }
+
+    .slc-number-circle.guru {
+        top: -10px;
+    }
+
+    .slc-number-circle.placeholders {
+        top: 80px;
+        left: -10px;
+    }
+
+    .slc-number-circle.weeks {
+        top: 80px;
+        right: -10px;
+    }
+
+    .slc-number-circle.location {
+        bottom: 80px;
+        left: 10px;
+    }
+
+    .slc-number-circle.facilitators {
+        bottom: 80px;
+        right: 10px;
+    }
+
+    .slc-number-circle.bodyworkers {
+        bottom: -10px;
+    }
+
+    .slc-description {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .slc-organic-bubble {
+        min-height: 450px;
+        padding: 30px 20px;
+    }
+
+    .slc-title {
+        font-size: 1.8rem;
+    }
+
+    .slc-example {
+        font-size: 0.75rem;
+    }
+
+    .slc-numbers {
+        height: 350px;
+    }
+
+    .slc-number-circle {
+        width: 90px;
+        height: 90px;
+        padding: 10px;
+    }
+
+    .slc-number-circle .number {
+        font-size: 2.2rem;
+    }
+
+    .slc-number-circle .label {
+        font-size: 0.7rem;
+    }
+
+    .slc-number-circle.client {
+        width: 110px;
+        height: 110px;
+    }
+
+    .slc-number-circle.client .number {
+        font-size: 3rem;
+    }
+
+    .slc-description {
+        font-size: 1rem;
+    }
 }
 
 /* What Makes Our Retreats Different Section */

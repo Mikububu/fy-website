@@ -110,6 +110,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     element.textContent = current;
                     element.setAttribute('data-current', current);
                     element.style.opacity = '1';
+
+                    // Random organic size variation (4rem to 5.5rem)
+                    const randomSize = 4 + Math.random() * 1.5;
+                    element.style.fontSize = `${randomSize}rem`;
                 }, 150);
 
             }, baseDelay);
