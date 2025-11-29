@@ -23,6 +23,7 @@ async function loadBlogPosts() {
         }
 
         // Fallback to hardcoded data if RSS fetch failed or viewing locally
+        // ALL 12 posts from Forbidden Yoga archive
         if (posts.length === 0) {
             posts = [
                 {
@@ -76,7 +77,7 @@ async function loadBlogPosts() {
                 },
                 {
                     "title": "4 Paths Into the Forbidden",
-                    "description": "What you can get from us",
+                    "description": "What you can get from us!",
                     "link": "https://www.forbidden-yoga.com/p/4-paths-into-the-forbidden",
                     "image": "https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F140f3b70-09c8-4371-b03a-d755ae695181_3362x1860.jpeg",
                     "date": "Nov 10, 2025"
@@ -93,6 +94,20 @@ async function loadBlogPosts() {
                     "description": "Why We Work Through The Body, Not Primarily Mantra Sadhana",
                     "link": "https://www.forbidden-yoga.com/p/indian-tantra-mahavidyas-versus-nityas",
                     "image": "https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F178415569%2F85756739-5835-4af4-9eaa-8a027aa59dce%2Ftranscoded-00000.png",
+                    "date": "Nov 9, 2025"
+                },
+                {
+                    "title": "Why our society cannot heal",
+                    "description": "(but maybe some of us can)",
+                    "link": "https://www.forbidden-yoga.com/p/why-our-society-cannot-heal",
+                    "image": "https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F178404378%2F0e279d59-fbc1-4487-b2a6-7cdbb30a1ca3%2Ftranscoded-00001.png",
+                    "date": "Nov 9, 2025"
+                },
+                {
+                    "title": "What you can expect booking Forbidden Yoga experiences",
+                    "description": "Welcome to the edge of the forbidden, where practice becomes life and life becomes practice",
+                    "link": "https://www.forbidden-yoga.com/p/what-you-can-expect-booking-forbidden",
+                    "image": "https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-video.s3.amazonaws.com%2Fvideo_upload%2Fpost%2F178395424%2F39f82b4c-a48f-4e96-9c29-0e3f0b6863a4%2Ftranscoded-00001.png",
                     "date": "Nov 9, 2025"
                 }
             ];
