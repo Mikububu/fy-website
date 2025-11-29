@@ -161,8 +161,8 @@ body {
 }
 
 .brown-bubble {
-    width: 70%;
-    max-width: 840px;
+    width: 50%;
+    max-width: 600px;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -173,9 +173,9 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60%;
+    width: 70%;
     font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 100;
     color: white;
     text-align: center;
@@ -217,12 +217,12 @@ body {
     }
 
     .brown-bubble {
-        width: 75%;
+        width: 60%;
     }
 
     .bubble-text {
-        font-size: 0.9rem;
-        width: 65%;
+        font-size: 1.1rem;
+        width: 70%;
     }
 }
 
@@ -253,13 +253,114 @@ body {
     }
 
     .brown-bubble {
-        width: 80%;
+        width: 65%;
     }
 
     .bubble-text {
-        font-size: 0.75rem;
-        width: 70%;
+        font-size: 0.95rem;
+        width: 75%;
         padding: 15px;
+    }
+}
+
+/* What We Do Section Styles */
+.what-we-do-section {
+    width: 100%;
+    background-color: #f3f2de;
+    padding: 80px 40px;
+    text-align: center;
+}
+
+.what-we-do-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.what-we-do-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.blue-bubble-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.blue-bubble {
+    background-color: #8fa9aa;
+    width: 80%;
+    max-width: 900px;
+    padding: 60px 80px;
+    border-radius: 47% 53% 54% 46% / 48% 45% 55% 52%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.blue-bubble-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 100;
+    color: white;
+    line-height: 1.8;
+    margin: 0;
+    text-align: center;
+}
+
+@media (max-width: 1024px) {
+    .what-we-do-heading {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+    }
+
+    .blue-bubble {
+        width: 85%;
+        padding: 50px 60px;
+    }
+
+    .blue-bubble-text {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .what-we-do-section {
+        padding: 60px 20px;
+    }
+
+    .what-we-do-heading {
+        font-size: 2rem;
+        margin-bottom: 25px;
+    }
+
+    .blue-bubble {
+        width: 90%;
+        padding: 40px 30px;
+    }
+
+    .blue-bubble-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 600px) {
+    .what-we-do-heading {
+        font-size: 1.8rem;
+    }
+
+    .blue-bubble {
+        width: 95%;
+        padding: 30px 25px;
+    }
+
+    .blue-bubble-text {
+        font-size: 0.9rem;
     }
 }
 
