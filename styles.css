@@ -78,18 +78,18 @@ body {
     position: absolute;
     top: 50%;
     width: auto;
-    margin-top: -30px;
+    margin-top: -20px;
     padding: 0;
     color: white;
     font-weight: 100;
-    font-size: 60px;
+    font-size: 40px;
     transition: 0.3s ease;
     user-select: none;
     background-color: transparent;
     text-decoration: none;
     z-index: 10;
     border: none;
-    opacity: 0.7;
+    opacity: 0.6;
 }
 
 .next {
@@ -102,7 +102,7 @@ body {
 
 .prev:hover, .next:hover {
     opacity: 1;
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 /* Nasi Shodana Section Styles */
@@ -486,8 +486,8 @@ body {
 
     .what-we-do-heading {
         font-size: 3.25rem;
-        margin-bottom: 80px;
-        margin-top: 20px;
+        margin-bottom: 120px;
+        margin-top: 40px;
     }
 
     .blue-bubble {
@@ -1133,9 +1133,12 @@ body {
 
     .slc-organic-bubble {
         min-height: auto;
-        padding: 40px 25px 50px 25px;
+        padding: 40px 20px 50px 20px;
         animation: none;
-        border-radius: 50px;
+        border-radius: 45% 55% 50% 50% / 48% 52% 52% 48%;
+        background-image: url('Michael%20bubble.png');
+        background-size: cover;
+        background-position: center;
         background-color: #b8d4d4;
     }
 
@@ -1153,17 +1156,17 @@ body {
         position: static;
         height: auto;
         margin-top: 0;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
         padding: 0 10px;
     }
 
     .slc-number-circle {
         position: static !important;
-        width: 100%;
-        height: auto;
-        aspect-ratio: 1;
+        width: 95px;
+        height: 95px;
         padding: 12px 8px;
         animation: none !important;
         margin: 0 !important;
@@ -1180,13 +1183,13 @@ body {
     }
 
     .slc-number-circle.client {
-        width: 100%;
-        height: auto;
-        grid-column: 2;
+        width: 110px;
+        height: 110px;
+        order: -1;
     }
 
     .slc-number-circle.client .number {
-        font-size: 2.5rem !important;
+        font-size: 2.8rem !important;
     }
 
     .slc-description {
@@ -1197,8 +1200,8 @@ body {
 @media (max-width: 600px) {
     .slc-organic-bubble {
         min-height: auto;
-        padding: 35px 20px 45px 20px;
-        border-radius: 40px;
+        padding: 35px 15px 45px 15px;
+        border-radius: 42% 58% 48% 52% / 50% 50% 50% 50%;
     }
 
     .slc-title {
@@ -1210,11 +1213,13 @@ body {
     }
 
     .slc-numbers {
-        gap: 12px;
+        gap: 10px;
         padding: 0 5px;
     }
 
     .slc-number-circle {
+        width: 80px;
+        height: 80px;
         padding: 10px 6px;
     }
 
@@ -1226,8 +1231,13 @@ body {
         font-size: 0.6rem;
     }
 
+    .slc-number-circle.client {
+        width: 95px;
+        height: 95px;
+    }
+
     .slc-number-circle.client .number {
-        font-size: 2.2rem !important;
+        font-size: 2.3rem !important;
     }
 
     .slc-description {
@@ -1239,7 +1249,7 @@ body {
 .michael-section {
     width: 100%;
     background-color: #f3f2de;
-    padding: 100px 40px;
+    padding: 150px 40px 100px 40px;
     position: relative;
 }
 
@@ -1289,40 +1299,41 @@ body {
 
 .michael-subtitle {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     font-weight: 100;
-    color: #4a4a4a;
-    letter-spacing: 2px;
+    color: #5a5a5a;
+    letter-spacing: 1.5px;
     margin: 0;
-    line-height: 1.5;
+    line-height: 1.3;
+    text-transform: uppercase;
 }
 
 .michael-creator {
     font-family: 'Roboto', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 100;
     color: #6a6a6a;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin: 0 0 15px 0;
+    letter-spacing: 1.2px;
+    margin: 0 0 20px 0;
 }
 
 .michael-name {
     font-family: 'Playfair Display', serif;
-    font-size: 7.5rem;
+    font-size: 8rem;
     font-weight: 700;
-    color: #4a3a2a;
-    margin: 10px 0 20px 0;
-    line-height: 0.9;
-    letter-spacing: -2px;
+    color: #3d2a1f;
+    margin: 5px 0 25px 0;
+    line-height: 0.85;
+    letter-spacing: -3px;
 }
 
 .michael-bio {
     font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 100;
-    color: #6a8a8a;
-    line-height: 1.75;
+    color: #7a9a9a;
+    line-height: 1.8;
     margin: 0;
     letter-spacing: 0;
 }
