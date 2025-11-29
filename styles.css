@@ -114,15 +114,33 @@ body {
 }
 
 .nasi-image {
-    max-width: 100%;
+    width: 1500px;
     height: auto;
     display: block;
     margin: 0 auto;
 }
 
+/* iPad/Tablet */
+@media (max-width: 1024px) {
+    .nasi-section {
+        padding: 60px 30px;
+    }
+
+    .nasi-image {
+        width: 90%;
+        max-width: 1500px;
+    }
+}
+
+/* Mobile */
 @media (max-width: 768px) {
     .nasi-section {
-        padding: 60px 20px;
+        padding: 50px 20px;
+    }
+
+    .nasi-image {
+        width: 95%;
+        max-width: 1500px;
     }
 }
 
