@@ -194,12 +194,12 @@ body {
 }
 
 .blog-card-description {
-    font-family: 'Helvetica', Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 0.7rem;
     color: white;
     line-height: 1.4;
     margin-bottom: 0;
-    font-weight: 400;
+    font-weight: 100;
 }
 
 .blog-card-date {
