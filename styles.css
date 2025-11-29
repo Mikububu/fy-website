@@ -105,6 +105,27 @@ body {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
+/* Nasi Shodana Section Styles */
+.nasi-section {
+    width: 100%;
+    background-color: #f3f2de;
+    padding: 80px 40px;
+    text-align: center;
+}
+
+.nasi-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .nasi-section {
+        padding: 60px 20px;
+    }
+}
+
 /* Blog Section Styles */
 .blog-section {
     width: 100%;
@@ -191,15 +212,16 @@ body {
     margin-bottom: 8px;
     font-weight: 700;
     line-height: 1.3;
+    text-transform: uppercase;
 }
 
 .blog-card-description {
     font-family: 'Roboto', sans-serif;
-    font-size: 0.7rem;
+    font-size: 0.85rem;
     color: white;
     line-height: 1.4;
     margin-bottom: 0;
-    font-weight: 100;
+    font-weight: 400;
 }
 
 .blog-card-date {
