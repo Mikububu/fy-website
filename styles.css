@@ -398,10 +398,10 @@ body {
     }
 
     .bubble-text {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
         width: 78%;
         max-width: 280px;
-        line-height: 1.5;
+        line-height: 1.4;
         padding: 12px 15px;
     }
 }
@@ -424,7 +424,7 @@ body {
     font-size: 6.5rem;
     font-weight: 700;
     color: #1a1a1a;
-    margin-bottom: -20px;
+    margin-bottom: 40px;
     text-transform: none;
 }
 
@@ -464,7 +464,7 @@ body {
 @media (max-width: 1024px) {
     .what-we-do-heading {
         font-size: 4.55rem;
-        margin-bottom: 30px;
+        margin-bottom: 50px;
     }
 
     .blue-bubble {
@@ -486,7 +486,7 @@ body {
 
     .what-we-do-heading {
         font-size: 3.25rem;
-        margin-bottom: 60px;
+        margin-bottom: 80px;
         margin-top: 20px;
     }
 
@@ -605,7 +605,7 @@ body {
     font-weight: 700;
     display: block;
     margin-top: 10px;
-    color: #4a4a4a;
+    color: #ffffff;
 }
 
 /* Layered images */
@@ -759,15 +759,15 @@ body {
     }
 
     .freud-bottom-text {
-        font-size: 1.2rem;
-        right: 20px;
-        left: 20px;
+        font-size: 0.95rem;
+        right: 30px;
+        left: 30px;
         bottom: 60px;
         text-align: center;
     }
 
     .freud-bottom-text strong {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 }
 
@@ -823,15 +823,15 @@ body {
     }
 
     .freud-bottom-text {
-        font-size: 1rem;
-        right: 15px;
+        font-size: 0.85rem;
+        right: 25px;
         bottom: 40px;
         text-align: center;
-        left: 15px;
+        left: 25px;
     }
 
     .freud-bottom-text strong {
-        font-size: 1.3rem;
+        font-size: 1.05rem;
     }
 }
 
@@ -1132,15 +1132,17 @@ body {
     }
 
     .slc-organic-bubble {
-        min-height: 650px;
-        padding: 40px 30px;
+        min-height: auto;
+        padding: 40px 25px 50px 25px;
         animation: none;
-        border-radius: 42% 58% 45% 55% / 52% 48% 52% 48%;
+        border-radius: 50px;
+        background-color: #b8d4d4;
     }
 
     .slc-heading {
-        left: 30px;
-        top: 30px;
+        position: static;
+        text-align: center;
+        margin-bottom: 30px;
     }
 
     .slc-title {
@@ -1148,60 +1150,43 @@ body {
     }
 
     .slc-numbers {
-        height: 550px;
-        margin-top: 60px;
+        position: static;
+        height: auto;
+        margin-top: 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        padding: 0 10px;
     }
 
     .slc-number-circle {
-        width: 95px;
-        height: 95px;
-        padding: 10px;
+        position: static !important;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+        padding: 12px 8px;
         animation: none !important;
+        margin: 0 !important;
+        transform: none !important;
     }
 
     .slc-number-circle .number {
-        font-size: 2.2rem !important;
+        font-size: 2rem !important;
     }
 
     .slc-number-circle .label {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
+        line-height: 1.2;
     }
 
     .slc-number-circle.client {
-        width: 120px;
-        height: 120px;
+        width: 100%;
+        height: auto;
+        grid-column: 2;
     }
 
     .slc-number-circle.client .number {
-        font-size: 3rem !important;
-    }
-
-    .slc-number-circle.guru {
-        top: 10px;
-    }
-
-    .slc-number-circle.placeholders {
-        top: 120px;
-        left: 10px;
-    }
-
-    .slc-number-circle.weeks {
-        top: 120px;
-        right: 10px;
-    }
-
-    .slc-number-circle.location {
-        bottom: 120px;
-        left: 15px;
-    }
-
-    .slc-number-circle.facilitators {
-        bottom: 120px;
-        right: 15px;
-    }
-
-    .slc-number-circle.bodyworkers {
-        bottom: 10px;
+        font-size: 2.5rem !important;
     }
 
     .slc-description {
@@ -1211,10 +1196,9 @@ body {
 
 @media (max-width: 600px) {
     .slc-organic-bubble {
-        min-height: 550px;
-        padding: 30px 20px;
-        animation: none;
-        border-radius: 42% 58% 45% 55% / 52% 48% 52% 48%;
+        min-height: auto;
+        padding: 35px 20px 45px 20px;
+        border-radius: 40px;
     }
 
     .slc-title {
@@ -1226,59 +1210,24 @@ body {
     }
 
     .slc-numbers {
-        height: 480px;
+        gap: 12px;
+        padding: 0 5px;
     }
 
     .slc-number-circle {
-        width: 75px;
-        height: 75px;
-        padding: 8px;
-        animation: none !important;
+        padding: 10px 6px;
     }
 
     .slc-number-circle .number {
-        font-size: 1.8rem !important;
+        font-size: 1.7rem !important;
     }
 
     .slc-number-circle .label {
-        font-size: 0.65rem;
-    }
-
-    .slc-number-circle.client {
-        width: 95px;
-        height: 95px;
+        font-size: 0.6rem;
     }
 
     .slc-number-circle.client .number {
-        font-size: 2.5rem !important;
-    }
-
-    .slc-number-circle.guru {
-        top: 10px;
-    }
-
-    .slc-number-circle.placeholders {
-        top: 100px;
-        left: 5px;
-    }
-
-    .slc-number-circle.weeks {
-        top: 100px;
-        right: 5px;
-    }
-
-    .slc-number-circle.location {
-        bottom: 100px;
-        left: 10px;
-    }
-
-    .slc-number-circle.facilitators {
-        bottom: 100px;
-        right: 10px;
-    }
-
-    .slc-number-circle.bodyworkers {
-        bottom: 10px;
+        font-size: 2.2rem !important;
     }
 
     .slc-description {
@@ -1340,39 +1289,41 @@ body {
 
 .michael-subtitle {
     font-family: 'Roboto', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 400;
     color: #4a4a4a;
-    letter-spacing: 0.5px;
+    letter-spacing: 1.5px;
     margin: 0;
 }
 
 .michael-creator {
     font-family: 'Roboto', sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 100;
-    color: #666;
+    color: #888;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0;
+    letter-spacing: 2px;
+    margin: 5px 0 0 0;
 }
 
 .michael-name {
     font-family: 'Playfair Display', serif;
-    font-size: 5rem;
+    font-size: 6rem;
     font-weight: 700;
-    color: #4a4a4a;
-    margin: 10px 0 20px 0;
-    line-height: 1;
+    color: #3a3a3a;
+    margin: 15px 0 25px 0;
+    line-height: 0.95;
+    letter-spacing: -1px;
 }
 
 .michael-bio {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 100;
-    color: #1a1a1a;
-    line-height: 1.8;
+    color: #2a2a2a;
+    line-height: 1.9;
     margin: 0;
+    letter-spacing: 0.3px;
 }
 
 /* Michael Mobile Responsive */
@@ -1644,18 +1595,19 @@ body {
         left: auto;
         right: auto;
         bottom: auto;
-        width: 100%;
-        max-width: 450px;
+        width: 90%;
+        max-width: 320px;
         margin: 0 auto;
     }
 
     .main-heading-bubble {
         height: auto;
-        padding: 40px;
+        padding: 35px 30px;
+        max-width: 340px;
     }
 
     .retreats-main-heading {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         text-align: center;
     }
 
@@ -1663,14 +1615,19 @@ body {
         display: none;
     }
 
+    .content-bubble {
+        padding: 30px 25px;
+    }
+
     .bubble-heading {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
         text-align: center;
     }
 
     .bubble-description {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         text-align: center;
+        line-height: 1.5;
     }
 }
 
