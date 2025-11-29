@@ -78,31 +78,31 @@ body {
     position: absolute;
     top: 50%;
     width: auto;
-    margin-top: -22px;
-    padding: 16px;
+    margin-top: -30px;
+    padding: 0;
     color: white;
-    font-weight: bold;
-    font-size: 18px;
-    transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
+    font-weight: 100;
+    font-size: 60px;
+    transition: 0.3s ease;
     user-select: none;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: transparent;
     text-decoration: none;
     z-index: 10;
+    border: none;
+    opacity: 0.7;
 }
 
 .next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
+    right: 20px;
 }
 
 .prev {
-    left: 0;
-    border-radius: 0 3px 3px 0;
+    left: 20px;
 }
 
 .prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 1;
+    transform: scale(1.2);
 }
 
 /* Nasi Shodana Section Styles */
@@ -1289,42 +1289,42 @@ body {
 
 .michael-subtitle {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 100;
     color: #4a4a4a;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     margin: 0;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 .michael-creator {
     font-family: 'Roboto', sans-serif;
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     font-weight: 100;
-    color: #7a7a7a;
+    color: #6a6a6a;
     text-transform: uppercase;
-    letter-spacing: 2.5px;
-    margin: 0 0 10px 0;
+    letter-spacing: 1.5px;
+    margin: 0 0 15px 0;
 }
 
 .michael-name {
     font-family: 'Playfair Display', serif;
-    font-size: 5rem;
+    font-size: 7.5rem;
     font-weight: 700;
-    color: #2a2a2a;
-    margin: 5px 0 15px 0;
-    line-height: 1;
-    letter-spacing: 0;
+    color: #4a3a2a;
+    margin: 10px 0 20px 0;
+    line-height: 0.9;
+    letter-spacing: -2px;
 }
 
 .michael-bio {
     font-family: 'Roboto', sans-serif;
-    font-size: 0.95rem;
+    font-size: 1rem;
     font-weight: 100;
-    color: #5a5a5a;
-    line-height: 1.7;
+    color: #6a8a8a;
+    line-height: 1.75;
     margin: 0;
-    letter-spacing: 0.2px;
+    letter-spacing: 0;
 }
 
 /* Michael Mobile Responsive */
