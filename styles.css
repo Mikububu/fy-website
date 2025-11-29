@@ -1286,6 +1286,194 @@ body {
     }
 }
 
+/* Michael Section */
+.michael-section {
+    width: 100%;
+    background-color: #f3f2de;
+    padding: 100px 40px;
+    position: relative;
+}
+
+.michael-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    min-height: 700px;
+}
+
+.michael-bubble {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 1100px;
+    height: auto;
+    z-index: 1;
+}
+
+.michael-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    padding: 80px 60px;
+}
+
+.michael-image-wrapper {
+    flex: 0 0 35%;
+}
+
+.michael-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.michael-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.michael-subtitle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: #4a4a4a;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.michael-creator {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 100;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.michael-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem;
+    font-weight: 700;
+    color: #4a4a4a;
+    margin: 10px 0 20px 0;
+    line-height: 1;
+}
+
+.michael-bio {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 100;
+    color: #1a1a1a;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* Michael Mobile Responsive */
+@media (max-width: 1024px) {
+    .michael-content {
+        flex-direction: column;
+        gap: 40px;
+        padding: 60px 40px;
+        text-align: center;
+    }
+
+    .michael-image-wrapper {
+        flex: 0 0 auto;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .michael-name {
+        font-size: 4rem;
+    }
+
+    .michael-bio {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .michael-section {
+        padding: 60px 20px;
+    }
+
+    .michael-container {
+        min-height: 600px;
+    }
+
+    .michael-bubble {
+        width: 95%;
+    }
+
+    .michael-content {
+        padding: 50px 30px;
+        gap: 30px;
+    }
+
+    .michael-image-wrapper {
+        max-width: 300px;
+    }
+
+    .michael-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .michael-creator {
+        font-size: 0.7rem;
+    }
+
+    .michael-name {
+        font-size: 3rem;
+    }
+
+    .michael-bio {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 600px) {
+    .michael-section {
+        padding: 40px 15px;
+    }
+
+    .michael-container {
+        min-height: 500px;
+    }
+
+    .michael-content {
+        padding: 40px 20px;
+        gap: 25px;
+    }
+
+    .michael-image-wrapper {
+        max-width: 250px;
+    }
+
+    .michael-subtitle {
+        font-size: 0.75rem;
+    }
+
+    .michael-creator {
+        font-size: 0.65rem;
+    }
+
+    .michael-name {
+        font-size: 2.5rem;
+    }
+
+    .michael-bio {
+        font-size: 0.9rem;
+    }
+}
+
 /* What Makes Our Retreats Different Section */
 .retreats-different-section {
     width: 100%;
