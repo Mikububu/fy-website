@@ -183,42 +183,41 @@ body {
     z-index: 10;
 }
 
-@media (hover: hover) {
-    .nasi-image-container:hover .ticket {
-        opacity: 1;
-    }
+/* Active state for ticket animation - controlled by JavaScript */
+.ticket.active {
+    opacity: 1;
+}
 
-    .nasi-image-container:hover .ticket-1 {
-        transform: translate(-50%, 0) scale(1);
-    }
+.ticket-1.active {
+    transform: translate(-50%, 0) scale(1);
+}
 
-    .nasi-image-container:hover .ticket-2 {
-        transform: translate(-50%, -50%) scale(1);
-    }
+.ticket-2.active {
+    transform: translate(-50%, -50%) scale(1);
+}
 
-    .nasi-image-container:hover .ticket-3 {
-        transform: translate(-50%, -50%) scale(1);
-    }
+.ticket-3.active {
+    transform: translate(-50%, -50%) scale(1);
+}
 
-    .nasi-image-container:hover .ticket-4 {
-        transform: translate(-50%, -50%) scale(1);
-    }
+.ticket-4.active {
+    transform: translate(-50%, -50%) scale(1);
+}
 
-    .nasi-image-container:hover .ticket-5 {
-        transform: translate(-50%, -50%) scale(1);
-    }
+.ticket-5.active {
+    transform: translate(-50%, -50%) scale(1);
+}
 
-    .nasi-image-container:hover .ticket-6 {
-        transform: translate(-50%, -50%) scale(1);
-    }
+.ticket-6.active {
+    transform: translate(-50%, -50%) scale(1);
+}
 
-    .nasi-image-container:hover .ticket-7 {
-        transform: translate(-50%, -50%) scale(1);
-    }
+.ticket-7.active {
+    transform: translate(-50%, -50%) scale(1);
+}
 
-    .nasi-image-container:hover .ticket-10 {
-        transform: translate(-50%, 0) scale(1);
-    }
+.ticket-10.active {
+    transform: translate(-50%, 0) scale(1);
 }
 
 /* Position each ticket - beam from nose/face center like rays of light */
@@ -612,8 +611,8 @@ body {
 
 .layer-sofa {
     position: absolute;
-    left: 50px;
-    top: 220px;
+    left: 150px;
+    bottom: 150px;
     width: 620px;
     height: auto;
     z-index: 1;
@@ -622,7 +621,7 @@ body {
 .layer-woman {
     position: absolute;
     right: 100px;
-    top: 80px;
+    bottom: 150px;
     width: 650px;
     height: auto;
     z-index: 3;
@@ -630,20 +629,20 @@ body {
 
 .layer-freud {
     position: absolute;
-    left: 80px;
-    bottom: 200px;
+    left: 180px;
+    bottom: 280px;
     width: 140px;
     height: auto;
-    z-index: 2;
+    z-index: 4;
 }
 
 .layer-book {
     position: absolute;
-    left: 50px;
-    bottom: 80px;
+    left: 100px;
+    bottom: 120px;
     width: 260px;
     height: auto;
-    z-index: 1;
+    z-index: 2;
 }
 
 .freud-bottom-text {
@@ -682,14 +681,14 @@ body {
     min-height: 900px;
 }
 
-/* Main heading bubble - light blue, overlapping with big bubble */
+/* Main heading bubble - transparent light blue, overlapping with big bubble */
 .main-heading-bubble {
     position: absolute;
     top: 80px;
     left: 180px;
     width: 520px;
     height: 380px;
-    background-color: #b8d4d4;
+    background-color: rgba(184, 212, 212, 0.5);
     border-radius: 45% 55% 52% 48% / 48% 45% 55% 52%;
     display: flex;
     align-items: center;
