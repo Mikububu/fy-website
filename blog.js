@@ -335,6 +335,22 @@ async function loadBlogPosts() {
             return;
         }
 
+        // Sort posts by date (newest first)
+        posts.sort((a, b) => {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return dateB - dateA;
+        });
+
+        // Pin the "4 Paths Into the Forbidden" post to first position
+        const pinnedPostUrl = 'https://www.forbidden-yoga.com/p/4-paths-into-the-forbidden';
+        const pinnedIndex = posts.findIndex(post => post.link === pinnedPostUrl);
+
+        if (pinnedIndex > 0) {
+            const [pinnedPost] = posts.splice(pinnedIndex, 1);
+            posts.unshift(pinnedPost);
+        }
+
         // Clear loading message
         blogGrid.innerHTML = '';
 
