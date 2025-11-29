@@ -4,12 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forbidden Yoga</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <img src="FY LOGO white no bg 2000.png" alt="Forbidden Yoga" class="logo">
     </div>
+
+    <!-- Slideshow Section -->
+    <section class="slideshow-section">
+        <div class="slideshow-container">
+            <div class="slide fade">
+                <img src="images/Bali Tantra Retreat 1.jpg" alt="Bali Tantra Retreat 1">
+            </div>
+            <div class="slide fade">
+                <img src="images/Bali Tantra Retreat 2.jpg" alt="Bali Tantra Retreat 2">
+            </div>
+            <div class="slide fade">
+                <img src="images/Bali Tantra Retreat 3.jpg" alt="Bali Tantra Retreat 3">
+            </div>
+            <div class="slide fade">
+                <img src="images/Bali Tantra Retreat 4.jpg" alt="Bali Tantra Retreat 4">
+            </div>
+            <div class="slide fade">
+                <img src="images/Bali Tantra Retreat 5.jpg" alt="Bali Tantra Retreat 5">
+            </div>
+            <div class="slide fade">
+                <img src="images/Bali Tantra Retreat 6.jpg" alt="Bali Tantra Retreat 6">
+            </div>
+            <div class="slide fade">
+                <img src="images/Bali Tantra Retreat 7.jpg" alt="Bali Tantra Retreat 7">
+            </div>
+            <div class="slide fade">
+                <img src="images/Bali Tantra Retreat 8.jpg" alt="Bali Tantra Retreat 8">
+            </div>
+            <div class="slide fade">
+                <img src="images/Bali Tantra Retreat 9.jpg" alt="Bali Tantra Retreat 9">
+            </div>
+            <div class="slide fade">
+                <img src="images/Bali Tantra Retreat 10.jpg" alt="Bali Tantra Retreat 10">
+            </div>
+
+            <!-- Navigation arrows -->
+            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+        </div>
+    </section>
 
     <!-- Blog Posts Section (moveable block) -->
     <section id="blog-section" class="blog-section">
@@ -21,6 +64,13 @@
         </div>
     </section>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-email">love@forbidden-yoga.com</div>
+        <div class="footer-copyright">Relatespace LLC Santa Monica USA</div>
+    </footer>
+
     <script src="blog.js"></script>
+    <script src="slideshow.js"></script>
 </body>
 </html>
