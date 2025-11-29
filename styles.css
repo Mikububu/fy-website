@@ -113,11 +113,67 @@ body {
     text-align: center;
 }
 
+.nasi-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.nasi-text-top {
+    margin-bottom: 30px;
+}
+
+.nasi-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.nasi-subheading {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
 .nasi-image {
     width: 900px;
     height: auto;
     display: block;
     margin: 0 auto;
+}
+
+.brown-bubble-container {
+    position: relative;
+    margin-top: -50px;
+    width: 100%;
+}
+
+.brown-bubble {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.bubble-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: #1a1a1a;
+    text-align: center;
+    line-height: 1.6;
+    padding: 20px;
 }
 
 /* iPad/Tablet */
@@ -126,9 +182,30 @@ body {
         padding: 60px 30px;
     }
 
+    .nasi-container {
+        max-width: 90%;
+    }
+
+    .nasi-heading {
+        font-size: 2.5rem;
+    }
+
+    .nasi-subheading {
+        font-size: 1rem;
+    }
+
     .nasi-image {
-        width: 90%;
+        width: 100%;
         max-width: 900px;
+    }
+
+    .brown-bubble {
+        width: 100%;
+    }
+
+    .bubble-text {
+        font-size: 0.95rem;
+        width: 75%;
     }
 }
 
@@ -138,9 +215,31 @@ body {
         padding: 50px 20px;
     }
 
+    .nasi-container {
+        max-width: 95%;
+    }
+
+    .nasi-heading {
+        font-size: 2rem;
+    }
+
+    .nasi-subheading {
+        font-size: 0.85rem;
+    }
+
     .nasi-image {
-        width: 95%;
+        width: 100%;
         max-width: 900px;
+    }
+
+    .brown-bubble {
+        width: 100%;
+    }
+
+    .bubble-text {
+        font-size: 0.8rem;
+        width: 80%;
+        padding: 15px;
     }
 }
 
@@ -231,7 +330,7 @@ body {
     font-weight: 700;
     line-height: 1.3;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
 }
 
 .blog-card-description {
