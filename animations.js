@@ -1,4 +1,6 @@
 // Ticket Animation - Beam from Nose Effect
+// DISABLED
+/*
 document.addEventListener('DOMContentLoaded', function() {
     const nasiContainer = document.querySelector('.nasi-image-container');
     const tickets = document.querySelectorAll('.ticket');
@@ -20,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
+*/
 
 // Organic Bubble Animation
 document.addEventListener('DOMContentLoaded', function() {

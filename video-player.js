@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoSrc = 'https://cdn.jwplayer.com/manifests/GcW2Vpgz.m3u8';
 
     if (video) {
+        const videoContainer = document.querySelector('.hero-video-container');
+
         // Create sound toggle button
         const soundToggle = document.createElement('button');
         soundToggle.className = 'video-sound-toggle';
@@ -19,9 +21,22 @@ document.addEventListener('DOMContentLoaded', function() {
             </svg>
         `;
 
-        // Add toggle button to video container
-        const videoContainer = document.querySelector('.hero-video-container');
+        // Create play/pause toggle button
+        const playPauseToggle = document.createElement('button');
+        playPauseToggle.className = 'video-play-pause-toggle';
+        playPauseToggle.innerHTML = `
+            <svg class="play-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="6" y="4" width="4" height="16"></rect>
+                <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
+        `;
+
+        // Add buttons to video container
         videoContainer.appendChild(soundToggle);
+        videoContainer.appendChild(playPauseToggle);
 
         // Toggle sound on button click
         soundToggle.addEventListener('click', function() {
@@ -36,6 +51,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 soundOff.style.display = 'none';
                 soundOn.style.display = 'block';
             }
+        });
+
+        // Toggle play/pause on button click
+        playPauseToggle.addEventListener('click', function() {
+            const playIcon = playPauseToggle.querySelector('.play-icon');
+            const pauseIcon = playPauseToggle.querySelector('.pause-icon');
+
+            if (video.paused) {
+                video.play();
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+            } else {
+                video.pause();
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            }
+        });
+
+        // Add loaded class when video can play
+        video.addEventListener('canplay', function() {
+            video.classList.add('loaded');
         });
 
         // Check if HLS is supported natively (Safari)
