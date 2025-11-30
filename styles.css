@@ -36,6 +36,35 @@ body {
     }
 }
 
+/* Hero Video Section Styles */
+.hero-video-section {
+    width: 100%;
+    position: relative;
+    margin-top: 100px;
+    background-color: #000;
+}
+
+.hero-video-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#hero-video {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .hero-video-section {
+        margin-top: 80px;
+    }
+}
+
 /* Slideshow Section Styles */
 .slideshow-section {
     width: 100%;
