@@ -59,9 +59,49 @@ body {
     object-fit: cover;
 }
 
+.video-sound-toggle {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.video-sound-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+.video-sound-toggle .sound-icon {
+    width: 24px;
+    height: 24px;
+    color: white;
+}
+
 @media (max-width: 768px) {
     .hero-video-section {
         margin-top: 80px;
+    }
+
+    .video-sound-toggle {
+        width: 45px;
+        height: 45px;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .video-sound-toggle .sound-icon {
+        width: 20px;
+        height: 20px;
     }
 }
 

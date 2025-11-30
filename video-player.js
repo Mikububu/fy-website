@@ -4,6 +4,40 @@ document.addEventListener('DOMContentLoaded', function() {
     const videoSrc = 'https://cdn.jwplayer.com/manifests/GcW2Vpgz.m3u8';
 
     if (video) {
+        // Create sound toggle button
+        const soundToggle = document.createElement('button');
+        soundToggle.className = 'video-sound-toggle';
+        soundToggle.innerHTML = `
+            <svg class="sound-icon sound-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+            <svg class="sound-icon sound-on" style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+        `;
+
+        // Add toggle button to video container
+        const videoContainer = document.querySelector('.hero-video-container');
+        videoContainer.appendChild(soundToggle);
+
+        // Toggle sound on button click
+        soundToggle.addEventListener('click', function() {
+            video.muted = !video.muted;
+            const soundOff = soundToggle.querySelector('.sound-off');
+            const soundOn = soundToggle.querySelector('.sound-on');
+
+            if (video.muted) {
+                soundOff.style.display = 'block';
+                soundOn.style.display = 'none';
+            } else {
+                soundOff.style.display = 'none';
+                soundOn.style.display = 'block';
+            }
+        });
+
         // Check if HLS is supported natively (Safari)
         if (video.canPlayType('application/vnd.apple.mpegurl')) {
             video.src = videoSrc;
