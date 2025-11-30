@@ -50,11 +50,14 @@ body {
     max-width: 100%;
     margin: 0 auto;
     overflow: hidden;
+    min-height: 500px;
+    background-color: #000;
 }
 
 #hero-video {
     width: 100%;
     height: auto;
+    min-height: 500px;
     display: block;
     object-fit: cover;
 }

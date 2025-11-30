@@ -355,6 +355,17 @@ async function loadBlogPosts() {
             const postUrl = post.url || post.link;
             const isExternal = postUrl && postUrl.startsWith('http');
 
+            // Format date for display
+            let displayDate = post.date;
+            if (displayDate && displayDate.includes('GMT')) {
+                const parsedDate = new Date(displayDate);
+                displayDate = parsedDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+            }
+
             card.innerHTML = `
                 <a href="${postUrl}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''} class="blog-card-link">
                     ${post.image ? `
@@ -365,6 +376,7 @@ async function loadBlogPosts() {
                     <div class="blog-card-content">
                         <h3 class="blog-card-title">${post.title}</h3>
                         <p class="blog-card-description">${post.description}</p>
+                        ${displayDate ? `<p class="blog-card-date">${displayDate}</p>` : ''}
                     </div>
                 </a>
             `;
