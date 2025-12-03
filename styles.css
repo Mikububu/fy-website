@@ -2090,14 +2090,14 @@ body {
     background-color: #f3f2de;
     padding: 120px 40px;
     position: relative;
-    min-height: 1000px;
+    min-height: 1200px;
 }
 
 .hand-container {
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
-    min-height: 900px;
+    min-height: 1150px;
 }
 
 /* Main heading on right side */
@@ -2114,43 +2114,28 @@ body {
     z-index: 5;
 }
 
-/* Hand image wrapper - vertical under top bubble */
-.hand-image-wrapper {
+/* Hand disabled - removed completely */
+
+/* Text box styles - simple borders instead of bubbles */
+.text-box {
     position: absolute;
-    left: 130px;
-    top: 350px;
-    width: auto;
-    height: auto;
-    z-index: 1;
+    border: 2px solid #7a9999;
+    padding: 30px;
+    background-color: transparent;
+    max-width: 450px;
 }
 
-.hand-image {
-    width: auto;
-    height: auto;
-    max-width: none;
-    transform: scaleX(-1);
-}
-
-/* Bubble styles */
-.hand-bubble {
-    position: absolute;
-    background-color: #b8d4d4;
-    padding: 35px 40px;
-    border-radius: 48% 52% 55% 45% / 45% 50% 50% 55%;
-    z-index: 2;
-}
-
-.bubble-text-roboto {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
+.text-box-content-caps {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
     color: #1a1a1a;
-    line-height: 1.4;
+    line-height: 1.5;
     text-transform: uppercase;
     margin: 0;
 }
 
-.bubble-heading-play {
+.text-box-heading {
     font-family: 'Playfair Display', serif;
     font-size: 1.8rem;
     font-weight: 700;
@@ -2159,7 +2144,7 @@ body {
     display: inline;
 }
 
-.bubble-text {
+.text-box-content {
     font-family: 'Roboto', sans-serif;
     font-size: 0.95rem;
     font-weight: 100;
@@ -2173,49 +2158,35 @@ body {
     font-style: italic;
 }
 
-/* Top left bubble */
-.bubble-top-left {
+/* Arrange text boxes on left side */
+.text-box-1 {
     top: 80px;
     left: 50px;
-    width: 280px;
-    min-height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 400px;
 }
 
-/* Center bubble where fingers overlap */
-.bubble-center {
-    top: 350px;
-    left: 280px;
-    width: 320px;
-    min-height: 300px;
-    z-index: 4;
+.text-box-2 {
+    top: 250px;
+    left: 50px;
+    width: 420px;
 }
 
-/* Three bubbles on right side */
-.bubble-right-1 {
-    top: 100px;
-    right: 80px;
-    width: 300px;
-    min-height: 180px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.text-box-3 {
+    top: 520px;
+    left: 50px;
+    width: 400px;
 }
 
-.bubble-right-2 {
-    top: 350px;
-    right: 80px;
-    width: 300px;
-    min-height: 220px;
+.text-box-4 {
+    top: 700px;
+    left: 50px;
+    width: 400px;
 }
 
-.bubble-right-3 {
-    top: 620px;
-    right: 80px;
-    width: 300px;
-    min-height: 260px;
+.text-box-5 {
+    top: 920px;
+    left: 50px;
+    width: 420px;
 }
 
 /* Responsive */
@@ -2241,23 +2212,13 @@ body {
         margin-bottom: 30px;
     }
 
-    .hand-image-wrapper {
-        position: relative;
-        left: auto;
-        top: auto;
-        margin: 0 auto;
-        width: 250px;
-    }
-
-    .hand-bubble {
+    .text-box {
         position: relative;
         top: auto !important;
         left: auto !important;
-        right: auto !important;
         width: 90% !important;
-        max-width: 350px;
+        max-width: 400px;
         margin: 0 auto 20px auto;
-        min-height: auto !important;
     }
 }
 
