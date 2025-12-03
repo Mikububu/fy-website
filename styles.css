@@ -1400,13 +1400,14 @@ body {
     position: relative;
     z-index: 2;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 30px;
     padding: 60px 50px 60px 80px;
+    max-width: 900px;
 }
 
 .michael-image-wrapper {
-    flex: 0 0 35%;
+    flex: 0 0 280px;
 }
 
 .michael-image {
@@ -1421,6 +1422,7 @@ body {
     flex-direction: column;
     gap: 8px;
     padding-left: 0;
+    max-width: 500px;
 }
 
 .michael-subtitle {
@@ -2086,82 +2088,181 @@ body {
 .hand-section {
     width: 100%;
     background-color: #f3f2de;
-    padding: 100px 40px;
+    padding: 120px 40px;
     position: relative;
-    min-height: 600px;
+    min-height: 1000px;
 }
 
 .hand-container {
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
-    min-height: 500px;
+    min-height: 900px;
+}
+
+/* Main heading on right side */
+.hand-main-heading {
+    position: absolute;
+    top: 50px;
+    right: 100px;
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.1;
+    text-align: right;
+    z-index: 5;
+}
+
+/* Hand image wrapper with rotation at armpit */
+.hand-image-wrapper {
+    position: absolute;
+    left: 20%;
+    top: 30%;
+    width: 350px;
+    height: 500px;
+    z-index: 3;
 }
 
 .hand-image {
-    position: absolute;
-    width: 200px;
-    height: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: all 0.5s ease;
-    z-index: 10;
-    pointer-events: none;
-}
-
-.hand-bubbles {
-    position: relative;
     width: 100%;
-    height: 500px;
+    height: auto;
+    transform-origin: 50% 20%;
+    transform: rotate(-10deg);
 }
 
+/* Bubble styles */
 .hand-bubble {
     position: absolute;
     background-color: #b8d4d4;
-    border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    padding: 35px 40px;
+    border-radius: 48% 52% 55% 45% / 45% 50% 50% 55%;
+    z-index: 2;
+}
+
+.bubble-text-caps {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #1a1a1a;
+    line-height: 1.4;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.bubble-heading-play {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+}
+
+.bubble-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 100;
+    color: #1a1a1a;
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+}
+
+.bubble-text:last-child {
+    margin-bottom: 0;
+}
+
+.slr-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+}
+
+/* Top left bubble */
+.bubble-top-left {
+    top: 80px;
+    left: 50px;
+    width: 280px;
+    min-height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
 }
 
-.hand-bubble:hover {
-    transform: scale(1.1);
-    background-color: #7a9999;
+/* Center bubble where fingers overlap */
+.bubble-center {
+    top: 350px;
+    left: 280px;
+    width: 320px;
+    min-height: 300px;
+    z-index: 4;
 }
 
-.hand-bubble p {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: #1a1a1a;
-    text-align: center;
-    line-height: 1.4;
+/* Three bubbles on right side */
+.bubble-right-1 {
+    top: 100px;
+    right: 80px;
+    width: 300px;
+    min-height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.hand-bubble.hb-1 {
-    top: 50px;
-    left: 15%;
+.bubble-right-2 {
+    top: 350px;
+    right: 80px;
+    width: 300px;
+    min-height: 220px;
 }
 
-.hand-bubble.hb-2 {
-    top: 50px;
-    right: 15%;
+.bubble-right-3 {
+    top: 620px;
+    right: 80px;
+    width: 300px;
+    min-height: 260px;
 }
 
-.hand-bubble.hb-3 {
-    bottom: 50px;
-    left: 15%;
-}
+/* Responsive */
+@media (max-width: 1024px) {
+    .hand-section {
+        min-height: auto;
+        padding: 60px 20px;
+    }
 
-.hand-bubble.hb-4 {
-    bottom: 50px;
-    right: 15%;
+    .hand-container {
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .hand-main-heading {
+        position: relative;
+        top: auto;
+        right: auto;
+        text-align: center;
+        font-size: 3rem;
+        margin-bottom: 30px;
+    }
+
+    .hand-image-wrapper {
+        position: relative;
+        left: auto;
+        top: auto;
+        margin: 0 auto;
+        width: 250px;
+    }
+
+    .hand-bubble {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        width: 90% !important;
+        max-width: 350px;
+        margin: 0 auto 20px auto;
+        min-height: auto !important;
+    }
 }
 
 /* Animal Practices Slideshow */
