@@ -2139,7 +2139,7 @@ body {
     content: '';
     position: absolute;
     top: -650px;
-    left: -200px;
+    left: -300px;
     transform: scaleX(-1);
     width: 1600px;
     height: 3200px;
@@ -2149,11 +2149,11 @@ body {
     background-position: top center;
     z-index: 1;
     opacity: 1;
-    animation: handRotate 8s ease-in-out infinite;
+    animation: handRotate 11.2s ease-in-out infinite;
     transform-origin: center center;
 }
 
-/* Slow motion hand rotation animation */
+/* Slow motion hand rotation animation - 40% slower (8s * 1.4 = 11.2s) */
 @keyframes handRotate {
     0%, 100% {
         transform: scaleX(-1) rotate(-15deg);
@@ -2286,6 +2286,7 @@ body {
     background-color: #F3F2DC;
     padding: 0;
     position: relative;
+    z-index: 10;
 }
 
 .animal-slideshow-container {
