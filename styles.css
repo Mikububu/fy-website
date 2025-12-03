@@ -2224,8 +2224,8 @@ body {
 }
 
 .text-box-2 {
-    top: 280px;
-    left: 5%;
+    top: 330px;
+    left: calc(5% - 50px);
     width: 45%;
     background-color: rgba(174, 208, 213, 0.7);
     border-radius: 20px;
