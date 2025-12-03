@@ -2268,7 +2268,7 @@ body {
 /* Animal Practices Slideshow */
 .animal-slideshow-section {
     width: 100%;
-    background-color: #f1e6cb;
+    background-color: #F3F2DC;
     padding: 0;
     position: relative;
 }
@@ -2299,13 +2299,27 @@ body {
 
 .animal-text-overlay {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 1000px;
-    text-align: center;
+    width: 50%;
+    max-width: 600px;
+    text-align: left;
     z-index: 10;
+}
+
+/* Position text blocks in different locations for each slide */
+.animal-slide:nth-child(1) .animal-text-overlay {
+    top: 15%;
+    left: 8%;
+}
+
+.animal-slide:nth-child(2) .animal-text-overlay {
+    top: 60%;
+    right: 8%;
+    left: auto;
+}
+
+.animal-slide:nth-child(3) .animal-text-overlay {
+    top: 40%;
+    left: 10%;
 }
 
 .animal-text-overlay p {
@@ -2315,6 +2329,7 @@ body {
     color: #ffffff;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
     line-height: 1.4;
+    margin: 0;
 }
 
 .animal-prev, .animal-next {
@@ -2354,14 +2369,16 @@ body {
     width: 100%;
     background-color: #f3f2de;
     padding: 100px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .video-preview-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 600px;
+    width: 50%;
     position: relative;
-    width: 100%;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    padding-top: 28.125%; /* 16:9 Aspect Ratio at 50% width */
 }
 
 .video-preview-container iframe {
@@ -2370,6 +2387,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+    border: none;
 }
 
 /* Audio Toggle Button */
