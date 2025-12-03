@@ -2134,19 +2134,19 @@ body {
     z-index: 5;
 }
 
-/* Hand image 5x larger at beginning of block on left side */
+/* Hand image 4x larger, positioned with top under 2nd slideshow */
 .hand-container::before {
     content: '';
     position: absolute;
-    top: -100px;
+    top: -400px;
     left: -200px;
     transform: scaleX(-1);
-    width: 2000px;
-    height: 4000px;
+    width: 1600px;
+    height: 3200px;
     background-image: url('hand.png');
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: top center;
     z-index: 1;
     opacity: 1;
 }
