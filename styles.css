@@ -2138,7 +2138,7 @@ body {
 .hand-container::before {
     content: '';
     position: absolute;
-    top: -950px;
+    top: -1350px;
     left: -300px;
     transform: scaleX(-1);
     width: 1600px;
@@ -2151,6 +2151,7 @@ body {
     opacity: 1;
     animation: handRotate 11.2s ease-in-out infinite;
     transform-origin: center center;
+    filter: saturate(0.5);
 }
 
 /* Slow motion hand rotation animation - 40% slower (8s * 1.4 = 11.2s) */
