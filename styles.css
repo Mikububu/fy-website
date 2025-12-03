@@ -2395,7 +2395,7 @@ body {
     align-items: center;
     position: relative;
     margin-top: -800px;
-    z-index: 0;
+    z-index: 5;
 }
 
 .video-preview-container {
