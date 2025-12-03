@@ -3,8 +3,8 @@ async function loadBlogPosts() {
     const blogGrid = document.getElementById('blog-grid');
 
     try {
-        // Load from posts-data.json
-        const response = await fetch('/posts-data.json');
+        // Load from posts-data.json with cache busting
+        const response = await fetch('/posts-data.json?v=' + Date.now());
 
         if (!response.ok) {
             throw new Error('Failed to load posts-data.json');
