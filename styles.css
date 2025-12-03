@@ -2114,21 +2114,20 @@ body {
     z-index: 5;
 }
 
-/* Hand image wrapper with rotation at armpit */
+/* Hand image wrapper - vertical under top bubble */
 .hand-image-wrapper {
     position: absolute;
-    left: 20%;
-    top: 30%;
-    width: 350px;
-    height: 500px;
-    z-index: 3;
+    left: 130px;
+    top: 350px;
+    width: 150px;
+    height: auto;
+    z-index: 1;
 }
 
 .hand-image {
     width: 100%;
     height: auto;
-    transform-origin: 50% 20%;
-    transform: rotate(-10deg);
+    transform: rotate(180deg);
 }
 
 /* Bubble styles */
@@ -2140,7 +2139,7 @@ body {
     z-index: 2;
 }
 
-.bubble-text-caps {
+.bubble-text-roboto {
     font-family: 'Roboto', sans-serif;
     font-size: 1rem;
     font-weight: 400;
@@ -2155,8 +2154,8 @@ body {
     font-size: 1.8rem;
     font-weight: 700;
     color: #1a1a1a;
-    margin: 0 0 15px 0;
     line-height: 1.2;
+    display: inline;
 }
 
 .bubble-text {
@@ -2164,12 +2163,8 @@ body {
     font-size: 0.95rem;
     font-weight: 100;
     color: #1a1a1a;
-    line-height: 1.5;
-    margin: 0 0 20px 0;
-}
-
-.bubble-text:last-child {
-    margin-bottom: 0;
+    line-height: 1.6;
+    margin: 0;
 }
 
 .slr-text {
