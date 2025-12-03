@@ -2177,7 +2177,7 @@ body {
 .text-box-content-caps {
     font-family: 'Roboto', sans-serif;
     font-size: 2rem;
-    font-weight: 100;
+    font-weight: 400;
     color: #1a1a1a;
     line-height: 1.5;
     text-transform: uppercase;
@@ -2201,7 +2201,7 @@ body {
 .text-box-content {
     font-family: 'Roboto', sans-serif;
     font-size: 0.95rem;
-    font-weight: 100;
+    font-weight: 400;
     color: #1a1a1a;
     line-height: 1.6;
     margin: 0;
@@ -2212,7 +2212,7 @@ body {
     font-style: italic;
 }
 
-/* Distribute text boxes with rounded rectangles and gradient blue-yellow shades */
+/* Distribute text boxes with rounded rectangles - all blue shades */
 .text-box-1 {
     top: 60px;
     left: 5%;
@@ -2226,7 +2226,7 @@ body {
     top: 280px;
     left: 5%;
     width: 45%;
-    background-color: rgba(181, 212, 200, 0.7);
+    background-color: rgba(174, 208, 213, 0.7);
     border-radius: 20px;
 }
 
@@ -2234,7 +2234,7 @@ body {
     top: 280px;
     right: 5%;
     width: 45%;
-    background-color: rgba(196, 217, 184, 0.7);
+    background-color: rgba(158, 196, 201, 0.7);
     border-radius: 20px;
 }
 
@@ -2244,7 +2244,7 @@ body {
     transform: translateX(-50%);
     width: 90%;
     max-width: 1000px;
-    background-color: rgba(212, 223, 170, 0.7);
+    background-color: rgba(176, 212, 200, 0.7);
     border-radius: 20px;
 }
 
