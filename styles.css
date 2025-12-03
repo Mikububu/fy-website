@@ -2108,22 +2108,22 @@ body {
 .hand-section {
     width: 100%;
     background-color: #f3f2de;
-    padding: 180px 40px;
+    padding: 250px 40px 180px;
     position: relative;
-    min-height: 1400px;
+    min-height: 1600px;
 }
 
 .hand-container {
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
-    min-height: 1300px;
+    min-height: 1400px;
 }
 
-/* Main heading on right side */
+/* Main heading on right side - moved much higher */
 .hand-main-heading {
     position: absolute;
-    top: 0px;
+    top: -150px;
     right: 100px;
     font-family: 'Bluu Next', serif;
     font-size: 4rem;
@@ -2134,15 +2134,15 @@ body {
     z-index: 5;
 }
 
-/* Hand image on left side at 50% size */
+/* Hand image 5x larger at beginning of block on left side */
 .hand-container::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: -100px;
-    transform: translateY(-50%) scaleX(-1);
-    width: 400px;
-    height: 800px;
+    top: -100px;
+    left: -200px;
+    transform: scaleX(-1);
+    width: 2000px;
+    height: 4000px;
     background-image: url('hand.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -2156,9 +2156,8 @@ body {
     position: absolute;
     border: none;
     padding: 40px 50px;
-    background-color: #b8d4d4;
+    background-color: rgba(184, 212, 212, 0.5);
     border-radius: 20px;
-    opacity: 0.5;
     z-index: 2;
 }
 
@@ -2206,7 +2205,7 @@ body {
     left: 5%;
     width: 90%;
     max-width: 1200px;
-    background-color: #a8c9ce;
+    background-color: rgba(168, 201, 206, 0.5);
     border-radius: 20px;
 }
 
@@ -2214,7 +2213,7 @@ body {
     top: 280px;
     left: 5%;
     width: 45%;
-    background-color: #b5d4c8;
+    background-color: rgba(181, 212, 200, 0.5);
     border-radius: 20px;
 }
 
@@ -2222,7 +2221,7 @@ body {
     top: 280px;
     right: 5%;
     width: 45%;
-    background-color: #c4d9b8;
+    background-color: rgba(196, 217, 184, 0.5);
     border-radius: 20px;
 }
 
@@ -2232,7 +2231,7 @@ body {
     transform: translateX(-50%);
     width: 90%;
     max-width: 1000px;
-    background-color: #d4dfaa;
+    background-color: rgba(212, 223, 170, 0.5);
     border-radius: 20px;
 }
 
