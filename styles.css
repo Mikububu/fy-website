@@ -2116,13 +2116,12 @@ body {
 
 /* Hand disabled - removed completely */
 
-/* Text box styles - simple borders instead of bubbles */
+/* Text box styles - organic bubbles with blue background */
 .text-box {
     position: absolute;
-    border: 2px solid #7a9999;
-    padding: 30px;
-    background-color: transparent;
-    max-width: 450px;
+    border: none;
+    padding: 35px 40px;
+    background-color: #b8d4d4;
 }
 
 .text-box-content-caps {
@@ -2158,35 +2157,40 @@ body {
     font-style: italic;
 }
 
-/* Arrange text boxes on left side */
+/* Distribute text boxes organically across the field */
 .text-box-1 {
     top: 80px;
-    left: 50px;
-    width: 400px;
+    left: 8%;
+    width: 320px;
+    border-radius: 48% 52% 55% 45% / 45% 50% 50% 55%;
 }
 
 .text-box-2 {
-    top: 250px;
-    left: 50px;
-    width: 420px;
+    top: 120px;
+    left: 35%;
+    width: 380px;
+    border-radius: 52% 48% 48% 52% / 55% 48% 52% 45%;
 }
 
 .text-box-3 {
-    top: 520px;
-    left: 50px;
-    width: 400px;
+    top: 420px;
+    left: 10%;
+    width: 350px;
+    border-radius: 45% 55% 50% 50% / 52% 45% 55% 48%;
 }
 
 .text-box-4 {
-    top: 700px;
-    left: 50px;
-    width: 400px;
+    top: 480px;
+    right: 15%;
+    width: 360px;
+    border-radius: 50% 50% 52% 48% / 48% 52% 48% 52%;
 }
 
 .text-box-5 {
-    top: 920px;
-    left: 50px;
-    width: 420px;
+    top: 780px;
+    left: 25%;
+    width: 390px;
+    border-radius: 55% 45% 52% 48% / 48% 52% 50% 50%;
 }
 
 /* Responsive */
