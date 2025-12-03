@@ -1578,71 +1578,63 @@ body {
 .retreats-different-section {
     width: 100%;
     background-color: #f3f2de;
-    padding: 100px 40px;
+    padding: 120px 40px;
     position: relative;
-    overflow: hidden;
 }
 
 .retreats-container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
-    position: relative;
-    min-height: 1100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 40px;
+    align-items: center;
+    justify-items: center;
 }
 
-/* Main heading bubble - centered */
+/* Main heading bubble - centered in middle cell */
 .main-heading-bubble {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 520px;
-    height: 380px;
-    background-color: rgba(184, 212, 212, 0.5);
+    grid-column: 2;
+    grid-row: 2;
+    width: 450px;
+    height: 350px;
+    background-color: rgba(184, 212, 212, 0.6);
     border-radius: 45% 55% 52% 48% / 48% 45% 55% 52%;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 5;
     padding: 40px;
 }
 
 .retreats-main-heading {
     font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
+    font-size: 3.2rem;
     font-weight: 700;
     color: #1a1a1a;
     line-height: 1.1;
     text-align: center;
 }
 
-/* Large organic background shape - removed/transparent */
+/* Large organic background shape - removed */
 .large-organic-bg {
-    position: absolute;
-    top: 120px;
-    right: -50px;
-    width: 950px;
-    height: 850px;
-    background-color: transparent;
-    border-radius: 42% 58% 45% 55% / 52% 43% 57% 48%;
-    z-index: 1;
     display: none;
 }
 
 /* Content bubbles - light blue */
 .content-bubble {
-    position: absolute;
     background-color: #b8d4d4;
-    padding: 40px 45px;
-    z-index: 3;
+    padding: 35px 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 280px;
+    min-height: 260px;
 }
 
 .bubble-heading {
     font-family: 'Playfair Display', serif;
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     font-weight: 700;
     color: #1a1a1a;
     margin-bottom: 12px;
@@ -1651,82 +1643,66 @@ body {
 
 .bubble-description {
     font-family: 'Roboto', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     font-weight: 100;
     color: #1a1a1a;
     line-height: 1.5;
     margin: 0;
 }
 
-/* Individual bubble positioning and shapes - arranged around center */
+/* Individual bubble positioning in grid */
 .bubble-1 {
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    height: 320px;
+    grid-column: 2;
+    grid-row: 1;
     border-radius: 48% 52% 55% 45% / 45% 50% 50% 55%;
 }
 
 .bubble-2 {
-    top: 50%;
-    right: 50px;
-    transform: translateY(-50%);
-    width: 300px;
-    height: 280px;
+    grid-column: 3;
+    grid-row: 2;
     border-radius: 52% 48% 48% 52% / 55% 48% 52% 45%;
 }
 
 .bubble-3 {
-    bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    height: 300px;
+    grid-column: 2;
+    grid-row: 3;
     border-radius: 45% 55% 50% 50% / 52% 45% 55% 48%;
 }
 
 .bubble-4 {
-    top: 50%;
-    left: 50px;
-    transform: translateY(-50%);
-    width: 300px;
-    height: 280px;
+    grid-column: 1;
+    grid-row: 2;
     border-radius: 50% 50% 52% 48% / 48% 52% 48% 52%;
 }
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
     .retreats-container {
-        min-height: 1200px;
+        gap: 30px;
     }
 
     .main-heading-bubble {
-        width: 400px;
-        height: 300px;
+        width: 360px;
+        height: 280px;
+        padding: 30px;
     }
 
     .retreats-main-heading {
         font-size: 2.5rem;
     }
 
-    .large-organic-bg {
-        width: 750px;
-        height: 700px;
-        right: -100px;
-    }
-
-    .bubble-1, .bubble-2, .bubble-3, .bubble-4 {
-        width: 280px;
-        padding: 30px;
+    .content-bubble {
+        width: 240px;
+        min-height: 240px;
+        padding: 28px 32px;
     }
 
     .bubble-heading {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     .bubble-description {
-        font-size: 0.9rem;
+        font-size: 0.88rem;
     }
 }
 
@@ -1736,41 +1712,26 @@ body {
     }
 
     .retreats-container {
-        min-height: auto;
         display: flex;
         flex-direction: column;
         gap: 30px;
     }
 
-    .main-heading-bubble,
-    .large-organic-bg,
-    .content-bubble {
-        position: relative;
-        top: auto;
-        left: auto;
-        right: auto;
-        bottom: auto;
-        width: 90%;
-        max-width: 320px;
-        margin: 0 auto;
-    }
-
     .main-heading-bubble {
+        width: 90%;
+        max-width: 340px;
         height: auto;
         padding: 35px 30px;
-        max-width: 340px;
     }
 
     .retreats-main-heading {
         font-size: 2.2rem;
-        text-align: center;
-    }
-
-    .large-organic-bg {
-        display: none;
     }
 
     .content-bubble {
+        width: 90%;
+        max-width: 320px;
+        min-height: auto;
         padding: 30px 25px;
     }
 
@@ -1782,7 +1743,6 @@ body {
     .bubble-description {
         font-size: 0.9rem;
         text-align: center;
-        line-height: 1.5;
     }
 }
 
