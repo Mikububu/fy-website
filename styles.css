@@ -2119,15 +2119,16 @@ body {
     position: absolute;
     left: 130px;
     top: 350px;
-    width: 150px;
+    width: auto;
     height: auto;
     z-index: 1;
 }
 
 .hand-image {
-    width: 100%;
+    width: auto;
     height: auto;
-    transform: rotate(180deg);
+    max-width: none;
+    transform: scaleX(-1);
 }
 
 /* Bubble styles */
