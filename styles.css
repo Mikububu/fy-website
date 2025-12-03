@@ -219,7 +219,7 @@ body {
 /* Nasi Shodana Section Styles */
 .nasi-section {
     width: 100%;
-    background-color: #f3f2de;
+    background-color: #f1e6cb;
     padding: 80px 40px;
     text-align: center;
 }
@@ -637,7 +637,7 @@ body {
 /* Freud Block Section Styles */
 .freud-section {
     width: 100%;
-    background-color: #f3f2de;
+    background-color: #f1e6cb;
     padding: 80px 40px;
 }
 
@@ -971,10 +971,34 @@ body {
 
 .slc-organic-bubble {
     position: relative;
-    background-color: transparent;
+    background-color: #E6DECA;
     border-radius: 38% 62% 45% 55% / 58% 42% 58% 42%;
     padding: 60px;
     min-height: 700px;
+    animation: organicPulse 8s ease-in-out infinite;
+}
+
+.slc-connecting-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 600px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.connect-line {
+    stroke: #7a9999;
+    stroke-width: 2;
+    stroke-dasharray: 5, 5;
+    animation: dashMove 20s linear infinite;
+}
+
+@keyframes dashMove {
+    to {
+        stroke-dashoffset: -100;
+    }
 }
 
 @keyframes organicPulse {
@@ -1024,15 +1048,12 @@ body {
     width: 100%;
     height: 600px;
     margin-top: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .slc-number-circle {
-    position: relative;
-    width: 250px;
-    height: 250px;
+    position: absolute;
+    width: 150px;
+    height: 150px;
     background-color: #7a9999;
     border-radius: 50%;
     display: flex;
@@ -1041,16 +1062,7 @@ body {
     justify-content: center;
     text-align: center;
     padding: 20px;
-    animation: bumpingClient 2s ease-in-out infinite;
-}
-
-@keyframes bumpingClient {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.15);
-    }
+    z-index: 2;
 }
 
 /* Each circle gets a slightly different wobble */
@@ -1131,23 +1143,69 @@ body {
     75% { border-radius: 55% 45% 50% 50% / 52% 48% 55% 45%; }
 }
 
+/* Position each circle closer to center */
+.slc-number-circle.guru {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.slc-number-circle.placeholders {
+    top: 100px;
+    left: 15%;
+}
+
+.slc-number-circle.weeks {
+    top: 100px;
+    right: 15%;
+}
+
+.slc-number-circle.client {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: 180px;
+}
+
+.slc-number-circle.client .number {
+    font-size: 5rem;
+}
+
+.slc-number-circle.location {
+    bottom: 100px;
+    left: 15%;
+}
+
+.slc-number-circle.facilitators {
+    bottom: 100px;
+    right: 15%;
+}
+
+.slc-number-circle.bodyworkers {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .slc-number-circle .number {
     font-family: 'Playfair Display', serif;
-    font-size: 8rem;
+    font-size: 4rem;
     font-weight: 700;
     color: #E6DECA;
     line-height: 1;
     display: block;
     text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.3s ease, font-size 0.3s ease;
 }
 
 .slc-number-circle .label {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.3rem;
+    font-size: 0.95rem;
     font-weight: 100;
     color: #E6DECA;
     line-height: 1.2;
-    margin-top: 10px;
+    margin-top: 5px;
     display: block;
 }
 
@@ -1326,7 +1384,7 @@ body {
 /* Michael Section */
 .michael-section {
     width: 100%;
-    background-color: #f3f2de;
+    background-color: #f1e6cb;
     padding: 150px 40px 100px 40px;
     position: relative;
 }
