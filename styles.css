@@ -1044,6 +1044,31 @@ body {
     z-index: 2;
 }
 
+/* Each circle gets a slightly different wobble */
+.slc-number-circle.guru {
+    animation: organicWobble1 5s ease-in-out infinite;
+}
+
+.slc-number-circle.placeholders {
+    animation: organicWobble2 6.5s ease-in-out infinite;
+}
+
+.slc-number-circle.weeks {
+    animation: organicWobble3 5.5s ease-in-out infinite;
+}
+
+.slc-number-circle.location {
+    animation: organicWobble5 6s ease-in-out infinite;
+}
+
+.slc-number-circle.facilitators {
+    animation: organicWobble6 5.8s ease-in-out infinite;
+}
+
+.slc-number-circle.bodyworkers {
+    animation: organicWobble7 6.2s ease-in-out infinite;
+}
+
 /* Pulsating animation for client bubble */
 .slc-number-circle.pulsating {
     animation: pulsatingBubble 3s ease-in-out infinite;
@@ -1107,7 +1132,23 @@ body {
     75% { border-radius: 55% 45% 50% 50% / 52% 48% 55% 45%; }
 }
 
-/* Position single client bubble */
+/* Position each circle */
+.slc-number-circle.guru {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.slc-number-circle.placeholders {
+    top: 100px;
+    left: 15%;
+}
+
+.slc-number-circle.weeks {
+    top: 100px;
+    right: 15%;
+}
+
 .slc-number-circle.client {
     top: 50%;
     left: 50%;
@@ -1118,6 +1159,22 @@ body {
 
 .slc-number-circle.client .number {
     font-size: 6rem;
+}
+
+.slc-number-circle.location {
+    bottom: 100px;
+    left: 15%;
+}
+
+.slc-number-circle.facilitators {
+    bottom: 100px;
+    right: 15%;
+}
+
+.slc-number-circle.bodyworkers {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .slc-number-circle .number {
