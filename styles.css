@@ -1591,6 +1591,50 @@ body {
     gap: 40px;
     align-items: center;
     justify-items: center;
+    position: relative;
+}
+
+/* SVG connecting lines */
+.retreats-connecting-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.retreat-line {
+    stroke: #7a9999;
+    stroke-width: 2;
+    stroke-dasharray: 8, 8;
+    animation: retreatDashMove 15s linear infinite;
+}
+
+.line-top {
+    animation-delay: 0s;
+}
+
+.line-right {
+    animation-delay: 3.75s;
+}
+
+.line-bottom {
+    animation-delay: 7.5s;
+}
+
+.line-left {
+    animation-delay: 11.25s;
+}
+
+@keyframes retreatDashMove {
+    0% {
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dashoffset: 200;
+    }
 }
 
 /* Main heading bubble - centered in middle cell */
@@ -1605,6 +1649,8 @@ body {
     align-items: center;
     justify-content: center;
     padding: 40px;
+    position: relative;
+    z-index: 2;
 }
 
 .retreats-main-heading {
@@ -1630,6 +1676,8 @@ body {
     justify-content: center;
     width: 280px;
     min-height: 260px;
+    position: relative;
+    z-index: 2;
 }
 
 .bubble-heading {
