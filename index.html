@@ -237,6 +237,17 @@
         </div>
     </section>
 
+    <!-- Mongolia Location Section -->
+    <section class="location-section">
+        <div class="location-container">
+            <img src="mongolia.png" alt="Retreat Locations" class="location-image">
+            <div class="location-text-overlay">
+                <h2 class="location-heading">MONGOLIA - BALI - COLOMBIA</h2>
+                <p class="location-subheading">YOU CHOOSE YOUR BESPOKE LOCATION</p>
+            </div>
+        </div>
+    </section>
+
     <!-- What Makes Our Retreats Different Section -->
     <section class="retreats-different-section">
         <div class="retreats-container">
@@ -271,6 +282,75 @@
         </div>
     </section>
 
+    <!-- Hand Rollover Section -->
+    <section class="hand-section">
+        <div class="hand-container">
+            <img src="hand.png" alt="Hand Pointer" class="hand-image" id="pointer-hand">
+            <div class="hand-bubbles">
+                <div class="hand-bubble hb-1">
+                    <p>Transformative<br>Practices</p>
+                </div>
+                <div class="hand-bubble hb-2">
+                    <p>Conscious<br>Connection</p>
+                </div>
+                <div class="hand-bubble hb-3">
+                    <p>Personal<br>Awakening</p>
+                </div>
+                <div class="hand-bubble hb-4">
+                    <p>Tantric<br>Healing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animal Practices Slideshow -->
+    <section class="animal-slideshow-section">
+        <div class="animal-slideshow-container">
+            <div class="animal-slide active-slide">
+                <img src="animal 1.png" alt="Forbidden Yoga Practice 1">
+                <div class="animal-text-overlay">
+                    <p>1. THE FORBIDDEN YOGA PRACTICES ALLOW A NEW KIND OF EMBODIMENT</p>
+                </div>
+            </div>
+            <div class="animal-slide">
+                <img src="animal 2.png" alt="Forbidden Yoga Practice 2">
+                <div class="animal-text-overlay">
+                    <p>2. THROUGH OUR NUDE PRACTICES WE TRIVIALIZE OUR BODIES AND SHAPE THEM INTO INSTRUMENTS OF EXPANSION AND ECSTASY.</p>
+                </div>
+            </div>
+            <div class="animal-slide">
+                <img src="animal 3.png" alt="Forbidden Yoga Practice 3">
+                <div class="animal-text-overlay">
+                    <p>3. AT FORBIDDEN YOGA BODIES BECOME BLANK CANVASES, PLAYGROUNDS FOR FREE ASSOCIATION, PROJECTION AND WILD EXPERIMENTATION.</p>
+                </div>
+            </div>
+            <a class="animal-prev" onclick="changeAnimalSlide(-1)">&#10094;</a>
+            <a class="animal-next" onclick="changeAnimalSlide(1)">&#10095;</a>
+        </div>
+    </section>
+
+    <!-- Video Preview Section -->
+    <section class="video-preview-section">
+        <div class="video-preview-container">
+            <iframe src="https://cdn.jwplayer.com/players/J151XndT-qNZUPz9O.html" width="100%" height="100%" frameborder="0" scrolling="auto" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- Audio Player (Hymn) -->
+    <audio id="hymn-audio" autoplay loop>
+        <source src="Hymn.m4a" type="audio/mp4">
+        Your browser does not support the audio element.
+    </audio>
+    <button id="audio-toggle" class="audio-toggle-btn">
+        <svg class="audio-icon pause-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <rect x="6" y="4" width="4" height="16"></rect>
+            <rect x="14" y="4" width="4" height="16"></rect>
+        </svg>
+        <svg class="audio-icon play-icon" style="display: none;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+    </button>
+
     <!-- Blog Posts Section (moveable block) -->
     <section id="blog-section" class="blog-section">
         <div class="blog-container">
@@ -289,8 +369,10 @@
     </footer>
 
     <script src="blog.js"></script>
-    <script src="video-player.js"></script>
     <script src="slideshow.js"></script>
     <script src="animations.js"></script>
+    <script src="animal-slideshow.js"></script>
+    <script src="hand-animation.js"></script>
+    <script src="audio-player.js"></script>
 </body>
 </html>
