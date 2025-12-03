@@ -13,8 +13,10 @@ body {
 }
 
 .container {
-    text-align: center;
-    padding: 80px 20px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
 }
 
 .logo {
@@ -53,6 +55,9 @@ body {
     overflow: hidden;
     min-height: 500px;
     background-color: #000;
+    background-image: url('pregnant.png');
+    background-size: cover;
+    background-position: center;
 }
 
 #hero-video {
@@ -62,7 +67,7 @@ body {
     display: block;
     object-fit: cover;
     opacity: 0;
-    transition: opacity 0.8s ease-in;
+    transition: opacity 1.2s ease-in;
 }
 
 #hero-video.loaded {
@@ -146,7 +151,7 @@ body {
 .slideshow-section {
     width: 100%;
     position: relative;
-    margin-top: 100px;
+    margin-top: 0;
 }
 
 .slideshow-container {
@@ -1349,12 +1354,12 @@ body {
     z-index: 2;
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 60px 50px;
+    gap: 30px;
+    padding: 60px 50px 60px 80px;
 }
 
 .michael-image-wrapper {
-    flex: 0 0 38%;
+    flex: 0 0 35%;
 }
 
 .michael-image {
@@ -1368,12 +1373,12 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    padding-left: 5px;
+    padding-left: 0;
 }
 
 .michael-subtitle {
     font-family: 'Roboto', sans-serif;
-    font-size: 2.2rem;
+    font-size: 1.4rem;
     font-weight: 100;
     color: #5a5a5a;
     letter-spacing: 1.5px;
@@ -1384,7 +1389,7 @@ body {
 
 .michael-creator {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.25rem;
+    font-size: 0.8rem;
     font-weight: 100;
     color: #6a6a6a;
     text-transform: uppercase;
@@ -1394,7 +1399,7 @@ body {
 
 .michael-name {
     font-family: 'Playfair Display', serif;
-    font-size: 15rem;
+    font-size: 6rem;
     font-weight: 700;
     color: #3d2a1f;
     margin: 5px 0 25px 0;
@@ -1404,7 +1409,7 @@ body {
 
 .michael-bio {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.8rem;
+    font-size: 1.1rem;
     font-weight: 100;
     color: #7a9a9a;
     line-height: 1.8;
@@ -1527,11 +1532,12 @@ body {
     min-height: 900px;
 }
 
-/* Main heading bubble - transparent light blue, overlapping with big bubble */
+/* Main heading bubble - centered */
 .main-heading-bubble {
     position: absolute;
-    top: 80px;
-    left: 180px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 520px;
     height: 380px;
     background-color: rgba(184, 212, 212, 0.5);
@@ -1549,10 +1555,10 @@ body {
     font-weight: 700;
     color: #1a1a1a;
     line-height: 1.1;
-    text-align: left;
+    text-align: center;
 }
 
-/* Large organic background shape - dark blue/gray */
+/* Large organic background shape - removed/transparent */
 .large-organic-bg {
     position: absolute;
     top: 120px;
@@ -1562,6 +1568,7 @@ body {
     background-color: transparent;
     border-radius: 42% 58% 45% 55% / 52% 43% 57% 48%;
     z-index: 1;
+    display: none;
 }
 
 /* Content bubbles - light blue */
@@ -1593,36 +1600,40 @@ body {
     margin: 0;
 }
 
-/* Individual bubble positioning and shapes - closer to mama bubble center */
+/* Individual bubble positioning and shapes - arranged around center */
 .bubble-1 {
-    top: 280px;
-    left: 650px;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 300px;
     height: 320px;
     border-radius: 48% 52% 55% 45% / 45% 50% 50% 55%;
 }
 
 .bubble-2 {
-    top: 240px;
-    right: 180px;
-    width: 350px;
+    top: 50%;
+    right: 100px;
+    transform: translateY(-50%);
+    width: 300px;
     height: 280px;
     border-radius: 52% 48% 48% 52% / 55% 48% 52% 45%;
 }
 
 .bubble-3 {
-    top: 580px;
-    right: 200px;
-    width: 320px;
-    height: 340px;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 300px;
     border-radius: 45% 55% 50% 50% / 52% 45% 55% 48%;
 }
 
 .bubble-4 {
-    top: 560px;
-    left: 560px;
-    width: 380px;
-    height: 320px;
+    top: 50%;
+    left: 100px;
+    transform: translateY(-50%);
+    width: 300px;
+    height: 280px;
     border-radius: 50% 50% 52% 48% / 48% 52% 48% 52%;
 }
 
@@ -1731,7 +1742,7 @@ body {
 
 .blog-heading {
     font-family: 'Playfair Display', serif;
-    font-size: 6.5rem;
+    font-size: 4rem;
     font-weight: 700;
     color: #1a1a1a;
     margin-bottom: 60px;
@@ -1748,14 +1759,17 @@ body {
 
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     margin-top: 30px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 @media (max-width: 1024px) {
     .blog-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 18px;
     }
 
@@ -1795,12 +1809,12 @@ body {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease, filter 0.3s ease;
-    filter: saturate(40%) brightness(1.1) contrast(0.85);
+    filter: grayscale(100%);
 }
 
 @media (hover: hover) {
     .blog-card:hover .blog-card-image img {
-        filter: saturate(100%) brightness(1) contrast(1);
+        filter: grayscale(100%);
     }
 }
 
@@ -1940,7 +1954,7 @@ body {
     }
 
     .blog-card-image img {
-        filter: saturate(30%) !important;
+        filter: grayscale(100%) !important;
     }
 }
 
