@@ -2381,8 +2381,8 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    margin-top: -150px;
-    z-index: 10;
+    margin-top: -800px;
+    z-index: 0;
 }
 
 .video-preview-container {
