@@ -2136,22 +2136,28 @@ body {
 
 /* Hand disabled - removed completely */
 
-/* Text box styles - organic bubbles with blue background */
+/* Text box styles - rounded rectangles with varied colors */
 .text-box {
     position: absolute;
     border: none;
-    padding: 35px 35px 35px 60px;
+    padding: 40px 50px;
     background-color: #b8d4d4;
+    border-radius: 20px;
 }
 
 .text-box-content-caps {
-    font-family: 'Bluu Next', serif;
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    font-size: 2rem;
+    font-weight: 100;
     color: #1a1a1a;
     line-height: 1.5;
     text-transform: uppercase;
     margin: 0;
+}
+
+.text-box-content-caps .play-font {
+    font-family: 'Bluu Next', serif;
+    font-weight: 700;
 }
 
 .text-box-heading {
@@ -2177,38 +2183,40 @@ body {
     font-style: italic;
 }
 
-/* Distribute text boxes organically across the field - expanded another 20% */
+/* Distribute text boxes with rounded rectangles and gradient blue-yellow shades */
 .text-box-1 {
-    top: 80px;
-    left: 8%;
-    width: 461px;
-    background-color: #b0cfd4;
-    border-radius: 48% 52% 55% 45% / 45% 50% 50% 55%;
+    top: 60px;
+    left: 5%;
+    width: 90%;
+    max-width: 1200px;
+    background-color: #a8c9ce;
+    border-radius: 20px;
 }
 
 .text-box-2 {
-    top: 120px;
-    left: 35%;
-    width: 711px;
-    background-color: #9ec4c9;
-    border-radius: 52% 48% 48% 52% / 55% 48% 52% 45%;
-    z-index: 3;
+    top: 280px;
+    left: 5%;
+    width: 45%;
+    background-color: #b5d4c8;
+    border-radius: 20px;
 }
 
 .text-box-3 {
-    top: 420px;
-    left: 10%;
-    width: 504px;
-    background-color: #a8c9ce;
-    border-radius: 45% 55% 50% 50% / 52% 45% 55% 48%;
+    top: 280px;
+    right: 5%;
+    width: 45%;
+    background-color: #c4d9b8;
+    border-radius: 20px;
 }
 
 .text-box-4 {
-    top: 200px;
-    right: 12%;
-    width: 562px;
-    background-color: #aed0d5;
-    border-radius: 55% 45% 52% 48% / 48% 52% 50% 50%;
+    top: 600px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1000px;
+    background-color: #d4dfaa;
+    border-radius: 20px;
 }
 
 /* Responsive */
