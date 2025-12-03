@@ -2108,22 +2108,22 @@ body {
 .hand-section {
     width: 100%;
     background-color: #f3f2de;
-    padding: 120px 40px;
+    padding: 180px 40px;
     position: relative;
-    min-height: 1200px;
+    min-height: 1400px;
 }
 
 .hand-container {
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
-    min-height: 1150px;
+    min-height: 1300px;
 }
 
 /* Main heading on right side */
 .hand-main-heading {
     position: absolute;
-    top: 50px;
+    top: 0px;
     right: 100px;
     font-family: 'Bluu Next', serif;
     font-size: 4rem;
@@ -2134,7 +2134,22 @@ body {
     z-index: 5;
 }
 
-/* Hand disabled - removed completely */
+/* Hand image on left side at 50% size */
+.hand-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -100px;
+    transform: translateY(-50%) scaleX(-1);
+    width: 400px;
+    height: 800px;
+    background-image: url('hand.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+    opacity: 1;
+}
 
 /* Text box styles - rounded rectangles with varied colors */
 .text-box {
@@ -2143,6 +2158,8 @@ body {
     padding: 40px 50px;
     background-color: #b8d4d4;
     border-radius: 20px;
+    opacity: 0.5;
+    z-index: 2;
 }
 
 .text-box-content-caps {
