@@ -1587,7 +1587,7 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
-    min-height: 900px;
+    min-height: 1100px;
 }
 
 /* Main heading bubble - centered */
@@ -1660,7 +1660,7 @@ body {
 
 /* Individual bubble positioning and shapes - arranged around center */
 .bubble-1 {
-    top: 100px;
+    top: 50px;
     left: 50%;
     transform: translateX(-50%);
     width: 300px;
@@ -1670,7 +1670,7 @@ body {
 
 .bubble-2 {
     top: 50%;
-    right: 100px;
+    right: 50px;
     transform: translateY(-50%);
     width: 300px;
     height: 280px;
@@ -1678,7 +1678,7 @@ body {
 }
 
 .bubble-3 {
-    bottom: 100px;
+    bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
     width: 300px;
@@ -1688,7 +1688,7 @@ body {
 
 .bubble-4 {
     top: 50%;
-    left: 100px;
+    left: 50px;
     transform: translateY(-50%);
     width: 300px;
     height: 280px;
