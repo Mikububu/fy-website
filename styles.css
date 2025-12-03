@@ -2138,7 +2138,7 @@ body {
 .hand-container::before {
     content: '';
     position: absolute;
-    top: -1350px;
+    top: -1050px;
     left: -300px;
     transform: scaleX(-1);
     width: 1600px;
@@ -2395,7 +2395,7 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    margin-top: -800px;
+    margin-top: -500px;
     z-index: 5;
 }
 
