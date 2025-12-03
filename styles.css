@@ -2149,14 +2149,26 @@ body {
     background-position: top center;
     z-index: 1;
     opacity: 1;
+    animation: handRotate 8s ease-in-out infinite;
+    transform-origin: center center;
+}
+
+/* Slow motion hand rotation animation */
+@keyframes handRotate {
+    0%, 100% {
+        transform: scaleX(-1) rotate(-15deg);
+    }
+    50% {
+        transform: scaleX(-1) rotate(15deg);
+    }
 }
 
 /* Text box styles - rounded rectangles with varied colors */
 .text-box {
     position: absolute;
     border: none;
-    padding: 40px 50px;
-    background-color: rgba(184, 212, 212, 0.5);
+    padding: 28px 35px;
+    background-color: rgba(184, 212, 212, 0.7);
     border-radius: 20px;
     z-index: 2;
 }
@@ -2205,7 +2217,7 @@ body {
     left: 5%;
     width: 90%;
     max-width: 1200px;
-    background-color: rgba(168, 201, 206, 0.5);
+    background-color: rgba(168, 201, 206, 0.7);
     border-radius: 20px;
 }
 
@@ -2213,7 +2225,7 @@ body {
     top: 280px;
     left: 5%;
     width: 45%;
-    background-color: rgba(181, 212, 200, 0.5);
+    background-color: rgba(181, 212, 200, 0.7);
     border-radius: 20px;
 }
 
@@ -2221,7 +2233,7 @@ body {
     top: 280px;
     right: 5%;
     width: 45%;
-    background-color: rgba(196, 217, 184, 0.5);
+    background-color: rgba(196, 217, 184, 0.7);
     border-radius: 20px;
 }
 
@@ -2231,7 +2243,7 @@ body {
     transform: translateX(-50%);
     width: 90%;
     max-width: 1000px;
-    background-color: rgba(212, 223, 170, 0.5);
+    background-color: rgba(212, 223, 170, 0.7);
     border-radius: 20px;
 }
 
