@@ -2150,7 +2150,7 @@ body {
     background-position: top center;
     z-index: 1;
     opacity: 1;
-    animation: handRotate 11.2s ease-in-out infinite;
+    animation: handRotate 22.4s ease-in-out infinite;
     transform-origin: center center;
     filter: saturate(0.5);
 }
