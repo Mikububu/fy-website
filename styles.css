@@ -1781,8 +1781,18 @@ body {
     font-size: 4rem;
     font-weight: 700;
     color: #7a9999;
-    margin-bottom: 60px;
+    margin-bottom: 130px;
     text-align: center;
+    animation: pulsate 3s ease-in-out infinite;
+}
+
+@keyframes pulsate {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
 }
 
 .blog-title {
