@@ -2120,7 +2120,7 @@ body {
 .text-box {
     position: absolute;
     border: none;
-    padding: 35px 40px;
+    padding: 35px 35px 35px 60px;
     background-color: #b8d4d4;
 }
 
@@ -2157,11 +2157,11 @@ body {
     font-style: italic;
 }
 
-/* Distribute text boxes organically across the field - 20% larger with different blue tones */
+/* Distribute text boxes organically across the field - expanded another 20% */
 .text-box-1 {
     top: 80px;
     left: 8%;
-    width: 384px;
+    width: 461px;
     background-color: #b0cfd4;
     border-radius: 48% 52% 55% 45% / 45% 50% 50% 55%;
 }
@@ -2169,7 +2169,7 @@ body {
 .text-box-2 {
     top: 120px;
     left: 35%;
-    width: 456px;
+    width: 547px;
     background-color: #b8d4d4;
     border-radius: 52% 48% 48% 52% / 55% 48% 52% 45%;
 }
@@ -2177,23 +2177,15 @@ body {
 .text-box-3 {
     top: 420px;
     left: 10%;
-    width: 420px;
+    width: 504px;
     background-color: #a8c9ce;
     border-radius: 45% 55% 50% 50% / 52% 45% 55% 48%;
 }
 
 .text-box-4 {
-    top: 480px;
-    right: 15%;
-    width: 432px;
-    background-color: #c0d9d9;
-    border-radius: 50% 50% 52% 48% / 48% 52% 48% 52%;
-}
-
-.text-box-5 {
-    top: 780px;
+    top: 720px;
     left: 25%;
-    width: 468px;
+    width: 562px;
     background-color: #aed0d5;
     border-radius: 55% 45% 52% 48% / 48% 52% 50% 50%;
 }
