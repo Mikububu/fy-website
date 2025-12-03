@@ -1,3 +1,24 @@
+@font-face {
+    font-family: 'Bluu Next';
+    src: url('Bluu Next/BluuNext-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Bluu Next';
+    src: url('Bluu Next/BluuNext-Bolditalic.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Bluu Next';
+    src: url('Bluu Next/BluuNext-Titling.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -241,7 +262,7 @@ body {
 }
 
 .nasi-heading {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-size: 6.5rem;
     font-weight: 700;
     color: #423737;
@@ -531,7 +552,7 @@ body {
 }
 
 .what-we-do-heading {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-size: 6.5rem;
     font-weight: 700;
     color: #1a1a1a;
@@ -687,7 +708,7 @@ body {
 }
 
 .circle-text strong {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-weight: 700;
 }
 
@@ -702,7 +723,7 @@ body {
     position: absolute;
     top: 80px;
     left: 18%;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-size: 1.3rem;
     font-weight: 400;
     color: #4a4a4a;
@@ -713,7 +734,7 @@ body {
 }
 
 .nude-body {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-size: 6rem;
     font-weight: 700;
     display: block;
@@ -769,7 +790,7 @@ body {
 }
 
 .freud-bottom-text strong {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-weight: 700;
     font-size: 2.2rem;
     display: block;
@@ -1013,7 +1034,7 @@ body {
 }
 
 .slc-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-size: 2.8rem;
     font-weight: 700;
     color: #1a1a1a;
@@ -1178,7 +1199,7 @@ body {
 }
 
 .slc-number-circle .number {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-size: 4rem;
     font-weight: 700;
     color: #E6DECA;
@@ -1447,7 +1468,7 @@ body {
 }
 
 .michael-name {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-size: 6rem;
     font-weight: 700;
     color: #3d2a1f;
@@ -1599,7 +1620,7 @@ body {
 }
 
 .retreats-main-heading {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-size: 3.2rem;
     font-weight: 700;
     color: #1a1a1a;
@@ -1624,7 +1645,7 @@ body {
 }
 
 .bubble-heading {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-size: 1.6rem;
     font-weight: 700;
     color: #1a1a1a;
@@ -1750,7 +1771,7 @@ body {
 }
 
 .blog-heading {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-size: 4rem;
     font-weight: 700;
     color: #7a9999;
@@ -2010,7 +2031,7 @@ body {
 }
 
 .footer-email {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-weight: 700;
     color: #31302C;
     font-size: 1.2rem;
@@ -2018,7 +2039,7 @@ body {
 }
 
 .footer-copyright {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-weight: 700;
     color: #31302C;
     font-size: 0.9rem;
@@ -2066,7 +2087,7 @@ body {
 }
 
 .location-heading {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-size: 5rem;
     font-weight: 700;
     color: #ffffff;
@@ -2105,7 +2126,7 @@ body {
     position: absolute;
     top: 50px;
     right: 100px;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-size: 4rem;
     font-weight: 700;
     color: #1a1a1a;
@@ -2125,8 +2146,8 @@ body {
 }
 
 .text-box-content-caps {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
+    font-family: 'Bluu Next', serif;
+    font-size: 0.85rem;
     font-weight: 700;
     color: #1a1a1a;
     line-height: 1.5;
@@ -2135,7 +2156,7 @@ body {
 }
 
 .text-box-heading {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-size: 1.8rem;
     font-weight: 700;
     color: #1a1a1a;
@@ -2153,7 +2174,7 @@ body {
 }
 
 .slr-text {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Bluu Next', serif;
     font-style: italic;
 }
 
@@ -2169,9 +2190,10 @@ body {
 .text-box-2 {
     top: 120px;
     left: 35%;
-    width: 547px;
-    background-color: #b8d4d4;
+    width: 711px;
+    background-color: #9ec4c9;
     border-radius: 52% 48% 48% 52% / 55% 48% 52% 45%;
+    z-index: 3;
 }
 
 .text-box-3 {
@@ -2183,8 +2205,8 @@ body {
 }
 
 .text-box-4 {
-    top: 720px;
-    left: 25%;
+    top: 200px;
+    right: 12%;
     width: 562px;
     background-color: #aed0d5;
     border-radius: 55% 45% 52% 48% / 48% 52% 50% 50%;
@@ -2281,13 +2303,18 @@ body {
 }
 
 .animal-text-overlay p {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 2.5rem;
-    font-weight: 700;
-    color: #ffffff;
+    font-weight: 100;
+    color: #F3F2DC;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
     line-height: 1.4;
     margin: 0;
+}
+
+.animal-text-overlay .play-font {
+    font-family: 'Bluu Next', serif;
+    font-weight: 700;
 }
 
 .animal-prev, .animal-next {
@@ -2326,17 +2353,20 @@ body {
 .video-preview-section {
     width: 100%;
     background-color: #f3f2de;
-    padding: 100px 40px;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    margin-top: -150px;
+    z-index: 10;
 }
 
 .video-preview-container {
-    max-width: 600px;
-    width: 50%;
+    width: 100vw;
+    max-width: 100%;
     position: relative;
-    padding-top: 28.125%; /* 16:9 Aspect Ratio at 50% width */
+    padding-top: 56.25%; /* 16:9 Aspect Ratio fullscreen */
 }
 
 .video-preview-container iframe {
