@@ -978,28 +978,7 @@ body {
     animation: organicPulse 8s ease-in-out infinite;
 }
 
-.slc-connecting-lines {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 600px;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.connect-line {
-    stroke: #7a9999;
-    stroke-width: 2;
-    stroke-dasharray: 5, 5;
-    animation: dashMove 20s linear infinite;
-}
-
-@keyframes dashMove {
-    to {
-        stroke-dashoffset: -100;
-    }
-}
+/* Connecting lines removed - single client bubble only */
 
 @keyframes organicPulse {
     0%, 100% {
@@ -1065,33 +1044,18 @@ body {
     z-index: 2;
 }
 
-/* Each circle gets a slightly different wobble */
-.slc-number-circle.guru {
-    animation: organicWobble1 5s ease-in-out infinite;
+/* Pulsating animation for client bubble */
+.slc-number-circle.pulsating {
+    animation: pulsatingBubble 3s ease-in-out infinite;
 }
 
-.slc-number-circle.placeholders {
-    animation: organicWobble2 6.5s ease-in-out infinite;
-}
-
-.slc-number-circle.weeks {
-    animation: organicWobble3 5.5s ease-in-out infinite;
-}
-
-.slc-number-circle.client {
-    animation: organicWobble4 7s ease-in-out infinite;
-}
-
-.slc-number-circle.location {
-    animation: organicWobble5 6s ease-in-out infinite;
-}
-
-.slc-number-circle.facilitators {
-    animation: organicWobble6 5.8s ease-in-out infinite;
-}
-
-.slc-number-circle.bodyworkers {
-    animation: organicWobble7 6.2s ease-in-out infinite;
+@keyframes pulsatingBubble {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.3);
+    }
 }
 
 @keyframes organicWobble1 {
@@ -1143,49 +1107,17 @@ body {
     75% { border-radius: 55% 45% 50% 50% / 52% 48% 55% 45%; }
 }
 
-/* Position each circle closer to center */
-.slc-number-circle.guru {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.slc-number-circle.placeholders {
-    top: 100px;
-    left: 15%;
-}
-
-.slc-number-circle.weeks {
-    top: 100px;
-    right: 15%;
-}
-
+/* Position single client bubble */
 .slc-number-circle.client {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
 }
 
 .slc-number-circle.client .number {
-    font-size: 5rem;
-}
-
-.slc-number-circle.location {
-    bottom: 100px;
-    left: 15%;
-}
-
-.slc-number-circle.facilitators {
-    bottom: 100px;
-    right: 15%;
-}
-
-.slc-number-circle.bodyworkers {
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    font-size: 6rem;
 }
 
 .slc-number-circle .number {
