@@ -2157,39 +2157,44 @@ body {
     font-style: italic;
 }
 
-/* Distribute text boxes organically across the field */
+/* Distribute text boxes organically across the field - 20% larger with different blue tones */
 .text-box-1 {
     top: 80px;
     left: 8%;
-    width: 320px;
+    width: 384px;
+    background-color: #b0cfd4;
     border-radius: 48% 52% 55% 45% / 45% 50% 50% 55%;
 }
 
 .text-box-2 {
     top: 120px;
     left: 35%;
-    width: 380px;
+    width: 456px;
+    background-color: #b8d4d4;
     border-radius: 52% 48% 48% 52% / 55% 48% 52% 45%;
 }
 
 .text-box-3 {
     top: 420px;
     left: 10%;
-    width: 350px;
+    width: 420px;
+    background-color: #a8c9ce;
     border-radius: 45% 55% 50% 50% / 52% 45% 55% 48%;
 }
 
 .text-box-4 {
     top: 480px;
     right: 15%;
-    width: 360px;
+    width: 432px;
+    background-color: #c0d9d9;
     border-radius: 50% 50% 52% 48% / 48% 52% 48% 52%;
 }
 
 .text-box-5 {
     top: 780px;
     left: 25%;
-    width: 390px;
+    width: 468px;
+    background-color: #aed0d5;
     border-radius: 55% 45% 52% 48% / 48% 52% 50% 50%;
 }
 
