@@ -1446,6 +1446,11 @@ body {
     max-width: 500px;
 }
 
+.michael-text * {
+    font-weight: 700 !important;
+    color: #000000 !important;
+}
+
 .michael-subtitle {
     font-family: 'Roboto', sans-serif;
     font-size: 1.4rem;
