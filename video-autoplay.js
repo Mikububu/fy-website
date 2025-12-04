@@ -1,22 +1,12 @@
-// Video Autoplay on Mobile - Intersection Observer Implementation
-// Only applies to mobile devices (max-width: 768px)
+// Video Autoplay ON/OFF - Intersection Observer Implementation
+// Works on ALL devices - mobile and desktop
 
 (function() {
-    // Check if device is mobile
-    function isMobile() {
-        return window.innerWidth <= 768;
-    }
-
-    // Only run on mobile devices
-    if (!isMobile()) {
-        return;
-    }
-
     // Intersection Observer options
     const observerOptions = {
         root: null, // viewport
         rootMargin: '0px',
-        threshold: 0.5 // 50% of video must be visible
+        threshold: 0.5 // 50% of video must be visible to trigger
     };
 
     // Callback function when intersection changes
@@ -25,10 +15,10 @@
             const iframe = entry.target;
 
             if (entry.isIntersecting) {
-                // Video entered viewport - autoplay with sound
+                // Video entered viewport - AUTOPLAY ON with sound
                 playVideo(iframe);
             } else {
-                // Video left viewport - stop playback
+                // Video left viewport - AUTOPLAY OFF (pause)
                 pauseVideo(iframe);
             }
         });
@@ -40,11 +30,13 @@
     // Function to play video with sound
     function playVideo(iframe) {
         try {
-            // For JW Player iframes, we need to use postMessage API
+            // For JW Player iframes, use postMessage API
             iframe.contentWindow.postMessage(JSON.stringify({
                 method: 'play',
                 muted: false
             }), '*');
+
+            console.log('Video autoplay ON');
         } catch (error) {
             console.log('Video autoplay initiated');
         }
@@ -57,6 +49,8 @@
             iframe.contentWindow.postMessage(JSON.stringify({
                 method: 'pause'
             }), '*');
+
+            console.log('Video autoplay OFF');
         } catch (error) {
             console.log('Video pause initiated');
         }
@@ -70,30 +64,19 @@
     }
 
     function initVideoObserver() {
-        // Select all video iframes
+        // Select all video iframes - both video sections
         const videoIframes = document.querySelectorAll('.video-preview-container iframe, .new-video-container iframe');
 
+        console.log('Found ' + videoIframes.length + ' video iframes');
+
         // Observe each video iframe
-        videoIframes.forEach(iframe => {
+        videoIframes.forEach((iframe, index) => {
             observer.observe(iframe);
 
             // Add autoplay and unmuted attributes to iframes
             iframe.setAttribute('allow', 'autoplay; fullscreen');
+
+            console.log('Observing video iframe ' + (index + 1));
         });
     }
-
-    // Re-initialize on window resize if crossing mobile breakpoint
-    let wasMobile = isMobile();
-    window.addEventListener('resize', () => {
-        const nowMobile = isMobile();
-        if (wasMobile !== nowMobile) {
-            wasMobile = nowMobile;
-            if (nowMobile) {
-                initVideoObserver();
-            } else {
-                // Disconnect observer on desktop
-                observer.disconnect();
-            }
-        }
-    });
 })();
