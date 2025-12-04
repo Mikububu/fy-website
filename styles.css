@@ -33,6 +33,18 @@ body {
     overflow-x: hidden;
 }
 
+/* Header with blue background only */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background-color: #B8D4D4;
+    z-index: -1;
+}
+
 .container {
     position: relative;
     width: 100%;
