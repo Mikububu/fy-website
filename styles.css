@@ -51,7 +51,7 @@ body {
 
 @media (max-width: 768px) {
     .container {
-        top: -5px;
+        top: -50px;
         left: 15px;
         z-index: 5;
     }
@@ -802,7 +802,7 @@ body {
     width: 15%;
     height: auto;
     z-index: 4;
-    animation: freudMove 4s ease-in-out infinite, freudInvert 1s ease-in-out infinite;
+    animation: freudMove 13.3s ease-in-out infinite, freudInvert 1s ease-in-out infinite;
 }
 
 @keyframes freudMove {
