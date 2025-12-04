@@ -1276,46 +1276,46 @@ body {
 
     .slc-numbers {
         width: 100%;
-        height: 600px;
+        height: 650px;
         margin: 40px auto 0;
     }
 
     .slc-number-circle {
-        width: 130px;
-        height: 130px;
+        width: 150px;
+        height: 150px;
     }
 
     .slc-number-circle.client {
-        width: 170px;
-        height: 170px;
+        width: 190px;
+        height: 190px;
     }
 
     .slc-number-circle.guru {
-        top: 10px;
+        top: 5px;
     }
 
     .slc-number-circle.placeholders {
-        top: 120px;
-        left: 5%;
+        top: 130px;
+        left: 0%;
     }
 
     .slc-number-circle.weeks {
-        top: 140px;
-        right: 5%;
+        top: 160px;
+        right: 0%;
     }
 
     .slc-number-circle.location {
-        bottom: 120px;
-        left: 5%;
+        bottom: 130px;
+        left: 0%;
     }
 
     .slc-number-circle.facilitators {
-        bottom: 120px;
-        right: 5%;
+        bottom: 130px;
+        right: 0%;
     }
 
     .slc-number-circle.bodyworkers {
-        bottom: 10px;
+        bottom: 5px;
     }
 
     .slc-number-circle .number {
