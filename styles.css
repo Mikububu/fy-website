@@ -1282,8 +1282,8 @@ body {
         min-width: 0;
         width: 500px;
         height: 500px;
-        transform: scale(1.1);
-        margin: 40px auto 0;
+        transform: scale(1.4);
+        margin: 40px 0 0 -10%;
     }
 
     .slc-title {
@@ -1298,8 +1298,9 @@ body {
 @media (max-width: 600px) {
     .slc-numbers {
         width: 500px;
-        transform: scale(0.95);
+        transform: scale(1.2);
         height: 450px;
+        margin: 40px 0 0 -15%;
     }
 
     .slc-title {
@@ -1310,32 +1311,20 @@ body {
         font-size: 0.75rem;
     }
 
-    .slc-numbers {
-        gap: 10px;
-        padding: 0 5px;
+    .slc-number-circle.placeholders {
+        left: 25%;
     }
 
-    .slc-number-circle {
-        width: 80px;
-        height: 80px;
-        padding: 10px 6px;
+    .slc-number-circle.weeks {
+        right: 25%;
     }
 
-    .slc-number-circle .number {
-        font-size: 1.7rem !important;
+    .slc-number-circle.location {
+        left: 25%;
     }
 
-    .slc-number-circle .label {
-        font-size: 0.6rem;
-    }
-
-    .slc-number-circle.client {
-        width: 95px;
-        height: 95px;
-    }
-
-    .slc-number-circle.client .number {
-        font-size: 2.3rem !important;
+    .slc-number-circle.facilitators {
+        right: 25%;
     }
 
     .slc-description {
