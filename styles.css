@@ -40,7 +40,7 @@ body::before {
     top: 0;
     left: 0;
     right: 0;
-    height: 200px;
+    height: 350px;
     background-color: #B8D4D4;
     z-index: -1;
 }
@@ -69,7 +69,20 @@ body::before {
     }
 
     .logo {
-        max-width: 45%;
+        max-width: 90%;
+    }
+
+    .slideshow-section {
+        margin-top: 20px;
+    }
+
+    .new-video-section {
+        padding: 20px;
+    }
+
+    .new-video-container {
+        max-width: 90%;
+        padding-top: 50.625%; /* Slightly less than 16:9 for iPhone */
     }
 }
 
@@ -1341,10 +1354,10 @@ body::before {
     }
 
     .slc-organic-bubble {
-        padding: 25px;
-        min-height: 180px;
-        max-width: 380px;
-        border-radius: 48% 52% 50% 50% / 52% 48% 52% 48%;
+        padding: 20px;
+        min-height: 140px;
+        max-width: 350px;
+        border-radius: 49% 51% 50% 50% / 53% 47% 53% 47%;
     }
 
     .slc-numbers {
@@ -1354,13 +1367,21 @@ body::before {
     }
 
     .slc-number-circle {
-        width: 180px;
-        height: 180px;
+        width: 216px;
+        height: 216px;
     }
 
     .slc-number-circle.client {
         width: 220px;
         height: 220px;
+    }
+
+    .slc-number-circle .number {
+        font-weight: 700;
+    }
+
+    .slc-number-circle .label {
+        font-weight: 700;
     }
 
     .slc-number-circle.guru {
@@ -2617,7 +2638,7 @@ body::before {
     }
 
     .animal-text-overlay p {
-        font-size: 1.05rem;
+        font-size: 1.197rem;
     }
 
     .animal-slide:nth-child(1) .animal-text-overlay {
