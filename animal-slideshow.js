@@ -23,10 +23,10 @@ function changeAnimalSlide(n) {
     showAnimalSlide(currentAnimalSlide);
 }
 
-// Auto-advance animal slideshow every 5 seconds
+// Auto-advance animal slideshow every 10 seconds
 setInterval(() => {
     changeAnimalSlide(1);
-}, 5000);
+}, 10000);
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {

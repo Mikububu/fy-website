@@ -2,7 +2,7 @@
 let currentSlide = 0;
 let autoPlayInterval;
 const slides = document.getElementsByClassName("slide");
-const slideDelay = 3000; // 3 seconds
+const slideDelay = 6000; // 6 seconds
 
 // Show specific slide
 function showSlide(n) {
