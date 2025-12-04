@@ -802,6 +802,25 @@ body {
     width: 15%;
     height: auto;
     z-index: 4;
+    animation: freudMove 4s ease-in-out infinite, freudInvert 1s ease-in-out infinite;
+}
+
+@keyframes freudMove {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(200px);
+    }
+}
+
+@keyframes freudInvert {
+    0%, 100% {
+        filter: invert(0);
+    }
+    50% {
+        filter: invert(1);
+    }
 }
 
 .layer-book {
