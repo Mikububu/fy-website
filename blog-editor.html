@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Editor - Forbidden Yoga</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f3f2de;
+            font-family: 'Roboto', Arial, sans-serif;
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Header with blue background */
+        .editor-header {
+            background-color: #B8D4D4;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .editor-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #423737;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .editor-header p {
+            font-size: 1.1rem;
+            color: #5a4747;
+            font-weight: 300;
+        }
+
+        /* Main container */
+        .main-container {
+            display: grid;
+            grid-template-columns: 380px 1fr;
+            max-width: 1800px;
+            margin: 0 auto;
+            background: #f3f2de;
+            min-height: calc(100vh - 180px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: #e8e7ce;
+            padding: 30px 20px;
+            border-right: 3px solid #B8D4D4;
+            overflow-y: auto;
+            max-height: calc(100vh - 180px);
+        }
+
+        .sidebar h2 {
+            font-family: 'Playfair Display', serif;
+            color: #423737;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #B8D4D4;
+        }
+
+        .search-box {
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px;
+            background: #f3f2de;
+            border: 2px solid #B8D4D4;
+            border-radius: 8px;
+            color: #423737;
+            font-size: 1rem;
+            font-family: 'Roboto', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #423737;
+            background: white;
+        }
+
+        .post-list {
+            list-style: none;
+        }
+
+        .post-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: #f3f2de;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .post-item:hover {
+            background: white;
+            border-left-color: #B8D4D4;
+            transform: translateX(5px);
+        }
+
+        .post-item.active {
+            background: #423737;
+            border-left-color: #B8D4D4;
+            color: #f3f2de;
+        }
+
+        .post-item-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .post-item.active .post-item-title {
+            color: #B8D4D4;
+        }
+
+        .post-item-meta {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        /* Editor panel */
+        .editor-panel {
+            padding: 40px;
+            overflow-y: auto;
+            max-height: calc(100vh - 180px);
+        }
+
+        .editor-panel h2 {
+            font-family: 'Playfair Display', serif;
+            color: #423737;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+
+        .status-message {
+            padding: 18px 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            display: none;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .status-message.success {
+            background: rgba(184, 212, 212, 0.3);
+            border: 2px solid #B8D4D4;
+            color: #423737;
+        }
+
+        .status-message.error {
+            background: rgba(231, 76, 60, 0.2);
+            border: 2px solid #e74c3c;
+            color: #c0392b;
+        }
+
+        /* Form groups */
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #423737;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 18px;
+            background: white;
+            border: 2px solid #B8D4D4;
+            border-radius: 10px;
+            color: #423737;
+            font-size: 1.05rem;
+            font-family: 'Roboto', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #423737;
+            box-shadow: 0 0 0 3px rgba(184, 212, 212, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 350px;
+            line-height: 1.7;
+            resize: vertical;
+        }
+
+        /* Media section */
+        .media-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            border: 3px solid #B8D4D4;
+            margin-bottom: 30px;
+        }
+
+        .media-section h3 {
+            font-family: 'Playfair Display', serif;
+            color: #423737;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+
+        .media-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .media-tab {
+            padding: 12px 24px;
+            background: #f3f2de;
+            border: 2px solid #B8D4D4;
+            border-radius: 8px;
+            color: #423737;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .media-tab:hover {
+            background: #B8D4D4;
+            color: white;
+        }
+
+        .media-tab.active {
+            background: #423737;
+            border-color: #423737;
+            color: #B8D4D4;
+        }
+
+        .media-input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .media-input-group input {
+            flex: 1;
+            padding: 14px 18px;
+            background: #f3f2de;
+            border: 2px solid #B8D4D4;
+            border-radius: 8px;
+            color: #423737;
+            font-size: 1rem;
+        }
+
+        .media-input-group input:focus {
+            outline: none;
+            border-color: #423737;
+            background: white;
+        }
+
+        .btn-insert {
+            padding: 14px 30px;
+            background: linear-gradient(135deg, #B8D4D4 0%, #9bc4c4 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .btn-insert:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(184, 212, 212, 0.4);
+        }
+
+        .help-text {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-top: 10px;
+        }
+
+        .help-text strong {
+            color: #423737;
+        }
+
+        /* Upload section */
+        .upload-area {
+            border: 3px dashed #B8D4D4;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            background: #f3f2de;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .upload-area:hover {
+            border-color: #423737;
+            background: white;
+        }
+
+        .upload-area.dragover {
+            border-color: #423737;
+            background: rgba(184, 212, 212, 0.1);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .upload-text {
+            font-size: 1.1rem;
+            color: #423737;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .upload-subtext {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Preview area */
+        .preview-area {
+            margin-top: 25px;
+            padding: 25px;
+            background: #f3f2de;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .preview-area h4 {
+            font-family: 'Playfair Display', serif;
+            color: #423737;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .preview-area iframe,
+        .preview-area video,
+        .preview-area audio {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 40px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #423737 0%, #5a4747 100%);
+            color: #B8D4D4;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(66, 55, 55, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #423737;
+            border: 2px solid #B8D4D4;
+        }
+
+        .btn-secondary:hover {
+            background: #B8D4D4;
+            color: white;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: #666;
+        }
+
+        .empty-state h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #423737;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                max-height: 300px;
+                border-right: none;
+                border-bottom: 3px solid #B8D4D4;
+            }
+
+            .editor-panel {
+                max-height: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .editor-header h1 {
+                font-size: 2rem;
+            }
+
+            .editor-panel {
+                padding: 20px;
+            }
+
+            .media-input-group {
+                flex-direction: column;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="editor-header">
+        <h1>✍️ Forbidden Yoga Blog Editor</h1>
+        <p>Create and edit your sacred writings with videos, images, and Spotify playlists</p>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <h2>📚 Your Posts</h2>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search your posts...">
+            </div>
+            <ul class="post-list" id="postList">
+                <li class="empty-state">Loading posts...</li>
+            </ul>
+        </aside>
+
+        <main class="editor-panel">
+            <div id="editorContent">
+                <div class="empty-state">
+                    <h3>👈 Select a post to begin</h3>
+                    <p>Choose a post from the sidebar to start editing</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="blog-editor.js"></script>
+</body>
+</html>
