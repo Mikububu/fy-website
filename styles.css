@@ -1236,6 +1236,7 @@ body {
     transform: translate(-50%, -50%);
     width: 220px;
     height: 220px;
+    background-color: rgba(185, 212, 212, 0.7);
 }
 
 .slc-number-circle.client .number {
