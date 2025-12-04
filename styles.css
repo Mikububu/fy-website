@@ -989,6 +989,7 @@ body {
 .slc-left {
     flex: 1;
     position: relative;
+    min-width: 500px;
 }
 
 .slc-organic-bubble {
@@ -1047,6 +1048,7 @@ body {
 .slc-numbers {
     position: relative;
     width: 100%;
+    min-width: 500px;
     min-height: 600px;
     height: 600px;
     margin-top: 80px;
@@ -1236,10 +1238,19 @@ body {
 }
 
 /* SLC Mobile Responsive */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
     .slc-container {
         flex-direction: column;
         gap: 40px;
+    }
+
+    .slc-left {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .slc-numbers {
+        min-width: auto;
     }
 
     .slc-right {
