@@ -1747,9 +1747,9 @@ body {
 /* Blog Section Styles */
 .blog-section {
     width: 100%;
-    padding: 100px 20px 60px;
+    padding: 60px 20px 60px;
     background-color: #f3f2de;
-    margin-top: 200px;
+    margin-top: 0;
 }
 
 .blog-container {
@@ -1759,7 +1759,7 @@ body {
 
 .blog-heading {
     font-family: 'Bluu Next', serif;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 700;
     color: #7a9999;
     margin-bottom: 130px;
