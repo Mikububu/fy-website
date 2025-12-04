@@ -209,12 +209,9 @@ body {
     cursor: pointer;
     position: absolute;
     top: 50%;
-    width: auto;
-    margin-top: -30px;
-    padding: 0;
-    color: white;
-    font-weight: 100;
-    font-size: 60px;
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
     transition: 0.3s ease;
     user-select: none;
     background-color: transparent;
@@ -222,7 +219,45 @@ body {
     z-index: 10;
     border: none;
     opacity: 0.6;
-    transform: scaleX(0.5);
+    font-size: 0;
+}
+
+.prev::before, .next::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+}
+
+.prev::after, .next::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+}
+
+.prev::before {
+    transform: translate(-50%, -50%) rotate(-25deg) translateY(-8px);
+}
+
+.prev::after {
+    transform: translate(-50%, -50%) rotate(25deg) translateY(8px);
+}
+
+.next::before {
+    transform: translate(-50%, -50%) rotate(25deg) translateY(-8px);
+}
+
+.next::after {
+    transform: translate(-50%, -50%) rotate(-25deg) translateY(8px);
 }
 
 .next {
@@ -235,7 +270,7 @@ body {
 
 .prev:hover, .next:hover {
     opacity: 1;
-    transform: scaleX(0.5) scale(1.1);
+    transform: scale(1.1);
 }
 
 /* Nasi Shodana Section Styles */
