@@ -66,11 +66,11 @@ body::before {
 
 @media (max-width: 768px) {
     body::before {
-        max-height: 300px;  /* Increased to cover moved logo */
+        max-height: 350px;  /* Increased to cover moved logo */
     }
 
     .container {
-        padding: 78px 0 14px;  /* Moved logo down 50px: 28px + 50px = 78px */
+        padding: 128px 0 14px;  /* Moved logo down another 50px: 78px + 50px = 128px */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -85,12 +85,12 @@ body::before {
     }
 
     .new-video-section {
-        padding: 20px;
+        padding: 0;  /* Remove padding for full width */
     }
 
     .new-video-container {
-        max-width: 90%;
-        padding-top: 50.625%; /* Slightly less than 16:9 for iPhone */
+        max-width: 100%;  /* Full width on mobile */
+        padding-top: 56.25%; /* Full 16:9 aspect ratio */
     }
 }
 
@@ -1362,16 +1362,16 @@ body::before {
     }
 
     .slc-organic-bubble {
-        padding: 20px;
-        min-height: 140px;
-        max-width: 350px;
+        padding: 24px;  /* Increased by 20%: 20px * 1.2 */
+        min-height: 168px;  /* Increased by 20%: 140px * 1.2 */
+        max-width: 420px;  /* Increased by 20%: 350px * 1.2 */
         border-radius: 49% 51% 50% 50% / 53% 47% 53% 47%;
     }
 
     .slc-numbers {
         width: 100%;
         height: 780px;
-        margin: 40px auto 0;
+        margin: 70px auto 0;  /* Moved down 30px: 40px + 30px = 70px */
     }
 
     .slc-number-circle {
@@ -1475,6 +1475,7 @@ body::before {
 
     .slc-description {
         font-size: 1rem;
+        font-weight: 400;  /* Normal weight, not thin */
     }
 }
 
@@ -2648,7 +2649,7 @@ body::before {
     }
 
     .animal-text-overlay p {
-        font-size: 1.197rem;
+        font-size: 0.6rem;  /* Decreased by 50%: 1.197rem * 0.5 */
     }
 
     .animal-slide:nth-child(1) .animal-text-overlay {
