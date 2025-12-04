@@ -1456,7 +1456,7 @@ body::before {
     }
 
     .slc-number-circle .label {
-        font-size: 1.9rem !important;  /* Doubled from base 0.95rem */
+        font-size: 1.4rem !important;
         font-weight: 700 !important;
         line-height: 1.1 !important;
     }
