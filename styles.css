@@ -810,7 +810,7 @@ body {
         transform: translateX(0);
     }
     50% {
-        transform: translateX(200px);
+        transform: translateX(550px);
     }
 }
 
