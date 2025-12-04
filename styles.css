@@ -180,7 +180,6 @@ body {
     position: relative;
     width: 100%;
     max-width: 100%;
-    height: 600px;
     margin: 0 auto;
     overflow: hidden;
 }
@@ -188,13 +187,11 @@ body {
 .slide {
     display: none;
     width: 100%;
-    height: 100%;
 }
 
 .slide img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
 }
 
@@ -1334,6 +1331,12 @@ body {
         padding: 60px 20px;
     }
 
+    .slc-organic-bubble {
+        padding: 40px;
+        min-height: 490px;
+        border-radius: 42% 58% 47% 53% / 52% 48% 52% 48%;
+    }
+
     .slc-numbers {
         width: 100%;
         height: 780px;
@@ -2351,7 +2354,6 @@ body {
     position: relative;
     width: 100%;
     max-width: 100%;
-    height: 600px;
     margin: 0 auto;
     overflow: hidden;
 }
@@ -2359,7 +2361,6 @@ body {
 .animal-slide {
     display: none;
     width: 100%;
-    height: 100%;
     position: relative;
 }
 
@@ -2369,8 +2370,7 @@ body {
 
 .animal-slide img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
 }
 
@@ -2418,12 +2418,9 @@ body {
     cursor: pointer;
     position: absolute;
     top: 50%;
-    width: auto;
-    margin-top: -20px;
-    padding: 0;
-    color: white;
-    font-weight: 100;
-    font-size: 40px;
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
     transition: 0.3s ease;
     user-select: none;
     background-color: transparent;
@@ -2431,6 +2428,45 @@ body {
     z-index: 10;
     border: none;
     opacity: 0.6;
+    font-size: 0;
+}
+
+.animal-prev::before, .animal-next::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+}
+
+.animal-prev::after, .animal-next::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform-origin: center;
+}
+
+.animal-prev::before {
+    transform: translate(-50%, -50%) rotate(-25deg) translateY(-8px);
+}
+
+.animal-prev::after {
+    transform: translate(-50%, -50%) rotate(25deg) translateY(8px);
+}
+
+.animal-next::before {
+    transform: translate(-50%, -50%) rotate(25deg) translateY(-8px);
+}
+
+.animal-next::after {
+    transform: translate(-50%, -50%) rotate(-25deg) translateY(8px);
 }
 
 .animal-next {
