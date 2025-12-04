@@ -1281,8 +1281,8 @@ body {
     .slc-numbers {
         min-width: 0;
         width: 500px;
-        height: 400px;
-        transform: scale(0.75);
+        height: 500px;
+        transform: scale(1.1);
         margin: 40px auto 0;
     }
 
@@ -1298,8 +1298,8 @@ body {
 @media (max-width: 600px) {
     .slc-numbers {
         width: 500px;
-        transform: scale(0.65);
-        height: 350px;
+        transform: scale(0.95);
+        height: 450px;
     }
 
     .slc-title {
