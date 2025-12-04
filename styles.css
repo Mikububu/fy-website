@@ -40,7 +40,8 @@ body::before {
     top: 0;
     left: 0;
     right: 0;
-    height: 180px;  /* Reduced to match tighter spacing */
+    height: 100%;  /* Cover entire page */
+    max-height: 400px;  /* Enough to cover header + logo + margin */
     background-color: #B8D4D4;
     z-index: -1;
 }
@@ -65,7 +66,7 @@ body::before {
 
 @media (max-width: 768px) {
     body::before {
-        height: 62px;  /* Exactly covers mobile header: 28px + 14px + 20px */
+        max-height: 250px;  /* Enough to cover mobile header + logo + margin */
     }
 
     .container {
