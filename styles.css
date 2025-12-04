@@ -210,11 +210,11 @@ body {
     position: absolute;
     top: 50%;
     width: auto;
-    margin-top: -20px;
+    margin-top: -30px;
     padding: 0;
     color: white;
     font-weight: 100;
-    font-size: 40px;
+    font-size: 60px;
     transition: 0.3s ease;
     user-select: none;
     background-color: transparent;
@@ -222,6 +222,7 @@ body {
     z-index: 10;
     border: none;
     opacity: 0.6;
+    transform: scaleX(0.5);
 }
 
 .next {
@@ -234,7 +235,7 @@ body {
 
 .prev:hover, .next:hover {
     opacity: 1;
-    transform: scale(1.1);
+    transform: scaleX(0.5) scale(1.1);
 }
 
 /* Nasi Shodana Section Styles */
