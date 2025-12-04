@@ -32,8 +32,13 @@ async function loadBlogPosts() {
             const card = document.createElement('article');
             card.className = 'blog-card';
 
-            // TEMPORARY: Link all posts to Substack for 24 hours
-            const postUrl = 'https://michaelperin.substack.com/';
+            // TEMPORARY: Link all posts to Substack
+            // Convert local URL to Substack URL: /posts/slug.html -> https://michaelperin.substack.com/p/slug
+            let postUrl = post.url || post.link;
+            if (postUrl && postUrl.startsWith('/posts/')) {
+                const slug = postUrl.replace('/posts/', '').replace('.html', '');
+                postUrl = `https://michaelperin.substack.com/p/${slug}`;
+            }
             const isExternal = true;
 
             // Format date for display
