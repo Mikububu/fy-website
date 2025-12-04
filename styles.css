@@ -66,11 +66,11 @@ body::before {
 
 @media (max-width: 768px) {
     body::before {
-        max-height: 350px;  /* Increased to cover moved logo */
+        max-height: 400px;  /* Increased to cover moved logo */
     }
 
     .container {
-        padding: 128px 0 14px;  /* Moved logo down another 50px: 78px + 50px = 128px */
+        padding: 178px 0 14px;  /* Moved logo down another 50px: 128px + 50px = 178px */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -85,12 +85,36 @@ body::before {
     }
 
     .new-video-section {
-        padding: 0;  /* Remove padding for full width */
+        padding: 0 !important;  /* Force remove padding */
+        margin: 0 !important;  /* Force remove margin */
     }
 
     .new-video-container {
-        max-width: 100%;  /* Full width on mobile */
+        max-width: 100% !important;  /* Force full width */
+        width: 100vw !important;
+        margin: 0 !important;
         padding-top: 56.25%; /* Full 16:9 aspect ratio */
+    }
+
+    .new-video-container iframe {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .video-preview-section {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .video-preview-container {
+        max-width: 100% !important;
+        width: 100vw !important;
+        margin: 0 !important;
+    }
+
+    .video-preview-container iframe {
+        width: 100% !important;
+        height: 100% !important;
     }
 }
 
@@ -1362,26 +1386,26 @@ body::before {
     }
 
     .slc-organic-bubble {
-        padding: 24px;  /* Increased by 20%: 20px * 1.2 */
-        min-height: 168px;  /* Increased by 20%: 140px * 1.2 */
-        max-width: 420px;  /* Increased by 20%: 350px * 1.2 */
+        padding: 28.8px;  /* Increased by 20% again: 24px * 1.2 */
+        min-height: 201.6px;  /* Increased by 20% again: 168px * 1.2 */
+        max-width: 504px;  /* Increased by 20% again: 420px * 1.2 */
         border-radius: 49% 51% 50% 50% / 53% 47% 53% 47%;
     }
 
     .slc-numbers {
         width: 100%;
         height: 780px;
-        margin: 70px auto 0;  /* Moved down 30px: 40px + 30px = 70px */
+        margin: 100px auto 0;  /* Moved down another 30px: 70px + 30px = 100px */
     }
 
     .slc-number-circle {
-        width: 281px;  /* Increased by 30%: 216px * 1.3 */
-        height: 281px;
+        width: 421.5px;  /* Increased by 50%: 281px * 1.5 */
+        height: 421.5px;
     }
 
     .slc-number-circle.client {
-        width: 286px;  /* Increased by 30%: 220px * 1.3 */
-        height: 286px;
+        width: 429px;  /* Increased by 50%: 286px * 1.5 */
+        height: 429px;
     }
 
     .slc-number-circle .number {
@@ -1390,7 +1414,7 @@ body::before {
     }
 
     .slc-number-circle .label {
-        font-size: 1.71rem;  /* Increased by 80%: 0.95rem * 1.8 */
+        font-size: 3.42rem;  /* Doubled: 1.71rem * 2 */
         font-weight: 700;
     }
 
