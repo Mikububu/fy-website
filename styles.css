@@ -2626,3 +2626,93 @@ body {
         padding: 60px 20px;
     }
 }
+
+/* iPad and Tablet Optimizations (768px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Logo sizing for iPad */
+    .logo {
+        max-width: 30%;
+    }
+
+    /* TRANSFORM section optimization */
+    .nasi-section {
+        padding: 100px 40px;
+    }
+
+    .nasi-heading {
+        font-size: 5.5rem;
+    }
+
+    .nasi-subheading {
+        font-size: 1.1rem;
+    }
+
+    /* SLC section for iPad */
+    .slc-numbers {
+        width: 90%;
+        max-width: 900px;
+        height: 550px;
+    }
+
+    .slc-number-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .slc-number-circle.client {
+        width: 150px;
+        height: 150px;
+    }
+
+    .slc-organic-bubble {
+        min-height: 300px;
+        max-width: 500px;
+    }
+
+    /* Michael section for iPad */
+    .michael-section {
+        padding: 120px 50px 80px;
+    }
+
+    .michael-image {
+        max-width: 300px;
+    }
+
+    .michael-bio {
+        font-size: 1.1rem;
+        line-height: 1.7;
+    }
+
+    /* Blog grid for iPad - 3 columns */
+    .blog-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .blog-heading {
+        font-size: 4.5rem;
+    }
+
+    /* Animal slideshow text for iPad */
+    .animal-text-overlay p {
+        font-size: 2.2rem;
+    }
+
+    /* Location heading for iPad */
+    .location-heading {
+        font-size: 2rem;
+    }
+
+    .location-subheading {
+        font-size: 0.8rem;
+    }
+
+    /* Freud section for iPad */
+    .freud-headline {
+        font-size: 2.8rem;
+    }
+
+    .circle-text {
+        font-size: 1.05rem;
+    }
+}
