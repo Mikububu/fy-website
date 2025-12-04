@@ -65,7 +65,10 @@ body::before {
 
 @media (max-width: 768px) {
     .container {
-        padding: 40px 0 20px;
+        padding: 28px 0 14px;  /* Reduced by 30%: 40px->28px, 20px->14px */
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .logo {
