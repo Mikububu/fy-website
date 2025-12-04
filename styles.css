@@ -1441,13 +1441,13 @@ body::before {
     }
 
     .slc-number-circle {
-        width: 234px;  /* 195px * 1.2 (20% more increase) */
-        height: 234px;
+        width: 280.8px;  /* 234px * 1.2 (another 20% increase) */
+        height: 280.8px;
     }
 
     .slc-number-circle.client {
-        width: 234px;
-        height: 234px;
+        width: 280.8px;
+        height: 280.8px;
     }
 
     .slc-number-circle .number {
@@ -1456,7 +1456,7 @@ body::before {
     }
 
     .slc-number-circle .label {
-        font-size: 1.9rem;  /* Doubled: 0.95rem * 2 */
+        font-size: 3.8rem;  /* Doubled: 1.9rem * 2 */
         font-weight: 700;
         line-height: 1.1;
     }
