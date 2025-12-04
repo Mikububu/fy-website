@@ -1600,10 +1600,10 @@ body {
 }
 
 .retreats-container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
     grid-template-rows: auto auto auto;
     gap: 40px;
     align-items: center;
@@ -1616,7 +1616,7 @@ body {
     grid-row: 2;
     width: 450px;
     height: 350px;
-    background-color: rgba(184, 212, 212, 0.6);
+    background-color: rgba(184, 212, 212, 0.5);
     border-radius: 45% 55% 52% 48% / 48% 45% 55% 52%;
     display: flex;
     align-items: center;
@@ -1626,9 +1626,9 @@ body {
 
 .retreats-main-heading {
     font-family: 'Bluu Next', serif;
-    font-size: 3.2rem;
+    font-size: 5rem;
     font-weight: 700;
-    color: #1a1a1a;
+    color: #000000;
     line-height: 1.1;
     text-align: center;
 }
@@ -1645,7 +1645,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 280px;
+    width: 100%;
+    max-width: 320px;
     min-height: 260px;
 }
 
