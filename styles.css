@@ -1436,27 +1436,27 @@ body::before {
 
     .slc-numbers {
         width: 100%;
-        height: 1000px;  /* Increased to accommodate larger bubbles */
-        margin: 130px auto 0;  /* Moved down another 30px: 100px + 30px = 130px */
+        height: 600px;
+        margin: 130px auto 0;
     }
 
     .slc-number-circle {
-        width: 632.25px;  /* Increased by 50% again: 421.5px * 1.5 */
-        height: 632.25px;
+        width: 195px;  /* Base 150px * 1.3 (30% increase) */
+        height: 195px;
     }
 
     .slc-number-circle.client {
-        width: 643.5px;  /* Increased by 50% again: 429px * 1.5 */
-        height: 643.5px;
+        width: 195px;
+        height: 195px;
     }
 
     .slc-number-circle .number {
-        font-size: 7.2rem;  /* Increased by 80%: 4rem * 1.8 */
+        font-size: 4rem;
         font-weight: 700;
     }
 
     .slc-number-circle .label {
-        font-size: 6.84rem;  /* Doubled again: 3.42rem * 2 */
+        font-size: 1.9rem;  /* Doubled: 0.95rem * 2 */
         font-weight: 700;
         line-height: 1.1;
     }
@@ -2745,7 +2745,7 @@ iframe .jw-title-secondary {
     }
 
     .animal-text-overlay p {
-        font-size: 0.6rem;  /* Decreased by 50%: 1.197rem * 0.5 */
+        font-size: 1.2rem;  /* Doubled from 0.6rem */
     }
 
     .animal-slide:nth-child(1) .animal-text-overlay {
