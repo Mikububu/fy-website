@@ -1,0 +1,44 @@
+# SEO-Optimized File Renaming Plan
+
+# Logo
+FY LOGO white no bg 2000.png → forbidden-yoga-logo-white.png
+
+# Main slideshow images (already good in images/ folder)
+# Keep: images/Bali Tantra Retreat 1-10.jpg (already descriptive)
+
+# TRANSFORM section
+Nasi Shodana.png → tantric-kundalini-yoga-breathing-technique.png
+brown bubble.png → tantric-transformation-practice-bubble.png
+blue bubble.png → sacred-intimacy-workshop-bubble.png
+
+# Tickets
+ticket_edited_edited (1).png → kundalini-yoga-retreat-ticket-1.png
+ticket_edited_edited (2).png → kundalini-yoga-retreat-ticket-2.png
+ticket_edited_edited (3).png → kundalini-yoga-retreat-ticket-3.png
+ticket_edited_edited (4).png → kundalini-yoga-retreat-ticket-4.png
+ticket_edited_edited (5).png → kundalini-yoga-retreat-ticket-5.png
+ticket_edited_edited (6).png → kundalini-yoga-retreat-ticket-6.png
+ticket_edited_edited (7).png → kundalini-yoga-retreat-ticket-7.png
+ticket_edited_edited (10).png → kundalini-yoga-retreat-ticket-10.png
+
+# Freud section circles
+1_left cricle embrace.jpg → tantric-embrace-spiritual-connection.jpg
+1_middle circle_landscape.jpg → yoga-meditation-landscape-scene.jpg
+3_right circle_people.jpg → group-tantra-yoga-practice.jpg
+
+# Freud layers
+Sofa and Suzanna.png → freud-couch-woman-psychoanalysis.png
+4_Freud_head.png → sigmund-freud-portrait-tantra.png
+6_Freud book.jpg → psychoanalysis-book-spiritual-healing.jpg
+
+# Michael section
+Michael.png → michael-perin-wogenburg-kundalini-teacher.png
+Michael%20bubble.png → tantric-teacher-background-bubble.png
+
+# Location section
+mongolia.png → tantra-yoga-retreat-mongolia-bali-colombia.png
+
+# Animal slideshow
+animal 1.png → forbidden-yoga-nude-practice-embodiment-1.png
+animal 2.png → nude-tantra-yoga-body-expansion-2.png
+animal 3.png → tantric-nude-yoga-experimentation-3.png
