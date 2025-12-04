@@ -983,6 +983,7 @@ body {
     display: flex;
     align-items: center;
     gap: 80px;
+    min-height: 700px;
 }
 
 .slc-left {
@@ -1046,6 +1047,7 @@ body {
 .slc-numbers {
     position: relative;
     width: 100%;
+    min-height: 600px;
     height: 600px;
     margin-top: 80px;
 }
