@@ -1570,15 +1570,44 @@ body::before {
     height: 100%;
 }
 
-/* Hide all video titles and subtitles globally */
+/* Hide all video titles and subtitles globally - all possible selectors */
 .jw-title,
 .jw-title-primary,
 .jw-title-secondary,
 .jw-text-track-display,
 .jw-captions,
-.jw-text-track-container {
+.jw-text-track-container,
+.jw-title-container,
+.jw-overlays,
+.jw-overlay,
+iframe .jw-title,
+iframe .jw-title-primary,
+iframe .jw-title-secondary {
     display: none !important;
     visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+}
+
+/* Additional iframe CSS injection attempt */
+.video-preview-container iframe,
+.new-video-container iframe {
+    pointer-events: auto;
+}
+
+/* Force hide JW Player overlay elements */
+.video-preview-container::after,
+.new-video-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: transparent;
+    pointer-events: none;
+    z-index: 1;
 }
 
 /* Michael Section */
