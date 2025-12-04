@@ -66,11 +66,11 @@ body::before {
 
 @media (max-width: 768px) {
     body::before {
-        max-height: 450px;  /* Increased to cover moved logo */
+        max-height: 465px;  /* Increased to cover moved logo */
     }
 
     .container {
-        padding: 228px 0 14px;  /* Moved logo down another 50px: 178px + 50px = 228px */
+        padding: 243px 0 14px;  /* Moved logo down 15px: 228px + 15px = 243px */
         display: flex;
         justify-content: center;
         align-items: center;
