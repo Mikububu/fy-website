@@ -84,6 +84,20 @@ body::before {
         margin-top: 20px;
     }
 
+    /* Fix white frame blinking in slideshow */
+    .slideshow-container {
+        background-color: #f3f2de;
+    }
+
+    .slide {
+        background-color: #f3f2de;
+    }
+
+    .slide img {
+        display: block;
+        background-color: #f3f2de;
+    }
+
     /* Force both videos to be completely full width with NO box */
     .new-video-section {
         padding: 0 !important;
@@ -1414,9 +1428,9 @@ body::before {
     }
 
     .slc-organic-bubble {
-        padding: 34.56px;  /* Increased by 20% again: 28.8px * 1.2 */
-        min-height: 241.92px;  /* Increased by 20% again: 201.6px * 1.2 */
-        max-width: 604.8px;  /* Increased by 20% again: 504px * 1.2 */
+        padding: 38.02px;  /* Increased by 10%: 34.56px * 1.1 */
+        min-height: 266.11px;  /* Increased by 10%: 241.92px * 1.1 */
+        max-width: 665.28px;  /* Increased by 10%: 604.8px * 1.1 */
         border-radius: 49% 51% 50% 50% / 53% 47% 53% 47%;
     }
 
