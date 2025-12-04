@@ -1339,8 +1339,8 @@ body {
 
     .slc-organic-bubble {
         padding: 40px;
-        min-height: 400px;
-        border-radius: 42% 58% 47% 53% / 52% 48% 52% 48%;
+        min-height: 350px;
+        border-radius: 45% 55% 48% 52% / 48% 52% 48% 52%;
     }
 
     .slc-numbers {
@@ -1605,6 +1605,11 @@ body {
     .michael-bio {
         font-size: 0.95rem;
         line-height: 1.6;
+        text-align: justify;
+    }
+
+    .michael-text {
+        text-align: left;
     }
 }
 
@@ -1802,7 +1807,7 @@ body {
         width: 90%;
         max-width: 320px;
         min-height: auto;
-        padding: 30px 25px;
+        padding: 30px 45px;
     }
 
     .bubble-heading {
@@ -1833,7 +1838,7 @@ body {
     font-family: 'Bluu Next', serif;
     font-size: 5rem;
     font-weight: 700;
-    color: #7a9999;
+    color: #423737;
     margin-bottom: 130px;
     text-align: center;
     animation: pulsate 3s ease-in-out infinite;
@@ -2178,11 +2183,11 @@ body {
 
 @media (max-width: 768px) {
     .location-heading {
-        font-size: 1.7rem;
+        font-size: 1.2rem;
     }
 
     .location-subheading {
-        font-size: 0.75rem;
+        font-size: 0.6rem;
     }
 }
 
@@ -2411,14 +2416,14 @@ body {
 }
 
 .animal-slide:nth-child(2) .animal-text-overlay {
-    top: 60%;
+    top: 50%;
     right: 8%;
     left: auto;
 }
 
 .animal-slide:nth-child(3) .animal-text-overlay {
     top: 40%;
-    left: 10%;
+    left: 18%;
 }
 
 .animal-text-overlay p {
