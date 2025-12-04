@@ -1274,16 +1274,60 @@ body {
         padding: 60px 20px;
     }
 
-    .slc-left {
-        overflow: hidden;
+    .slc-numbers {
+        width: 100%;
+        height: 500px;
+        margin: 40px auto 0;
     }
 
-    .slc-numbers {
-        min-width: 0;
-        width: 500px;
-        height: 500px;
-        transform: scale(1.4);
-        margin: 40px 0 0 -10%;
+    .slc-number-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .slc-number-circle.client {
+        width: 160px;
+        height: 160px;
+    }
+
+    .slc-number-circle.guru {
+        top: 20px;
+    }
+
+    .slc-number-circle.placeholders {
+        top: 80px;
+        left: 20%;
+    }
+
+    .slc-number-circle.weeks {
+        top: 80px;
+        right: 20%;
+    }
+
+    .slc-number-circle.location {
+        bottom: 80px;
+        left: 20%;
+    }
+
+    .slc-number-circle.facilitators {
+        bottom: 80px;
+        right: 20%;
+    }
+
+    .slc-number-circle.bodyworkers {
+        bottom: 20px;
+    }
+
+    .slc-number-circle .number {
+        font-size: 2.5rem;
+    }
+
+    .slc-number-circle.client .number {
+        font-size: 4rem;
+    }
+
+    .slc-number-circle .label {
+        font-size: 0.75rem;
     }
 
     .slc-title {
@@ -1297,34 +1341,29 @@ body {
 
 @media (max-width: 600px) {
     .slc-numbers {
-        width: 500px;
-        transform: scale(1.2);
         height: 450px;
-        margin: 40px 0 0 -15%;
+    }
+
+    .slc-number-circle {
+        width: 100px;
+        height: 100px;
+    }
+
+    .slc-number-circle.client {
+        width: 140px;
+        height: 140px;
+    }
+
+    .slc-number-circle .number {
+        font-size: 2rem;
+    }
+
+    .slc-number-circle.client .number {
+        font-size: 3.5rem;
     }
 
     .slc-title {
         font-size: 1.8rem;
-    }
-
-    .slc-example {
-        font-size: 0.75rem;
-    }
-
-    .slc-number-circle.placeholders {
-        left: 25%;
-    }
-
-    .slc-number-circle.weeks {
-        right: 25%;
-    }
-
-    .slc-number-circle.location {
-        left: 25%;
-    }
-
-    .slc-number-circle.facilitators {
-        right: 25%;
     }
 
     .slc-description {
