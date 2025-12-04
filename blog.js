@@ -32,9 +32,9 @@ async function loadBlogPosts() {
             const card = document.createElement('article');
             card.className = 'blog-card';
 
-            // Use local URL if available, otherwise external link
-            const postUrl = post.url || post.link;
-            const isExternal = postUrl && postUrl.startsWith('http');
+            // TEMPORARY: Link all posts to Substack for 24 hours
+            const postUrl = 'https://michaelperin.substack.com/';
+            const isExternal = true;
 
             // Format date for display
             let displayDate = post.date;
