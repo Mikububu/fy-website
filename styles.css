@@ -35,7 +35,7 @@ body {
 
 .container {
     position: absolute;
-    top: 20px;
+    top: 40px;
     left: 20px;
     z-index: 1000;
 }
@@ -180,7 +180,7 @@ body {
     position: relative;
     width: 100%;
     max-width: 100%;
-    margin: 0 auto;
+    margin: 40px auto 0;
     overflow: hidden;
 }
 
@@ -1294,7 +1294,7 @@ body {
 .slc-description {
     font-family: 'Roboto', sans-serif;
     font-size: 1.4rem;
-    font-weight: 100;
+    font-weight: 400;
     color: #1a1a1a;
     line-height: 1.6;
     margin: 0;
@@ -1338,10 +1338,10 @@ body {
     }
 
     .slc-organic-bubble {
-        padding: 30px;
-        min-height: 250px;
-        max-width: 420px;
-        border-radius: 47% 53% 50% 50% / 50% 50% 50% 50%;
+        padding: 25px;
+        min-height: 180px;
+        max-width: 380px;
+        border-radius: 48% 52% 50% 50% / 52% 48% 52% 48%;
     }
 
     .slc-numbers {
@@ -1466,6 +1466,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+.new-video-section .jw-title,
+.new-video-section .jw-title-primary,
+.new-video-section .jw-title-secondary {
+    display: none !important;
 }
 
 /* Michael Section */
@@ -2047,7 +2053,7 @@ body {
     .blog-heading {
         font-size: 3.25rem;
         margin-bottom: 40px;
-        color: #ffffff;
+        color: #666666;
     }
 
     .blog-title {
@@ -2208,11 +2214,11 @@ body {
 
 @media (max-width: 768px) {
     .location-heading {
-        font-size: 1.2rem;
+        font-size: 0.6rem;
     }
 
     .location-subheading {
-        font-size: 0.6rem;
+        font-size: 0.3rem;
     }
 }
 
@@ -2591,8 +2597,29 @@ body {
         font-size: 0.9rem;
     }
 
+    .animal-text-overlay {
+        width: 70%;
+        max-width: 70%;
+    }
+
     .animal-text-overlay p {
-        font-size: 1.5rem;
+        font-size: 1.05rem;
+    }
+
+    .animal-slide:nth-child(1) .animal-text-overlay {
+        top: 20%;
+        left: 15%;
+    }
+
+    .animal-slide:nth-child(2) .animal-text-overlay {
+        top: 40%;
+        right: 15%;
+        left: auto;
+    }
+
+    .animal-slide:nth-child(3) .animal-text-overlay {
+        top: 45%;
+        left: 15%;
     }
 
     .video-preview-section {
