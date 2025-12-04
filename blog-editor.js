@@ -175,7 +175,7 @@ async function loadPostContent(post) {
     }
 }
 
-let currentMediaType = 'youtube';
+let currentMediaType = 'jwplayer';
 
 function switchMediaTab(event, type) {
     event.preventDefault();
@@ -197,6 +197,7 @@ function switchMediaTab(event, type) {
 
         // Update placeholder
         const placeholders = {
+            jwplayer: 'Paste JW Player embed code or iframe URL (from JW Player dashboard)',
             youtube: 'Paste YouTube URL (e.g., https://youtube.com/watch?v=xxxxx)',
             vimeo: 'Paste Vimeo URL (e.g., https://vimeo.com/123456789)',
             spotify: 'Paste Spotify embed code or URL',
@@ -233,7 +234,23 @@ function getEmbedCode(url, type) {
 
     let embedCode = '';
 
-    if (type === 'youtube') {
+    if (type === 'jwplayer') {
+        // JW Player supports both iframe embeds and script embeds
+        if (url.includes('<iframe') && url.includes('jwplatform')) {
+            // Already an iframe embed - use as is
+            embedCode = `<div style="margin: 30px 0;">${url}</div>`;
+        } else if (url.includes('<script') && url.includes('jwplayer')) {
+            // Script embed from JW Player
+            embedCode = `<div style="margin: 30px 0;">${url}</div>`;
+        } else if (url.includes('jwplatform.com') || url.includes('cdn.jwplayer.com')) {
+            // Direct iframe URL
+            embedCode = `<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 30px 0;">
+                <iframe src="${url}"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                        frameborder="0" scrolling="auto" allowfullscreen></iframe>
+            </div>`;
+        }
+    } else if (type === 'youtube') {
         const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/);
         if (match) {
             const videoId = match[1];
