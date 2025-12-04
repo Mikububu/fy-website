@@ -1237,7 +1237,7 @@ body {
     margin: 0;
 }
 
-/* SLC Mobile Responsive */
+/* SLC Responsive - scale down but keep circle layout */
 @media (max-width: 1200px) {
     .slc-container {
         flex-direction: column;
@@ -1251,37 +1251,21 @@ body {
 
     .slc-numbers {
         min-width: auto;
+        height: 500px;
+        transform: scale(0.85);
+        transform-origin: center center;
     }
 
     .slc-right {
         flex: 1;
         text-align: center;
     }
+}
 
-    .slc-organic-bubble {
-        min-height: 600px;
-    }
-
+@media (max-width: 900px) {
     .slc-numbers {
-        height: 500px;
-    }
-
-    .slc-number-circle {
-        width: 130px;
-        height: 130px;
-    }
-
-    .slc-number-circle .number {
-        font-size: 3.5rem;
-    }
-
-    .slc-number-circle.client {
-        width: 160px;
-        height: 160px;
-    }
-
-    .slc-number-circle.client .number {
-        font-size: 4.5rem;
+        height: 450px;
+        transform: scale(0.7);
     }
 }
 
