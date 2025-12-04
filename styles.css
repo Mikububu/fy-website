@@ -40,7 +40,7 @@ body::before {
     top: 0;
     left: 0;
     right: 0;
-    height: 350px;
+    height: 245px;  /* Reduced by 30% from 350px */
     background-color: #B8D4D4;
     z-index: -1;
 }
