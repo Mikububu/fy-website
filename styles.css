@@ -53,6 +53,7 @@ body {
     .container {
         top: 15px;
         left: 15px;
+        z-index: 5;
     }
 
     .logo {
@@ -537,11 +538,11 @@ body {
     }
 
     .nasi-heading {
-        font-size: 3.25rem;
+        font-size: 3.9rem;
     }
 
     .nasi-subheading {
-        font-size: 0.7rem;
+        font-size: 0.84rem;
     }
 
     .nasi-image-container {
@@ -651,12 +652,12 @@ body {
 
 @media (max-width: 768px) {
     .what-we-do-section {
-        padding: 60px 20px;
+        padding: 40px 20px;
     }
 
     .what-we-do-heading {
-        font-size: 3.25rem;
-        margin-bottom: 120px;
+        font-size: 4.225rem;
+        margin-bottom: 80px;
         margin-top: 40px;
     }
 
