@@ -64,6 +64,10 @@ body::before {
 }
 
 @media (max-width: 768px) {
+    body::before {
+        height: 62px;  /* Exactly covers mobile header: 28px + 14px + 20px */
+    }
+
     .container {
         padding: 28px 0 14px;  /* Reduced by 30%: 40px->28px, 20px->14px */
         display: flex;
