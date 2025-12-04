@@ -1274,10 +1274,16 @@ body {
         padding: 60px 20px;
     }
 
+    .slc-left {
+        overflow: hidden;
+    }
+
     .slc-numbers {
+        min-width: 0;
+        width: 500px;
         height: 400px;
         transform: scale(0.55);
-        margin-top: 40px;
+        margin: 40px auto 0;
     }
 
     .slc-title {
@@ -1291,6 +1297,7 @@ body {
 
 @media (max-width: 600px) {
     .slc-numbers {
+        width: 500px;
         transform: scale(0.45);
         height: 350px;
     }
