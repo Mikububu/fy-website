@@ -1578,13 +1578,13 @@ body::before {
     }
 
     .slc-number-circle {
-        width: 387.5px;  /* 336.96px * 1.15 (additional 15% increase) */
-        height: 387.5px;
+        width: 465px;  /* 387.5px * 1.2 (additional 20% increase) */
+        height: 465px;
     }
 
     .slc-number-circle.client {
-        width: 336.96px;
-        height: 336.96px;
+        width: 404.35px;  /* 336.96px * 1.2 (20% increase) */
+        height: 404.35px;
         opacity: 0.5;
         z-index: 100;
     }
@@ -1658,13 +1658,13 @@ body::before {
     }
 
     .slc-number-circle {
-        width: 138px;
-        height: 138px;
+        width: 165.6px;  /* 138px * 1.2 (20% increase) */
+        height: 165.6px;
     }
 
     .slc-number-circle.client {
-        width: 168px;
-        height: 168px;
+        width: 201.6px;  /* 168px * 1.2 (20% increase) */
+        height: 201.6px;
         opacity: 0.5;
         z-index: 100;
     }
