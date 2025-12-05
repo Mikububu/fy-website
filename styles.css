@@ -909,12 +909,47 @@ body::before {
     animation: freudMove 13.3s ease-in-out infinite;
 }
 
+/* Desktop animation - horizontal movement */
 @keyframes freudMove {
     0%, 100% {
         transform: translateX(0);
     }
     50% {
         transform: translateX(550px);
+    }
+}
+
+/* Mobile animation - move to right, grow, turn red, dissolve */
+@keyframes freudMobileDissolve {
+    0% {
+        transform: translate(0, 0) scale(1);
+        filter: hue-rotate(0deg) brightness(1);
+        opacity: 1;
+    }
+    30% {
+        transform: translate(200px, -50px) scale(1);
+        filter: hue-rotate(0deg) brightness(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(200px, -50px) scale(2);
+        filter: hue-rotate(0deg) brightness(1);
+        opacity: 1;
+    }
+    70% {
+        transform: translate(200px, -50px) scale(2);
+        filter: hue-rotate(-30deg) saturate(10) brightness(0.8);
+        opacity: 1;
+    }
+    90% {
+        transform: translate(200px, -50px) scale(2.2);
+        filter: hue-rotate(-30deg) saturate(10) brightness(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
+        filter: hue-rotate(0deg) brightness(1);
+        opacity: 1;
     }
 }
 
@@ -1036,6 +1071,7 @@ body::before {
         width: 18%;
         left: 8%;
         bottom: 90px;
+        animation: freudMobileDissolve 8s ease-in-out infinite;
     }
 
     .layer-book {
@@ -1100,6 +1136,7 @@ body::before {
         width: 20%;
         left: 5%;
         bottom: 70px;
+        animation: freudMobileDissolve 8s ease-in-out infinite;
     }
 
     .layer-book {
