@@ -1562,8 +1562,8 @@ body::before {
 
     .slc-organic-bubble {
         padding: 38.02px;  /* Increased by 10%: 34.56px * 1.1 */
-        min-height: 266.11px;  /* Increased by 10%: 241.92px * 1.1 */
-        max-width: 665.28px;  /* Increased by 10%: 604.8px * 1.1 */
+        min-height: 186.28px;  /* Compressed 30%: 266.11px * 0.7 */
+        max-width: 465.7px;  /* Compressed 30%: 665.28px * 0.7 */
         border-radius: 49% 51% 50% 50% / 53% 47% 53% 47%;
     }
 
@@ -1574,13 +1574,13 @@ body::before {
     }
 
     .slc-number-circle {
-        width: 280.8px;  /* 234px * 1.2 (another 20% increase) */
-        height: 280.8px;
+        width: 336.96px;  /* 280.8px * 1.2 (another 20% increase) */
+        height: 336.96px;
     }
 
     .slc-number-circle.client {
-        width: 280.8px;
-        height: 280.8px;
+        width: 336.96px;
+        height: 336.96px;
     }
 
     .slc-number-circle .number {
@@ -1638,7 +1638,7 @@ body::before {
     }
 
     .slc-title {
-        font-size: 2.2rem;
+        font-size: 3.3rem;
     }
 
     .slc-description {
@@ -1652,13 +1652,13 @@ body::before {
     }
 
     .slc-number-circle {
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
     }
 
     .slc-number-circle.client {
-        width: 140px;
-        height: 140px;
+        width: 168px;
+        height: 168px;
     }
 
     .slc-number-circle .number {
@@ -1670,7 +1670,7 @@ body::before {
     }
 
     .slc-title {
-        font-size: 1.8rem;
+        font-size: 2.7rem;
     }
 
     .slc-description {
