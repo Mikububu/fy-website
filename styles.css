@@ -931,16 +931,41 @@ body::before {
         filter: hue-rotate(0deg) brightness(1);
         opacity: 1;
     }
-    45% {
+    40% {
         transform: translate(60px, 240px) scale(2);
         filter: hue-rotate(0deg) brightness(1);
         opacity: 1;
     }
-    60% {
+    50% {
         transform: translate(60px, 240px) scale(2);
         filter: hue-rotate(-30deg) saturate(10) brightness(0.8);
         opacity: 1;
+        animation: blink 0.1s steps(2, start) 20;
     }
+    51%, 52%, 53%, 54%, 55%, 56%, 57%, 58%, 59%, 60%, 61%, 62%, 63%, 64%, 65%, 66%, 67%, 68%, 69%, 70% {
+        transform: translate(60px, 240px) scale(2);
+        filter: hue-rotate(-30deg) saturate(10) brightness(0.8);
+    }
+    51% { opacity: 0; }
+    52% { opacity: 1; }
+    53% { opacity: 0; }
+    54% { opacity: 1; }
+    55% { opacity: 0; }
+    56% { opacity: 1; }
+    57% { opacity: 0; }
+    58% { opacity: 1; }
+    59% { opacity: 0; }
+    60% { opacity: 1; }
+    61% { opacity: 0; }
+    62% { opacity: 1; }
+    63% { opacity: 0; }
+    64% { opacity: 1; }
+    65% { opacity: 0; }
+    66% { opacity: 1; }
+    67% { opacity: 0; }
+    68% { opacity: 1; }
+    69% { opacity: 0; }
+    70% { opacity: 1; }
     75% {
         transform: translate(60px, 240px) scale(2.2);
         filter: hue-rotate(-30deg) saturate(10) brightness(0.5);
@@ -1075,7 +1100,7 @@ body::before {
     .layer-freud {
         width: 18%;
         left: 41%;
-        top: 20px;
+        top: -30px;
         bottom: auto;
         animation: freudMobileDissolve 8s ease-in-out infinite;
     }
@@ -1141,7 +1166,7 @@ body::before {
     .layer-freud {
         width: 20%;
         left: 40%;
-        top: 20px;
+        top: -30px;
         bottom: auto;
         animation: freudMobileDissolve 8s ease-in-out infinite;
     }
