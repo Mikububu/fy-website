@@ -408,7 +408,7 @@ body::before {
 
 .nasi-subheading {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     font-weight: 100;
     color: #1a1a1a;
     text-transform: uppercase;
@@ -595,11 +595,11 @@ body::before {
     }
 
     .nasi-heading {
-        font-size: 4.5rem;
+        font-size: 4.55rem;
     }
 
     .nasi-subheading {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 
     .nasi-image-container {
@@ -639,13 +639,13 @@ body::before {
     }
 
     .nasi-heading {
-        font-size: 4rem;
+        font-size: 3.9rem;
         margin-bottom: 0;
         margin-top: 5px;
     }
 
     .nasi-subheading {
-        font-size: 0.85rem;
+        font-size: 0.84rem;
         margin-bottom: 5px;
     }
 
@@ -738,7 +738,7 @@ body::before {
 
 @media (max-width: 1024px) {
     .what-we-do-heading {
-        font-size: 4.5rem;
+        font-size: 4.55rem;
         margin-bottom: 50px;
     }
 
@@ -760,7 +760,7 @@ body::before {
     }
 
     .what-we-do-heading {
-        font-size: 6.5rem;
+        font-size: 6.34rem;
         margin-bottom: 20px;
         margin-top: 40px;
     }
@@ -780,7 +780,7 @@ body::before {
 
 @media (max-width: 600px) {
     .what-we-do-heading {
-        font-size: 4rem;
+        font-size: 3.75rem;
     }
 
     .blue-bubble {
@@ -839,7 +839,7 @@ body::before {
 
 .circle-text {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 100;
     color: #1a1a1a;
     line-height: 1.7;
@@ -1254,7 +1254,7 @@ body::before {
     }
 
     .freud-bottom-text strong {
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
 }
 
@@ -1316,7 +1316,7 @@ body::before {
 
 .slc-example {
     font-family: 'Roboto', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 400;
     color: #1a1a1a;
     letter-spacing: 0.15em;
@@ -1326,7 +1326,7 @@ body::before {
 
 .slc-title {
     font-family: 'Bluu Next', serif;
-    font-size: 3rem;
+    font-size: 2.8rem;
     font-weight: 700;
     color: #1a1a1a;
     line-height: 1.1;
@@ -1678,7 +1678,7 @@ body::before {
     }
 
     .slc-title {
-        font-size: 2.5rem;
+        font-size: 2.7rem;
     }
 
     .slc-description {
@@ -1824,7 +1824,7 @@ iframe .jw-title-secondary {
 
 .michael-creator {
     font-family: 'Roboto', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     color: #000000;
     text-transform: uppercase;
@@ -1899,7 +1899,7 @@ iframe .jw-title-secondary {
     }
 
     .michael-subtitle {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 
     .michael-creator {
@@ -1952,7 +1952,7 @@ iframe .jw-title-secondary {
     }
 
     .michael-bio {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 }
 
@@ -2124,7 +2124,7 @@ iframe .jw-title-secondary {
     }
 
     .bubble-description {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         text-align: center;
     }
 }
@@ -2290,7 +2290,7 @@ iframe .jw-title-secondary {
 /* iPad/Tablet (Portrait) */
 @media (max-width: 820px) and (min-width: 601px) {
     .blog-heading {
-        font-size: 4.5rem;
+        font-size: 4.55rem;
         margin-bottom: 50px;
     }
 
@@ -2331,7 +2331,7 @@ iframe .jw-title-secondary {
     }
 
     .blog-heading {
-        font-size: 3.3rem;
+        font-size: 3.25rem;
         margin-bottom: 40px;
         color: #666666;
     }
@@ -2367,7 +2367,7 @@ iframe .jw-title-secondary {
     }
 
     .blog-card-description {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
         font-weight: 400;
     }
 
@@ -2433,7 +2433,7 @@ iframe .jw-title-secondary {
     font-family: 'Bluu Next', serif;
     font-weight: 700;
     color: #31302C;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 @media (max-width: 600px) {
@@ -2446,7 +2446,7 @@ iframe .jw-title-secondary {
     }
 
     .footer-copyright {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 }
 /* Mongolia Location Section */
@@ -2478,7 +2478,7 @@ iframe .jw-title-secondary {
 
 .location-heading {
     font-family: 'Bluu Next', serif;
-    font-size: 2.5rem;
+    font-size: 2.45rem;
     font-weight: 700;
     color: #f3f2de;
     margin-bottom: 10px;
@@ -2487,7 +2487,7 @@ iframe .jw-title-secondary {
 
 .location-subheading {
     font-family: 'Roboto', sans-serif;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 100;
     color: #f3f2de;
     text-transform: uppercase;
@@ -2497,7 +2497,7 @@ iframe .jw-title-secondary {
 
 @media (max-width: 768px) {
     .location-heading {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
     }
 
     .location-subheading {
@@ -2877,7 +2877,7 @@ iframe .jw-title-secondary {
     }
 
     .hand-bubble p {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
     .animal-text-overlay {
@@ -2987,15 +2987,15 @@ iframe .jw-title-secondary {
     }
 
     .location-subheading {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
     }
 
     /* Freud section for iPad */
     .freud-headline {
-        font-size: 3rem;
+        font-size: 2.8rem;
     }
 
     .circle-text {
-        font-size: 1rem;
+        font-size: 1.05rem;
     }
 }

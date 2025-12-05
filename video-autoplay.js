@@ -64,17 +64,27 @@
     // Function to play video
     function playVideo(iframe) {
         try {
-            // Method 1: JW Player API postMessage
+            // Method 1: JW Player API postMessage with muted for mobile Chrome
             iframe.contentWindow.postMessage(JSON.stringify({
-                method: 'play'
+                method: 'play',
+                mute: true
             }), '*');
 
-            // Method 2: Try direct play command
+            // Method 2: Set mute first, then play
             setTimeout(() => {
-                iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-            }, 100);
+                iframe.contentWindow.postMessage(JSON.stringify({
+                    method: 'setMute',
+                    mute: true
+                }), '*');
+            }, 50);
 
-            console.log('Play command sent');
+            setTimeout(() => {
+                iframe.contentWindow.postMessage(JSON.stringify({
+                    method: 'play'
+                }), '*');
+            }, 150);
+
+            console.log('Play command sent (muted for mobile)');
         } catch (error) {
             console.log('Play error (expected for cross-origin):', error.message);
         }
@@ -82,12 +92,19 @@
         // Also try to interact with iframe src
         try {
             const src = iframe.src;
-            if (src.includes('autostart')) return;
+            if (src.includes('autostart') && src.includes('mute')) return;
 
-            // Add autostart parameter if not present
+            // Add autostart and mute parameters for mobile Chrome
             const separator = src.includes('?') ? '&' : '?';
+            let newSrc = src;
             if (!src.includes('autostart')) {
-                iframe.src = src + separator + 'autostart=true';
+                newSrc += separator + 'autostart=true';
+            }
+            if (!src.includes('mute')) {
+                newSrc += '&mute=true';
+            }
+            if (newSrc !== src) {
+                iframe.src = newSrc;
             }
         } catch (error) {
             console.log('Src modification error:', error.message);
