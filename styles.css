@@ -919,31 +919,36 @@ body::before {
     }
 }
 
-/* Mobile animation - move to right, grow, turn red, dissolve */
+/* Mobile animation - move to right background area, grow, turn red, dissolve */
 @keyframes freudMobileDissolve {
     0% {
         transform: translate(0, 0) scale(1);
         filter: hue-rotate(0deg) brightness(1);
         opacity: 1;
     }
-    30% {
-        transform: translate(200px, -50px) scale(1);
+    25% {
+        transform: translate(150px, 80px) scale(1);
         filter: hue-rotate(0deg) brightness(1);
         opacity: 1;
     }
-    50% {
-        transform: translate(200px, -50px) scale(2);
+    45% {
+        transform: translate(150px, 80px) scale(2);
         filter: hue-rotate(0deg) brightness(1);
         opacity: 1;
     }
-    70% {
-        transform: translate(200px, -50px) scale(2);
+    60% {
+        transform: translate(150px, 80px) scale(2);
         filter: hue-rotate(-30deg) saturate(10) brightness(0.8);
         opacity: 1;
     }
-    90% {
-        transform: translate(200px, -50px) scale(2.2);
+    75% {
+        transform: translate(150px, 80px) scale(2.2);
         filter: hue-rotate(-30deg) saturate(10) brightness(0.5);
+        opacity: 0.3;
+    }
+    90% {
+        transform: translate(150px, 80px) scale(2.2);
+        filter: hue-rotate(-30deg) saturate(10) brightness(0.3);
         opacity: 0;
     }
     100% {
@@ -1069,8 +1074,9 @@ body::before {
 
     .layer-freud {
         width: 18%;
-        left: 8%;
-        bottom: 90px;
+        left: 10%;
+        top: 120px;
+        bottom: auto;
         animation: freudMobileDissolve 8s ease-in-out infinite;
     }
 
@@ -1134,8 +1140,9 @@ body::before {
 
     .layer-freud {
         width: 20%;
-        left: 5%;
-        bottom: 70px;
+        left: 8%;
+        top: 160px;
+        bottom: auto;
         animation: freudMobileDissolve 8s ease-in-out infinite;
     }
 
