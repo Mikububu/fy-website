@@ -1075,7 +1075,7 @@ body::before {
     .layer-freud {
         width: 18%;
         left: 10%;
-        top: 0px;
+        top: 280px;
         bottom: auto;
         animation: freudMobileDissolve 8s ease-in-out infinite;
     }
