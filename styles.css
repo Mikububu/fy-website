@@ -909,16 +909,16 @@ body::before {
     animation: freudMove 13.3s ease-in-out infinite;
 }
 
-/* Desktop animation - horizontal movement */
+/* Desktop animation - move down and right to couch area, then reset */
 @keyframes freudMove {
     0%, 38% {
-        transform: translateX(0);
+        transform: translate(0, 0);
     }
     69% {
-        transform: translateX(550px);
+        transform: translate(220px, 790px);
     }
     100% {
-        transform: translateX(0);
+        transform: translate(0, 0);
     }
 }
 
