@@ -1,0 +1,244 @@
+📋 Already migrated: 20 posts
+📡 Fetching sitemap...
+✅ Found 43 total posts in sitemap
+🔄 Need to migrate: 23 remaining posts
+
+
+============================================================
+📦 Processing remaining post 1/23
+============================================================
+   https://forbiddenyoga.substack.com/p/the-sexual-teachings-of-the-white
+   📷 Images: 2
+   🎥 Videos: 0
+   ✅ Saved to: posts/the-sexual-teachings-of-the-white.html
+
+⏸️  Waiting 27s before next post...
+
+============================================================
+📦 Processing remaining post 2/23
+============================================================
+   https://forbiddenyoga.substack.com/p/sparsha-puja-in-a-mental-institution
+   📷 Images: 11
+   🎥 Videos: 0
+   ✅ Saved to: posts/sparsha-puja-in-a-mental-institution.html
+
+⏸️  Waiting 29s before next post...
+
+============================================================
+📦 Processing remaining post 3/23
+============================================================
+   https://forbiddenyoga.substack.com/p/string-theory-tantric-secrets-and
+   📷 Images: 7
+   🎥 Videos: 0
+   ✅ Saved to: posts/string-theory-tantric-secrets-and.html
+
+⏸️  Waiting 20s before next post...
+
+============================================================
+📦 Processing remaining post 4/23
+============================================================
+   https://forbiddenyoga.substack.com/p/sensual-liberation-retreats-with
+   📷 Images: 2
+   🎥 Videos: 0
+   ✅ Saved to: posts/sensual-liberation-retreats-with.html
+
+⏸️  Waiting 20s before next post...
+
+============================================================
+📦 Processing remaining post 5/23
+============================================================
+   https://forbiddenyoga.substack.com/p/from-emptiness-to-ecstasy-my-journey
+   📷 Images: 8
+   🎥 Videos: 0
+   ✅ Saved to: posts/from-emptiness-to-ecstasy-my-journey.html
+
+⏸️  Waiting 29s before next post...
+
+============================================================
+📦 Processing remaining post 6/23
+============================================================
+   https://forbiddenyoga.substack.com/p/soulmates-among-the-stars-the-ultimate
+   📷 Images: 3
+   🎥 Videos: 0
+   ✅ Saved to: posts/soulmates-among-the-stars-the-ultimate.html
+
+⏸️  Waiting 27s before next post...
+
+============================================================
+📦 Processing remaining post 7/23
+============================================================
+   https://forbiddenyoga.substack.com/p/reclaiming-your-voice-working-through
+   📷 Images: 4
+   🎥 Videos: 0
+   ✅ Saved to: posts/reclaiming-your-voice-working-through.html
+
+⏸️  Waiting 18s before next post...
+
+============================================================
+📦 Processing remaining post 8/23
+============================================================
+   https://forbiddenyoga.substack.com/p/the-joy-of-torture
+   📷 Images: 4
+   🎥 Videos: 0
+   ✅ Saved to: posts/the-joy-of-torture.html
+
+⏸️  Waiting 19s before next post...
+
+============================================================
+📦 Processing remaining post 9/23
+============================================================
+   https://forbiddenyoga.substack.com/p/a-holistic-approach-to-divorce
+   📷 Images: 14
+   🎥 Videos: 0
+   ✅ Saved to: posts/a-holistic-approach-to-divorce.html
+
+⏸️  Waiting 29s before next post...
+
+============================================================
+📦 Processing remaining post 10/23
+============================================================
+   https://forbiddenyoga.substack.com/p/krama-rishi-nyasa-with-iya
+   📷 Images: 2
+   🎥 Videos: 0
+   ✅ Saved to: posts/krama-rishi-nyasa-with-iya.html
+
+⏸️  Waiting 25s before next post...
+
+============================================================
+📦 Processing remaining post 11/23
+============================================================
+   https://forbiddenyoga.substack.com/p/yogic-transmission-in-raja-yoga
+   📷 Images: 2
+   🎥 Videos: 0
+   ✅ Saved to: posts/yogic-transmission-in-raja-yoga.html
+
+⏸️  Waiting 13s before next post...
+
+============================================================
+📦 Processing remaining post 12/23
+============================================================
+   https://forbiddenyoga.substack.com/p/why-i-teach-taoist-sensual-bodywork
+   📷 Images: 7
+   🎥 Videos: 0
+   ✅ Saved to: posts/why-i-teach-taoist-sensual-bodywork.html
+
+⏸️  Waiting 27s before next post...
+
+============================================================
+📦 Processing remaining post 13/23
+============================================================
+   https://forbiddenyoga.substack.com/p/our-brains-urge-for-mystical-experiences
+   📷 Images: 5
+   🎥 Videos: 0
+   ✅ Saved to: posts/our-brains-urge-for-mystical-experiences.html
+
+⏸️  Waiting 20s before next post...
+
+============================================================
+📦 Processing remaining post 14/23
+============================================================
+   https://forbiddenyoga.substack.com/p/muladhara-chakra-petals
+   📷 Images: 2
+   🎥 Videos: 0
+   ✅ Saved to: posts/muladhara-chakra-petals.html
+
+⏸️  Waiting 11s before next post...
+
+============================================================
+📦 Processing remaining post 15/23
+============================================================
+   https://forbiddenyoga.substack.com/p/my-new-approach-to-therapy
+   📷 Images: 2
+   🎥 Videos: 0
+   ✅ Saved to: posts/my-new-approach-to-therapy.html
+
+⏸️  Waiting 22s before next post...
+
+============================================================
+📦 Processing remaining post 16/23
+============================================================
+   https://forbiddenyoga.substack.com/p/dark-alchemy
+   📷 Images: 4
+   🎥 Videos: 0
+   ✅ Saved to: posts/dark-alchemy.html
+
+⏸️  Waiting 29s before next post...
+
+============================================================
+📦 Processing remaining post 17/23
+============================================================
+   https://forbiddenyoga.substack.com/p/how-to-deliver-visionary-idea-in
+   📷 Images: 16
+   🎥 Videos: 0
+   ✅ Saved to: posts/how-to-deliver-visionary-idea-in.html
+
+⏸️  Waiting 13s before next post...
+
+============================================================
+📦 Processing remaining post 18/23
+============================================================
+   https://forbiddenyoga.substack.com/p/hermanns-story-of-his-sensual-liberation
+   📷 Images: 1
+   🎥 Videos: 0
+   ✅ Saved to: posts/hermanns-story-of-his-sensual-liberation.html
+
+⏸️  Waiting 13s before next post...
+
+============================================================
+📦 Processing remaining post 19/23
+============================================================
+   https://forbiddenyoga.substack.com/p/5-karmendriyas-and-5-jnanendriyas
+   📷 Images: 4
+   🎥 Videos: 0
+   ✅ Saved to: posts/5-karmendriyas-and-5-jnanendriyas.html
+
+⏸️  Waiting 11s before next post...
+
+============================================================
+📦 Processing remaining post 20/23
+============================================================
+   https://forbiddenyoga.substack.com/p/anais-nin-the-house-of-incest
+   📷 Images: 1
+   🎥 Videos: 0
+   ✅ Saved to: posts/anais-nin-the-house-of-incest.html
+
+⏸️  Waiting 11s before next post...
+
+============================================================
+📦 Processing remaining post 21/23
+============================================================
+   https://forbiddenyoga.substack.com/p/the-compass-of-zen
+   📷 Images: 3
+   🎥 Videos: 0
+   ✅ Saved to: posts/the-compass-of-zen.html
+
+⏸️  Waiting 20s before next post...
+
+============================================================
+📦 Processing remaining post 22/23
+============================================================
+   https://forbiddenyoga.substack.com/p/not-a-john-baldessari-artwork
+   📷 Images: 4
+   🎥 Videos: 0
+   ✅ Saved to: posts/not-a-john-baldessari-artwork.html
+
+⏸️  Waiting 13s before next post...
+
+============================================================
+📦 Processing remaining post 23/23
+============================================================
+   https://forbiddenyoga.substack.com/p/tantra-online
+   📷 Images: 5
+   🎥 Videos: 0
+   ✅ Saved to: posts/tantra-online.html
+
+============================================================
+✅ REMAINING POSTS MIGRATION COMPLETE!
+============================================================
+
+📊 Results:
+   Previously migrated: 20
+   Newly migrated: 23
+   Total posts: 43
+
+📄 Results saved to: migration-results.json

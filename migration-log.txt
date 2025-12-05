@@ -133,3 +133,226 @@
 
 📄 Scraping: 4 Paths Into the Forbidden
    URL: https://forbiddenyoga.substack.com/p/4-paths-into-the-forbidden
+   📷 Images: 7
+   🎥 Videos: 0
+
+💾 Processing media for: 4 Paths Into the Forbidden
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: 4 Paths Into the Forbidden
+   ✅ Saved to: posts/4-paths-into-the-forbidden.html
+
+⏸️  Waiting 27s before next post...
+
+============================================================
+📦 Processing post 9/20
+============================================================
+
+📄 Scraping: When the Source Becomes the Destroyer
+   URL: https://forbiddenyoga.substack.com/p/why-a-woman-initiated-in-the-left
+   📷 Images: 1
+   🎥 Videos: 0
+
+💾 Processing media for: When the Source Becomes the Destroyer
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: When the Source Becomes the Destroyer
+   ✅ Saved to: posts/why-a-woman-initiated-in-the-left.html
+
+⏸️  Waiting 20s before next post...
+
+============================================================
+📦 Processing post 10/20
+============================================================
+
+📄 Scraping: Indian Tantra - Mahavidyas versus Nityas
+   URL: https://forbiddenyoga.substack.com/p/indian-tantra-mahavidyas-versus-nityas
+   📷 Images: 6
+   🎥 Videos: 0
+
+💾 Processing media for: Indian Tantra - Mahavidyas versus Nityas
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: Indian Tantra - Mahavidyas versus Nityas
+   ✅ Saved to: posts/indian-tantra-mahavidyas-versus-nityas.html
+
+⏸️  Waiting 19s before next post...
+
+============================================================
+📦 Processing post 11/20
+============================================================
+
+📄 Scraping: Why our society cannot heal
+   URL: https://forbiddenyoga.substack.com/p/why-our-society-cannot-heal
+   📷 Images: 6
+   🎥 Videos: 0
+
+💾 Processing media for: Why our society cannot heal
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: Why our society cannot heal
+   ✅ Saved to: posts/why-our-society-cannot-heal.html
+
+⏸️  Waiting 27s before next post...
+
+============================================================
+📦 Processing post 12/20
+============================================================
+
+📄 Scraping: What you can expect booking Forbidden Yoga experiences
+   URL: https://forbiddenyoga.substack.com/p/what-you-can-expect-booking-forbidden
+   📷 Images: 6
+   🎥 Videos: 0
+
+💾 Processing media for: What you can expect booking Forbidden Yoga experiences
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: What you can expect booking Forbidden Yoga experiences
+   ✅ Saved to: posts/what-you-can-expect-booking-forbidden.html
+
+⏸️  Waiting 22s before next post...
+
+============================================================
+📦 Processing post 13/20
+============================================================
+
+📄 Scraping: The Forgotten Gateways of the Human Body
+   URL: https://forbiddenyoga.substack.com/p/the-forgotten-gateways-of-the-human
+   📷 Images: 2
+   🎥 Videos: 0
+
+💾 Processing media for: The Forgotten Gateways of the Human Body
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: The Forgotten Gateways of the Human Body
+   ✅ Saved to: posts/the-forgotten-gateways-of-the-human.html
+
+⏸️  Waiting 26s before next post...
+
+============================================================
+📦 Processing post 14/20
+============================================================
+
+📄 Scraping: Forbidden-Yoga: Guardian of India’s Vanishing Left-Handed Tantric Heritage
+   URL: https://forbiddenyoga.substack.com/p/from-a-shakta-tantra-stream-to-forbidden
+   📷 Images: 8
+   🎥 Videos: 0
+
+💾 Processing media for: Forbidden-Yoga: Guardian of India’s Vanishing Left-Handed Tantric Heritage
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: Forbidden-Yoga: Guardian of India’s Vanishing Left-Handed Tantric Heritage
+   ✅ Saved to: posts/from-a-shakta-tantra-stream-to-forbidden.html
+
+⏸️  Waiting 21s before next post...
+
+============================================================
+📦 Processing post 15/20
+============================================================
+
+📄 Scraping: The Solace of the Scene
+   URL: https://forbiddenyoga.substack.com/p/the-solace-of-the-scene
+   📷 Images: 4
+   🎥 Videos: 0
+
+💾 Processing media for: The Solace of the Scene
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: The Solace of the Scene
+   ✅ Saved to: posts/the-solace-of-the-scene.html
+
+⏸️  Waiting 20s before next post...
+
+============================================================
+📦 Processing post 16/20
+============================================================
+
+📄 Scraping: The Animal Pūjā
+   URL: https://forbiddenyoga.substack.com/p/the-animal-puja
+   📷 Images: 2
+   🎥 Videos: 0
+
+💾 Processing media for: The Animal Pūjā
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: The Animal Pūjā
+   ✅ Saved to: posts/the-animal-puja.html
+
+⏸️  Waiting 10s before next post...
+
+============================================================
+📦 Processing post 17/20
+============================================================
+
+📄 Scraping: The Eight Limitations of Man According to the Kularṇava Tantra
+   URL: https://forbiddenyoga.substack.com/p/the-eight-limitations-of-man-according
+   📷 Images: 6
+   🎥 Videos: 0
+
+💾 Processing media for: The Eight Limitations of Man According to the Kularṇava Tantra
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: The Eight Limitations of Man According to the Kularṇava Tantra
+   ✅ Saved to: posts/the-eight-limitations-of-man-according.html
+
+⏸️  Waiting 11s before next post...
+
+============================================================
+📦 Processing post 18/20
+============================================================
+
+📄 Scraping: Forbidden Yoga: Embracing the Unconventional Path to Non-Dual Awareness 
+   URL: https://forbiddenyoga.substack.com/p/forbidden-yoga-embracing-the-unconventional
+   📷 Images: 2
+   🎥 Videos: 0
+
+💾 Processing media for: Forbidden Yoga: Embracing the Unconventional Path to Non-Dual Awareness 
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: Forbidden Yoga: Embracing the Unconventional Path to Non-Dual Awareness 
+   ✅ Saved to: posts/forbidden-yoga-embracing-the-unconventional.html
+
+⏸️  Waiting 20s before next post...
+
+============================================================
+📦 Processing post 19/20
+============================================================
+
+📄 Scraping: The Next Generation of Wellness Retreats
+   URL: https://forbiddenyoga.substack.com/p/the-next-generation-of-wellness-retreats
+   📷 Images: 3
+   🎥 Videos: 0
+
+💾 Processing media for: The Next Generation of Wellness Retreats
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: The Next Generation of Wellness Retreats
+   ✅ Saved to: posts/the-next-generation-of-wellness-retreats.html
+
+⏸️  Waiting 18s before next post...
+
+============================================================
+📦 Processing post 20/20
+============================================================
+
+📄 Scraping: From Freud to Taoism and Tantra: Sexual Therapy in Luxury Wellness 
+   URL: https://forbiddenyoga.substack.com/p/from-freud-to-taoism-and-tantra-sexual
+   📷 Images: 3
+   🎥 Videos: 0
+
+💾 Processing media for: From Freud to Taoism and Tantra: Sexual Therapy in Luxury Wellness 
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: From Freud to Taoism and Tantra: Sexual Therapy in Luxury Wellness 
+   ✅ Saved to: posts/from-freud-to-taoism-and-tantra-sexual.html
+
+============================================================
+✅ FULL MIGRATION COMPLETE!
+============================================================
+
+📊 Results:
+   Total posts found: 20
+   Successfully migrated: 20
+   Failed: 0
+
+📄 Results saved to: migration-results.json
