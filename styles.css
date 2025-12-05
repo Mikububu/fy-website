@@ -650,7 +650,7 @@ body::before {
     }
 
     .nasi-image-container {
-        width: 100%;
+        width: 120%; /* 20% bigger on mobile */
     }
 
     .nasi-image {
@@ -712,8 +712,8 @@ body::before {
 }
 
 .blue-bubble {
-    width: 82%; /* 15% bigger: 70% * 1.15 ≈ 82% */
-    max-width: 920px; /* 15% bigger: 800px * 1.15 */
+    width: 70%;
+    max-width: 800px;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -743,7 +743,7 @@ body::before {
     }
 
     .blue-bubble {
-        width: 88%; /* 15% bigger: 75% * 1.15 ≈ 88% */
+        width: 75%;
     }
 
     .blue-bubble-text {
@@ -766,7 +766,7 @@ body::before {
     }
 
     .blue-bubble {
-        width: 140%; /* 20% more: 117% * 1.20 ≈ 140% */
+        width: 102%;
     }
 
     .blue-bubble-text {
@@ -784,7 +784,7 @@ body::before {
     }
 
     .blue-bubble {
-        width: 149%; /* 20% more: 124% * 1.20 ≈ 149% */
+        width: 108%;
     }
 
     .blue-bubble-text {
