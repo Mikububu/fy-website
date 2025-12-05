@@ -1,0 +1,135 @@
+🚀 Starting Automated Substack Migration (curl version)
+
+⚙️  Configuration:
+   Substack: https://forbiddenyoga.substack.com
+   Output: ./posts
+   Delays: 10-30s between posts
+
+📡 Fetching RSS feed...
+✅ Found 20 posts
+
+============================================================
+📦 Processing post 1/20
+============================================================
+
+📄 Scraping: Run Away From Tantra
+   URL: https://forbiddenyoga.substack.com/p/run-away-from-tantra
+   📷 Images: 3
+   🎥 Videos: 0
+
+💾 Processing media for: Run Away From Tantra
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: Run Away From Tantra
+   ✅ Saved to: posts/run-away-from-tantra.html
+
+⏸️  Waiting 21s before next post...
+
+============================================================
+📦 Processing post 2/20
+============================================================
+
+📄 Scraping: From Language Modulation To Rolegame Scripts
+   URL: https://forbiddenyoga.substack.com/p/from-language-modulation-to-rolegame
+   📷 Images: 2
+   🎥 Videos: 0
+
+💾 Processing media for: From Language Modulation To Rolegame Scripts
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: From Language Modulation To Rolegame Scripts
+   ✅ Saved to: posts/from-language-modulation-to-rolegame.html
+
+⏸️  Waiting 29s before next post...
+
+============================================================
+📦 Processing post 3/20
+============================================================
+
+📄 Scraping: The Parallel Self
+   URL: https://forbiddenyoga.substack.com/p/the-parallel-self
+   📷 Images: 4
+   🎥 Videos: 0
+
+💾 Processing media for: The Parallel Self
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: The Parallel Self
+   ✅ Saved to: posts/the-parallel-self.html
+
+⏸️  Waiting 19s before next post...
+
+============================================================
+📦 Processing post 4/20
+============================================================
+
+📄 Scraping: The Distant God Fallacy
+   URL: https://forbiddenyoga.substack.com/p/the-distant-god-fallacy
+   📷 Images: 2
+   🎥 Videos: 0
+
+💾 Processing media for: The Distant God Fallacy
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: The Distant God Fallacy
+   ✅ Saved to: posts/the-distant-god-fallacy.html
+
+⏸️  Waiting 30s before next post...
+
+============================================================
+📦 Processing post 5/20
+============================================================
+
+📄 Scraping: Beyond the Naked Surface 
+   URL: https://forbiddenyoga.substack.com/p/beyond-the-naked-surface
+   📷 Images: 3
+   🎥 Videos: 0
+
+💾 Processing media for: Beyond the Naked Surface 
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: Beyond the Naked Surface 
+   ✅ Saved to: posts/beyond-the-naked-surface.html
+
+⏸️  Waiting 19s before next post...
+
+============================================================
+📦 Processing post 6/20
+============================================================
+
+📄 Scraping: The Breath of God
+   URL: https://forbiddenyoga.substack.com/p/the-breath-of-god
+   📷 Images: 6
+   🎥 Videos: 0
+
+💾 Processing media for: The Breath of God
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: The Breath of God
+   ✅ Saved to: posts/the-breath-of-god.html
+
+⏸️  Waiting 23s before next post...
+
+============================================================
+📦 Processing post 7/20
+============================================================
+
+📄 Scraping: The Energetic Anatomist
+   URL: https://forbiddenyoga.substack.com/p/the-energetic-anatomist
+   📷 Images: 4
+   🎥 Videos: 0
+
+💾 Processing media for: The Energetic Anatomist
+   ℹ️  Image downloading not yet implemented
+
+📝 Generating HTML for: The Energetic Anatomist
+   ✅ Saved to: posts/the-energetic-anatomist.html
+
+⏸️  Waiting 23s before next post...
+
+============================================================
+📦 Processing post 8/20
+============================================================
+
+📄 Scraping: 4 Paths Into the Forbidden
+   URL: https://forbiddenyoga.substack.com/p/4-paths-into-the-forbidden

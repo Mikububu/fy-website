@@ -216,8 +216,8 @@ async function main() {
     // Step 1: Fetch all posts from RSS
     const posts = await fetchRssFeed();
 
-    // Limit for testing
-    const testPosts = posts.slice(0, 3); // Only first 3 for testing
+    // Process ALL posts
+    const testPosts = posts; // All posts
 
     const results = [];
 
@@ -270,14 +270,13 @@ async function main() {
     );
 
     console.log(`\n${'='.repeat(60)}`);
-    console.log('✅ MIGRATION TEST COMPLETE!');
+    console.log('✅ FULL MIGRATION COMPLETE!');
     console.log('='.repeat(60));
     console.log(`\n📊 Results:`);
     console.log(`   Total posts found: ${posts.length}`);
-    console.log(`   Processed (test): ${testPosts.length}`);
-    console.log(`   Successful: ${results.length}`);
+    console.log(`   Successfully migrated: ${results.length}`);
+    console.log(`   Failed: ${posts.length - results.length}`);
     console.log(`\n📄 Results saved to: migration-results.json`);
-    console.log(`\n💡 To process all posts, remove the .slice(0, 3) limit in the code`);
 
   } catch (error) {
     console.error('\n❌ Migration failed:', error);
