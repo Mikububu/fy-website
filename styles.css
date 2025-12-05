@@ -650,7 +650,7 @@ body::before {
     }
 
     .nasi-image-container {
-        width: 100%;
+        width: 120%; /* 20% bigger on mobile */
     }
 
     .nasi-image {
