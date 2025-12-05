@@ -712,8 +712,8 @@ body::before {
 }
 
 .blue-bubble {
-    width: 70%;
-    max-width: 800px;
+    width: 82%; /* 15% bigger: 70% * 1.15 ≈ 82% */
+    max-width: 920px; /* 15% bigger: 800px * 1.15 */
     height: auto;
     display: block;
     margin: 0 auto;
@@ -743,7 +743,7 @@ body::before {
     }
 
     .blue-bubble {
-        width: 75%;
+        width: 88%; /* 15% bigger: 75% * 1.15 ≈ 88% */
     }
 
     .blue-bubble-text {
