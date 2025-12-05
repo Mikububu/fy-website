@@ -1,9 +1,19 @@
 // Video Autoplay ON/OFF - Intersection Observer Implementation
-// Works on ALL devices - mobile and desktop
+// MOBILE ONLY - Desktop users must click play button
 // Handles JW Player iframes with proper API communication
 
 (function() {
     console.log('Video autoplay script initialized');
+
+    // Check if device is mobile
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+    if (!isMobile) {
+        console.log('Desktop detected - autoplay disabled');
+        return; // Exit early on desktop
+    }
+
+    console.log('Mobile detected - autoplay enabled');
 
     // Intersection Observer options
     // Videos will autoplay when they're more centered in viewport (50% visible)
