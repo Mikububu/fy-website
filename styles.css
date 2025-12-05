@@ -667,7 +667,7 @@ body::before {
     }
 
     .brown-bubble {
-        width: 75%;
+        width: 52.5%;
     }
 
     .bubble-text {
@@ -760,13 +760,13 @@ body::before {
     }
 
     .what-we-do-heading {
-        font-size: 4.225rem;
+        font-size: 6.34rem;
         margin-bottom: 20px;
         margin-top: 40px;
     }
 
     .blue-bubble {
-        width: 85%;
+        width: 102%;
     }
 
     .blue-bubble-text {
@@ -780,11 +780,11 @@ body::before {
 
 @media (max-width: 600px) {
     .what-we-do-heading {
-        font-size: 2.5rem;
+        font-size: 3.75rem;
     }
 
     .blue-bubble {
-        width: 90%;
+        width: 108%;
     }
 
     .blue-bubble-text {
