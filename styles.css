@@ -1574,8 +1574,8 @@ body::before {
     }
 
     .slc-number-circle {
-        width: 336.96px;  /* 280.8px * 1.2 (another 20% increase) */
-        height: 336.96px;
+        width: 387.5px;  /* 336.96px * 1.15 (additional 15% increase) */
+        height: 387.5px;
     }
 
     .slc-number-circle.client {
@@ -1652,8 +1652,8 @@ body::before {
     }
 
     .slc-number-circle {
-        width: 120px;
-        height: 120px;
+        width: 138px;
+        height: 138px;
     }
 
     .slc-number-circle.client {
