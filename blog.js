@@ -79,9 +79,10 @@ async function loadBlogPosts() {
             const card = document.createElement('article');
             card.className = 'blog-card';
 
-            // Use local posts now (migration complete)
-            const postUrl = post.url || post.link || `/posts/${post.slug}.html`;
-            const isExternal = false; // All posts are local now
+            // TEMPORARY: Link to Substack using mapping, fallback to homepage
+            const localUrl = post.url || post.link;
+            const postUrl = substackMapping[localUrl] || 'https://forbiddenyoga.substack.com/';
+            const isExternal = true;
 
             // Format date for display
             let displayDate = post.date;
