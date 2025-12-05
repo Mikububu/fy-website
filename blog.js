@@ -63,8 +63,8 @@ async function loadBlogPosts() {
             throw new Error('No posts found');
         }
 
-        // Check for pinned post and move to top
-        const pinnedIndex = posts.findIndex(post => post.title && post.title.includes('What you can expect'));
+        // Pin "4 Paths Into the Forbidden" at the top
+        const pinnedIndex = posts.findIndex(post => post.title && post.title.includes('4 Paths Into the Forbidden'));
 
         if (pinnedIndex > 0) {
             const [pinnedPost] = posts.splice(pinnedIndex, 1);
@@ -105,7 +105,6 @@ async function loadBlogPosts() {
                     <div class="blog-card-content">
                         <h3 class="blog-card-title">${post.title}</h3>
                         <p class="blog-card-description">${post.description}</p>
-                        ${displayDate ? `<p class="blog-card-date">${displayDate}</p>` : ''}
                     </div>
                 </a>
             `;
