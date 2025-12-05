@@ -1128,6 +1128,10 @@ body::before {
         background-color: #f1e6cb;
     }
 
+    .freud-top-circles {
+        margin-bottom: 0px;
+    }
+
     .circle-image {
         width: 180px;
         height: 180px;
