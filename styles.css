@@ -901,24 +901,24 @@ body::before {
 
 .layer-freud {
     position: absolute;
-    left: 42%;
-    top: -150px;
+    left: 55%;
+    bottom: 160px;
     width: 15%;
     height: auto;
     z-index: 4;
     animation: freudMove 13.3s ease-in-out infinite;
 }
 
-/* Desktop animation - move down and right to couch area, then reset */
+/* Desktop animation - start from center-top, pause, move to natural position (couch) */
 @keyframes freudMove {
     0%, 38% {
-        transform: translate(0, 0);
+        transform: translate(-13%, -900px);
     }
     69% {
-        transform: translate(220px, 790px);
+        transform: translate(0, 0);
     }
     100% {
-        transform: translate(0, 0);
+        transform: translate(-13%, -900px);
     }
 }
 
