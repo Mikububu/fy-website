@@ -906,12 +906,22 @@ body::before {
     width: 15%;
     height: auto;
     z-index: 4;
-    animation: freudDesktopDissolve 13s ease-in-out infinite;
+    animation: freudDesktopDissolve 18s ease-in-out infinite;
 }
 
 /* Desktop animation - start from center-top, move to endpoint (couch area), grow, red, blink, dissolve */
 @keyframes freudDesktopDissolve {
-    0%, 38% {
+    0% {
+        transform: translate(-18%, -900px) scale(1);
+        filter: hue-rotate(0deg) brightness(1);
+        opacity: 0;
+    }
+    10% {
+        transform: translate(-18%, -900px) scale(1);
+        filter: hue-rotate(0deg) brightness(1);
+        opacity: 1;
+    }
+    38% {
         transform: translate(-18%, -900px) scale(1);
         filter: hue-rotate(0deg) brightness(1);
         opacity: 1;
@@ -970,7 +980,17 @@ body::before {
 
 /* Mobile animation - move to right background area, grow, turn red, dissolve */
 @keyframes freudMobileDissolve {
-    0%, 38% {
+    0% {
+        transform: translate(0, 0) scale(1);
+        filter: hue-rotate(0deg) brightness(1);
+        opacity: 0;
+    }
+    10% {
+        transform: translate(0, 0) scale(1);
+        filter: hue-rotate(0deg) brightness(1);
+        opacity: 1;
+    }
+    38% {
         transform: translate(0, 0) scale(1);
         filter: hue-rotate(0deg) brightness(1);
         opacity: 1;
@@ -1146,7 +1166,7 @@ body::before {
         left: 41%;
         top: -30px;
         bottom: auto;
-        animation: freudMobileDissolve 13s ease-in-out infinite;
+        animation: freudMobileDissolve 18s ease-in-out infinite;
     }
 
     .layer-book {
@@ -1212,7 +1232,7 @@ body::before {
         left: 40%;
         top: -30px;
         bottom: auto;
-        animation: freudMobileDissolve 13s ease-in-out infinite;
+        animation: freudMobileDissolve 18s ease-in-out infinite;
     }
 
     .layer-book {
