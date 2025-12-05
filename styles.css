@@ -766,7 +766,7 @@ body::before {
     }
 
     .blue-bubble {
-        width: 140%; /* 20% more: 117% * 1.20 ≈ 140% */
+        width: 168%; /* 20% more: 140% * 1.20 = 168% */
     }
 
     .blue-bubble-text {
@@ -784,7 +784,7 @@ body::before {
     }
 
     .blue-bubble {
-        width: 149%; /* 20% more: 124% * 1.20 ≈ 149% */
+        width: 179%; /* 20% more: 149% * 1.20 ≈ 179% */
     }
 
     .blue-bubble-text {
