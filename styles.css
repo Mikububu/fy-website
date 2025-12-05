@@ -417,7 +417,7 @@ body::before {
 
 .nasi-image-container {
     position: relative;
-    width: 1200px;
+    width: 1380px; /* 15% bigger: 1200px * 1.15 */
     margin: 0 auto;
 }
 
@@ -539,14 +539,14 @@ body::before {
 
 .brown-bubble-container {
     position: relative;
-    margin-top: -200px;
+    margin-top: -150px; /* Moved down 50px: was -200px */
     width: 100%;
     z-index: 5;
 }
 
 .brown-bubble {
-    width: 50%;
-    max-width: 600px;
+    width: 60%; /* 20% bigger: 50% * 1.20 */
+    max-width: 720px; /* 20% bigger: 600px * 1.20 */
     height: auto;
     display: block;
     margin: 0 auto;
@@ -611,7 +611,7 @@ body::before {
     }
 
     .brown-bubble {
-        width: 60%;
+        width: 72%; /* 20% bigger: 60% * 1.20 */
     }
 
     .bubble-text {
@@ -663,15 +663,15 @@ body::before {
     }
 
     .brown-bubble-container {
-        margin-top: -50px;
+        margin-top: 50px; /* Move down 50px from mobile default (was around 0px) */
     }
 
     .brown-bubble {
-        width: 52.5%;
+        width: 64%; /* 20% bigger on mobile: ~53% * 1.20 ≈ 64% */
     }
 
     .bubble-text {
-        font-size: 0.85rem;
+        font-size: 0.72rem;
         width: 78%;
         max-width: 280px;
         line-height: 1.4;
@@ -762,7 +762,7 @@ body::before {
     .what-we-do-heading {
         font-size: 6.5rem;
         margin-bottom: 20px;
-        margin-top: 40px;
+        margin-top: 140px; /* Moved down 100px: was 40px */
     }
 
     .blue-bubble {
