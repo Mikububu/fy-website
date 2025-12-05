@@ -814,7 +814,7 @@ body::before {
     justify-content: space-between;
     align-items: flex-start;
     gap: 60px;
-    margin-bottom: 80px;
+    margin-bottom: 200px;
 }
 
 .circle-item {
@@ -901,8 +901,8 @@ body::before {
 
 .layer-freud {
     position: absolute;
-    left: 12%;
-    bottom: 120px;
+    left: 42%;
+    top: -150px;
     width: 15%;
     height: auto;
     z-index: 4;
