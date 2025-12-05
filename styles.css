@@ -901,68 +901,68 @@ body::before {
 
 .layer-freud {
     position: absolute;
-    left: 42%;
-    top: -100px;
+    left: 60%;
+    bottom: 220px;
     width: 15%;
     height: auto;
     z-index: 4;
     animation: freudDesktopDissolve 13s ease-in-out infinite;
 }
 
-/* Desktop animation - move to couch area, grow, turn red, blink, dissolve */
+/* Desktop animation - start from center-top, move to endpoint (couch area), grow, red, blink, dissolve */
 @keyframes freudDesktopDissolve {
     0%, 38% {
-        transform: translate(0, 0) scale(1);
+        transform: translate(-18%, -900px) scale(1);
         filter: hue-rotate(0deg) brightness(1);
         opacity: 1;
     }
     54% {
-        transform: translate(150px, 700px) scale(1);
+        transform: translate(0, 0) scale(1);
         filter: hue-rotate(0deg) brightness(1);
         opacity: 1;
     }
     65% {
-        transform: translate(150px, 700px) scale(2);
+        transform: translate(0, 0) scale(2);
         filter: hue-rotate(0deg) brightness(1);
         opacity: 1;
     }
     70% {
-        transform: translate(150px, 700px) scale(2);
+        transform: translate(0, 0) scale(2);
         filter: hue-rotate(-30deg) saturate(10) brightness(0.8);
         opacity: 1;
     }
-    71% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
-    72% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
-    73% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
-    74% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
-    75% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
-    76% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
-    77% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
-    78% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
-    79% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
-    80% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
-    81% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
-    82% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
-    83% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
-    84% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
-    85% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
-    86% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
-    87% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
-    88% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
-    89% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
-    90% { transform: translate(150px, 700px) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
+    71% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
+    72% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
+    73% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
+    74% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
+    75% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
+    76% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
+    77% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
+    78% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
+    79% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
+    80% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
+    81% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
+    82% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
+    83% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
+    84% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
+    85% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
+    86% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
+    87% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
+    88% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
+    89% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 0; }
+    90% { transform: translate(0, 0) scale(2); filter: hue-rotate(-30deg) saturate(10) brightness(0.8); opacity: 1; }
     92% {
-        transform: translate(150px, 700px) scale(2.2);
+        transform: translate(0, 0) scale(2.2);
         filter: hue-rotate(-30deg) saturate(10) brightness(0.5);
         opacity: 0.3;
     }
     96% {
-        transform: translate(150px, 700px) scale(2.2);
+        transform: translate(0, 0) scale(2.2);
         filter: hue-rotate(-30deg) saturate(10) brightness(0.3);
         opacity: 0;
     }
     100% {
-        transform: translate(0, 0) scale(1);
+        transform: translate(-18%, -900px) scale(1);
         filter: hue-rotate(0deg) brightness(1);
         opacity: 1;
     }
