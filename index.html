@@ -324,12 +324,18 @@
     <!-- Video Preview Section -->
     <section class="video-preview-section">
         <div class="video-preview-container">
-            <iframe src="https://cdn.jwplayer.com/players/YWLCeqrn-qNZUPz9O.html"
-                    frameborder="0"
-                    scrolling="auto"
-                    allowfullscreen
-                    allow="autoplay; fullscreen; encrypted-media">
-            </iframe>
+            <div id="video-player-1"></div>
+            <script src="https://cdn.jwplayer.com/libraries/qNZUPz9O.js"></script>
+            <script>
+                jwplayer("video-player-1").setup({
+                    playlist: "https://cdn.jwplayer.com/v2/media/YWLCeqrn",
+                    autostart: "viewable",
+                    mute: true,
+                    displaytitle: false,
+                    displaydescription: false,
+                    stretching: "uniform"
+                });
+            </script>
         </div>
     </section>
 
@@ -388,12 +394,17 @@
     <!-- New Video Section (JW Player) -->
     <section class="new-video-section">
         <div class="new-video-container">
-            <iframe src="https://cdn.jwplayer.com/players/XdeMSSli-qNZUPz9O.html"
-                    frameborder="0"
-                    scrolling="auto"
-                    allowfullscreen
-                    allow="autoplay; fullscreen; encrypted-media">
-            </iframe>
+            <div id="video-player-2"></div>
+            <script>
+                jwplayer("video-player-2").setup({
+                    playlist: "https://cdn.jwplayer.com/v2/media/XdeMSSli",
+                    autostart: "viewable",
+                    mute: true,
+                    displaytitle: false,
+                    displaydescription: false,
+                    stretching: "uniform"
+                });
+            </script>
         </div>
     </section>
 
