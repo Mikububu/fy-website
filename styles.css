@@ -2858,3 +2858,72 @@ iframe .jw-title-secondary {
         font-size: 1.05rem;
     }
 }
+
+/* ====================================
+   VIDEO CUSTOMIZATION - YELLOW PLAY BUTTON & CONTROLS HIDING
+   ==================================== */
+
+/* Hide JW Player controls via CSS override */
+.video-preview-container iframe,
+.new-video-container iframe {
+    pointer-events: auto !important;
+}
+
+/* Create custom play button overlay */
+.video-preview-container::before,
+.new-video-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background-color: rgba(234, 196, 53, 0.9); /* Yellow color */
+    border-radius: 50%;
+    z-index: 10;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.video-preview-container::after,
+.new-video-container::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+    width: 0;
+    height: 0;
+    border-left: 30px solid white;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    z-index: 11;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+/* Hide play button when video is playing (on hover or click) */
+.video-preview-container.playing::before,
+.video-preview-container.playing::after,
+.new-video-container.playing::before,
+.new-video-container.playing::after {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Mobile adjustments for play button */
+@media (max-width: 768px) {
+    .video-preview-container::before,
+    .new-video-container::before {
+        width: 60px;
+        height: 60px;
+    }
+
+    .video-preview-container::after,
+    .new-video-container::after {
+        border-left: 22px solid white;
+        border-top: 15px solid transparent;
+        border-bottom: 15px solid transparent;
+    }
+}

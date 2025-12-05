@@ -6,10 +6,11 @@
     console.log('Video autoplay script initialized');
 
     // Intersection Observer options
+    // Videos will autoplay when they're more centered in viewport (50% visible)
     const observerOptions = {
         root: null, // viewport
-        rootMargin: '0px',
-        threshold: 0.3 // 30% of video must be visible to trigger (more sensitive)
+        rootMargin: '-15% 0px -15% 0px', // Only trigger when video is more centered (not at edges)
+        threshold: 0.5 // 50% of video must be visible to trigger
     };
 
     // Track video play states
@@ -30,6 +31,8 @@
                 if (!videoStates.get(videoId)) {
                     console.log('Video entering viewport - AUTOPLAY ON:', videoId);
                     playVideo(iframe);
+                    // Hide custom play button when video starts
+                    container.classList.add('playing');
                     videoStates.set(videoId, true);
                 }
             } else {
@@ -37,6 +40,8 @@
                 if (videoStates.get(videoId)) {
                     console.log('Video leaving viewport - AUTOPLAY OFF:', videoId);
                     pauseVideo(iframe);
+                    // Show custom play button when video pauses
+                    container.classList.remove('playing');
                     videoStates.set(videoId, false);
                 }
             }
@@ -123,6 +128,20 @@
 
                     // Initialize state
                     videoStates.set(container.className, false);
+
+                    // Add click handler for manual play/pause
+                    container.addEventListener('click', function() {
+                        const isPlaying = videoStates.get(container.className);
+                        if (isPlaying) {
+                            pauseVideo(iframe);
+                            container.classList.remove('playing');
+                            videoStates.set(container.className, false);
+                        } else {
+                            playVideo(iframe);
+                            container.classList.add('playing');
+                            videoStates.set(container.className, true);
+                        }
+                    });
                 }
             });
         }, 500);
