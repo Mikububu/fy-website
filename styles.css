@@ -1604,8 +1604,8 @@ body::before {
     }
 
     .slc-number-circle.weeks {
-        top: 192px;
-        right: calc(-5% - 20px);
+        top: 152px;
+        right: calc(-5% - 60px);
     }
 
     .slc-number-circle.location {
