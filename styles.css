@@ -548,8 +548,8 @@ body::before {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70%;
-    max-width: 380px;
+    width: 65%;
+    max-width: 320px;
     font-family: 'Roboto', sans-serif;
     font-size: 1.4rem;
     font-weight: 100;
@@ -655,7 +655,7 @@ body::before {
     }
 
     .brown-bubble-container {
-        margin-top: -25px; /* Moved back up */
+        margin-top: -75px; /* Moved up 50px more */
     }
 
     .brown-bubble {
@@ -663,7 +663,7 @@ body::before {
     }
 
     .bubble-text {
-        font-size: 0.72rem;
+        font-size: 0.94rem; /* 30% bigger: 0.72 * 1.30 */
         width: 70%;
         max-width: 240px;
         line-height: 1.3;
