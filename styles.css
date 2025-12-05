@@ -417,7 +417,7 @@ body::before {
 
 .nasi-image-container {
     position: relative;
-    width: 1200px;
+    width: 1440px; /* 20% bigger: 1200px * 1.2 */
     margin: 0 auto;
 }
 
@@ -545,8 +545,8 @@ body::before {
 }
 
 .brown-bubble {
-    width: 50%;
-    max-width: 600px;
+    width: 57.5%; /* 15% bigger: 50% * 1.15 */
+    max-width: 690px; /* 15% bigger: 600px * 1.15 */
     height: auto;
     display: block;
     margin: 0 auto;
@@ -611,7 +611,7 @@ body::before {
     }
 
     .brown-bubble {
-        width: 60%;
+        width: 69%; /* 15% bigger: 60% * 1.15 */
     }
 
     .bubble-text {
@@ -663,11 +663,11 @@ body::before {
     }
 
     .brown-bubble-container {
-        margin-top: -50px;
+        margin-top: 0px; /* Move down 50px: was -50px, now 0px (net +50px) */
     }
 
     .brown-bubble {
-        width: 52.5%;
+        width: 60%; /* 15% bigger: 52.5% * 1.15 ≈ 60% */
     }
 
     .bubble-text {
@@ -762,7 +762,7 @@ body::before {
     .what-we-do-heading {
         font-size: 6.5rem;
         margin-bottom: 20px;
-        margin-top: 40px;
+        margin-top: 140px; /* Moved down 100px: was 40px */
     }
 
     .blue-bubble {
