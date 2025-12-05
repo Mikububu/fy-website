@@ -1581,6 +1581,8 @@ body::before {
     .slc-number-circle.client {
         width: 336.96px;
         height: 336.96px;
+        opacity: 0.5;
+        z-index: 100;
     }
 
     .slc-number-circle .number {
@@ -1614,8 +1616,8 @@ body::before {
     }
 
     .slc-number-circle.facilitators {
-        bottom: 156px;
-        right: -5%;
+        bottom: 116px;
+        right: calc(-5% - 30px);
     }
 
     .slc-number-circle.bodyworkers {
@@ -1659,6 +1661,8 @@ body::before {
     .slc-number-circle.client {
         width: 168px;
         height: 168px;
+        opacity: 0.5;
+        z-index: 100;
     }
 
     .slc-number-circle .number {
