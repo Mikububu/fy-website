@@ -667,6 +667,7 @@ body::before {
 
     .brown-bubble {
         width: 80%;
+        transform: scaleY(1); /* Remove vertical squeeze on mobile */
     }
 
     .bubble-text {
