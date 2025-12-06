@@ -191,13 +191,35 @@
                             errors.substackImages.push(post);
                         }
 
-                        // Check for actual text content
+                        // Check for Substack video player embeds (massive HTML blocks)
+                        const substackVideoPlayer = html.match(/class="video-player-wrapper|class="container-dlhqPD|substackcdn\.com.*video/gi);
+                        if (substackVideoPlayer && substackVideoPlayer.length > 0) {
+                            postErrors.push(`❌ Contains Substack video player embed - post appears empty`);
+                            errors.noText.push(post);
+                        }
+
+                        // Check for actual text content in post-content div only
                         const parser = new DOMParser();
                         const doc = parser.parseFromString(html, 'text/html');
-                        const textContent = doc.body.innerText.replace(/\s+/g, ' ').trim();
 
-                        if (textContent.length < 200) {
-                            postErrors.push(`❌ Very little text content (${textContent.length} chars)`);
+                        // Try to find the actual article content (not Substack UI)
+                        const postContentDiv = doc.querySelector('.post-content');
+                        let articleText = '';
+
+                        if (postContentDiv) {
+                            // Remove Substack embeds before counting text
+                            const clone = postContentDiv.cloneNode(true);
+                            const substackEmbeds = clone.querySelectorAll('[class*="container-dlhqPD"], [class*="video-wrapper"], [class*="video-player"]');
+                            substackEmbeds.forEach(embed => embed.remove());
+
+                            // Get remaining text
+                            articleText = clone.innerText.replace(/\s+/g, ' ').trim();
+                        } else {
+                            articleText = doc.body.innerText.replace(/\s+/g, ' ').trim();
+                        }
+
+                        if (articleText.length < 200) {
+                            postErrors.push(`❌ Very little article text content (${articleText.length} chars) - may be dominated by embeds`);
                             errors.noText.push(post);
                         }
 
