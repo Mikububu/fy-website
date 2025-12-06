@@ -3,128 +3,248 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Post Audit Tool</title>
+    <title>Blog Post Audit Tool - Forbidden Yoga</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@100;400&display=swap" rel="stylesheet">
     <style>
+        @font-face {
+            font-family: 'Bluu Next';
+            src: url('Bluu Next/BluuNext-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Courier New', monospace;
-            background: #1a1a1a;
-            color: #00ff00;
-            padding: 20px;
-            max-width: 1400px;
-            margin: 0 auto;
+            font-family: 'Roboto', sans-serif;
+            background: #f3f2de;
+            color: #2c2c2c;
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
         }
-        h1 {
+
+        .header {
+            background: #B8D4D4;
+            padding: 40px 20px;
             text-align: center;
-            color: #00ff00;
-            text-shadow: 0 0 10px #00ff00;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
+
+        h1 {
+            font-family: 'Bluu Next', 'Playfair Display', serif;
+            font-size: 48px;
+            color: #2c2c2c;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            color: #5a5a5a;
+            margin-top: 10px;
+            font-weight: 100;
+        }
+
         .controls {
             text-align: center;
-            margin: 30px 0;
+            margin: 40px 20px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
+
         button {
-            background: #003300;
-            color: #00ff00;
-            border: 2px solid #00ff00;
-            padding: 15px 40px;
-            font-size: 18px;
+            background: #B8D4D4;
+            color: #2c2c2c;
+            border: 2px solid #2c2c2c;
+            padding: 16px 48px;
+            font-size: 16px;
             cursor: pointer;
-            font-family: 'Courier New', monospace;
-            transition: all 0.3s;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
+
         button:hover {
-            background: #00ff00;
-            color: #000;
-            box-shadow: 0 0 20px #00ff00;
+            background: #2c2c2c;
+            color: #f3f2de;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
+
         button:disabled {
             opacity: 0.5;
             cursor: not-allowed;
+            transform: none;
         }
+
+        .btn-primary {
+            background: #2c2c2c;
+            color: #f3f2de;
+        }
+
+        .btn-primary:hover {
+            background: #B8D4D4;
+            color: #2c2c2c;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
         .results {
             margin-top: 30px;
         }
+
         .summary {
-            background: #003300;
-            border: 2px solid #00ff00;
-            padding: 20px;
+            background: white;
+            border: 3px solid #B8D4D4;
+            padding: 30px;
             margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
+
         .summary h2 {
+            font-family: 'Bluu Next', 'Playfair Display', serif;
             margin-top: 0;
-            color: #00ff00;
+            color: #2c2c2c;
+            font-size: 32px;
+            margin-bottom: 20px;
         }
+
         .error-section {
             margin-bottom: 40px;
         }
+
         .error-section h3 {
-            color: #ff0000;
-            text-shadow: 0 0 10px #ff0000;
+            font-family: 'Bluu Next', 'Playfair Display', serif;
+            color: #c45c4e;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
+
         .post-error {
-            background: #330000;
-            border-left: 4px solid #ff0000;
-            padding: 15px;
-            margin: 10px 0;
+            background: white;
+            border-left: 5px solid #c45c4e;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
         }
+
         .post-error h4 {
-            margin: 0 0 10px 0;
-            color: #ff6666;
+            margin: 0 0 12px 0;
+            color: #2c2c2c;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
         }
+
         .post-error ul {
-            margin: 10px 0;
-            padding-left: 20px;
+            margin: 12px 0;
+            padding-left: 24px;
         }
+
         .post-error li {
-            color: #ff9999;
-            margin: 5px 0;
+            color: #5a5a5a;
+            margin: 8px 0;
+            line-height: 1.6;
         }
+
         .post-link {
-            color: #00ffff;
+            color: #6a9d9d;
             text-decoration: none;
+            font-weight: 400;
         }
+
         .post-link:hover {
             text-decoration: underline;
+            color: #2c2c2c;
         }
+
         .success {
-            color: #00ff00;
+            color: #6aa56a;
         }
+
         .loading {
             text-align: center;
-            font-size: 20px;
-            margin: 20px 0;
+            font-size: 18px;
+            margin: 30px 0;
+            color: #5a5a5a;
         }
+
         .progress {
-            background: #003300;
-            border: 2px solid #00ff00;
-            padding: 10px;
+            background: white;
+            border: 2px solid #B8D4D4;
+            padding: 20px;
             margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
         }
+
         .progress-bar {
-            background: #00ff00;
+            background: #B8D4D4;
             height: 30px;
             transition: width 0.3s;
+            border-radius: 0;
+        }
+
+        .info-box {
+            background: #B8D4D4;
+            padding: 20px;
+            margin: 30px 0;
+            border-left: 5px solid #2c2c2c;
+        }
+
+        .info-box h3 {
+            font-family: 'Bluu Next', 'Playfair Display', serif;
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        code {
+            background: #e8e7d3;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <h1>🔍 BLOG POST AUDIT TOOL 🔍</h1>
-
-    <div class="controls">
-        <button id="auditBtn" onclick="runAudit()">RUN FULL AUDIT</button>
-        <button id="autoFixBtn" onclick="runAutoFix()" style="margin-left: 20px; background: #330000; border-color: #ff6600; color: #ff6600;">🔧 AUTO-FIX ALL ISSUES</button>
+    <div class="header">
+        <h1>Blog Post Audit Tool</h1>
+        <div class="subtitle">Forbidden Yoga Content Management System</div>
     </div>
 
-    <div id="progressContainer" style="display: none;">
-        <div class="progress">
-            <div id="progressText">Checking posts...</div>
-            <div style="background: #001100; margin-top: 10px;">
-                <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+    <div class="container">
+        <div class="controls">
+            <button id="auditBtn" class="btn-primary" onclick="runAudit()">Run Full Audit</button>
+            <button id="autoFixBtn" onclick="showFixInstructions()">Auto-Fix All Issues</button>
+        </div>
+
+        <div id="progressContainer" style="display: none;">
+            <div class="progress">
+                <div id="progressText">Checking posts...</div>
+                <div style="background: #e8e7d3; margin-top: 15px;">
+                    <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="results" class="results"></div>
+        <div id="results" class="results"></div>
+    </div>
 
     <script>
         async function runAudit() {
@@ -336,39 +456,45 @@
             results.innerHTML = html;
         }
 
-        async function runAutoFix() {
-            const btn = document.getElementById('autoFixBtn');
-            const auditBtn = document.getElementById('auditBtn');
+        function showFixInstructions() {
             const results = document.getElementById('results');
-            const progressContainer = document.getElementById('progressContainer');
-            const progressText = document.getElementById('progressText');
-            const progressBar = document.getElementById('progressBar');
-
-            // Disable buttons
-            btn.disabled = true;
-            auditBtn.disabled = true;
-            progressContainer.style.display = 'block';
-            progressText.textContent = '🔧 Running auto-fix script on server...';
-            progressBar.style.width = '50%';
 
             results.innerHTML = `
+                <div class="info-box">
+                    <h3>Auto-Fix Instructions</h3>
+                    <p style="margin: 15px 0;">The auto-fix system runs on the server via Node.js and must be executed from your terminal.</p>
+                    <p style="margin: 15px 0;"><strong>Run this command:</strong></p>
+                    <p style="margin: 15px 0; font-size: 20px;"><code>node auto-fix-posts.js</code></p>
+                    <p style="margin: 15px 0;">After running the script, click "Run Full Audit" to verify all fixes were applied.</p>
+                </div>
                 <div class="summary">
-                    <h2>🔧 AUTO-FIX IN PROGRESS</h2>
-                    <p>Running comprehensive auto-fix script...</p>
-                    <p style="margin-top: 20px;">This will:</p>
-                    <ul>
+                    <h2>What Auto-Fix Does</h2>
+                    <p style="margin-bottom: 20px;">The comprehensive auto-fix script will:</p>
+                    <ul style="line-height: 1.8;">
                         <li>✓ Strip Substack UI from all posts</li>
                         <li>✓ Download missing Substack images (auto-downscaled)</li>
                         <li>✓ Add local blog images</li>
                         <li>✓ <strong>SEO Optimization:</strong> alt text, meta descriptions, og:image</li>
-                        <li>✓ <strong>Fix Broken Image References:</strong> corrects .png/.jpg extension mismatches</li>
-                        <li>✓ <strong>Intelligent Keyword Analysis:</strong> across ALL posts
-                            <ul style="margin-top: 5px; font-size: 0.9em;">
-                                <li>Finds keywords appearing 2+ times (Tanmatra, Chhayopasana, etc.)</li>
-                                <li>Distinguishes smart keywords (Sanskrit, names, practices)</li>
-                                <li>Filters out generic words (that, this, from, etc.)</li>
-                                <li>Re-analyzes after fixes to catch new keywords</li>
-                                <li>Updates meta tags with intelligent keywords only</li>
+                        <li>⚠️ <strong>Title/Slug Mismatch Detection:</strong> flags posts where title doesn't match filename
+                            <ul style="margin-top: 8px; margin-bottom: 8px; font-size: 0.95em; color: #5a5a5a;">
+                                <li>Normalizes titles to expected slug format</li>
+                                <li>Calculates similarity score between actual and expected slug</li>
+                                <li>Warns when similarity < 50% (likely wrong content or needs renaming)</li>
+                                <li>Provides detailed mismatch summary at end of audit</li>
+                            </ul>
+                        </li>
+                        <li>✓ <strong>Fix Broken Image References:</strong> corrects .png/.jpg extension mismatches + detects tiny corrupted files</li>
+                        <li>✓ <strong>Semantic Keyword Intelligence:</strong> across ALL posts
+                            <ul style="margin-top: 8px; margin-bottom: 8px; font-size: 0.95em; color: #5a5a5a;">
+                                <li>🧠 <strong>Semantic Relationship Analysis:</strong> Maps connections between tantric/yogic concepts</li>
+                                <li>🔗 <strong>Knowledge Graph:</strong> Understands relationships (e.g., Kali → Shakti → Kundalini)</li>
+                                <li>📊 <strong>Semantic Scoring:</strong> Ranks keywords by richness of relationships</li>
+                                <li>🌐 <strong>Domain Clustering:</strong> Groups by Deities, Practices, Energy Systems, etc.</li>
+                                <li>⚡ <strong>Co-occurrence Analysis:</strong> Finds related terms that appear together</li>
+                                <li>🎯 <strong>Smart Selection:</strong> Chooses semantically clustered keywords per post</li>
+                                <li>Finds keywords appearing 2+ times</li>
+                                <li>Filters out generic words</li>
+                                <li>Updates meta tags with semantically intelligent keywords</li>
                             </ul>
                         </li>
                         <li>✓ <strong>GIF Support:</strong> detects GIF images, downsizes, uses for thumbnails</li>
@@ -376,25 +502,16 @@
                         <li>✓ Add top back links</li>
                         <li>✓ Clean up all HTML</li>
                     </ul>
-                    <p style="margin-top: 20px; color: #ff6600;">
-                        <strong>⚠️ NOTE:</strong> Auto-fix runs on the server via Node.js.
-                        You need to execute: <code>node auto-fix-posts.js</code>
-                    </p>
-                    <p style="margin-top: 10px;">
-                        This audit page is browser-based and cannot execute server-side scripts.
-                        Run the command in your terminal, then click "RUN FULL AUDIT" to verify fixes.
-                    </p>
                 </div>
             `;
 
-            progressBar.style.width = '100%';
-            progressText.textContent = '✓ Instructions displayed';
+            // Scroll to results
+            results.scrollIntoView({ behavior: 'smooth' });
+        }
 
-            setTimeout(() => {
-                btn.disabled = false;
-                auditBtn.disabled = false;
-                progressContainer.style.display = 'none';
-            }, 2000);
+        async function runAutoFix() {
+            // This function is kept for backwards compatibility
+            showFixInstructions();
         }
     </script>
 </body>

@@ -38,6 +38,110 @@ async function downloadImage(url, outputPath) {
     });
 }
 
+// Helper: Normalize title to expected slug format
+function titleToSlug(title) {
+    return title
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '') // Remove special chars except spaces and hyphens
+        .replace(/\s+/g, '-')          // Replace spaces with hyphens
+        .replace(/-+/g, '-')           // Replace multiple hyphens with single
+        .replace(/^-|-$/g, '')         // Trim hyphens from start/end
+        .substring(0, 50);             // Limit length to 50 chars (like Substack does)
+}
+
+// Helper: Calculate similarity between two strings (0-1 score) using Levenshtein distance
+function stringSimilarity(str1, str2) {
+    if (str1 === str2) return 1.0;
+    if (str1.length === 0 || str2.length === 0) return 0.0;
+
+    // Levenshtein distance algorithm
+    const matrix = [];
+
+    for (let i = 0; i <= str2.length; i++) {
+        matrix[i] = [i];
+    }
+
+    for (let j = 0; j <= str1.length; j++) {
+        matrix[0][j] = j;
+    }
+
+    for (let i = 1; i <= str2.length; i++) {
+        for (let j = 1; j <= str1.length; j++) {
+            if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+                matrix[i][j] = matrix[i - 1][j - 1];
+            } else {
+                matrix[i][j] = Math.min(
+                    matrix[i - 1][j - 1] + 1, // substitution
+                    matrix[i][j - 1] + 1,     // insertion
+                    matrix[i - 1][j] + 1      // deletion
+                );
+            }
+        }
+    }
+
+    const maxLength = Math.max(str1.length, str2.length);
+    const distance = matrix[str2.length][str1.length];
+    return 1 - (distance / maxLength);
+}
+
+// Fix 0: Detect title/slug mismatch and flag for manual review
+function detectTitleSlugMismatch(filepath, slug) {
+    const html = fs.readFileSync(filepath, 'utf8');
+
+    // Extract title from <h1> tag
+    const h1Match = html.match(/<h1[^>]*>(.*?)<\/h1>/i);
+    if (!h1Match) {
+        return { action: 'skip', reason: 'No title found' };
+    }
+
+    const h1Title = h1Match[1].trim();
+
+    // Also extract meta title for comparison
+    const metaTitleMatch = html.match(/<title[^>]*>(.*?)<\/title>/i);
+    const metaTitle = metaTitleMatch ? metaTitleMatch[1].replace(/\s*\|\s*Forbidden Yoga\s*$/i, '').trim() : '';
+
+    // Check if H1 and meta title are very different (content mismatch)
+    if (metaTitle && h1Title.toLowerCase() !== metaTitle.toLowerCase()) {
+        const h1Slug = titleToSlug(h1Title);
+        const metaSlug = titleToSlug(metaTitle);
+
+        // If meta title would create a very different slug, warn about content mismatch
+        const metaSimilarity = stringSimilarity(h1Slug, metaSlug);
+        if (metaSimilarity < 0.5) {
+            return {
+                action: 'warning',
+                type: 'content_mismatch',
+                h1Title: h1Title,
+                metaTitle: metaTitle,
+                currentSlug: slug,
+                expectedFromH1: h1Slug,
+                expectedFromMeta: metaSlug,
+                h1Similarity: Math.round(stringSimilarity(slug, h1Slug) * 100),
+                metaSimilarity: Math.round(stringSimilarity(slug, metaSlug) * 100)
+            };
+        }
+    }
+
+    const expectedSlug = titleToSlug(h1Title);
+
+    // Check if slug matches expected slug from H1 title
+    const similarity = stringSimilarity(slug, expectedSlug);
+
+    // If similarity is < 0.5, it's likely a mismatch
+    if (similarity < 0.5) {
+        return {
+            action: 'warning',
+            type: 'slug_mismatch',
+            title: h1Title,
+            currentSlug: slug,
+            expectedSlug: expectedSlug,
+            similarity: Math.round(similarity * 100)
+        };
+    }
+
+    return { action: 'skip', reason: 'Title/slug match' };
+}
+
 // Fix 1: Strip Substack UI and extract clean content
 function stripSubstackUI(filepath, slug) {
     let html = fs.readFileSync(filepath, 'utf8');
@@ -433,6 +537,7 @@ async function autoFixPost(file) {
     console.log(`\n📝 ${slug}`);
 
     const results = {
+        titleSlugMismatch: { action: 'skip' },
         substackUI: { action: 'skip' },
         substackImages: { action: 'skip' },
         topBackLink: { action: 'skip' },
@@ -442,6 +547,25 @@ async function autoFixPost(file) {
     };
 
     try {
+        // Fix 0: Detect title/slug mismatch
+        results.titleSlugMismatch = detectTitleSlugMismatch(filepath, slug);
+        if (results.titleSlugMismatch.action === 'warning') {
+            if (results.titleSlugMismatch.type === 'content_mismatch') {
+                console.log(`  ⚠️  CONTENT MISMATCH DETECTED:`);
+                console.log(`      H1 title: "${results.titleSlugMismatch.h1Title}"`);
+                console.log(`      Meta title: "${results.titleSlugMismatch.metaTitle}"`);
+                console.log(`      Current slug: ${results.titleSlugMismatch.currentSlug}`);
+                console.log(`      → H1 and meta title don't match - likely wrong content!`);
+            } else {
+                console.log(`  ⚠️  TITLE/SLUG MISMATCH DETECTED:`);
+                console.log(`      Title: "${results.titleSlugMismatch.title}"`);
+                console.log(`      Current slug: ${results.titleSlugMismatch.currentSlug}`);
+                console.log(`      Expected slug: ${results.titleSlugMismatch.expectedSlug}`);
+                console.log(`      Similarity: ${results.titleSlugMismatch.similarity}%`);
+                console.log(`      → This post may have wrong content or needs renaming`);
+            }
+        }
+
         // Fix 1: Strip Substack UI
         results.substackUI = stripSubstackUI(filepath, slug);
         if (results.substackUI.action === 'fixed') {
@@ -501,10 +625,162 @@ async function autoFixPost(file) {
     return results;
 }
 
+// Semantic Knowledge Graph - relationships between tantric/yogic concepts
+const semanticRelationships = {
+    // Tantric Goddesses & Deities
+    'Kali': ['Mahakali', 'Shakti', 'Mahavidya', 'Chinnamasta', 'Dhumavati', 'Shiva', 'tantra', 'goddess'],
+    'Tara': ['Mahavidya', 'Shakti', 'goddess', 'tantra', 'Kali'],
+    'Tripura Sundari': ['Mahavidya', 'Shakti', 'Lalita', 'Shodashi', 'goddess', 'tantra'],
+    'Bhuvaneshwari': ['Mahavidya', 'Shakti', 'goddess', 'tantra', 'cosmos'],
+    'Chinnamasta': ['Mahavidya', 'Shakti', 'Kali', 'goddess', 'tantra'],
+    'Bhairavi': ['Mahavidya', 'Shakti', 'goddess', 'tantra', 'Kali'],
+    'Dhumavati': ['Mahavidya', 'Shakti', 'goddess', 'tantra', 'Kali'],
+    'Bagalamukhi': ['Mahavidya', 'Shakti', 'goddess', 'tantra'],
+    'Matangi': ['Mahavidya', 'Shakti', 'goddess', 'tantra'],
+    'Kamala': ['Mahavidya', 'Shakti', 'Lakshmi', 'goddess', 'tantra'],
+    'Mahavidya': ['Kali', 'Tara', 'Tripura Sundari', 'Shakti', 'tantra', 'goddess', 'Nitya'],
+    'Nitya': ['Mahavidya', 'Shakti', 'tantra', 'goddess', 'Kali'],
+    'Shakti': ['Shiva', 'Kali', 'Kundalini', 'tantra', 'yoga', 'goddess', 'Mahavidya'],
+    'Shiva': ['Shakti', 'tantra', 'yoga', 'Kali', 'consciousness'],
+
+    // Tantric Traditions & Paths
+    'tantra': ['Shakti', 'Shiva', 'Kundalini', 'yoga', 'Kaula', 'Kashmir Shaivism', 'puja', 'sadhana'],
+    'Kaula': ['tantra', 'Kashmir Shaivism', 'Shakti', 'left-hand path', 'sadhana'],
+    'Kashmir Shaivism': ['tantra', 'Kaula', 'Shiva', 'Shakti', 'Abhinavagupta'],
+    'left-hand path': ['Kaula', 'tantra', 'Vama Marga', 'transgressive'],
+    'Vama Marga': ['left-hand path', 'Kaula', 'tantra'],
+
+    // Energy & Consciousness
+    'Kundalini': ['Shakti', 'chakra', 'tantra', 'yoga', 'kriya', 'pranayama', 'energy'],
+    'chakra': ['Kundalini', 'Muladhara', 'Swadhisthana', 'Manipura', 'Anahata', 'Vishuddha', 'Ajna', 'Sahasrara', 'yoga', 'energy'],
+    'Muladhara': ['chakra', 'Kundalini', 'root chakra', 'tantra'],
+    'Swadhisthana': ['chakra', 'Kundalini', 'sacral chakra', 'tantra'],
+    'Manipura': ['chakra', 'Kundalini', 'solar plexus', 'tantra'],
+    'Anahata': ['chakra', 'Kundalini', 'heart chakra', 'tantra'],
+    'Vishuddha': ['chakra', 'Kundalini', 'throat chakra', 'tantra'],
+    'Ajna': ['chakra', 'Kundalini', 'third eye', 'tantra'],
+    'Sahasrara': ['chakra', 'Kundalini', 'crown chakra', 'tantra'],
+    'prana': ['pranayama', 'energy', 'yoga', 'breath', 'tantra'],
+
+    // Practices & Techniques
+    'yoga': ['tantra', 'asana', 'pranayama', 'meditation', 'mudra', 'Kundalini', 'Shakti'],
+    'puja': ['tantra', 'ritual', 'sadhana', 'worship', 'Shakti'],
+    'sadhana': ['tantra', 'yoga', 'practice', 'puja', 'kriya', 'spiritual practice'],
+    'kriya': ['Kundalini', 'yoga', 'tantra', 'pranayama', 'technique'],
+    'mudra': ['yoga', 'tantra', 'gesture', 'asana', 'practice'],
+    'mantra': ['tantra', 'yoga', 'sound', 'meditation', 'Sanskrit'],
+    'pranayama': ['yoga', 'breath', 'prana', 'Kundalini', 'kriya'],
+    'asana': ['yoga', 'posture', 'mudra', 'practice'],
+    'meditation': ['yoga', 'tantra', 'consciousness', 'mindfulness', 'awareness'],
+    'nyasa': ['tantra', 'ritual', 'puja', 'placement', 'practice'],
+    'trataka': ['yoga', 'tantra', 'meditation', 'gazing', 'technique'],
+
+    // Philosophical Concepts
+    'consciousness': ['Shiva', 'awareness', 'tantra', 'yoga', 'meditation'],
+    'awareness': ['consciousness', 'mindfulness', 'meditation', 'presence'],
+    'enlightenment': ['consciousness', 'awakening', 'tantra', 'yoga', 'liberation'],
+    'liberation': ['moksha', 'enlightenment', 'tantra', 'yoga'],
+    'moksha': ['liberation', 'enlightenment', 'yoga'],
+
+    // Subtle Body Elements
+    'nadi': ['Ida', 'Pingala', 'Sushumna', 'energy channel', 'prana', 'yoga'],
+    'Ida': ['nadi', 'Pingala', 'Sushumna', 'lunar', 'energy'],
+    'Pingala': ['nadi', 'Ida', 'Sushumna', 'solar', 'energy'],
+    'Sushumna': ['nadi', 'Ida', 'Pingala', 'Kundalini', 'central channel'],
+
+    // Sensory & Perception
+    'tanmatra': ['sense', 'perception', 'subtle element', 'philosophy'],
+
+    // Shadow & Transformation
+    'shadow': ['psychology', 'transformation', 'integration', 'darkness'],
+    'trauma': ['healing', 'psychology', 'body', 'integration'],
+
+    // Branded Programs (user's offerings)
+    'Andhakaara Path to Power': ['tantra', 'shadow', 'darkness', 'power', 'Forbidden Yoga'],
+    'Forbidden Yoga': ['tantra', 'yoga', 'transgressive', 'left-hand path', 'Kaula']
+};
+
+// Semantic domain classification
+const semanticDomains = {
+    'Deities & Goddesses': ['Kali', 'Tara', 'Tripura Sundari', 'Bhuvaneshwari', 'Chinnamasta', 'Bhairavi', 'Dhumavati', 'Bagalamukhi', 'Matangi', 'Kamala', 'Mahavidya', 'Nitya', 'Shakti', 'Shiva'],
+    'Tantric Traditions': ['tantra', 'Kaula', 'Kashmir Shaivism', 'left-hand path', 'Vama Marga'],
+    'Energy Systems': ['Kundalini', 'chakra', 'prana', 'nadi', 'Ida', 'Pingala', 'Sushumna', 'Muladhara', 'Swadhisthana', 'Manipura', 'Anahata', 'Vishuddha', 'Ajna', 'Sahasrara'],
+    'Practices & Techniques': ['yoga', 'puja', 'sadhana', 'kriya', 'mudra', 'mantra', 'pranayama', 'asana', 'meditation', 'nyasa', 'trataka'],
+    'Philosophical Concepts': ['consciousness', 'awareness', 'enlightenment', 'liberation', 'moksha', 'tanmatra'],
+    'Transformation & Shadow': ['shadow', 'trauma', 'healing', 'integration', 'transformation'],
+    'Branded Programs': ['Andhakaara Path to Power', 'Forbidden Yoga']
+};
+
+// Semantic scoring: calculate semantic richness of a keyword
+function getSemanticScore(keyword, allKeywords) {
+    const keywordLower = keyword.toLowerCase();
+    let score = 0;
+
+    // Score based on direct relationships
+    if (semanticRelationships[keyword] || semanticRelationships[keywordLower]) {
+        const relationships = semanticRelationships[keyword] || semanticRelationships[keywordLower] || [];
+        // How many of this keyword's related terms also appear in the corpus?
+        const relatedTermsInCorpus = relationships.filter(relTerm =>
+            allKeywords.some(kw => kw.toLowerCase() === relTerm.toLowerCase())
+        );
+        score += relatedTermsInCorpus.length * 10; // Each related term adds 10 points
+    }
+
+    // Score based on domain membership
+    for (const [domain, terms] of Object.entries(semanticDomains)) {
+        if (terms.some(t => t.toLowerCase() === keywordLower)) {
+            score += 5; // Domain membership adds 5 points
+
+            // Bonus: how many other terms from same domain appear in corpus?
+            const domainPeersInCorpus = terms.filter(t =>
+                t.toLowerCase() !== keywordLower &&
+                allKeywords.some(kw => kw.toLowerCase() === t.toLowerCase())
+            );
+            score += domainPeersInCorpus.length * 3; // Each domain peer adds 3 points
+        }
+    }
+
+    return score;
+}
+
+// Find semantically related keywords that co-occur with a given keyword
+function findSemanticCluster(keyword, postText, allSmartKeywords) {
+    const keywordLower = keyword.toLowerCase();
+    const cluster = new Set([keyword]);
+
+    // Add direct relationships that appear in this post
+    const directRelations = semanticRelationships[keyword] || semanticRelationships[keywordLower] || [];
+    directRelations.forEach(relTerm => {
+        if (postText.toLowerCase().includes(relTerm.toLowerCase())) {
+            // Find the exact casing from smart keywords
+            const exactMatch = allSmartKeywords.find(([kw]) => kw.toLowerCase() === relTerm.toLowerCase());
+            if (exactMatch) {
+                cluster.add(exactMatch[0]);
+            }
+        }
+    });
+
+    // Add domain peers that appear in this post
+    for (const [domain, terms] of Object.entries(semanticDomains)) {
+        if (terms.some(t => t.toLowerCase() === keywordLower)) {
+            terms.forEach(domainTerm => {
+                if (domainTerm.toLowerCase() !== keywordLower && postText.toLowerCase().includes(domainTerm.toLowerCase())) {
+                    const exactMatch = allSmartKeywords.find(([kw]) => kw.toLowerCase() === domainTerm.toLowerCase());
+                    if (exactMatch) {
+                        cluster.add(exactMatch[0]);
+                    }
+                }
+            });
+        }
+    }
+
+    return Array.from(cluster);
+}
+
 // Fix 7: Intelligent keyword analysis across ALL posts
 function analyzeGlobalKeywords() {
     console.log('\n' + '='.repeat(60));
-    console.log('🔍 GLOBAL KEYWORD ANALYSIS');
+    console.log('🔍 GLOBAL KEYWORD ANALYSIS WITH SEMANTIC INTELLIGENCE');
     console.log('='.repeat(60));
 
     const files = fs.readdirSync(postsDir)
@@ -590,54 +866,106 @@ function analyzeGlobalKeywords() {
     });
 
     // Filter: Keywords appearing 2+ times OR priority keywords (even if 1x)
-    const smartKeywords = Object.entries(keywordFrequency)
+    let smartKeywords = Object.entries(keywordFrequency)
         .filter(([keyword, count]) => {
             // Include if 2+ occurrences
             if (count >= 2) return true;
             // Or if it's a priority keyword (even with 1 occurrence)
             return priorityKeywords.some(pk => pk.toLowerCase() === keyword.toLowerCase());
-        })
-        .sort((a, b) => b[1] - a[1]);
+        });
+
+    // Calculate semantic scores for all keywords
+    const keywordsWithSemantics = smartKeywords.map(([keyword, count]) => {
+        const semanticScore = getSemanticScore(keyword, smartKeywords.map(([kw]) => kw));
+        return [keyword, count, semanticScore];
+    });
+
+    // Sort by semantic score first, then frequency
+    keywordsWithSemantics.sort((a, b) => {
+        // Prioritize keywords with high semantic connections
+        if (b[2] !== a[2]) return b[2] - a[2]; // Semantic score descending
+        return b[1] - a[1]; // Frequency descending
+    });
+
+    smartKeywords = keywordsWithSemantics.map(([keyword, count]) => [keyword, count]);
 
     console.log(`\n📊 Found ${smartKeywords.length} intelligent keywords (appearing 2+ times):\n`);
+    console.log('🧠 Keywords ranked by semantic richness and frequency\n');
 
-    // Categorize keywords
-    const categories = {
-        'Branded Programs & Offerings': [],
-        'Sanskrit/Tantric Terms': [],
-        'Names & Teachers': [],
-        'Practices & Techniques': [],
-        'Philosophical Concepts': []
-    };
+    // Categorize keywords using semantic domains
+    const categories = {};
 
-    smartKeywords.forEach(([keyword, count]) => {
-        // Check if it's a priority branded keyword
-        if (priorityKeywords.some(pk => pk.toLowerCase() === keyword.toLowerCase())) {
-            categories['Branded Programs & Offerings'].push([keyword, count]);
-        } else if (/^[A-Z][a-z]+ [A-Z]/.test(keyword)) {
-            categories['Names & Teachers'].push([keyword, count]);
-        } else if (/puja|sadhana|nyasa|trataka|mudra|asana/i.test(keyword)) {
-            categories['Practices & Techniques'].push([keyword, count]);
-        } else if (/tantra|yoga|kundalini|shakti|shiva/i.test(keyword)) {
-            categories['Philosophical Concepts'].push([keyword, count]);
-        } else if (/^[A-Z]/.test(keyword)) {
-            categories['Sanskrit/Tantric Terms'].push([keyword, count]);
+    // Initialize categories from semantic domains
+    Object.keys(semanticDomains).forEach(domain => {
+        categories[domain] = [];
+    });
+    categories['Other Keywords'] = [];
+
+    // Categorize each keyword using semantic domain matching
+    keywordsWithSemantics.forEach(([keyword, count, semanticScore]) => {
+        let categorized = false;
+
+        // Try to match keyword to semantic domains
+        for (const [domain, terms] of Object.entries(semanticDomains)) {
+            if (terms.some(t => t.toLowerCase() === keyword.toLowerCase())) {
+                categories[domain].push([keyword, count, semanticScore]);
+                categorized = true;
+                break;
+            }
+        }
+
+        if (!categorized) {
+            categories['Other Keywords'].push([keyword, count, semanticScore]);
         }
     });
 
-    // Display categorized results
+    // Display categorized results with semantic scores
     Object.entries(categories).forEach(([category, keywords]) => {
         if (keywords.length > 0) {
             console.log(`\n${category}:`);
-            keywords.slice(0, 15).forEach(([keyword, count]) => {
-                console.log(`  ${keyword.padEnd(30)} (${count}x)`);
+            keywords.slice(0, 15).forEach(([keyword, count, semanticScore]) => {
+                const scoreIndicator = semanticScore > 20 ? '🔥' : semanticScore > 10 ? '⭐' : '•';
+                console.log(`  ${scoreIndicator} ${keyword.padEnd(28)} (${count}x, semantic: ${semanticScore})`);
             });
         }
     });
 
-    // Now update keyword meta tags in posts
+    // Display semantic relationship insights
     console.log('\n' + '='.repeat(60));
-    console.log('📝 UPDATING KEYWORD META TAGS');
+    console.log('🔗 SEMANTIC RELATIONSHIP INSIGHTS');
+    console.log('='.repeat(60) + '\n');
+
+    // Show top 5 most semantically connected keywords
+    const topSemantic = keywordsWithSemantics
+        .filter(([_, __, score]) => score > 0)
+        .slice(0, 5);
+
+    topSemantic.forEach(([keyword, count, semanticScore]) => {
+        console.log(`\n${keyword} (semantic score: ${semanticScore}):`);
+
+        // Show direct relationships present in corpus
+        const keywordLower = keyword.toLowerCase();
+        const relations = semanticRelationships[keyword] || semanticRelationships[keywordLower] || [];
+        const presentRelations = relations.filter(rel =>
+            smartKeywords.some(([kw]) => kw.toLowerCase() === rel.toLowerCase())
+        );
+
+        if (presentRelations.length > 0) {
+            console.log(`  Related terms in corpus: ${presentRelations.slice(0, 8).join(', ')}`);
+        }
+
+        // Show domain membership
+        for (const [domain, terms] of Object.entries(semanticDomains)) {
+            if (terms.some(t => t.toLowerCase() === keywordLower)) {
+                console.log(`  Domain: ${domain}`);
+                break;
+            }
+        }
+    });
+
+    // Now update keyword meta tags in posts using semantic clustering
+    console.log('\n' + '='.repeat(60));
+    console.log('📝 UPDATING KEYWORD META TAGS WITH SEMANTIC CLUSTERING');
     console.log('='.repeat(60) + '\n');
 
     let updated = 0;
@@ -649,13 +977,46 @@ function analyzeGlobalKeywords() {
         const articleText = allContent[slug];
 
         // Find which smart keywords appear in THIS post
-        const postKeywords = smartKeywords
-            .filter(([keyword]) => articleText.toLowerCase().includes(keyword.toLowerCase()))
-            .map(([keyword]) => keyword)
-            .slice(0, 10); // Top 10 keywords for this post
+        const presentKeywords = keywordsWithSemantics
+            .filter(([keyword]) => articleText.toLowerCase().includes(keyword.toLowerCase()));
 
-        if (postKeywords.length >= 3) {
-            const keywordsStr = postKeywords.join(', ');
+        if (presentKeywords.length === 0) return;
+
+        // Build semantic clusters - group related keywords that co-occur
+        const clusters = new Map();
+
+        presentKeywords.forEach(([keyword, count, semanticScore]) => {
+            if (!clusters.has(keyword)) {
+                const cluster = findSemanticCluster(keyword, articleText, keywordsWithSemantics);
+                cluster.forEach(relatedKeyword => {
+                    if (!clusters.has(relatedKeyword)) {
+                        clusters.set(relatedKeyword, {
+                            keyword: relatedKeyword,
+                            clusterSize: cluster.length,
+                            semanticScore: keywordsWithSemantics.find(([kw]) => kw === relatedKeyword)?.[2] || 0
+                        });
+                    }
+                });
+            }
+        });
+
+        // Select keywords: prefer those with large semantic clusters and high scores
+        const selectedKeywords = Array.from(clusters.values())
+            .sort((a, b) => {
+                // Sort by cluster size first (more connections = more important)
+                if (b.clusterSize !== a.clusterSize) return b.clusterSize - a.clusterSize;
+                // Then by semantic score
+                if (b.semanticScore !== a.semanticScore) return b.semanticScore - a.semanticScore;
+                // Finally by frequency
+                const aFreq = keywordsWithSemantics.find(([kw]) => kw === a.keyword)?.[1] || 0;
+                const bFreq = keywordsWithSemantics.find(([kw]) => kw === b.keyword)?.[1] || 0;
+                return bFreq - aFreq;
+            })
+            .map(item => item.keyword)
+            .slice(0, 10); // Top 10 semantically clustered keywords
+
+        if (selectedKeywords.length >= 3) {
+            const keywordsStr = selectedKeywords.join(', ');
             const keywordsPattern = /<meta name="keywords" content="([^"]*)">/;
             const match = html.match(keywordsPattern);
 
@@ -665,14 +1026,18 @@ function analyzeGlobalKeywords() {
                 if (currentKeywords !== keywordsStr) {
                     html = html.replace(keywordsPattern, `<meta name="keywords" content="${keywordsStr}">`);
                     fs.writeFileSync(filepath, html);
-                    console.log(`  ✓ ${slug}: Updated with ${postKeywords.length} intelligent keywords`);
+
+                    // Show semantic cluster info
+                    const topCluster = clusters.get(selectedKeywords[0]);
+                    console.log(`  ✓ ${slug}: Updated with ${selectedKeywords.length} semantically clustered keywords`);
+                    console.log(`    Primary cluster: ${selectedKeywords.slice(0, 3).join(' → ')}`);
                     updated++;
                 }
             }
         }
     });
 
-    console.log(`\n✓ Updated ${updated} posts with intelligent keywords`);
+    console.log(`\n✓ Updated ${updated} posts with semantically intelligent keywords`);
 
     return {
         totalKeywords: smartKeywords.length,
@@ -690,16 +1055,25 @@ async function main() {
     let totalFixed = 0;
     let totalSkipped = 0;
     let totalErrors = 0;
+    const mismatchedPosts = [];
 
     for (const file of files) {
         const results = await autoFixPost(file);
 
         const fixes = Object.values(results).filter(r => r.action === 'fixed').length;
         const errors = Object.values(results).filter(r => r.action === 'error').length;
+        const warnings = Object.values(results).filter(r => r.action === 'warning').length;
+
+        if (results.titleSlugMismatch && results.titleSlugMismatch.action === 'warning') {
+            mismatchedPosts.push({
+                slug: file.replace('.html', ''),
+                ...results.titleSlugMismatch
+            });
+        }
 
         if (fixes > 0) totalFixed++;
         if (errors > 0) totalErrors++;
-        if (fixes === 0 && errors === 0) totalSkipped++;
+        if (fixes === 0 && errors === 0 && warnings === 0) totalSkipped++;
     }
 
     console.log(`\n${'='.repeat(60)}`);
@@ -707,7 +1081,35 @@ async function main() {
     console.log(`  Fixed: ${totalFixed} posts`);
     console.log(`  Clean: ${totalSkipped} posts`);
     console.log(`  Errors: ${totalErrors} posts`);
+    if (mismatchedPosts.length > 0) {
+        console.log(`  ⚠️  Title/Slug Mismatches: ${mismatchedPosts.length} posts`);
+    }
     console.log(`${'='.repeat(60)}\n`);
+
+    // Show all mismatched posts in a summary
+    if (mismatchedPosts.length > 0) {
+        console.log(`\n${'='.repeat(60)}`);
+        console.log(`⚠️  TITLE/SLUG MISMATCH SUMMARY`);
+        console.log(`${'='.repeat(60)}\n`);
+        console.log(`Found ${mismatchedPosts.length} post(s) with title/slug mismatches:\n`);
+
+        mismatchedPosts.forEach(post => {
+            console.log(`📄 ${post.currentSlug}`);
+            if (post.type === 'content_mismatch') {
+                console.log(`   H1 title: "${post.h1Title}"`);
+                console.log(`   Meta title: "${post.metaTitle}"`);
+                console.log(`   → CONTENT MISMATCH: H1 and meta title completely different!`);
+                console.log(`   → Action needed: Download correct Substack post for this slug\n`);
+            } else {
+                console.log(`   Title: "${post.title}"`);
+                console.log(`   Expected slug: ${post.expectedSlug}`);
+                console.log(`   Similarity: ${post.similarity}%`);
+                console.log(`   → Action needed: Verify content or rename file\n`);
+            }
+        });
+
+        console.log(`${'='.repeat(60)}\n`);
+    }
 
     // Run global keyword analysis AFTER all fixes
     const keywordResults = analyzeGlobalKeywords();
