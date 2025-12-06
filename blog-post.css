@@ -10,8 +10,7 @@ body {
     max-width: 720px;
     margin: 60px auto;
     padding: 40px 20px;
-    background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: #f3f2de;
 }
 
 .post-header {
