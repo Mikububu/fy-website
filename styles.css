@@ -719,6 +719,7 @@ body::before {
     height: auto;
     display: block;
     margin: 0 auto;
+    opacity: 0.5; /* 50% transparent to prevent text overlap when bubbles are close */
 }
 
 .blue-bubble-text {
