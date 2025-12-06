@@ -647,8 +647,8 @@ body::before {
     }
 
     .nasi-image-container {
-        width: 100%;
-        margin-left: 0;
+        width: 110%;
+        margin-left: -5%; /* Center the overflow */
     }
 
     .nasi-image {
@@ -665,7 +665,7 @@ body::before {
     }
 
     .brown-bubble {
-        width: 65%;
+        width: 71.5%;
     }
 
     .bubble-text {
