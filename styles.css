@@ -366,6 +366,7 @@ body::before {
     background-color: #f1e6cb;
     padding: 80px 40px;
     text-align: center;
+    overflow-x: hidden;
 }
 
 .nasi-container {
