@@ -136,16 +136,24 @@ button[aria-label*="Share"],
     display: none !important;
 }
 
-/* Hide duplicate/wrong headings - keep only the clean ones */
-.post-header h1.title-X77sOw,
-.published.title-X77sOw {
-    display: none !important;
+/* Force correct fonts on all headings */
+.post-header h1,
+h1[class*="title"],
+h1[dir="auto"] {
+    font-family: 'Bluu Next', serif !important;
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    color: #1a1a1a !important;
+    line-height: 1.2 !important;
+    margin-bottom: 20px !important;
 }
 
-.subtitle.subtitle-HEEcLo {
+.subtitle.subtitle-HEEcLo,
+h3[class*="subtitle"] {
     display: block !important;
     font-family: 'Roboto', sans-serif !important;
     font-size: 1.3rem !important;
+    font-weight: 400 !important;
     color: #423737 !important;
     margin-bottom: 20px !important;
 }
