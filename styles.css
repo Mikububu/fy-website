@@ -1382,6 +1382,7 @@ body::before {
     text-align: center;
     padding: clamp(10px, 1.5vw, 20px);
     z-index: 2;
+    opacity: 0.5; /* 50% transparent to prevent text overlap when circles are close */
 }
 
 /* Each circle gets a slightly different wobble */

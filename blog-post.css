@@ -218,3 +218,73 @@ h3[class*="subtitle"] {
         font-size: 1.2rem;
     }
 }
+
+
+/* Keyword Tags Section */
+.post-keywords {
+    margin: 3rem 0 2rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(122, 153, 153, 0.1), rgba(122, 153, 153, 0.05));
+    border-radius: 12px;
+    border: 1px solid rgba(122, 153, 153, 0.2);
+}
+
+.post-keywords h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #7a9999;
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+.keyword-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.keyword-tag {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: rgba(122, 153, 153, 0.15);
+    color: #5a7979;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(122, 153, 153, 0.3);
+    cursor: default;
+}
+
+.keyword-tag:hover {
+    background: rgba(122, 153, 153, 0.25);
+    border-color: rgba(122, 153, 153, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .post-keywords {
+        padding: 1.5rem;
+        margin: 2rem 0 1.5rem;
+    }
+
+    .post-keywords h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .keyword-cloud {
+        gap: 0.5rem;
+    }
+
+    .keyword-tag {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+}
