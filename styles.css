@@ -641,6 +641,7 @@ body::before {
         margin-top: 5px;
         text-align: center;
         width: 100%;
+        margin-left: -10px; /* Shift 10px left to center visually */
     }
 
     .nasi-subheading {
