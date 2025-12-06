@@ -1360,20 +1360,20 @@ body::before {
     margin: 0;
 }
 
-/* Number circles container */
+/* Intelligent responsive 7 circles container for ALL screen sizes */
 .slc-numbers {
     position: relative;
-    width: 100%;
-    min-width: 500px;
-    min-height: 600px;
-    height: 600px;
-    margin-top: 80px;
+    width: min(100%, 90vw); /* Never exceed viewport */
+    max-width: 100vw;
+    height: clamp(500px, 60vw, 700px); /* Fluid height */
+    margin: clamp(40px, 5vw, 80px) auto 0;
+    overflow: hidden; /* Clip any overflow */
 }
 
 .slc-number-circle {
     position: absolute;
-    width: 150px;
-    height: 150px;
+    width: clamp(100px, 12vw, 150px); /* Fluid sizing for all screens */
+    height: clamp(100px, 12vw, 150px);
     background-color: #7a9999;
     border-radius: 50%;
     display: flex;
@@ -1381,7 +1381,7 @@ body::before {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 20px;
+    padding: clamp(10px, 1.5vw, 20px);
     z-index: 2;
 }
 
@@ -1473,56 +1473,57 @@ body::before {
     75% { border-radius: 55% 45% 50% 50% / 52% 48% 55% 45%; }
 }
 
-/* Position each circle */
+/* Intelligent responsive positioning - planetary pattern for ALL screens */
 .slc-number-circle.guru {
-    top: 0;
+    top: 5%;
     left: 50%;
     transform: translateX(-50%);
 }
 
 .slc-number-circle.placeholders {
-    top: 100px;
-    left: 15%;
+    top: 20%;
+    left: 12%;
 }
 
 .slc-number-circle.weeks {
-    top: 100px;
-    right: 15%;
+    top: 20%;
+    right: 12%;
 }
 
 .slc-number-circle.client {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 220px;
-    height: 220px;
+    width: clamp(150px, 18vw, 220px); /* Fluid sizing */
+    height: clamp(150px, 18vw, 220px);
     background-color: rgba(185, 212, 212, 0.7);
+    z-index: 10; /* Always on top */
 }
 
 .slc-number-circle.client .number {
-    font-size: 6rem;
+    font-size: clamp(3rem, 5vw, 6rem); /* Fluid font size */
     color: #000000 !important; /* Black text for 1 CLIENT - all versions */
 }
 
 .slc-number-circle.location {
-    bottom: 100px;
-    left: 15%;
+    bottom: 20%;
+    left: 12%;
 }
 
 .slc-number-circle.facilitators {
-    bottom: 100px;
-    right: 15%;
+    bottom: 20%;
+    right: 12%;
 }
 
 .slc-number-circle.bodyworkers {
-    bottom: 0;
+    bottom: 5%;
     left: 50%;
     transform: translateX(-50%);
 }
 
 .slc-number-circle .number {
     font-family: 'Bluu Next', serif;
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 3.5vw, 4rem); /* Fluid font size */
     font-weight: 700;
     color: #E6DECA;
     line-height: 1;
@@ -1533,7 +1534,7 @@ body::before {
 
 .slc-number-circle .label {
     font-family: 'Roboto', sans-serif;
-    font-size: 0.95rem;
+    font-size: clamp(0.7rem, 1vw, 0.95rem); /* Fluid font size */
     font-weight: 100;
     color: #E6DECA;
     line-height: 1.2;
@@ -1556,7 +1557,7 @@ body::before {
     text-align: left;
 }
 
-/* SLC Responsive - scale down but keep circle layout */
+/* SLC Responsive - base styles handle all sizes, minimal overrides */
 @media (max-width: 1200px) {
     .slc-container {
         flex-direction: column;
@@ -1568,142 +1569,13 @@ body::before {
         width: 100%;
     }
 
-    .slc-numbers {
-        min-width: auto;
-        height: 500px;
-        transform: scale(0.85);
-        transform-origin: center center;
-    }
-
     .slc-right {
         flex: 1;
         text-align: center;
     }
 }
 
-@media (max-width: 900px) {
-    .slc-numbers {
-        height: 450px;
-        transform: scale(0.7);
-    }
-}
-
-@media (max-width: 768px) {
-    .slc-section {
-        padding: 60px 20px;
-    }
-
-    .slc-organic-bubble {
-        padding: 38.02px;
-        min-height: 186.28px;
-        max-width: 465.7px;
-        border-radius: 49% 51% 50% 50% / 53% 47% 53% 47%;
-    }
-
-    .slc-numbers {
-        width: 100%;
-        height: 600px;
-        margin: 130px auto 0;
-    }
-
-    .slc-number-circle {
-        width: 120px;
-        height: 120px;
-    }
-
-    .slc-number-circle.client {
-        width: 180px;
-        height: 180px;
-        opacity: 0.5;
-        z-index: 100;
-    }
-
-    .slc-number-circle .number {
-        font-size: 2.5rem;
-        font-weight: 700;
-    }
-
-    .slc-number-circle .label {
-        font-size: 0.75rem !important;
-        font-weight: 400 !important;
-        line-height: 1.1 !important;
-        color: #000000;
-    }
-
-    /* Arrange circles in circular pattern around center */
-    .slc-number-circle.guru {
-        top: 0%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .slc-number-circle.placeholders {
-        top: 15%;
-        left: 5%;
-    }
-
-    .slc-number-circle.weeks {
-        top: 15%;
-        right: 5%;
-    }
-
-    .slc-number-circle.location {
-        bottom: 15%;
-        left: 5%;
-    }
-
-    .slc-number-circle.facilitators {
-        bottom: 15%;
-        right: 5%;
-    }
-
-    .slc-number-circle.bodyworkers {
-        bottom: 0%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .slc-number-circle.client .number {
-        font-size: 4rem;
-        color: #000000 !important; /* Black text for 1 CLIENT - mobile */
-    }
-
-    .slc-title {
-        font-size: 3.3rem;
-    }
-
-    .slc-description {
-        font-size: 1.4rem;
-        font-weight: 700;
-        line-height: 1.1;
-    }
-}
-
 @media (max-width: 600px) {
-    .slc-numbers {
-        height: 450px;
-    }
-
-    .slc-number-circle {
-        width: 165.6px;  /* 138px * 1.2 (20% increase) */
-        height: 165.6px;
-    }
-
-    .slc-number-circle.client {
-        width: 201.6px;  /* 168px * 1.2 (20% increase) */
-        height: 201.6px;
-        opacity: 0.5;
-        z-index: 100;
-    }
-
-    .slc-number-circle .number {
-        font-size: 2rem;
-    }
-
-    .slc-number-circle.client .number {
-        font-size: 3.5rem;
-    }
-
     .slc-title {
         font-size: 2.5rem;
     }
@@ -2939,28 +2811,7 @@ iframe .jw-title-secondary {
         transform: scale(1.2);
     }
 
-    /* SLC section for iPad */
-    .slc-numbers {
-        width: 90%;
-        max-width: 900px;
-        height: 700px; /* Increased height for better circle visibility */
-        position: relative;
-    }
-
-    .slc-number-circle {
-        width: 140px;
-        height: 140px;
-    }
-
-    .slc-number-circle.client {
-        width: 200px;
-        height: 200px;
-    }
-
-    .slc-organic-bubble {
-        min-height: 300px;
-        max-width: 500px;
-    }
+    /* SLC section - no overrides needed, base styles handle all sizes */
 
     /* Michael section for iPad */
     .michael-section {
@@ -2998,49 +2849,7 @@ iframe .jw-title-secondary {
 
     /* Retreats section - no overrides needed, base styles handle all sizes */
 
-    /* 7 circles planetary arrangement for iPad */
-    .slc-number-circle.client {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: rgba(185, 212, 212, 0.7);
-    }
-
-    .slc-number-circle.client .number {
-        color: #000000 !important; /* Black text for 1 CLIENT */
-    }
-
-    .slc-number-circle.guru {
-        top: 10%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .slc-number-circle.placeholders {
-        top: 25%;
-        left: 15%;
-    }
-
-    .slc-number-circle.weeks {
-        top: 25%;
-        right: 15%;
-    }
-
-    .slc-number-circle.location {
-        bottom: 25%;
-        left: 15%;
-    }
-
-    .slc-number-circle.facilitators {
-        bottom: 25%;
-        right: 15%;
-    }
-
-    .slc-number-circle.bodyworkers {
-        bottom: 10%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+    /* 7 circles - no overrides needed, base styles handle all sizes */
 
     /* Blog grid for iPad - 3 columns */
     .blog-grid {
