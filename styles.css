@@ -1096,6 +1096,12 @@ body::before {
     font-weight: 400;
 }
 
+.vienna-weather .weather-text,
+.vienna-weather span {
+    font-family: 'Bluu Next', serif;
+    color: white;
+}
+
 /* Freud Section Mobile Responsive */
 @media (max-width: 1024px) {
     .freud-section {
