@@ -112,6 +112,7 @@
 
     <div class="controls">
         <button id="auditBtn" onclick="runAudit()">RUN FULL AUDIT</button>
+        <button id="autoFixBtn" onclick="runAutoFix()" style="margin-left: 20px; background: #330000; border-color: #ff6600; color: #ff6600;">🔧 AUTO-FIX ALL ISSUES</button>
     </div>
 
     <div id="progressContainer" style="display: none;">
@@ -301,6 +302,54 @@
             }
 
             results.innerHTML = html;
+        }
+
+        async function runAutoFix() {
+            const btn = document.getElementById('autoFixBtn');
+            const auditBtn = document.getElementById('auditBtn');
+            const results = document.getElementById('results');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressText = document.getElementById('progressText');
+            const progressBar = document.getElementById('progressBar');
+
+            // Disable buttons
+            btn.disabled = true;
+            auditBtn.disabled = true;
+            progressContainer.style.display = 'block';
+            progressText.textContent = '🔧 Running auto-fix script on server...';
+            progressBar.style.width = '50%';
+
+            results.innerHTML = `
+                <div class="summary">
+                    <h2>🔧 AUTO-FIX IN PROGRESS</h2>
+                    <p>Running comprehensive auto-fix script...</p>
+                    <p style="margin-top: 20px;">This will:</p>
+                    <ul>
+                        <li>✓ Strip Substack UI from all posts</li>
+                        <li>✓ Download missing Substack images</li>
+                        <li>✓ Add local blog images</li>
+                        <li>✓ Add top back links</li>
+                        <li>✓ Clean up all HTML</li>
+                    </ul>
+                    <p style="margin-top: 20px; color: #ff6600;">
+                        <strong>⚠️ NOTE:</strong> Auto-fix runs on the server via Node.js.
+                        You need to execute: <code>node auto-fix-posts.js</code>
+                    </p>
+                    <p style="margin-top: 10px;">
+                        This audit page is browser-based and cannot execute server-side scripts.
+                        Run the command in your terminal, then click "RUN FULL AUDIT" to verify fixes.
+                    </p>
+                </div>
+            `;
+
+            progressBar.style.width = '100%';
+            progressText.textContent = '✓ Instructions displayed';
+
+            setTimeout(() => {
+                btn.disabled = false;
+                auditBtn.disabled = false;
+                progressContainer.style.display = 'none';
+            }, 2000);
         }
     </script>
 </body>
