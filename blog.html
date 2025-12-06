@@ -39,6 +39,78 @@
                 font-size: 4rem;
             }
         }
+
+        /* Tag Cloud Styles */
+        .tag-cloud-section {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 60px 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .tag-cloud-title {
+            font-family: 'Bluu Next', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #423737;
+            text-align: center;
+            margin-bottom: 40px;
+            text-transform: lowercase;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #B8D4D4 0%, #8fa9aa 100%);
+            color: white;
+            border-radius: 25px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .tag:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+            background: linear-gradient(135deg, #8fa9aa 0%, #423737 100%);
+        }
+
+        .tag-size-1 { font-size: 0.85rem; opacity: 0.7; }
+        .tag-size-2 { font-size: 1rem; opacity: 0.8; }
+        .tag-size-3 { font-size: 1.2rem; opacity: 0.85; }
+        .tag-size-4 { font-size: 1.4rem; opacity: 0.9; }
+        .tag-size-5 { font-size: 1.7rem; opacity: 1; font-weight: 700; }
+
+        @media (max-width: 768px) {
+            .tag-cloud-section {
+                padding: 40px 20px;
+                margin: 60px auto 0;
+            }
+
+            .tag-cloud-title {
+                font-size: 2.5rem;
+            }
+
+            .tag-size-1 { font-size: 0.75rem; }
+            .tag-size-2 { font-size: 0.9rem; }
+            .tag-size-3 { font-size: 1rem; }
+            .tag-size-4 { font-size: 1.2rem; }
+            .tag-size-5 { font-size: 1.4rem; }
+        }
     </style>
 </head>
 <body>
@@ -48,8 +120,46 @@
         <div id="blog-grid" class="blog-grid">
             <div class="loading">Loading blog posts...</div>
         </div>
+
+        <!-- Tag Cloud -->
+        <div class="tag-cloud-section">
+            <h2 class="tag-cloud-title">explore by topic</h2>
+            <div id="tag-cloud" class="tag-cloud"></div>
+        </div>
     </div>
 
     <script src="blog-standalone.js"></script>
+    <script>
+        // Load and display tag cloud
+        fetch('/keywords-data.json')
+            .then(res => res.json())
+            .then(data => {
+                const tagCloud = document.getElementById('tag-cloud');
+
+                // Take top 40 keywords and create size-based tags
+                const topWords = data.words.slice(0, 40);
+                const maxCount = Math.max(...topWords.map(w => w.count));
+                const minCount = Math.min(...topWords.map(w => w.count));
+
+                // Shuffle for visual variety
+                const shuffled = topWords.sort(() => Math.random() - 0.5);
+
+                shuffled.forEach(word => {
+                    // Calculate size based on frequency (1-5 scale)
+                    const normalized = (word.count - minCount) / (maxCount - minCount);
+                    const size = Math.ceil(normalized * 4) + 1; // 1-5
+
+                    const tag = document.createElement('span');
+                    tag.className = `tag tag-size-${size}`;
+                    tag.textContent = word.text;
+                    tag.title = `${word.count} mentions`;
+
+                    tagCloud.appendChild(tag);
+                });
+            })
+            .catch(err => {
+                console.error('Failed to load tag cloud:', err);
+            });
+    </script>
 </body>
 </html>
