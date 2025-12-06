@@ -661,11 +661,11 @@ body::before {
     }
 
     .brown-bubble-container {
-        margin-top: -75px; /* Moved up 50px more */
+        margin-top: -45px; /* Moved down 30px from -75px */
     }
 
     .brown-bubble {
-        width: 71.5%;
+        width: 80%;
     }
 
     .bubble-text {
