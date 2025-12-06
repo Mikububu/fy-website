@@ -1371,7 +1371,7 @@ body::before {
     max-width: 100vw;
     height: clamp(500px, 60vw, 700px); /* Fluid height */
     margin: clamp(120px, 12vw, 180px) auto 0; /* Increased top margin to avoid collision with heading */
-    overflow: hidden; /* Clip any overflow */
+    overflow: visible; /* Allow circles to extend beyond container */
 }
 
 .slc-number-circle {
