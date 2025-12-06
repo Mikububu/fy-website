@@ -541,6 +541,7 @@ body::before {
     height: auto;
     display: block;
     margin: 0 auto;
+    transform: scaleY(0.8); /* Squeeze vertically - less height */
 }
 
 .bubble-text {
@@ -2953,21 +2954,27 @@ iframe .jw-title-secondary {
         font-size: 1.1rem;
     }
 
+    /* NASI image 20% bigger for iPad */
+    .nasi-image {
+        transform: scale(1.2);
+    }
+
     /* SLC section for iPad */
     .slc-numbers {
         width: 90%;
         max-width: 900px;
-        height: 550px;
+        height: 700px; /* Increased height for better circle visibility */
+        position: relative;
     }
 
     .slc-number-circle {
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
     }
 
     .slc-number-circle.client {
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
     }
 
     .slc-organic-bubble {
@@ -2998,67 +3005,62 @@ iframe .jw-title-secondary {
         max-width: 700px;
     }
 
+    /* Brown bubble container - move down */
+    .brown-bubble-container {
+        margin-top: -100px; /* Moved down from -150px */
+    }
+
     .brown-bubble {
         width: 86.4%; /* Stretched 20% wider horizontally */
         max-width: 1037px; /* Stretched 20% wider horizontally */
+        transform: scaleY(0.8); /* Squeeze vertically - less height */
     }
 
     /* Retreats section left-align for iPad */
     .retreats-container {
         padding: 0 20px;
         justify-items: start;
-        padding-left: 20px;
+        padding-left: 0; /* Truly left aligned */
     }
 
     /* 7 circles arrangement for iPad - desktop-like layout */
-    .slc-number-circle {
-        width: 140px;
-        height: 140px;
-    }
-
     .slc-number-circle.client {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 200px;
-        height: 200px;
         background-color: rgba(185, 212, 212, 0.7);
     }
 
     .slc-number-circle.guru {
-        top: 0;
+        top: 50px;
         left: 50%;
         transform: translateX(-50%);
     }
 
     .slc-number-circle.placeholders {
-        top: 100px;
-        left: 15%;
+        top: 150px;
+        left: 10%;
     }
 
     .slc-number-circle.weeks {
-        top: 100px;
-        right: 15%;
+        top: 150px;
+        right: 10%;
     }
 
     .slc-number-circle.location {
-        bottom: 100px;
-        left: 15%;
+        bottom: 150px;
+        left: 10%;
     }
 
     .slc-number-circle.facilitators {
-        bottom: 100px;
-        right: 15%;
+        bottom: 150px;
+        right: 10%;
     }
 
     .slc-number-circle.bodyworkers {
-        bottom: 0;
+        bottom: 50px;
         left: 50%;
         transform: translateX(-50%);
-    }
-
-    .slc-numbers {
-        height: 600px;
     }
 
     /* Blog grid for iPad - 3 columns */
