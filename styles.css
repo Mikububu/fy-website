@@ -3017,44 +3017,52 @@ iframe .jw-title-secondary {
         transform: scaleY(0.75); /* Squeeze more vertically */
     }
 
-    /* Retreats section - responsive grid for iPad */
+    /* Retreats section - intelligent responsive grid that never overflows */
     .retreats-container {
-        max-width: 95vw; /* Use viewport width for dynamic sizing */
-        padding: 0 2vw;
-        gap: 2vw; /* Responsive gap */
-        grid-template-columns: repeat(3, 1fr); /* Equal columns */
+        width: 100%;
+        max-width: 100vw; /* Never exceed viewport */
+        padding: 0;
+        margin: 0 auto;
+        gap: 1vw; /* Minimal gap */
+        grid-template-columns: repeat(3, minmax(0, 1fr)); /* minmax(0, 1fr) prevents overflow */
         justify-items: center;
         align-items: center;
+        overflow: hidden; /* Clip any overflow */
     }
 
-    /* Scale bubbles proportionally to viewport */
+    /* Scale bubbles to ALWAYS fit within their grid cell */
     .main-heading-bubble {
-        width: clamp(280px, 25vw, 380px); /* Fluid sizing */
-        height: clamp(220px, 20vw, 300px);
-        padding: clamp(20px, 3vw, 35px);
+        width: min(90%, 28vw); /* Use smaller of 90% of cell or 28vw */
+        height: auto;
+        aspect-ratio: 1.15 / 1; /* Maintain proportions */
+        padding: clamp(15px, 2.5vw, 30px);
     }
 
     .content-bubble {
-        max-width: clamp(240px, 22vw, 300px); /* Fluid sizing */
-        min-height: clamp(200px, 18vw, 240px);
-        padding: clamp(25px, 3vw, 35px);
+        width: min(90%, 26vw); /* Use smaller of 90% of cell or 26vw */
+        max-width: 100%; /* Never exceed container */
+        min-height: auto;
+        aspect-ratio: 1.1 / 1; /* Maintain proportions */
+        padding: clamp(20px, 2.5vw, 30px);
     }
 
-    /* Move right bubble significantly left to prevent off-screen */
+    /* Remove all transforms - let grid handle positioning */
     .bubble-2 {
-        transform: translateX(-35%); /* Move 35% left, can overlap middle bubble */
+        transform: none;
+        justify-self: center; /* Center within grid cell */
     }
 
     .retreats-main-heading {
-        font-size: clamp(3.5rem, 5vw, 4.5rem); /* Fluid font size */
+        font-size: clamp(3rem, 4.5vw, 4rem); /* Fluid font size */
     }
 
     .bubble-heading {
-        font-size: clamp(1.3rem, 2vw, 1.5rem);
+        font-size: clamp(1.2rem, 1.8vw, 1.4rem);
     }
 
     .bubble-description {
-        font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+        font-size: clamp(0.8rem, 1.1vw, 0.85rem);
+        line-height: 1.4;
     }
 
     /* 7 circles planetary arrangement for iPad */
