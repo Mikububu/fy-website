@@ -33,7 +33,7 @@ body {
     margin-bottom: 40px;
 }
 
-.back-link {
+.back-link, .top-back-link {
     display: inline-block;
     margin-bottom: 20px;
     color: #8fa9aa;
@@ -42,8 +42,13 @@ body {
     transition: color 0.3s ease;
 }
 
-.back-link:hover {
+.back-link:hover, .top-back-link:hover {
     color: #423737;
+}
+
+.top-back-link {
+    margin-top: 0;
+    margin-bottom: 30px;
 }
 
 .post-title {
