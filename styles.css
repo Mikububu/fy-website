@@ -2914,8 +2914,8 @@ iframe .jw-title-secondary {
     }
 }
 
-/* iPad and Tablet Optimizations (768px - 1024px) */
-@media (min-width: 769px) and (max-width: 1024px) {
+/* iPad and Tablet Optimizations (768px - 1366px for iPad Pro) */
+@media (min-width: 769px) and (max-width: 1366px) {
     /* Logo sizing for iPad */
     .logo {
         max-width: 30%;
