@@ -621,7 +621,6 @@ body::before {
 
     .nasi-container {
         max-width: 95%;
-        overflow-x: hidden;
     }
 
     .nasi-text-top {
