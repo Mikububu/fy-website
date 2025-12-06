@@ -131,7 +131,15 @@ async function loadBlogPosts() {
 
 // Load posts when page loads
 console.log('📄 blog.js loaded');
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('🚀 DOMContentLoaded event fired, calling loadBlogPosts()');
+
+// Try multiple initialization methods to ensure it runs
+if (document.readyState === 'loading') {
+    console.log('⏳ Document still loading, waiting for DOMContentLoaded');
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('🚀 DOMContentLoaded event fired, calling loadBlogPosts()');
+        loadBlogPosts();
+    });
+} else {
+    console.log('✅ Document already loaded, calling loadBlogPosts() immediately');
     loadBlogPosts();
-});
+}
