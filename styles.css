@@ -1518,11 +1518,11 @@ body::before {
 }
 
 .slc-description {
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 100;
+    font-family: 'Bluu Next', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
     color: #1a1a1a;
-    line-height: 1.2;
+    line-height: 1.15;
     margin: 0;
 }
 
