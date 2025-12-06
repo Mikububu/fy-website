@@ -2,9 +2,11 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const http = require('http');
+const { execSync } = require('child_process');
 
 const postsDir = './posts';
 const blogImagesDir = './blog-images';
+const thumbnailsDir = './blog-thumbnails';
 
 console.log('AUTO-FIX: Starting comprehensive blog post repair...\n');
 
@@ -157,6 +159,55 @@ function addTopBackLink(filepath, slug) {
     return { action: 'fixed' };
 }
 
+// Fix 4: Generate thumbnail from first blog image
+function generateThumbnail(slug) {
+    // Check if thumbnail already exists
+    const possibleThumbnails = [
+        path.join(thumbnailsDir, `${slug}.jpg`),
+        path.join(thumbnailsDir, `${slug}.png`),
+        path.join(thumbnailsDir, `${slug}.jpeg`)
+    ];
+
+    for (const thumb of possibleThumbnails) {
+        if (fs.existsSync(thumb)) {
+            return { action: 'skip', reason: 'Thumbnail exists' };
+        }
+    }
+
+    // Find first blog image (img-0)
+    const possibleImages = [
+        `${slug}-img-0.jpg`,
+        `${slug}-img-0.png`,
+        `${slug}-img-0.jpeg`,
+        `${slug}-img-0.webp`
+    ];
+
+    let sourceImage = null;
+    for (const img of possibleImages) {
+        const imgPath = path.join(blogImagesDir, img);
+        if (fs.existsSync(imgPath)) {
+            sourceImage = imgPath;
+            break;
+        }
+    }
+
+    if (!sourceImage) {
+        return { action: 'skip', reason: 'No source image (img-0)' };
+    }
+
+    // Determine output format
+    const ext = path.extname(sourceImage);
+    const thumbnailPath = path.join(thumbnailsDir, `${slug}${ext}`);
+
+    try {
+        // Create thumbnail with max 600px width/height
+        execSync(`sips -Z 600 "${sourceImage}" --out "${thumbnailPath}"`, { stdio: 'pipe' });
+        return { action: 'fixed', path: thumbnailPath };
+    } catch (err) {
+        return { action: 'error', reason: err.message };
+    }
+}
+
 // Main auto-fix function
 async function autoFixPost(file) {
     const slug = file.replace('.html', '');
@@ -167,7 +218,8 @@ async function autoFixPost(file) {
     const results = {
         substackUI: { action: 'skip' },
         substackImages: { action: 'skip' },
-        topBackLink: { action: 'skip' }
+        topBackLink: { action: 'skip' },
+        thumbnail: { action: 'skip' }
     };
 
     try {
@@ -189,7 +241,13 @@ async function autoFixPost(file) {
             console.log(`  ✓ Added top back link`);
         }
 
-        const totalFixes = [results.substackUI, results.substackImages, results.topBackLink]
+        // Fix 4: Generate thumbnail
+        results.thumbnail = generateThumbnail(slug);
+        if (results.thumbnail.action === 'fixed') {
+            console.log(`  ✓ Generated thumbnail from img-0`);
+        }
+
+        const totalFixes = [results.substackUI, results.substackImages, results.topBackLink, results.thumbnail]
             .filter(r => r.action === 'fixed').length;
 
         if (totalFixes === 0) {
