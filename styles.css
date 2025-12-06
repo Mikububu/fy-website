@@ -3058,11 +3058,13 @@ iframe .jw-title-secondary {
 
     .bubble-heading {
         font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+        text-align: center;
     }
 
     .bubble-description {
         font-size: clamp(0.8rem, 1.1vw, 0.85rem);
         line-height: 1.4;
+        text-align: center;
     }
 
     /* 7 circles planetary arrangement for iPad */
