@@ -404,7 +404,8 @@ body::before {
 
 .nasi-image-container {
     position: relative;
-    width: 1380px; /* 15% bigger: 1200px * 1.15 */
+    width: 100%;
+    max-width: 1380px; /* 15% bigger: 1200px * 1.15 */
     margin: 0 auto;
 }
 

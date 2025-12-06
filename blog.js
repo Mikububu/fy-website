@@ -47,13 +47,10 @@ const substackMapping = {
 
 // Load blog posts from posts-data.json
 async function loadBlogPosts() {
-    console.log('🔍 loadBlogPosts() called');
     const blogGrid = document.getElementById('blog-grid');
-    console.log('📍 blogGrid element:', blogGrid);
 
     try {
         // Load from posts-data.json with cache busting
-        console.log('📡 Fetching posts-data.json...');
         const response = await fetch('/posts-data.json?v=' + Date.now());
 
         if (!response.ok) {
@@ -61,7 +58,6 @@ async function loadBlogPosts() {
         }
 
         const posts = await response.json();
-        console.log(`✅ Loaded ${posts.length} posts from posts-data.json`);
 
         if (!posts || posts.length === 0) {
             throw new Error('No posts found');
@@ -77,7 +73,6 @@ async function loadBlogPosts() {
 
         // Clear loading message
         blogGrid.innerHTML = '';
-        console.log('🎨 Rendering blog post cards...');
 
         // Create blog post cards
         posts.forEach((post) => {
@@ -117,8 +112,6 @@ async function loadBlogPosts() {
             blogGrid.appendChild(card);
         });
 
-        console.log(`✅ Rendered ${posts.length} blog cards successfully`);
-
     } catch (error) {
         console.error('Error loading blog posts:', error);
         blogGrid.innerHTML = `
@@ -130,16 +123,8 @@ async function loadBlogPosts() {
 }
 
 // Load posts when page loads
-console.log('📄 blog.js loaded');
-
-// Try multiple initialization methods to ensure it runs
 if (document.readyState === 'loading') {
-    console.log('⏳ Document still loading, waiting for DOMContentLoaded');
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log('🚀 DOMContentLoaded event fired, calling loadBlogPosts()');
-        loadBlogPosts();
-    });
+    document.addEventListener('DOMContentLoaded', loadBlogPosts);
 } else {
-    console.log('✅ Document already loaded, calling loadBlogPosts() immediately');
     loadBlogPosts();
 }
