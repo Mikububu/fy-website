@@ -27,7 +27,7 @@
 
 html, body {
     overflow-x: hidden;
-    max-width: 100vw;
+    max-width: 100%;
 }
 
 body {
@@ -2824,7 +2824,7 @@ iframe .jw-title-secondary {
 }
 
 .video-preview-container {
-    width: 100vw;
+    width: 100%;
     max-width: 100%;
     position: relative;
 }
