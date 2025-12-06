@@ -92,14 +92,28 @@ function stripSubstackUI(filepath, slug) {
     };
 }
 
-// Fix 2: Download missing Substack images
+// Fix 2: Download missing Substack images (supports multiple formats)
 async function downloadSubstackImages(filepath, slug) {
     let html = fs.readFileSync(filepath, 'utf8');
 
-    const substackRegex = /src="(https:\/\/substackcdn\.com[^"]+)"/g;
-    const matches = [...html.matchAll(substackRegex)];
+    // Match various Substack image patterns
+    const patterns = [
+        /src="(https:\/\/substackcdn\.com[^"]+)"/g,
+        /src="(https:\/\/substack\.com[^"]+\.(?:jpg|jpeg|png|gif|webp)[^"]*)"/gi,
+        /srcset="[^"]*?(https:\/\/substackcdn\.com[^"\s,]+)/g,
+        /url\((https:\/\/substackcdn\.com[^)]+)\)/g
+    ];
 
-    if (matches.length === 0) {
+    let allMatches = [];
+    for (const pattern of patterns) {
+        const matches = [...html.matchAll(pattern)];
+        allMatches.push(...matches);
+    }
+
+    // Deduplicate URLs
+    const uniqueUrls = [...new Set(allMatches.map(m => m[1]))];
+
+    if (uniqueUrls.length === 0) {
         return { action: 'skip', reason: 'No Substack images' };
     }
 
@@ -116,15 +130,23 @@ async function downloadSubstackImages(filepath, slug) {
 
     imageIndex = existingImages.length > 0 ? Math.max(...existingImages) + 1 : 0;
 
-    for (const match of matches) {
-        const substackUrl = match[1];
+    for (const substackUrl of uniqueUrls) {
         const localFilename = `${slug}-img-${imageIndex}.jpg`;
         const localPath = path.join(blogImagesDir, localFilename);
         const localUrl = `/blog-images/${localFilename}`;
 
         try {
             await downloadImage(substackUrl, localPath);
-            html = html.replace(substackUrl, localUrl);
+
+            // Downscale if image is too large (max 1200px)
+            try {
+                execSync(`sips -Z 1200 "${localPath}"`, { stdio: 'pipe' });
+            } catch (err) {
+                console.log(`    ⚠ Failed to downscale: ${err.message}`);
+            }
+
+            // Replace all occurrences of this URL
+            html = html.replace(new RegExp(substackUrl.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), localUrl);
             downloaded++;
             imageIndex++;
         } catch (err) {
@@ -159,7 +181,7 @@ function addTopBackLink(filepath, slug) {
     return { action: 'fixed' };
 }
 
-// Fix 4: Generate thumbnail from first blog image
+// Fix 4: Generate thumbnail from first blog image (or use Michael's photo fallback)
 function generateThumbnail(slug) {
     // Check if thumbnail already exists
     const possibleThumbnails = [
@@ -191,17 +213,30 @@ function generateThumbnail(slug) {
         }
     }
 
+    // Fallback: Use Michael's photo for video-only posts or posts without images
     if (!sourceImage) {
-        return { action: 'skip', reason: 'No source image (img-0)' };
+        const fallbackImage = './images/Wogenburg.webp';
+        if (fs.existsSync(fallbackImage)) {
+            sourceImage = fallbackImage;
+            console.log(`    ℹ Using Michael's photo as fallback thumbnail`);
+        } else {
+            return { action: 'skip', reason: 'No source image and no fallback' };
+        }
     }
 
     // Determine output format
-    const ext = path.extname(sourceImage);
+    const ext = sourceImage.includes('Wogenburg') ? '.jpg' : path.extname(sourceImage);
     const thumbnailPath = path.join(thumbnailsDir, `${slug}${ext}`);
 
     try {
         // Create thumbnail with max 600px width/height
         execSync(`sips -Z 600 "${sourceImage}" --out "${thumbnailPath}"`, { stdio: 'pipe' });
+
+        // If we used the fallback, also note it was from fallback
+        if (sourceImage.includes('Wogenburg')) {
+            return { action: 'fixed', path: thumbnailPath, fallback: true };
+        }
+
         return { action: 'fixed', path: thumbnailPath };
     } catch (err) {
         return { action: 'error', reason: err.message };
@@ -244,7 +279,11 @@ async function autoFixPost(file) {
         // Fix 4: Generate thumbnail
         results.thumbnail = generateThumbnail(slug);
         if (results.thumbnail.action === 'fixed') {
-            console.log(`  ✓ Generated thumbnail from img-0`);
+            if (results.thumbnail.fallback) {
+                console.log(`  ✓ Generated thumbnail using Michael's photo (no img-0 found)`);
+            } else {
+                console.log(`  ✓ Generated thumbnail from img-0`);
+            }
         }
 
         const totalFixes = [results.substackUI, results.substackImages, results.topBackLink, results.thumbnail]
