@@ -1083,6 +1083,19 @@ body::before {
     display: block;
 }
 
+/* Vienna Weather Widget */
+.vienna-weather {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 15;
+    font-family: 'Bluu Next', serif;
+    font-size: 0.85rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+}
+
 /* Freud Section Mobile Responsive */
 @media (max-width: 1024px) {
     .freud-section {
