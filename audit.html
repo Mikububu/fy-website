@@ -180,10 +180,27 @@
                         errors.missingThumbnail.push(post);
                     }
 
-                    // Check 2: Load post HTML and check for Substack images
+                    // Check 2: Load post HTML and check for Substack images + UI
                     try {
                         const postRes = await fetch(post.link);
                         const html = await postRes.text();
+
+                        // Check 2a: Verify og:image matches actual thumbnail (not fallback)
+                        const ogImageMatch = html.match(/<meta property="og:image" content="([^"]+)"/);
+                        if (ogImageMatch) {
+                            const ogImage = ogImageMatch[1];
+                            // Check if using fallback generic image instead of post thumbnail
+                            if (ogImage.includes('Bali%20Tantra') || ogImage.includes('Bali Tantra')) {
+                                postErrors.push('❌ og:image using generic fallback, not post thumbnail');
+                                errors.missingThumbnail.push(post);
+                            }
+                        }
+
+                        // Check 2b: Detect Substack UI not stripped
+                        if (html.includes('class="pencraft') || html.includes('class="post-header')) {
+                            postErrors.push('❌ Substack UI still present - not stripped!');
+                            errors.substackImages.push(post);
+                        }
 
                         // Check for Substack images
                         const substackMatches = html.match(/substackcdn\.com/g);
@@ -229,6 +246,21 @@
                         if (!localImages || localImages.length === 0) {
                             postErrors.push('❌ No local blog-images found');
                             errors.missingImages.push(post);
+                        }
+
+                        // Check for broken image references (extension mismatches)
+                        const imageRefs = html.match(/\/blog-images\/[^"'\s]+\.(jpg|jpeg|png|webp)/gi) || [];
+                        for (const imgRef of imageRefs) {
+                            try {
+                                const imgPath = imgRef.replace(/^\//, '');
+                                const checkRes = await fetch('/' + imgPath, { method: 'HEAD' });
+                                if (!checkRes.ok) {
+                                    postErrors.push('❌ Broken image reference: ' + imgRef);
+                                    errors.missingImages.push(post);
+                                }
+                            } catch (e) {
+                                // Skip, probably CORS issue
+                            }
                         }
 
                     } catch (e) {
@@ -328,7 +360,16 @@
                         <li>✓ Strip Substack UI from all posts</li>
                         <li>✓ Download missing Substack images (auto-downscaled)</li>
                         <li>✓ Add local blog images</li>
-                        <li>✓ <strong>SEO Optimization:</strong> alt text, meta descriptions, keywords, og:image</li>
+                        <li>✓ <strong>SEO Optimization:</strong> alt text, meta descriptions, og:image</li>
+                        <li>✓ <strong>Intelligent Keyword Analysis:</strong> across ALL posts
+                            <ul style="margin-top: 5px; font-size: 0.9em;">
+                                <li>Finds keywords appearing 2+ times (Tanmatra, Chhayopasana, etc.)</li>
+                                <li>Distinguishes smart keywords (Sanskrit, names, practices)</li>
+                                <li>Filters out generic words (that, this, from, etc.)</li>
+                                <li>Re-analyzes after fixes to catch new keywords</li>
+                                <li>Updates meta tags with intelligent keywords only</li>
+                            </ul>
+                        </li>
                         <li>✓ Generate thumbnails (or use Michael's photo fallback)</li>
                         <li>✓ Add top back links</li>
                         <li>✓ Clean up all HTML</li>
