@@ -119,6 +119,15 @@ body {
     border-radius: 8px;
 }
 
+/* Constrain portrait/tall images to reasonable width */
+.post-content img[width="572"],
+.post-content img[width="286"] {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 .post-content a {
     color: #8fa9aa;
     text-decoration: underline;
