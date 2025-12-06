@@ -631,12 +631,12 @@ body::before {
     }
 
     .nasi-heading {
-        font-size: 2.8rem; /* Reduced from 3.2rem */
+        font-size: 2.8rem !important;
         margin-bottom: 0;
         margin-top: 5px;
         text-align: center;
         width: 100%;
-        margin-left: -5px; /* Shift left to center visually */
+        margin-left: -5px !important; /* Centered on mobile */
     }
 
     .nasi-subheading {
@@ -681,6 +681,7 @@ body::before {
     background-color: #f3f2de;
     padding: 80px 40px;
     text-align: center;
+    overflow-x: hidden;
 }
 
 .what-we-do-container {
