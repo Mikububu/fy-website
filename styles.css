@@ -536,8 +536,7 @@ body::before {
 }
 
 .brown-bubble {
-    width: 86.4%; /* Stretched 20% wider horizontally */
-    max-width: 1037px; /* Stretched 20% wider horizontally */
+    width: clamp(500px, 50%, 700px); /* Elastic: scales between 500-700px based on viewport */
     height: auto;
     display: block;
     margin: 0 auto;
@@ -604,7 +603,7 @@ body::before {
     }
 
     .brown-bubble {
-        width: 86.4%; /* Stretched 20% wider horizontally */
+        width: clamp(400px, 60%, 600px); /* Tablet: slightly wider than desktop */
     }
 
     .bubble-text {
