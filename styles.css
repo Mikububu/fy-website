@@ -1594,21 +1594,23 @@ body::before {
 }
 
 /* iPhone Chrome fix - push outer circles further out on mobile */
-@media (max-width: 500px) {
+@media screen and (max-width: 500px) {
     .slc-number-circle.placeholders {
-        left: 5%;
+        left: 0 !important;
     }
 
     .slc-number-circle.weeks {
-        right: 5%;
+        right: 0 !important;
+        left: auto !important;
     }
 
     .slc-number-circle.location {
-        left: 5%;
+        left: 0 !important;
     }
 
     .slc-number-circle.facilitators {
-        right: 5%;
+        right: 0 !important;
+        left: auto !important;
     }
 }
 
