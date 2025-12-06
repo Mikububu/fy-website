@@ -2,84 +2,115 @@ const fs = require('fs');
 const path = require('path');
 
 const postsDir = './posts';
-const imageMap = JSON.parse(fs.readFileSync('image-map.json', 'utf8'));
+const imageMapPath = './image-map.json';
 
-let updated = 0;
-let totalReplaced = 0;
+console.log('Emergency Fix: Replacing ALL Substack image URLs with local copies\n');
+console.log('=================================================================\n');
 
-// Build reverse mapping: S3 image ID -> local path
-const idToLocal = {};
-Object.keys(imageMap).forEach(slug => {
-    imageMap[slug].forEach(img => {
-        // Extract image ID from S3 URL: bf3d00fc-03f5-43a3-96fc-92ef7dd83914_3024x2731
-        const match = img.original.match(/\/([a-f0-9\-]+_\d+x\d+)\.(jpeg|jpg|png|webp)$/);
-        if (match) {
-            const imageId = match[1];
-            idToLocal[imageId] = img.local;
-        }
-    });
-});
+// Load image map
+const imageMap = JSON.parse(fs.readFileSync(imageMapPath, 'utf8'));
 
-console.log(`Found ${Object.keys(idToLocal).length} image mappings\n`);
-
-// Process each HTML file
 const files = fs.readdirSync(postsDir).filter(f => f.endsWith('.html') && !f.startsWith('.'));
 
+let totalReplacements = 0;
+let postsFixed = 0;
+
 files.forEach(file => {
+    const slug = file.replace('.html', '');
     const filepath = path.join(postsDir, file);
-    let content = fs.readFileSync(filepath, 'utf8');
+    let html = fs.readFileSync(filepath, 'utf8');
+
+    if (!imageMap[slug]) {
+        return;
+    }
+
     let changed = false;
-    let replacedCount = 0;
+    let count = 0;
 
-    // Replace all Substack CDN URLs
-    // Pattern: https://substackcdn.com/image/fetch/...https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F[IMAGE_ID]_[DIMS].[EXT]
-    const pattern = /https:\/\/substackcdn\.com\/image\/fetch\/[^"'\s]+https%3A%2F%2Fsubstack-post-media\.s3\.amazonaws\.com%2Fpublic%2Fimages%2F([a-f0-9\-]+_\d+x\d+)\.(jpeg|jpg|png|webp)/g;
+    imageMap[slug].forEach(img => {
+        // Extract the image ID from the original S3 URL
+        const idMatch = img.original.match(/\/([a-f0-9\-]+_\d+x\d+\.\w+)$/);
+        if (!idMatch) {
+            const heicMatch = img.original.match(/\/([a-f0-9\-]+)\.(heic|jpeg|jpg|png|webp|gif)$/);
+            if (heicMatch) {
+                const imageId = heicMatch[1];
+                const ext = heicMatch[2];
 
-    content = content.replace(pattern, (match, imageId, ext) => {
-        if (idToLocal[imageId]) {
-            replacedCount++;
-            changed = true;
-            return idToLocal[imageId];
+                // Replace ALL variations of this image URL
+                // Pattern 1: substackcdn.com with encoded S3 URL
+                const cdnPattern1 = new RegExp(`https://substackcdn\\.com/image/fetch/[^"'\\s]*${imageId}[^"'\\s]*\\.${ext}`, 'g');
+                const matches1 = html.match(cdnPattern1);
+                if (matches1) {
+                    html = html.replace(cdnPattern1, img.local);
+                    count += matches1.length;
+                    changed = true;
+                }
+
+                // Pattern 2: Direct S3 URL
+                const s3Pattern = new RegExp(img.original.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+                const matches2 = html.match(s3Pattern);
+                if (matches2) {
+                    html = html.replace(s3Pattern, img.local);
+                    count += matches2.length;
+                    changed = true;
+                }
+            }
+            return;
         }
-        return match;
-    });
 
-    // Also replace direct S3 URLs
-    const s3Pattern = /https:\/\/substack-post-media\.s3\.amazonaws\.com\/public\/images\/([a-f0-9\-]+_\d+x\d+)\.(jpeg|jpg|png|webp)/g;
+        const imageFilename = idMatch[1];
 
-    content = content.replace(s3Pattern, (match, imageId, ext) => {
-        if (idToLocal[imageId]) {
-            replacedCount++;
+        // Replace ALL variations of this image URL
+
+        // Pattern 1: substackcdn.com with transform parameters
+        const cdnPattern1 = new RegExp(`https://substackcdn\\.com/image/fetch/[^"'\\s]+${imageFilename.replace(/\./g, '\\.')}`, 'g');
+        const matches1 = html.match(cdnPattern1);
+        if (matches1) {
+            html = html.replace(cdnPattern1, img.local);
+            count += matches1.length;
             changed = true;
-            return idToLocal[imageId];
         }
-        return match;
+
+        // Pattern 2: Direct S3 URL
+        const s3Pattern = new RegExp(img.original.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+        const matches2 = html.match(s3Pattern);
+        if (matches2) {
+            html = html.replace(s3Pattern, img.local);
+            count += matches2.length;
+            changed = true;
+        }
     });
 
     if (changed) {
-        fs.writeFileSync(filepath, content);
-        updated++;
-        totalReplaced += replacedCount;
-        console.log(`✓ Updated ${replacedCount} image references in: ${file}`);
+        fs.writeFileSync(filepath, html);
+        postsFixed++;
+        totalReplacements += count;
+        console.log(`✓ ${file}: Fixed ${count} image URLs`);
     }
 });
 
-console.log(`\n✓ Updated ${updated} posts (${totalReplaced} total image references replaced)`);
+console.log(`\n✓ Fixed ${totalReplacements} image references in ${postsFixed} posts`);
 
-// Verify no Substack URLs remain
-console.log('\nVerifying...');
-let remainingCount = 0;
+// Final verification
+console.log('\n\nFinal Verification:');
+let remainingTotal = 0;
+const postsWithRemaining = [];
+
 files.forEach(file => {
-    const content = fs.readFileSync(path.join(postsDir, file), 'utf8');
-    const matches = content.match(/substack-post-media/g);
-    if (matches) {
-        remainingCount += matches.length;
-        console.log(`⚠ ${file} still has ${matches.length} Substack references`);
+    const filepath = path.join(postsDir, file);
+    const html = fs.readFileSync(filepath, 'utf8');
+
+    // Only count actual content image URLs, not profile/comment links
+    const contentImageMatches = html.match(/https:\/\/(substackcdn\.com\/image\/fetch|substack-post-media\.s3\.amazonaws\.com)/g);
+    if (contentImageMatches) {
+        remainingTotal += contentImageMatches.length;
+        postsWithRemaining.push(`${file}: ${contentImageMatches.length}`);
     }
 });
 
-if (remainingCount === 0) {
-    console.log('✓ All Substack image URLs successfully replaced!');
+if (remainingTotal === 0) {
+    console.log('  ✓ All Substack content image URLs successfully replaced!');
 } else {
-    console.log(`⚠ ${remainingCount} Substack references still remain`);
+    console.log(`  ⚠ ${remainingTotal} Substack image URLs still remain in ${postsWithRemaining.length} posts:`);
+    postsWithRemaining.forEach(p => console.log(`    ${p}`));
 }
