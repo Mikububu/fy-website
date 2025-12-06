@@ -2975,15 +2975,28 @@ iframe .jw-title-secondary {
     .bubble-text {
         overflow-wrap: break-word;
         word-wrap: break-word;
+        font-size: 1.3rem;
+        line-height: 1.4;
     }
 
-    /* Retreats section centering for iPad */
+    /* Retreats section left-align for iPad */
     .retreats-container {
         padding: 0 30px;
-        justify-items: center;
+        justify-items: start;
+        padding-left: 80px;
     }
 
-    /* 7 circles arrangement for iPad */
+    /* 7 circles arrangement for iPad - desktop-like layout */
+    .slc-number-circle {
+        width: 140px;
+        height: 140px;
+    }
+
+    .slc-number-circle.client {
+        width: 200px;
+        height: 200px;
+    }
+
     .slc-number-circle.guru {
         top: 0;
         left: 50%;
@@ -2991,29 +3004,33 @@ iframe .jw-title-secondary {
     }
 
     .slc-number-circle.placeholders {
-        top: 18%;
-        left: 10%;
+        top: 100px;
+        left: 12%;
     }
 
     .slc-number-circle.weeks {
-        top: 18%;
-        right: 10%;
+        top: 100px;
+        right: 12%;
     }
 
     .slc-number-circle.location {
-        bottom: 18%;
-        left: 10%;
+        bottom: 100px;
+        left: 12%;
     }
 
     .slc-number-circle.facilitators {
-        bottom: 18%;
-        right: 10%;
+        bottom: 100px;
+        right: 12%;
     }
 
     .slc-number-circle.bodyworkers {
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
+    }
+
+    .slc-numbers {
+        height: 600px;
     }
 
     /* Blog grid for iPad - 3 columns */
