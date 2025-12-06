@@ -3017,12 +3017,21 @@ iframe .jw-title-secondary {
         transform: scaleY(0.75); /* Squeeze more vertically */
     }
 
-    /* Retreats section left-align for iPad - move bubbles 50px left */
+    /* Retreats section centered for iPad with specific bubble adjustments */
     .retreats-container {
         padding: 0 20px;
-        justify-items: start;
-        padding-left: 0; /* Truly left aligned */
-        margin-left: -50px; /* Move all bubbles 50px left */
+        justify-items: center; /* Center the grid */
+        margin: 0 auto; /* Center the container */
+    }
+
+    /* Move middle bubble (CUSTOMIZED RETREATS) 100px left */
+    .main-heading-bubble {
+        transform: translateX(-100px);
+    }
+
+    /* Move right bubble 100px left to prevent off-screen overflow */
+    .bubble-2 {
+        transform: translateX(-100px);
     }
 
     /* 7 circles planetary arrangement for iPad */
