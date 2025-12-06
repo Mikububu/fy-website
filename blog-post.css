@@ -1,16 +1,19 @@
 /* Blog Post Styling */
 body {
-    background-color: #f3f2de;
+    background-color: #B8D4D4;
     font-family: 'Roboto', sans-serif;
     line-height: 1.6;
     color: #1a1a1a;
+    margin: 0;
+    padding: 40px 20px;
 }
 
 .post-container {
     max-width: 720px;
-    margin: 60px auto;
-    padding: 40px 20px;
+    margin: 0 auto;
+    padding: 60px 40px;
     background: #f3f2de;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
 .post-header {
@@ -117,10 +120,43 @@ body {
     margin-bottom: 0.5em;
 }
 
+/* Hide Substack UI elements */
+.post-ufi,
+.like-button-container,
+button[aria-label*="Like"],
+button[aria-label*="comment"],
+button[aria-label*="Share"],
+.pencraft.post-ufi-button,
+.visibility-check,
+.byline-wrapper,
+.profile-hover-card-target,
+[class*="pencraft"],
+[class*="pc-"],
+[role="region"][aria-label="Post UFI"] {
+    display: none !important;
+}
+
+/* Hide duplicate/wrong headings - keep only the clean ones */
+.post-header h1.title-X77sOw,
+.published.title-X77sOw {
+    display: none !important;
+}
+
+.subtitle.subtitle-HEEcLo {
+    display: block !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 1.3rem !important;
+    color: #423737 !important;
+    margin-bottom: 20px !important;
+}
+
 @media (max-width: 768px) {
+    body {
+        padding: 20px 10px;
+    }
+
     .post-container {
-        margin: 20px auto;
-        padding: 30px 15px;
+        padding: 40px 20px;
     }
 
     .post-title {
