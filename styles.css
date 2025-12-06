@@ -1524,6 +1524,7 @@ body::before {
     color: #1a1a1a;
     line-height: 1.15;
     margin: 0;
+    text-align: left;
 }
 
 /* SLC Responsive - scale down but keep circle layout */
@@ -1683,8 +1684,8 @@ body::before {
     }
 
     .slc-description {
-        font-size: 1rem;
-        font-weight: 400;  /* Normal weight, not thin */
+        font-size: 1.4rem;
+        font-weight: 700;
     }
 }
 
