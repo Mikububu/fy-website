@@ -444,6 +444,8 @@ function analyzeGlobalKeywords() {
 
     // Smart keyword extraction patterns
     const smartPatterns = [
+        // Multi-word branded phrases (3-4 words starting with capital)
+        /\b[A-Z][a-zāīūṛṝḷḹṃḥñśṣ]+ [A-Z][a-z]+ (?:to|of|for|the|and) [A-Z][a-z]+\b/g,
         // Sanskrit/Tantric terms (capitalized, unique spellings)
         /\b[A-Z][a-zāīūṛṝḷḹṃḥñśṣ]{4,}\b/g,
         // Names (two capitalized words)
@@ -451,7 +453,12 @@ function analyzeGlobalKeywords() {
         // Compound terms with hyphens
         /\b[a-z]+-[a-z]+(?:-[a-z]+)?\b/gi,
         // Special tantric/yoga terms
-        /\b(?:tantra|yoga|puja|sadhana|kundalini|chakra|mudra|mantra|asana|pranayama|shakti|shiva|tanmatra|nyasa|trataka|mahavidya|nitya)\b/gi
+        /\b(?:tantra|yoga|puja|sadhana|kundalini|chakra|mudra|mantra|asana|pranayama|shakti|shiva|tanmatra|nyasa|trataka|mahavidya|nitya|andhakaara)\b/gi
+    ];
+
+    // Priority branded keywords (always include even if only 1 occurrence)
+    const priorityKeywords = [
+        'Andhakaara Path to Power'
     ];
 
     // Extract all potential keywords
@@ -467,6 +474,16 @@ function analyzeGlobalKeywords() {
     ];
 
     Object.values(allContent).forEach(text => {
+        // First, check for priority keywords
+        priorityKeywords.forEach(priorityKeyword => {
+            const regex = new RegExp(priorityKeyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+            const matches = text.match(regex) || [];
+            if (matches.length > 0) {
+                keywordFrequency[priorityKeyword] = (keywordFrequency[priorityKeyword] || 0) + matches.length;
+            }
+        });
+
+        // Then extract smart pattern keywords
         smartPatterns.forEach(pattern => {
             const matches = text.match(pattern) || [];
             matches.forEach(keyword => {
@@ -479,15 +496,21 @@ function analyzeGlobalKeywords() {
         });
     });
 
-    // Filter: Only keywords appearing 2+ times
+    // Filter: Keywords appearing 2+ times OR priority keywords (even if 1x)
     const smartKeywords = Object.entries(keywordFrequency)
-        .filter(([keyword, count]) => count >= 2)
+        .filter(([keyword, count]) => {
+            // Include if 2+ occurrences
+            if (count >= 2) return true;
+            // Or if it's a priority keyword (even with 1 occurrence)
+            return priorityKeywords.some(pk => pk.toLowerCase() === keyword.toLowerCase());
+        })
         .sort((a, b) => b[1] - a[1]);
 
     console.log(`\n📊 Found ${smartKeywords.length} intelligent keywords (appearing 2+ times):\n`);
 
     // Categorize keywords
     const categories = {
+        'Branded Programs & Offerings': [],
         'Sanskrit/Tantric Terms': [],
         'Names & Teachers': [],
         'Practices & Techniques': [],
@@ -495,7 +518,10 @@ function analyzeGlobalKeywords() {
     };
 
     smartKeywords.forEach(([keyword, count]) => {
-        if (/^[A-Z][a-z]+ [A-Z]/.test(keyword)) {
+        // Check if it's a priority branded keyword
+        if (priorityKeywords.some(pk => pk.toLowerCase() === keyword.toLowerCase())) {
+            categories['Branded Programs & Offerings'].push([keyword, count]);
+        } else if (/^[A-Z][a-z]+ [A-Z]/.test(keyword)) {
             categories['Names & Teachers'].push([keyword, count]);
         } else if (/puja|sadhana|nyasa|trataka|mudra|asana/i.test(keyword)) {
             categories['Practices & Techniques'].push([keyword, count]);
