@@ -1087,19 +1087,24 @@ body::before {
 /* Vienna Weather Widget */
 .vienna-weather {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    bottom: 30%;
+    left: 5%;
     z-index: 15;
+    background-color: #6B4423; /* Dark brown like brown bubble */
+    padding: 8px 12px;
+    border-radius: 8px;
     font-family: 'Roboto', sans-serif;
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.5); /* 50% transparent white */
+    font-size: 15px;
+    color: #7a9999; /* Blue font color */
     font-weight: 400;
+    text-transform: lowercase;
 }
 
 .vienna-weather .weather-text,
 .vienna-weather span {
     font-family: 'Roboto', sans-serif;
-    color: rgba(255, 255, 255, 0.5); /* 50% transparent white */
+    color: #7a9999; /* Blue font color */
+    text-transform: lowercase;
 }
 
 /* Freud Section Mobile Responsive */
@@ -2888,4 +2893,26 @@ iframe .jw-title-secondary {
     .circle-text {
         font-size: 1rem;
     }
+}
+
+/* Footer links */
+.footer-links {
+    margin: 10px 0;
+    font-size: 0.9rem;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.footer-links span {
+    margin: 0 10px;
+    color: rgba(255, 255, 255, 0.5);
 }
