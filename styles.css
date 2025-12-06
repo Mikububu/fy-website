@@ -2437,6 +2437,12 @@ iframe .jw-title-secondary {
     .footer-copyright {
         font-size: 0.85rem;
     }
+
+    /* Fix mobile overflow from min-width */
+    .slc-left,
+    .slc-numbers {
+        min-width: 100%;
+    }
 }
 /* Mongolia Location Section */
 .location-section {
