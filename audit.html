@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post Audit Tool</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #00ff00;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        .controls {
+            text-align: center;
+            margin: 30px 0;
+        }
+        button {
+            background: #003300;
+            color: #00ff00;
+            border: 2px solid #00ff00;
+            padding: 15px 40px;
+            font-size: 18px;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #00ff00;
+            color: #000;
+            box-shadow: 0 0 20px #00ff00;
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .results {
+            margin-top: 30px;
+        }
+        .summary {
+            background: #003300;
+            border: 2px solid #00ff00;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .summary h2 {
+            margin-top: 0;
+            color: #00ff00;
+        }
+        .error-section {
+            margin-bottom: 40px;
+        }
+        .error-section h3 {
+            color: #ff0000;
+            text-shadow: 0 0 10px #ff0000;
+        }
+        .post-error {
+            background: #330000;
+            border-left: 4px solid #ff0000;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .post-error h4 {
+            margin: 0 0 10px 0;
+            color: #ff6666;
+        }
+        .post-error ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .post-error li {
+            color: #ff9999;
+            margin: 5px 0;
+        }
+        .post-link {
+            color: #00ffff;
+            text-decoration: none;
+        }
+        .post-link:hover {
+            text-decoration: underline;
+        }
+        .success {
+            color: #00ff00;
+        }
+        .loading {
+            text-align: center;
+            font-size: 20px;
+            margin: 20px 0;
+        }
+        .progress {
+            background: #003300;
+            border: 2px solid #00ff00;
+            padding: 10px;
+            margin: 20px 0;
+        }
+        .progress-bar {
+            background: #00ff00;
+            height: 30px;
+            transition: width 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 BLOG POST AUDIT TOOL 🔍</h1>
+
+    <div class="controls">
+        <button id="auditBtn" onclick="runAudit()">RUN FULL AUDIT</button>
+    </div>
+
+    <div id="progressContainer" style="display: none;">
+        <div class="progress">
+            <div id="progressText">Checking posts...</div>
+            <div style="background: #001100; margin-top: 10px;">
+                <div id="progressBar" class="progress-bar" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="results" class="results"></div>
+
+    <script>
+        async function runAudit() {
+            const btn = document.getElementById('auditBtn');
+            const results = document.getElementById('results');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+
+            btn.disabled = true;
+            results.innerHTML = '';
+            progressContainer.style.display = 'block';
+
+            try {
+                // Load blog-posts.json
+                const blogPostsRes = await fetch('/blog-posts.json');
+                const blogPosts = await blogPostsRes.json();
+
+                const errors = {
+                    missingThumbnail: [],
+                    substackImages: [],
+                    noText: [],
+                    brokenLinks: [],
+                    missingImages: []
+                };
+
+                let totalPosts = blogPosts.length;
+                let processed = 0;
+
+                for (const post of blogPosts) {
+                    processed++;
+                    const percent = Math.round((processed / totalPosts) * 100);
+                    progressBar.style.width = percent + '%';
+                    progressText.textContent = `Checking ${processed}/${totalPosts}: ${post.slug}`;
+
+                    const postErrors = [];
+
+                    // Check 1: Thumbnail exists and is not placeholder
+                    try {
+                        const thumbRes = await fetch(post.thumbnail, { method: 'HEAD' });
+                        if (!thumbRes.ok) {
+                            postErrors.push('❌ Thumbnail file not found: ' + post.thumbnail);
+                            errors.missingThumbnail.push(post);
+                        } else {
+                            const size = thumbRes.headers.get('content-length');
+                            if (size && parseInt(size) < 1000) {
+                                postErrors.push('❌ Thumbnail too small (' + size + ' bytes) - likely placeholder');
+                                errors.missingThumbnail.push(post);
+                            }
+                        }
+                    } catch (e) {
+                        postErrors.push('❌ Could not check thumbnail: ' + e.message);
+                        errors.missingThumbnail.push(post);
+                    }
+
+                    // Check 2: Load post HTML and check for Substack images
+                    try {
+                        const postRes = await fetch(post.link);
+                        const html = await postRes.text();
+
+                        // Check for Substack images
+                        const substackMatches = html.match(/substackcdn\.com/g);
+                        if (substackMatches && substackMatches.length > 0) {
+                            postErrors.push(`❌ Contains ${substackMatches.length} Substack image(s) - not migrated`);
+                            errors.substackImages.push(post);
+                        }
+
+                        // Check for actual text content
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+                        const textContent = doc.body.innerText.replace(/\s+/g, ' ').trim();
+
+                        if (textContent.length < 200) {
+                            postErrors.push(`❌ Very little text content (${textContent.length} chars)`);
+                            errors.noText.push(post);
+                        }
+
+                        // Check for local images
+                        const localImages = html.match(/\/blog-images\//g);
+                        if (!localImages || localImages.length === 0) {
+                            postErrors.push('❌ No local blog-images found');
+                            errors.missingImages.push(post);
+                        }
+
+                    } catch (e) {
+                        postErrors.push('❌ Could not load post HTML: ' + e.message);
+                        errors.brokenLinks.push(post);
+                    }
+
+                    // Store errors for this post
+                    if (postErrors.length > 0) {
+                        post._errors = postErrors;
+                    }
+                }
+
+                // Generate report
+                progressContainer.style.display = 'none';
+                displayResults(errors, blogPosts);
+
+            } catch (e) {
+                results.innerHTML = `<div class="post-error"><h4>❌ CRITICAL ERROR</h4><p>${e.message}</p></div>`;
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        function displayResults(errors, allPosts) {
+            const results = document.getElementById('results');
+
+            const totalErrors = errors.missingThumbnail.length +
+                              errors.substackImages.length +
+                              errors.noText.length +
+                              errors.brokenLinks.length +
+                              errors.missingImages.length;
+
+            let html = `
+                <div class="summary">
+                    <h2>📊 AUDIT SUMMARY</h2>
+                    <p><strong>Total Posts:</strong> ${allPosts.length}</p>
+                    <p><strong>Posts with Issues:</strong> ${new Set([...errors.missingThumbnail, ...errors.substackImages, ...errors.noText, ...errors.brokenLinks, ...errors.missingImages].map(p => p.slug)).size}</p>
+                    <p><strong>Total Errors Found:</strong> ${totalErrors}</p>
+                    <hr>
+                    <p>❌ Missing/Bad Thumbnails: ${errors.missingThumbnail.length}</p>
+                    <p>❌ Substack Images Not Migrated: ${errors.substackImages.length}</p>
+                    <p>❌ No Text Content: ${errors.noText.length}</p>
+                    <p>❌ Broken Post Links: ${errors.brokenLinks.length}</p>
+                    <p>❌ No Local Images: ${errors.missingImages.length}</p>
+                </div>
+            `;
+
+            // Display posts with errors
+            const postsWithErrors = allPosts.filter(p => p._errors);
+
+            if (postsWithErrors.length > 0) {
+                html += '<div class="error-section"><h3>❌ POSTS WITH ERRORS</h3>';
+
+                postsWithErrors.forEach(post => {
+                    html += `
+                        <div class="post-error">
+                            <h4><a href="${post.link}" class="post-link" target="_blank">${post.title}</a></h4>
+                            <p><strong>Slug:</strong> ${post.slug}</p>
+                            <p><strong>Thumbnail:</strong> ${post.thumbnail}</p>
+                            <ul>
+                                ${post._errors.map(err => `<li>${err}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                });
+
+                html += '</div>';
+            } else {
+                html += '<div class="success"><h2>✅ ALL POSTS PASSED AUDIT!</h2></div>';
+            }
+
+            results.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
