@@ -20,6 +20,19 @@ body {
     margin-bottom: 40px;
 }
 
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #8fa9aa;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #423737;
+}
+
 .post-title {
     font-family: 'Bluu Next', serif;
     font-size: 2.5rem;
