@@ -645,8 +645,8 @@ body::before {
     }
 
     .nasi-image-container {
-        width: 120%;
-        margin-left: -10%; /* Center the overflow */
+        width: 100%;
+        margin-left: 0;
     }
 
     .nasi-image {
