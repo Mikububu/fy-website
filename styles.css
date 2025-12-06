@@ -2971,12 +2971,17 @@ iframe .jw-title-secondary {
         text-align: left;
     }
 
-    /* Brown bubble text wrapping for iPad */
+    /* Brown bubble text wrapping for iPad - make wider to fit in fewer lines */
     .bubble-text {
         overflow-wrap: break-word;
         word-wrap: break-word;
-        font-size: 1.3rem;
-        line-height: 1.4;
+        width: 90%;
+        max-width: 700px;
+    }
+
+    .brown-bubble {
+        width: 85%;
+        max-width: 1000px;
     }
 
     /* Retreats section left-align for iPad */
