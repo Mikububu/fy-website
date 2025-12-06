@@ -279,7 +279,7 @@ function optimizeSEO(filepath, slug) {
     return { action: 'skip', reason: 'SEO already optimized' };
 }
 
-// Fix 5: Correct broken image references (extension mismatches)
+// Fix 5: Correct broken image references (extension mismatches + tiny file detection)
 function fixBrokenImageReferences(filepath, slug) {
     let html = fs.readFileSync(filepath, 'utf8');
     let fixed = 0;
@@ -291,20 +291,57 @@ function fixBrokenImageReferences(filepath, slug) {
         const filename = imgRef.replace('/blog-images/', '');
         const imgPath = path.join(blogImagesDir, filename);
 
+        let needsFix = false;
+
         // Check if this exact file exists
         if (!fs.existsSync(imgPath)) {
-            // Try to find the correct extension
+            needsFix = true;
+        } else {
+            // File exists, but check if it's suspiciously small (< 10KB)
+            const stats = fs.statSync(imgPath);
+            if (stats.size < 10000) {
+                // Check if there's a larger version with different extension
+                const baseName = filename.replace(/\.(jpg|jpeg|png|webp|gif)$/i, '');
+                const possibleExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
+
+                for (const ext of possibleExtensions) {
+                    if (ext.toLowerCase() === path.extname(filename).toLowerCase()) continue; // Skip same extension
+                    const alternatePath = path.join(blogImagesDir, baseName + ext);
+                    if (fs.existsSync(alternatePath)) {
+                        const altStats = fs.statSync(alternatePath);
+                        // If alternate is significantly larger (>10x), prefer it
+                        if (altStats.size > stats.size * 10) {
+                            needsFix = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (needsFix) {
+            // Try to find the best extension (largest file)
             const baseName = filename.replace(/\.(jpg|jpeg|png|webp|gif)$/i, '');
             const possibleExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
+            let bestPath = null;
+            let bestSize = 0;
 
             for (const ext of possibleExtensions) {
-                const correctPath = path.join(blogImagesDir, baseName + ext);
-                if (fs.existsSync(correctPath)) {
-                    const correctRef = `/blog-images/${baseName}${ext}`;
-                    html = html.replace(new RegExp(imgRef.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), correctRef);
-                    fixed++;
-                    break;
+                const candidatePath = path.join(blogImagesDir, baseName + ext);
+                if (fs.existsSync(candidatePath)) {
+                    const stats = fs.statSync(candidatePath);
+                    if (stats.size > bestSize) {
+                        bestSize = stats.size;
+                        bestPath = candidatePath;
+                    }
                 }
+            }
+
+            if (bestPath) {
+                const correctExt = path.extname(bestPath);
+                const correctRef = `/blog-images/${baseName}${correctExt}`;
+                html = html.replace(new RegExp(imgRef.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), correctRef);
+                fixed++;
             }
         }
     });
