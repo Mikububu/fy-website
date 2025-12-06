@@ -1479,7 +1479,6 @@ body::before {
 }
 
 /* Intelligent responsive positioning - planetary pattern for ALL screens */
-/* Using consistent left-only positioning for iPhone Chrome compatibility */
 .slc-number-circle.guru {
     top: 5%;
     left: 50%;
@@ -1489,13 +1488,12 @@ body::before {
 .slc-number-circle.placeholders {
     top: 20%;
     left: 12%;
-    /* No transform - left edge at 12% */
 }
 
 .slc-number-circle.weeks {
     top: 20%;
-    left: calc(88% - clamp(120px, 14.4vw, 180px));
-    /* Position so right edge is at 88% */
+    left: auto;
+    right: 12%;
 }
 
 .slc-number-circle.client {
@@ -1516,13 +1514,12 @@ body::before {
 .slc-number-circle.location {
     bottom: 20%;
     left: 12%;
-    /* No transform - left edge at 12% */
 }
 
 .slc-number-circle.facilitators {
     bottom: 20%;
-    left: calc(88% - clamp(120px, 14.4vw, 180px));
-    /* Position so right edge is at 88% */
+    left: auto;
+    right: 12%;
 }
 
 .slc-number-circle.bodyworkers {
