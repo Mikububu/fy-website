@@ -632,12 +632,13 @@ body::before {
     }
 
     .nasi-heading {
-        font-size: 3.5rem !important;
+        font-size: 3.5rem !important; /* Mobile size - must be 3.5rem */
         margin-bottom: 0;
         margin-top: 5px;
         text-align: center;
         width: 100%;
         margin-left: 0 !important; /* Centered on mobile */
+        letter-spacing: -1px; /* Tighter spacing for mobile */
     }
 
     .nasi-subheading {
