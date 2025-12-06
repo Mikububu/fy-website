@@ -630,12 +630,12 @@ body::before {
     }
 
     .nasi-heading {
-        font-size: 3.2rem; /* 20% smaller than 4rem */
+        font-size: 2.8rem; /* Reduced from 3.2rem */
         margin-bottom: 0;
         margin-top: 5px;
         text-align: center;
         width: 100%;
-        margin-left: 0; /* Centered */
+        margin-left: -5px; /* Shift left to center visually */
     }
 
     .nasi-subheading {
@@ -666,7 +666,7 @@ body::before {
     }
 
     .bubble-text {
-        font-size: 0.85rem;
+        font-size: 0.75rem;
         width: 75%;
         max-width: 280px;
         line-height: 1.4;
