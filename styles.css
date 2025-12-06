@@ -3017,21 +3017,39 @@ iframe .jw-title-secondary {
         transform: scaleY(0.75); /* Squeeze more vertically */
     }
 
-    /* Retreats section centered for iPad with specific bubble adjustments */
+    /* Retreats section - responsive grid for iPad */
     .retreats-container {
-        padding: 0 20px;
-        justify-items: center; /* Center the grid */
-        margin: 0 auto; /* Center the container */
+        max-width: 95vw; /* Use viewport width for dynamic sizing */
+        padding: 0 2vw;
+        gap: 2vw; /* Responsive gap */
+        grid-template-columns: repeat(3, 1fr); /* Equal columns */
+        justify-items: center;
+        align-items: center;
     }
 
-    /* Move middle bubble (CUSTOMIZED RETREATS) 100px left */
+    /* Scale bubbles proportionally to viewport */
     .main-heading-bubble {
-        transform: translateX(-100px);
+        width: clamp(280px, 25vw, 380px); /* Fluid sizing */
+        height: clamp(220px, 20vw, 300px);
+        padding: clamp(20px, 3vw, 35px);
     }
 
-    /* Move right bubble 100px left to prevent off-screen overflow */
-    .bubble-2 {
-        transform: translateX(-100px);
+    .content-bubble {
+        max-width: clamp(240px, 22vw, 300px); /* Fluid sizing */
+        min-height: clamp(200px, 18vw, 240px);
+        padding: clamp(25px, 3vw, 35px);
+    }
+
+    .retreats-main-heading {
+        font-size: clamp(3.5rem, 5vw, 4.5rem); /* Fluid font size */
+    }
+
+    .bubble-heading {
+        font-size: clamp(1.3rem, 2vw, 1.5rem);
+    }
+
+    .bubble-description {
+        font-size: clamp(0.85rem, 1.2vw, 0.9rem);
     }
 
     /* 7 circles planetary arrangement for iPad */
