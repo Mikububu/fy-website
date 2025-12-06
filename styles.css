@@ -379,7 +379,7 @@ body::before {
 
 .nasi-text-top {
     position: absolute;
-    top: 60px;
+    top: clamp(20px, 3vw, 60px); /* Fluid positioning - higher on smaller screens */
     left: 50%;
     transform: translateX(-50%);
     z-index: 5;
@@ -2804,6 +2804,11 @@ iframe .jw-title-secondary {
 
     .nasi-subheading {
         font-size: 1.1rem;
+    }
+
+    /* NASI text positioning - ensure it's above the woman */
+    .nasi-text-top {
+        top: 20px; /* Move text up to stay above woman when image is scaled */
     }
 
     /* NASI image 20% bigger for iPad */
