@@ -181,7 +181,105 @@ function addTopBackLink(filepath, slug) {
     return { action: 'fixed' };
 }
 
-// Fix 4: Generate thumbnail from first blog image (or use Michael's photo fallback)
+// Fix 4: SEO optimization - analyze and improve meta tags, alt text, descriptions
+function optimizeSEO(filepath, slug) {
+    let html = fs.readFileSync(filepath, 'utf8');
+    let changes = [];
+
+    // Extract article content for analysis
+    const bodyMatch = html.match(/<div dir="auto" class="body markup">([\s\S]*?)<\/div>/);
+    const articleText = bodyMatch ? bodyMatch[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() : '';
+
+    // 1. Fix missing or poor alt text on images
+    const altTextPattern = /<img([^>]*?)alt="([^"]*?)"([^>]*?)>/g;
+    let altMatches = [...html.matchAll(altTextPattern)];
+
+    altMatches.forEach(match => {
+        const fullTag = match[0];
+        const currentAlt = match[2];
+
+        // If alt is just the slug or empty, improve it
+        if (!currentAlt || currentAlt === slug || currentAlt.length < 10) {
+            // Extract first sentence or use title
+            const titleMatch = html.match(/<title>([^<|]+)/);
+            const title = titleMatch ? titleMatch[1].trim() : slug.replace(/-/g, ' ');
+            const betterAlt = title.substring(0, 100);
+
+            const newTag = fullTag.replace(`alt="${currentAlt}"`, `alt="${betterAlt}"`);
+            html = html.replace(fullTag, newTag);
+            changes.push(`Improved alt text: "${currentAlt}" → "${betterAlt}"`);
+        }
+    });
+
+    // 2. Optimize meta description (150-160 chars ideal)
+    const metaDescPattern = /<meta name="description" content="([^"]*)">/;
+    const metaMatch = html.match(metaDescPattern);
+
+    if (metaMatch) {
+        const currentDesc = metaMatch[1];
+
+        if (currentDesc.length < 50 || currentDesc.length > 160) {
+            // Extract meaningful first sentences
+            const sentences = articleText.match(/[^.!?]+[.!?]+/g) || [];
+            let newDesc = sentences.slice(0, 2).join(' ').substring(0, 155);
+
+            if (newDesc.length > 50) {
+                html = html.replace(metaDescPattern, `<meta name="description" content="${newDesc}...">`);
+                changes.push(`Optimized meta description (${currentDesc.length} → ${newDesc.length + 3} chars)`);
+            }
+        }
+    }
+
+    // 3. Add or improve og:image if missing
+    const ogImagePattern = /<meta property="og:image" content="([^"]*)">/;
+    const ogMatch = html.match(ogImagePattern);
+
+    if (!ogMatch || ogMatch[1].includes('Bali%20Tantra')) {
+        // Use the thumbnail
+        const thumbnailPath = `/blog-thumbnails/${slug}.jpg`;
+        const fullUrl = `https://forbidden-yoga.com${thumbnailPath}`;
+
+        if (ogMatch) {
+            html = html.replace(ogImagePattern, `<meta property="og:image" content="${fullUrl}">`);
+            changes.push(`Updated og:image to use post thumbnail`);
+        }
+    }
+
+    // 4. Ensure keywords meta tag exists and is populated
+    const keywordsPattern = /<meta name="keywords" content="([^"]*)">/;
+    const keywordsMatch = html.match(keywordsPattern);
+
+    if (!keywordsMatch || keywordsMatch[1].split(',').length < 5) {
+        // Extract meaningful keywords from title and content
+        const titleMatch = html.match(/<title>([^<|]+)/);
+        const title = titleMatch ? titleMatch[1].toLowerCase() : '';
+
+        const coreKeywords = [
+            'tantra yoga',
+            'kundalini awakening',
+            'tantric healing',
+            'sacred sexuality',
+            'forbidden yoga',
+            ...title.split(/\s+/).filter(w => w.length > 4).slice(0, 3)
+        ];
+
+        const keywordsStr = [...new Set(coreKeywords)].join(', ');
+
+        if (keywordsMatch) {
+            html = html.replace(keywordsPattern, `<meta name="keywords" content="${keywordsStr}">`);
+            changes.push(`Enhanced keywords meta tag`);
+        }
+    }
+
+    if (changes.length > 0) {
+        fs.writeFileSync(filepath, html);
+        return { action: 'fixed', changes };
+    }
+
+    return { action: 'skip', reason: 'SEO already optimized' };
+}
+
+// Fix 5: Generate thumbnail from first blog image (or use Michael's photo fallback)
 function generateThumbnail(slug) {
     // Check if thumbnail already exists
     const possibleThumbnails = [
@@ -254,6 +352,7 @@ async function autoFixPost(file) {
         substackUI: { action: 'skip' },
         substackImages: { action: 'skip' },
         topBackLink: { action: 'skip' },
+        seo: { action: 'skip' },
         thumbnail: { action: 'skip' }
     };
 
@@ -276,7 +375,16 @@ async function autoFixPost(file) {
             console.log(`  ✓ Added top back link`);
         }
 
-        // Fix 4: Generate thumbnail
+        // Fix 4: SEO optimization
+        results.seo = optimizeSEO(filepath, slug);
+        if (results.seo.action === 'fixed') {
+            console.log(`  ✓ SEO optimized (${results.seo.changes.length} improvements):`);
+            results.seo.changes.forEach(change => {
+                console.log(`    - ${change}`);
+            });
+        }
+
+        // Fix 5: Generate thumbnail
         results.thumbnail = generateThumbnail(slug);
         if (results.thumbnail.action === 'fixed') {
             if (results.thumbnail.fallback) {
@@ -286,7 +394,7 @@ async function autoFixPost(file) {
             }
         }
 
-        const totalFixes = [results.substackUI, results.substackImages, results.topBackLink, results.thumbnail]
+        const totalFixes = [results.substackUI, results.substackImages, results.topBackLink, results.seo, results.thumbnail]
             .filter(r => r.action === 'fixed').length;
 
         if (totalFixes === 0) {
