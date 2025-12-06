@@ -3040,6 +3040,11 @@ iframe .jw-title-secondary {
         padding: clamp(25px, 3vw, 35px);
     }
 
+    /* Move right bubble significantly left to prevent off-screen */
+    .bubble-2 {
+        transform: translateX(-35%); /* Move 35% left, can overlap middle bubble */
+    }
+
     .retreats-main-heading {
         font-size: clamp(3.5rem, 5vw, 4.5rem); /* Fluid font size */
     }
