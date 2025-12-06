@@ -1091,15 +1091,15 @@ body::before {
     left: 20px;
     z-index: 15;
     font-family: 'Roboto', sans-serif;
-    font-size: 1.7rem;
-    color: white;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5); /* 50% transparent white */
     font-weight: 400;
 }
 
 .vienna-weather .weather-text,
 .vienna-weather span {
     font-family: 'Roboto', sans-serif;
-    color: white;
+    color: rgba(255, 255, 255, 0.5); /* 50% transparent white */
 }
 
 /* Freud Section Mobile Responsive */
