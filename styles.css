@@ -1501,6 +1501,7 @@ body::before {
 
 .slc-number-circle.client .number {
     font-size: 6rem;
+    color: #000000 !important; /* Black text for 1 CLIENT - all versions */
 }
 
 .slc-number-circle.location {
@@ -1664,7 +1665,7 @@ body::before {
 
     .slc-number-circle.client .number {
         font-size: 4rem;
-        color: #000000;
+        color: #000000 !important; /* Black text for 1 CLIENT - mobile */
     }
 
     .slc-title {
@@ -3011,19 +3012,20 @@ iframe .jw-title-secondary {
     }
 
     .brown-bubble {
-        width: 86.4%; /* Stretched 20% wider horizontally */
-        max-width: 1037px; /* Stretched 20% wider horizontally */
-        transform: scaleY(0.8); /* Squeeze vertically - less height */
+        width: 95%; /* Stretched even more horizontally */
+        max-width: 1200px; /* Stretched even more */
+        transform: scaleY(0.75); /* Squeeze more vertically */
     }
 
-    /* Retreats section left-align for iPad */
+    /* Retreats section left-align for iPad - move bubbles 50px left */
     .retreats-container {
         padding: 0 20px;
         justify-items: start;
         padding-left: 0; /* Truly left aligned */
+        margin-left: -50px; /* Move all bubbles 50px left */
     }
 
-    /* 7 circles arrangement for iPad - desktop-like layout */
+    /* 7 circles planetary arrangement for iPad */
     .slc-number-circle.client {
         top: 50%;
         left: 50%;
@@ -3031,34 +3033,38 @@ iframe .jw-title-secondary {
         background-color: rgba(185, 212, 212, 0.7);
     }
 
+    .slc-number-circle.client .number {
+        color: #000000 !important; /* Black text for 1 CLIENT */
+    }
+
     .slc-number-circle.guru {
-        top: 50px;
+        top: 10%;
         left: 50%;
         transform: translateX(-50%);
     }
 
     .slc-number-circle.placeholders {
-        top: 150px;
-        left: 10%;
+        top: 25%;
+        left: 15%;
     }
 
     .slc-number-circle.weeks {
-        top: 150px;
-        right: 10%;
+        top: 25%;
+        right: 15%;
     }
 
     .slc-number-circle.location {
-        bottom: 150px;
-        left: 10%;
+        bottom: 25%;
+        left: 15%;
     }
 
     .slc-number-circle.facilitators {
-        bottom: 150px;
-        right: 10%;
+        bottom: 25%;
+        right: 15%;
     }
 
     .slc-number-circle.bodyworkers {
-        bottom: 50px;
+        bottom: 10%;
         left: 50%;
         transform: translateX(-50%);
     }
