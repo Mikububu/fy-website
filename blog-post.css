@@ -16,7 +16,20 @@ body {
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
+.post-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.post-meta time {
+    color: #666;
+    font-size: 0.9rem;
+}
+
 .post-header {
+    margin-top: 0;
     margin-bottom: 40px;
 }
 
