@@ -408,6 +408,160 @@ async function autoFixPost(file) {
     return results;
 }
 
+// Fix 6: Intelligent keyword analysis across ALL posts
+function analyzeGlobalKeywords() {
+    console.log('\n' + '='.repeat(60));
+    console.log('🔍 GLOBAL KEYWORD ANALYSIS');
+    console.log('='.repeat(60));
+
+    const files = fs.readdirSync(postsDir)
+        .filter(f => f.endsWith('.html') && !f.startsWith('.'));
+
+    // Collect all text content from all posts
+    const allContent = {};
+    const keywordFrequency = {};
+
+    files.forEach(file => {
+        const slug = file.replace('.html', '');
+        const filepath = path.join(postsDir, file);
+        const html = fs.readFileSync(filepath, 'utf8');
+
+        // Extract article content - try both patterns (cleaned and uncleaned posts)
+        let articleText = '';
+
+        // Pattern 1: Already cleaned posts with <div class="post-content">
+        const postContentMatch = html.match(/<div class="post-content">([\s\S]*?)<\/div>\s*<div class="post-keywords">/);
+        if (postContentMatch) {
+            articleText = postContentMatch[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+        } else {
+            // Pattern 2: Uncleaned posts with Substack UI
+            const bodyMatch = html.match(/<div dir="auto" class="body markup">([\s\S]*?)<\/div>/);
+            articleText = bodyMatch ? bodyMatch[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() : '';
+        }
+
+        allContent[slug] = articleText;
+    });
+
+    // Smart keyword extraction patterns
+    const smartPatterns = [
+        // Sanskrit/Tantric terms (capitalized, unique spellings)
+        /\b[A-Z][a-zāīūṛṝḷḹṃḥñśṣ]{4,}\b/g,
+        // Names (two capitalized words)
+        /\b[A-Z][a-z]+ [A-Z][a-z]+(?:\s+[A-Z][a-z]+)?\b/g,
+        // Compound terms with hyphens
+        /\b[a-z]+-[a-z]+(?:-[a-z]+)?\b/gi,
+        // Special tantric/yoga terms
+        /\b(?:tantra|yoga|puja|sadhana|kundalini|chakra|mudra|mantra|asana|pranayama|shakti|shiva|tanmatra|nyasa|trataka|mahavidya|nitya)\b/gi
+    ];
+
+    // Extract all potential keywords
+    const genericWords = [
+        'that', 'this', 'with', 'from', 'have', 'been', 'were', 'what', 'when', 'where', 'there',
+        'they', 'their', 'these', 'those', 'then', 'than', 'them', 'some', 'such', 'much', 'very',
+        'will', 'would', 'could', 'should', 'about', 'which', 'through', 'before', 'after', 'other',
+        'because', 'maybe', 'also', 'only', 'just', 'more', 'most', 'many', 'each', 'every', 'both',
+        'either', 'neither', 'enough', 'often', 'western', 'eastern', 'modern', 'traditional',
+        'people', 'person', 'thing', 'things', 'something', 'anything', 'everything', 'nothing',
+        'someone', 'anyone', 'everyone', 'nobody', 'russell', 'paradise', 'forbidden', 'esalen',
+        'indian', 'american', 'european'
+    ];
+
+    Object.values(allContent).forEach(text => {
+        smartPatterns.forEach(pattern => {
+            const matches = text.match(pattern) || [];
+            matches.forEach(keyword => {
+                const normalized = keyword.toLowerCase().trim();
+                // Filter out generic words
+                if (normalized.length > 3 && !genericWords.includes(normalized)) {
+                    keywordFrequency[keyword] = (keywordFrequency[keyword] || 0) + 1;
+                }
+            });
+        });
+    });
+
+    // Filter: Only keywords appearing 2+ times
+    const smartKeywords = Object.entries(keywordFrequency)
+        .filter(([keyword, count]) => count >= 2)
+        .sort((a, b) => b[1] - a[1]);
+
+    console.log(`\n📊 Found ${smartKeywords.length} intelligent keywords (appearing 2+ times):\n`);
+
+    // Categorize keywords
+    const categories = {
+        'Sanskrit/Tantric Terms': [],
+        'Names & Teachers': [],
+        'Practices & Techniques': [],
+        'Philosophical Concepts': []
+    };
+
+    smartKeywords.forEach(([keyword, count]) => {
+        if (/^[A-Z][a-z]+ [A-Z]/.test(keyword)) {
+            categories['Names & Teachers'].push([keyword, count]);
+        } else if (/puja|sadhana|nyasa|trataka|mudra|asana/i.test(keyword)) {
+            categories['Practices & Techniques'].push([keyword, count]);
+        } else if (/tantra|yoga|kundalini|shakti|shiva/i.test(keyword)) {
+            categories['Philosophical Concepts'].push([keyword, count]);
+        } else if (/^[A-Z]/.test(keyword)) {
+            categories['Sanskrit/Tantric Terms'].push([keyword, count]);
+        }
+    });
+
+    // Display categorized results
+    Object.entries(categories).forEach(([category, keywords]) => {
+        if (keywords.length > 0) {
+            console.log(`\n${category}:`);
+            keywords.slice(0, 15).forEach(([keyword, count]) => {
+                console.log(`  ${keyword.padEnd(30)} (${count}x)`);
+            });
+        }
+    });
+
+    // Now update keyword meta tags in posts
+    console.log('\n' + '='.repeat(60));
+    console.log('📝 UPDATING KEYWORD META TAGS');
+    console.log('='.repeat(60) + '\n');
+
+    let updated = 0;
+
+    files.forEach(file => {
+        const slug = file.replace('.html', '');
+        const filepath = path.join(postsDir, file);
+        let html = fs.readFileSync(filepath, 'utf8');
+        const articleText = allContent[slug];
+
+        // Find which smart keywords appear in THIS post
+        const postKeywords = smartKeywords
+            .filter(([keyword]) => articleText.toLowerCase().includes(keyword.toLowerCase()))
+            .map(([keyword]) => keyword)
+            .slice(0, 10); // Top 10 keywords for this post
+
+        if (postKeywords.length >= 3) {
+            const keywordsStr = postKeywords.join(', ');
+            const keywordsPattern = /<meta name="keywords" content="([^"]*)">/;
+            const match = html.match(keywordsPattern);
+
+            if (match) {
+                const currentKeywords = match[1];
+                // Only update if different
+                if (currentKeywords !== keywordsStr) {
+                    html = html.replace(keywordsPattern, `<meta name="keywords" content="${keywordsStr}">`);
+                    fs.writeFileSync(filepath, html);
+                    console.log(`  ✓ ${slug}: Updated with ${postKeywords.length} intelligent keywords`);
+                    updated++;
+                }
+            }
+        }
+    });
+
+    console.log(`\n✓ Updated ${updated} posts with intelligent keywords`);
+
+    return {
+        totalKeywords: smartKeywords.length,
+        updatedPosts: updated,
+        topKeywords: smartKeywords.slice(0, 20)
+    };
+}
+
 // Main execution
 async function main() {
     const files = fs.readdirSync(postsDir)
@@ -434,6 +588,16 @@ async function main() {
     console.log(`  Fixed: ${totalFixed} posts`);
     console.log(`  Clean: ${totalSkipped} posts`);
     console.log(`  Errors: ${totalErrors} posts`);
+    console.log(`${'='.repeat(60)}\n`);
+
+    // Run global keyword analysis AFTER all fixes
+    const keywordResults = analyzeGlobalKeywords();
+
+    console.log(`\n${'='.repeat(60)}`);
+    console.log(`✓ FINAL SUMMARY`);
+    console.log(`  Posts processed: ${files.length}`);
+    console.log(`  Intelligent keywords found: ${keywordResults.totalKeywords}`);
+    console.log(`  Posts updated with keywords: ${keywordResults.updatedPosts}`);
     console.log(`${'='.repeat(60)}\n`);
 }
 
