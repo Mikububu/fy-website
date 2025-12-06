@@ -536,8 +536,8 @@ body::before {
 }
 
 .brown-bubble {
-    width: 72%; /* 20% bigger */
-    max-width: 864px; /* 20% bigger */
+    width: 86.4%; /* Stretched 20% wider horizontally */
+    max-width: 1037px; /* Stretched 20% wider horizontally */
     height: auto;
     display: block;
     margin: 0 auto;
@@ -603,7 +603,7 @@ body::before {
     }
 
     .brown-bubble {
-        width: 86%; /* 20% bigger */
+        width: 86.4%; /* Stretched 20% wider horizontally */
     }
 
     .bubble-text {
@@ -2993,15 +2993,15 @@ iframe .jw-title-secondary {
     }
 
     .brown-bubble {
-        width: 85%;
-        max-width: 1000px;
+        width: 86.4%; /* Stretched 20% wider horizontally */
+        max-width: 1037px; /* Stretched 20% wider horizontally */
     }
 
     /* Retreats section left-align for iPad */
     .retreats-container {
-        padding: 0 30px;
+        padding: 0 20px;
         justify-items: start;
-        padding-left: 80px;
+        padding-left: 20px;
     }
 
     /* 7 circles arrangement for iPad - desktop-like layout */
