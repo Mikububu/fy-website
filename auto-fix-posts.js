@@ -279,13 +279,52 @@ function optimizeSEO(filepath, slug) {
     return { action: 'skip', reason: 'SEO already optimized' };
 }
 
-// Fix 5: Generate thumbnail from first blog image (or use Michael's photo fallback)
+// Fix 5: Correct broken image references (extension mismatches)
+function fixBrokenImageReferences(filepath, slug) {
+    let html = fs.readFileSync(filepath, 'utf8');
+    let fixed = 0;
+
+    // Find all blog-images references
+    const imageRefs = html.match(/\/blog-images\/[^"'\s]+\.(jpg|jpeg|png|webp|gif)/gi) || [];
+
+    imageRefs.forEach(imgRef => {
+        const filename = imgRef.replace('/blog-images/', '');
+        const imgPath = path.join(blogImagesDir, filename);
+
+        // Check if this exact file exists
+        if (!fs.existsSync(imgPath)) {
+            // Try to find the correct extension
+            const baseName = filename.replace(/\.(jpg|jpeg|png|webp|gif)$/i, '');
+            const possibleExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
+
+            for (const ext of possibleExtensions) {
+                const correctPath = path.join(blogImagesDir, baseName + ext);
+                if (fs.existsSync(correctPath)) {
+                    const correctRef = `/blog-images/${baseName}${ext}`;
+                    html = html.replace(new RegExp(imgRef.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'), correctRef);
+                    fixed++;
+                    break;
+                }
+            }
+        }
+    });
+
+    if (fixed > 0) {
+        fs.writeFileSync(filepath, html);
+        return { action: 'fixed', count: fixed };
+    }
+
+    return { action: 'skip', reason: 'No broken references' };
+}
+
+// Fix 6: Generate thumbnail from first blog image (or use Michael's photo fallback)
 function generateThumbnail(slug) {
     // Check if thumbnail already exists
     const possibleThumbnails = [
         path.join(thumbnailsDir, `${slug}.jpg`),
         path.join(thumbnailsDir, `${slug}.png`),
-        path.join(thumbnailsDir, `${slug}.jpeg`)
+        path.join(thumbnailsDir, `${slug}.jpeg`),
+        path.join(thumbnailsDir, `${slug}.gif`)
     ];
 
     for (const thumb of possibleThumbnails) {
@@ -294,12 +333,13 @@ function generateThumbnail(slug) {
         }
     }
 
-    // Find first blog image (img-0)
+    // Find first blog image (img-0) - now including GIF
     const possibleImages = [
         `${slug}-img-0.jpg`,
         `${slug}-img-0.png`,
         `${slug}-img-0.jpeg`,
-        `${slug}-img-0.webp`
+        `${slug}-img-0.webp`,
+        `${slug}-img-0.gif`
     ];
 
     let sourceImage = null;
@@ -322,20 +362,27 @@ function generateThumbnail(slug) {
         }
     }
 
-    // Determine output format
-    const ext = sourceImage.includes('Wogenburg') ? '.jpg' : path.extname(sourceImage);
+    // Determine output format - keep GIF as GIF, convert others to JPG
+    const ext = sourceImage.includes('Wogenburg') ? '.jpg' :
+                sourceImage.endsWith('.gif') ? '.gif' : '.jpg';
     const thumbnailPath = path.join(thumbnailsDir, `${slug}${ext}`);
 
     try {
-        // Create thumbnail with max 600px width/height
-        execSync(`sips -Z 600 "${sourceImage}" --out "${thumbnailPath}"`, { stdio: 'pipe' });
+        if (sourceImage.endsWith('.gif')) {
+            // For GIFs, use first frame and resize
+            execSync(`sips -Z 600 "${sourceImage}" --out "${thumbnailPath}"`, { stdio: 'pipe' });
+            console.log(`    ℹ Created thumbnail from GIF (first frame)`);
+        } else {
+            // For other formats, standard resize
+            execSync(`sips -Z 600 "${sourceImage}" --out "${thumbnailPath}"`, { stdio: 'pipe' });
+        }
 
         // If we used the fallback, also note it was from fallback
         if (sourceImage.includes('Wogenburg')) {
             return { action: 'fixed', path: thumbnailPath, fallback: true };
         }
 
-        return { action: 'fixed', path: thumbnailPath };
+        return { action: 'fixed', path: thumbnailPath, isGif: sourceImage.endsWith('.gif') };
     } catch (err) {
         return { action: 'error', reason: err.message };
     }
@@ -353,6 +400,7 @@ async function autoFixPost(file) {
         substackImages: { action: 'skip' },
         topBackLink: { action: 'skip' },
         seo: { action: 'skip' },
+        imageRefs: { action: 'skip' },
         thumbnail: { action: 'skip' }
     };
 
@@ -384,17 +432,25 @@ async function autoFixPost(file) {
             });
         }
 
-        // Fix 5: Generate thumbnail
+        // Fix 5: Correct broken image references
+        results.imageRefs = fixBrokenImageReferences(filepath, slug);
+        if (results.imageRefs.action === 'fixed') {
+            console.log(`  ✓ Fixed ${results.imageRefs.count} broken image reference(s)`);
+        }
+
+        // Fix 6: Generate thumbnail
         results.thumbnail = generateThumbnail(slug);
         if (results.thumbnail.action === 'fixed') {
             if (results.thumbnail.fallback) {
                 console.log(`  ✓ Generated thumbnail using Michael's photo (no img-0 found)`);
+            } else if (results.thumbnail.isGif) {
+                console.log(`  ✓ Generated thumbnail from GIF (first frame extracted)`);
             } else {
                 console.log(`  ✓ Generated thumbnail from img-0`);
             }
         }
 
-        const totalFixes = [results.substackUI, results.substackImages, results.topBackLink, results.seo, results.thumbnail]
+        const totalFixes = [results.substackUI, results.substackImages, results.topBackLink, results.seo, results.imageRefs, results.thumbnail]
             .filter(r => r.action === 'fixed').length;
 
         if (totalFixes === 0) {
@@ -408,7 +464,7 @@ async function autoFixPost(file) {
     return results;
 }
 
-// Fix 6: Intelligent keyword analysis across ALL posts
+// Fix 7: Intelligent keyword analysis across ALL posts
 function analyzeGlobalKeywords() {
     console.log('\n' + '='.repeat(60));
     console.log('🔍 GLOBAL KEYWORD ANALYSIS');
