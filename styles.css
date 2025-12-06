@@ -3011,8 +3011,12 @@ iframe .jw-title-secondary {
     }
 
     .slc-number-circle.client {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 200px;
         height: 200px;
+        background-color: rgba(185, 212, 212, 0.7);
     }
 
     .slc-number-circle.guru {
@@ -3023,22 +3027,22 @@ iframe .jw-title-secondary {
 
     .slc-number-circle.placeholders {
         top: 100px;
-        left: 12%;
+        left: 15%;
     }
 
     .slc-number-circle.weeks {
         top: 100px;
-        right: 12%;
+        right: 15%;
     }
 
     .slc-number-circle.location {
         bottom: 100px;
-        left: 12%;
+        left: 15%;
     }
 
     .slc-number-circle.facilitators {
         bottom: 100px;
-        right: 12%;
+        right: 15%;
     }
 
     .slc-number-circle.bodyworkers {
