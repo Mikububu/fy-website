@@ -4,8 +4,9 @@ const path = require('path');
 const postsDir = './posts';
 const files = fs.readdirSync(postsDir).filter(f => f.endsWith('.html') && !f.startsWith('.'));
 
-// Stop words to exclude
+// Comprehensive stop words to exclude meaningless filler words
 const stopWords = new Set([
+    // Basic pronouns and articles
     'the', 'be', 'to', 'of', 'and', 'a', 'in', 'that', 'have', 'i', 'it', 'for', 'not', 'on', 'with',
     'he', 'as', 'you', 'do', 'at', 'this', 'but', 'his', 'by', 'from', 'they', 'we', 'say', 'her',
     'she', 'or', 'an', 'will', 'my', 'one', 'all', 'would', 'there', 'their', 'what', 'so', 'up',
@@ -17,19 +18,127 @@ const stopWords = new Set([
     'been', 'has', 'had', 'were', 'said', 'did', 'having', 'may', 'such', 'being', 'through',
     'where', 'much', 'should', 'very', 'each', 'those', 'both', 'during', 'without', 'however',
     'while', 'why', 'does', 'many', 'still', 'might', 'must', 'something', 'own', 'same', 'often',
-    'never', 'always', 'every', 'things', 'thing', 'here', 'become', 'becomes', 'became', 'becoming'
+    'never', 'always', 'every', 'things', 'thing', 'here', 'become', 'becomes', 'became', 'becoming',
+
+    // Additional filler words that are meaningless
+    'rather', 'more', 'between', 'someone', 'everything', 'nothing', 'anything', 'everyone',
+    'anyone', 'nobody', 'somebody', 'anybody', 'somewhere', 'anywhere', 'everywhere', 'nowhere',
+    'maybe', 'perhaps', 'really', 'actually', 'basically', 'literally', 'generally', 'usually',
+    'especially', 'particularly', 'probably', 'possibly', 'certainly', 'definitely', 'absolutely',
+    'completely', 'totally', 'entirely', 'quite', 'rather', 'somewhat', 'fairly', 'pretty',
+    'almost', 'nearly', 'barely', 'hardly', 'scarcely', 'merely', 'simply', 'purely',
+    'already', 'yet', 'still', 'again', 'once', 'twice', 'thrice', 'times',
+    'too', 'enough', 'less', 'least', 'more', 'most', 'better', 'best', 'worse', 'worst',
+    'before', 'since', 'until', 'unless', 'although', 'though', 'whether', 'either', 'neither',
+    'nor', 'nor', 'but', 'yet', 'for', 'so', 'because', 'since', 'unless', 'while',
+    'whereas', 'wherever', 'whenever', 'whatever', 'whichever', 'whoever', 'whomever',
+    'themselves', 'ourselves', 'yourselves', 'myself', 'yourself', 'himself', 'herself', 'itself',
+    'another', 'others', 'neither', 'either', 'each', 'few', 'several', 'none', 'some', 'any',
+    'lot', 'lots', 'bit', 'bits', 'piece', 'pieces', 'part', 'parts', 'whole', 'half', 'third',
+    'various', 'different', 'similar', 'certain', 'specific', 'particular', 'general', 'common',
+    'special', 'normal', 'regular', 'usual', 'unusual', 'typical', 'unique', 'rare',
+    'kind', 'type', 'sort', 'form', 'style', 'manner', 'mode', 'method', 'means',
+    'sense', 'point', 'case', 'fact', 'matter', 'issue', 'question', 'problem', 'solution',
+    'idea', 'thought', 'concept', 'notion', 'understanding', 'knowledge', 'information',
+    'yes', 'yeah', 'yep', 'yup', 'nope', 'nah', 'okay', 'ok', 'alright', 'fine',
+    'thank', 'thanks', 'please', 'sorry', 'excuse', 'pardon', 'hello', 'goodbye', 'bye',
+    'going', 'coming', 'doing', 'making', 'getting', 'taking', 'giving', 'looking', 'seeing',
+    'found', 'find', 'finding', 'tell', 'told', 'telling', 'ask', 'asked', 'asking',
+    'called', 'call', 'calling', 'need', 'needed', 'needing', 'seem', 'seemed', 'seeming',
+    'try', 'tried', 'trying', 'keep', 'kept', 'keeping', 'let', 'lets', 'letting',
+    'put', 'puts', 'putting', 'set', 'sets', 'setting', 'start', 'started', 'starting',
+    'end', 'ended', 'ending', 'stop', 'stopped', 'stopping', 'begin', 'began', 'beginning',
+    'continue', 'continued', 'continuing', 'happen', 'happened', 'happening', 'change', 'changed', 'changing',
+    'turn', 'turned', 'turning', 'move', 'moved', 'moving', 'bring', 'brought', 'bringing',
+    'leave', 'left', 'leaving', 'stay', 'stayed', 'staying', 'remain', 'remained', 'remaining',
+    'allow', 'allowed', 'allowing', 'help', 'helped', 'helping', 'seem', 'seems', 'seemed',
+    'appear', 'appeared', 'appearing', 'follow', 'followed', 'following', 'provide', 'provided', 'providing',
+    'include', 'included', 'including', 'feel', 'felt', 'feeling', 'show', 'showed', 'showing',
+    'mean', 'meant', 'meaning', 'add', 'added', 'adding', 'created', 'create', 'creating',
+    'cause', 'caused', 'causing', 'live', 'lived', 'living', 'play', 'played', 'playing',
+    'run', 'ran', 'running', 'read', 'reading', 'write', 'wrote', 'writing', 'stand', 'stood', 'standing',
+    'sit', 'sat', 'sitting', 'walk', 'walked', 'walking', 'talk', 'talked', 'talking',
+    'speak', 'spoke', 'speaking', 'hear', 'heard', 'hearing', 'listen', 'listened', 'listening',
+    'watch', 'watched', 'watching', 'open', 'opened', 'opening', 'close', 'closed', 'closing',
+    'cut', 'cutting', 'break', 'broke', 'breaking', 'build', 'built', 'building',
+    'carry', 'carried', 'carrying', 'hold', 'held', 'holding', 'reach', 'reached', 'reaching',
+    'send', 'sent', 'sending', 'receive', 'received', 'receiving', 'offer', 'offered', 'offering',
+    'pass', 'passed', 'passing', 'pull', 'pulled', 'pulling', 'push', 'pushed', 'pushing',
+    'wait', 'waited', 'waiting', 'serve', 'served', 'serving', 'die', 'died', 'dying',
+    'grow', 'grew', 'growing', 'fall', 'fell', 'falling', 'rise', 'rose', 'rising',
+    'lose', 'lost', 'losing', 'win', 'won', 'winning', 'buy', 'bought', 'buying',
+    'sell', 'sold', 'selling', 'pay', 'paid', 'paying', 'spend', 'spent', 'spending',
+    'cost', 'costs', 'costing', 'wear', 'wore', 'wearing', 'kill', 'killed', 'killing',
+    'meet', 'met', 'meeting', 'visit', 'visited', 'visiting', 'return', 'returned', 'returning',
+    'forget', 'forgot', 'forgetting', 'remember', 'remembered', 'remembering', 'decide', 'decided', 'deciding',
+    'consider', 'considered', 'considering', 'suppose', 'supposed', 'supposing', 'believe', 'believed', 'believing',
+    'hope', 'hoped', 'hoping', 'wish', 'wished', 'wishing', 'expect', 'expected', 'expecting',
+    'imagine', 'imagined', 'imagining', 'wonder', 'wondered', 'wondering', 'realize', 'realized', 'realizing',
+    'understand', 'understood', 'understanding', 'recognize', 'recognized', 'recognizing', 'notice', 'noticed', 'noticing',
+
+    // Additional meaningless words
+    'cannot', 'don', 'next', 'within', 'share', 'years', 'person', 'world', 'life',
+    'com', 'nov', 'ready', 'placeholder', 'actors', 'ava', 'kular'
 ]);
 
-// Tantra/yoga specific terms that should always be included
+// Sophisticated terms that should always be included (domain-specific and intellectual)
 const importantTerms = new Set([
+    // Core yoga/tantra terminology
     'tantra', 'yoga', 'kundalini', 'chakra', 'meditation', 'spiritual', 'divine', 'consciousness',
     'energy', 'practice', 'sacred', 'healing', 'awakening', 'transformation', 'embodiment',
     'breath', 'sensual', 'liberation', 'devotion', 'enlightenment', 'ritual', 'initiation',
     'goddess', 'shiva', 'shakti', 'puja', 'mantra', 'mudra', 'nadi', 'prana', 'samadhi',
     'dharma', 'karma', 'samsara', 'moksha', 'bhakti', 'jnana', 'raja', 'hatha', 'kriya',
+    'somatic', 'embodied', 'intimacy', 'presence', 'mindfulness', 'retreat', 'workshop',
+
+    // Multi-word phrases
     'tantra yoga', 'kundalini yoga', 'sacred sexuality', 'tantric healing', 'spiritual awakening',
     'energy work', 'chakra healing', 'breathwork', 'meditation practice', 'conscious touch',
-    'somatic', 'embodied', 'intimacy', 'presence', 'mindfulness', 'retreat', 'workshop'
+    'divine feminine', 'divine masculine', 'inner alchemy', 'spiritual practice',
+
+    // Advanced spiritual concepts
+    'nonduality', 'advaita', 'vedanta', 'sutra', 'zen', 'buddhism', 'taoism', 'mysticism',
+    'transcendence', 'ecstasy', 'bliss', 'emptiness', 'void', 'silence', 'stillness',
+    'surrender', 'witnessing', 'awareness', 'perception', 'reality', 'truth', 'wisdom',
+    'compassion', 'equanimity', 'detachment', 'non-attachment', 'renunciation',
+
+    // Body/somatic terminology
+    'somatic', 'embodiment', 'nervous system', 'trauma', 'integration', 'regulation',
+    'polyvagal', 'vagus', 'parasympathetic', 'sympathetic', 'proprioception',
+
+    // Philosophical and psychological terms
+    'shadow', 'archetype', 'psyche', 'subconscious', 'unconscious', 'collective',
+    'individuation', 'projection', 'transference', 'integration', 'wholeness',
+    'authenticity', 'vulnerability', 'boundaries', 'consent', 'agency',
+
+    // Teachers and authors (sophisticated references)
+    'sapolsky', 'robert sapolsky', 'jung', 'carl jung', 'watts', 'alan watts',
+    'osho', 'rajneesh', 'ramana', 'maharshi', 'nisargadatta', 'maharaj',
+    'krishnamurti', 'jiddu krishnamurti', 'eckhart tolle', 'tolle',
+    'ram dass', 'dass', 'timothy leary', 'terence mckenna', 'mckenna',
+    'rumi', 'hafiz', 'kabir', 'mirabai', 'rilke', 'nin', 'anais nin',
+    'campbell', 'joseph campbell', 'eliade', 'mircea eliade',
+    'jung', 'freud', 'reich', 'wilhelm reich', 'lowen', 'alexander lowen',
+    'grof', 'stanislav grof', 'wilber', 'ken wilber', 'kornfield', 'jack kornfield',
+
+    // Advanced yogic/tantric concepts
+    'sushumna', 'ida', 'pingala', 'bandha', 'kumbhaka', 'pranayama', 'asana',
+    'dhyana', 'dharana', 'pratyahara', 'yama', 'niyama', 'samyama',
+    'bindu', 'ojas', 'tejas', 'sattva', 'rajas', 'tamas', 'guna',
+    'kosha', 'atman', 'brahman', 'maya', 'lila', 'leela',
+
+    // Texts and traditions
+    'upanishad', 'bhagavad gita', 'gita', 'vedas', 'rigveda', 'patanjali',
+    'yoga sutras', 'hatha yoga pradipika', 'shiva samhita', 'vigyan bhairav',
+    'tantra sastra', 'tantric buddhism', 'tibetan buddhism', 'dzogchen', 'mahamudra',
+
+    // Forbidden yoga specific
+    'forbidden', 'forbidden yoga', 'michael', 'perin', 'wogenburg',
+
+    // Modern spirituality/science
+    'neuroscience', 'neuroplasticity', 'psychedelics', 'entheogens', 'ayahuasca',
+    'psilocybin', 'mycology', 'mushrooms', 'dmt', 'lsd', 'mdma',
+    'phenomenology', 'epistemology', 'ontology', 'metaphysics', 'cosmology'
 ]);
 
 const wordCounts = {};
@@ -80,9 +189,19 @@ const sortedWords = Object.entries(wordCounts)
     .filter(([word, count]) => count >= 5 || importantTerms.has(word))
     .slice(0, 100);
 
+// Filter out UI/navigation phrases and meaningless phrases
+const uiPhrases = new Set([
+    'share previous', 'previous next', 'share previous next', 'com share',
+    'yoga com share', 'com share previous', 'nov share', 'wogenburg nov share',
+    'posts questions', 'questions ready', 'posts questions ready',
+    'yoga com', 'forbidden yoga com', 'wogenburg nov', 'perin wogenburg nov',
+    'love forbidden', 'love forbidden yoga', 'placeholder actors', 'kular ava',
+    'handed tantric'
+]);
+
 const sortedPhrases = Object.entries(phraseCounts)
     .sort((a, b) => b[1] - a[1])
-    .filter(([phrase, count]) => count >= 3)
+    .filter(([phrase, count]) => count >= 3 && !uiPhrases.has(phrase))
     .slice(0, 50);
 
 console.log('\n=== TOP 50 KEYWORDS ===\n');
