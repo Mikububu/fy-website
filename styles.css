@@ -1535,8 +1535,8 @@ body::before {
 .slc-number-circle .label {
     font-family: 'Roboto', sans-serif;
     font-size: clamp(0.7rem, 1vw, 0.95rem); /* Fluid font size */
-    font-weight: 100;
-    color: #E6DECA;
+    font-weight: 700;
+    color: #000000;
     line-height: 1.2;
     margin-top: 5px;
     display: block;
