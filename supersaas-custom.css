@@ -64,29 +64,41 @@
     background-color: #f3f2de !important;
 }
 
-/* Calendar day cells */
+/* Calendar day cells - aggressive targeting */
+#supersaas button,
+#supersaas button[type="button"],
 #supersaas .ss-day,
 #supersaas .ss-calendar-day,
 #supersaas td.ss-available,
 #supersaas td.ss-booked,
-#supersaas button.ss-day-btn {
+#supersaas button.ss-day-btn,
+#supersaas div[class*="available"],
+#supersaas div[class*="slot"],
+button[class*="day"],
+button[style*="background"] {
     background-color: #6B4423 !important;
+    background: #6B4423 !important;
     color: #ffffff !important;
     border-color: #6B4423 !important;
 }
 
+#supersaas button:hover,
+#supersaas button[type="button"]:hover,
 #supersaas .ss-day:hover,
 #supersaas .ss-calendar-day:hover,
 #supersaas td.ss-available:hover,
 #supersaas button.ss-day-btn:hover {
     background-color: #8B5A2B !important;
+    background: #8B5A2B !important;
 }
 
 /* Unavailable/disabled days */
 #supersaas .ss-day.ss-disabled,
 #supersaas td.ss-disabled,
-#supersaas button.ss-day-btn:disabled {
+#supersaas button.ss-day-btn:disabled,
+#supersaas button:disabled {
     background-color: #e8e7d3 !important;
+    background: #e8e7d3 !important;
     color: #999 !important;
     opacity: 0.6 !important;
 }
@@ -94,8 +106,11 @@
 /* Time slots */
 #supersaas .ss-slot,
 #supersaas .ss-appointment,
-#supersaas .ss-time-slot {
+#supersaas .ss-time-slot,
+#supersaas a[class*="slot"],
+#supersaas div[class*="time"] {
     background-color: #6B4423 !important;
+    background: #6B4423 !important;
     border-color: #6B4423 !important;
     color: #ffffff !important;
 }
@@ -104,15 +119,27 @@
 #supersaas .ss-appointment:hover,
 #supersaas .ss-time-slot:hover {
     background-color: #8B5A2B !important;
+    background: #8B5A2B !important;
 }
 
 /* Selected slot */
 #supersaas .ss-selected,
 #supersaas .ss-slot.ss-selected,
-#supersaas button.ss-selected {
+#supersaas button.ss-selected,
+#supersaas button[aria-selected="true"] {
     background-color: #8B5A2B !important;
+    background: #8B5A2B !important;
     color: #ffffff !important;
     border: 2px solid #31302C !important;
+}
+
+/* Nuclear option - override ANY blue colors */
+#supersaas [style*="rgb(66, 133, 244)"],
+#supersaas [style*="#4285f4"],
+#supersaas [style*="background-color: rgb"],
+#supersaas [class*="blue"] {
+    background-color: #6B4423 !important;
+    background: #6B4423 !important;
 }
 
 /* Labels and text */
