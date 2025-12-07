@@ -1109,6 +1109,52 @@ body::before {
     text-transform: lowercase;
 }
 
+/* Bali Weather Widget - Video 1 */
+.bali-weather-video1 {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    z-index: 15;
+    background-color: rgba(107, 68, 35, 0.5); /* Brown 50% opaque */
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #ffffff; /* White font color */
+    font-weight: 400;
+    text-transform: lowercase;
+}
+
+.bali-weather-video1 .weather-text,
+.bali-weather-video1 span {
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff; /* White font color */
+    text-transform: lowercase;
+}
+
+/* Mongolia Weather Widget */
+.mongolia-weather {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    z-index: 15;
+    background-color: rgba(107, 68, 35, 0.5); /* Brown 50% opaque */
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: #ffffff; /* White font color */
+    font-weight: 400;
+    text-transform: lowercase;
+}
+
+.mongolia-weather .weather-text,
+.mongolia-weather span {
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff; /* White font color */
+    text-transform: lowercase;
+}
+
 /* Freud Section Mobile Responsive */
 @media (max-width: 1024px) {
     .freud-section {
