@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Cancelled - ForbiddenYoga</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f3f2de;
+            color: #31302C;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        .icon {
+            width: 80px;
+            height: 80px;
+            background: #f3f2de;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+        .icon svg {
+            width: 40px;
+            height: 40px;
+            fill: #6B4423;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: #6B4423;
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        p {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .options {
+            background: #f3f2de;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: left;
+        }
+        .options h3 {
+            font-family: 'Playfair Display', serif;
+            color: #6B4423;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        .options ul {
+            list-style: none;
+            padding: 0;
+        }
+        .options li {
+            padding: 8px 0;
+            color: #31302C;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .options li::before {
+            content: "•";
+            color: #B8D4D4;
+            font-size: 20px;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 25px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #6B4423;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #5a3a1e;
+            transform: scale(1.02);
+        }
+        .btn-secondary {
+            background: #B8D4D4;
+            color: #31302C;
+        }
+        .btn-secondary:hover {
+            background: #a5c5c5;
+        }
+        .footer-note {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="icon">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+        </div>
+        <h1>Payment Cancelled</h1>
+        <p>Your payment was not completed. No charges have been made to your account.</p>
+
+        <div class="options">
+            <h3>What would you like to do?</h3>
+            <ul>
+                <li>Try the payment again</li>
+                <li>Choose a different payment method</li>
+                <li>Contact us for assistance</li>
+            </ul>
+        </div>
+
+        <div class="btn-group">
+            <a href="/" class="btn btn-primary">Return to ForbiddenYoga</a>
+        </div>
+
+        <p class="footer-note">If you experienced any issues, please message us on WhatsApp for assistance.</p>
+    </div>
+</body>
+</html>
