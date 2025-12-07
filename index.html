@@ -522,7 +522,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-booking">
-            <button onclick="supersaas.show()" class="book-guru-button">BOOK A GURU SESSION</button>
+            <button onclick="ForbiddenYogaWhatsApp.open()" class="book-guru-button" data-whatsapp-phone="" data-whatsapp-message="Hello, I am interested in ForbiddenYoga services.">CONNECT ON WHATSAPP</button>
         </div>
         <div class="footer-links">
             <a href="/privacy.html">Privacy Policy</a>
@@ -532,11 +532,14 @@
         <div class="footer-copyright">Spiritual Art Performance Project</div>
     </footer>
 
-    <!-- SuperSaaS Booking Widget -->
-    <script src="https://cdn.supersaas.net/widget.js"></script>
-    <script class="supersaas-widget">var supersaas = new SuperSaaS("Forbidden_Yoga","FY_Coaching_session",{
-        css: "https://www.forbidden-yoga.com/supersaas-custom.css"
-    })</script>
+    <!-- WhatsApp Contact Handler -->
+    <script src="whatsapp-contact.js"></script>
+    <script>
+        // Configure WhatsApp phone number (set by operator)
+        // Phone number should be in international format without + or spaces
+        // Example: 14155551234 for +1 (415) 555-1234
+        window.ForbiddenYogaWhatsApp.config.phoneNumber = '';
+    </script>
 
     <script defer src="blog.js"></script>
     <script defer src="slideshow.js"></script>
