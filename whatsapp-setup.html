@@ -193,6 +193,8 @@
             <div class="step-dot" data-step="6"></div>
             <div class="step-dot" data-step="7"></div>
             <div class="step-dot" data-step="8"></div>
+            <div class="step-dot" data-step="9"></div>
+            <div class="step-dot" data-step="10"></div>
         </div>
 
         <!-- Step 1: WhatsApp Business Account ID -->
@@ -280,21 +282,50 @@
             </div>
         </div>
 
-        <!-- Step 7: Payment Link -->
+        <!-- Step 7: PayPal Client ID -->
         <div class="step" data-step="7">
-            <h2>Payment Link (Credit Card / PayPal)</h2>
-            <p>Enter the payment link or processor checkout URL for credit card and PayPal payments. This will be sent to users who choose these payment methods.</p>
-            <label for="payment_link">Payment Link URL</label>
-            <input type="url" id="payment_link" placeholder="https://your-payment-processor.com/checkout/..." required>
-            <p class="help-text">This can be a Stripe, PayPal, or any payment processor checkout link.</p>
+            <h2>PayPal Client ID</h2>
+            <p>Enter your PayPal API Client ID for processing credit card and PayPal payments.</p>
+            <label for="paypal_client_id">PayPal Client ID</label>
+            <input type="text" id="paypal_client_id" placeholder="AZqId-uWx1sohQqiIQF7wTO8..." required>
+            <p class="help-text">Found in PayPal Developer Dashboard → Apps & Credentials.</p>
             <div class="btn-group">
                 <button class="btn btn-secondary" onclick="prevStep()">Back</button>
                 <button class="btn btn-primary" onclick="nextStep()">Continue</button>
             </div>
         </div>
 
-        <!-- Step 8: WhatsApp Broadcast List/Group -->
+        <!-- Step 8: PayPal Client Secret -->
         <div class="step" data-step="8">
+            <h2>PayPal Client Secret</h2>
+            <p>Enter your PayPal API Client Secret.</p>
+            <div class="warning">
+                <strong>Security Note:</strong> This secret provides access to your PayPal account. Keep it secure and never share it publicly.
+            </div>
+            <label for="paypal_client_secret">PayPal Client Secret</label>
+            <input type="password" id="paypal_client_secret" placeholder="EOKhIP21derBegXsi_04aDCT..." required>
+            <p class="help-text">Found alongside the Client ID in PayPal Developer Dashboard.</p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 9: WhatsApp Phone Number -->
+        <div class="step" data-step="9">
+            <h2>WhatsApp Phone Number</h2>
+            <p>Enter your WhatsApp Business phone number in international format (without + or spaces).</p>
+            <label for="whatsapp_phone">WhatsApp Phone Number</label>
+            <input type="text" id="whatsapp_phone" placeholder="e.g., 14155551234" required>
+            <p class="help-text">This is the number users will message. Format: country code + number (no spaces or symbols).</p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 10: WhatsApp Broadcast List/Group -->
+        <div class="step" data-step="10">
             <h2>WhatsApp Broadcast List / Group</h2>
             <p>Enter the ID or link for your WhatsApp broadcast list or group where interested users will be added.</p>
             <label for="broadcast_list">Broadcast List ID or Group Invite Link</label>
@@ -328,7 +359,7 @@
 
     <script>
         let currentStep = 1;
-        const totalSteps = 8;
+        const totalSteps = 10;
 
         function updateStepIndicators() {
             document.querySelectorAll('.step-dot').forEach((dot, index) => {
@@ -387,7 +418,9 @@
                 WHATSAPP_VERIFY_TOKEN: document.getElementById('verify_token').value.trim(),
                 WHATSAPP_WEBHOOK_URL: document.getElementById('webhook_url').value.trim(),
                 WHATSAPP_HOSTING_ENV: document.getElementById('hosting_env').value,
-                WHATSAPP_PAYMENT_LINK: document.getElementById('payment_link').value.trim(),
+                PAYPAL_CLIENT_ID: document.getElementById('paypal_client_id').value.trim(),
+                PAYPAL_CLIENT_SECRET: document.getElementById('paypal_client_secret').value.trim(),
+                WHATSAPP_PHONE_NUMBER: document.getElementById('whatsapp_phone').value.trim(),
                 WHATSAPP_BROADCAST_LIST: document.getElementById('broadcast_list').value.trim()
             };
 

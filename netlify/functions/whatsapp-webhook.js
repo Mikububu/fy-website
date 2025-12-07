@@ -6,6 +6,66 @@
 // In-memory conversation state (for serverless, consider using a database for production)
 // For now, we'll use a simple state machine approach
 const CRYPTO_ADDRESS = '0x450d6188aadd0f6f4d167cfc8d092842903b36d6';
+const PAYPAL_API_BASE = 'https://api-m.paypal.com'; // Use https://api-m.sandbox.paypal.com for testing
+
+// PayPal integration functions
+async function getPayPalAccessToken() {
+    const clientId = process.env.PAYPAL_CLIENT_ID;
+    const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
+
+    if (!clientId || !clientSecret) {
+        console.error('PayPal credentials not configured');
+        return null;
+    }
+
+    const auth = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+
+    const response = await fetch(`${PAYPAL_API_BASE}/v1/oauth2/token`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Basic ${auth}`,
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: 'grant_type=client_credentials'
+    });
+
+    const data = await response.json();
+    return data.access_token;
+}
+
+async function createPayPalOrder(amount, description) {
+    const accessToken = await getPayPalAccessToken();
+    if (!accessToken) return null;
+
+    const response = await fetch(`${PAYPAL_API_BASE}/v2/checkout/orders`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${accessToken}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            intent: 'CAPTURE',
+            purchase_units: [{
+                amount: {
+                    currency_code: 'USD',
+                    value: amount.toString()
+                },
+                description: description
+            }],
+            application_context: {
+                brand_name: 'ForbiddenYoga',
+                landing_page: 'BILLING',
+                user_action: 'PAY_NOW',
+                return_url: 'https://www.forbidden-yoga.com/payment-success.html',
+                cancel_url: 'https://www.forbidden-yoga.com/payment-cancelled.html'
+            }
+        })
+    });
+
+    const order = await response.json();
+    const approvalUrl = order.links?.find(link => link.rel === 'approve')?.href;
+    return approvalUrl;
+}
 
 // Conversation states
 const STATES = {
@@ -100,7 +160,7 @@ function normalizeInput(text) {
     return text.toLowerCase().trim();
 }
 
-function processMessage(userId, messageText, paymentLink) {
+async function processMessage(userId, messageText) {
     const userState = getUserState(userId);
     const input = normalizeInput(messageText);
 
@@ -138,27 +198,32 @@ function processMessage(userId, messageText, paymentLink) {
         case STATES.COACHING_PAYMENT:
         case STATES.PSYCHIC_PAYMENT:
             // User choosing payment method
+            const isCoaching = userState.state === STATES.COACHING_PAYMENT;
+            const amount = isCoaching ? 5000 : 500;
+            const description = isCoaching
+                ? 'ForbiddenYoga - One Month Intense Coaching with Michael'
+                : 'ForbiddenYoga - Psychic Cleansing Session with Stanislav';
+
             if (input.includes('crypto') || input.includes('1') || input.includes('bitcoin') || input.includes('eth')) {
                 response = MESSAGES.CRYPTO_PAYMENT;
-                if (userState.state === STATES.COACHING_PAYMENT) {
+                if (isCoaching) {
                     response += '\n\n' + MESSAGES.COACHING_BOOKED;
                 }
                 newState = STATES.NEWSLETTER_PROMPT;
                 newData = { paymentMethod: 'crypto' };
-            } else if (input.includes('credit') || input.includes('card') || input.includes('2')) {
-                response = `Please complete your payment here:\n${paymentLink}`;
-                if (userState.state === STATES.COACHING_PAYMENT) {
+            } else if (input.includes('credit') || input.includes('card') || input.includes('2') || input.includes('paypal') || input.includes('3')) {
+                // Create PayPal checkout for both credit card and PayPal
+                const paymentUrl = await createPayPalOrder(amount, description);
+                if (paymentUrl) {
+                    response = `Please complete your payment here:\n${paymentUrl}`;
+                } else {
+                    response = 'Payment system temporarily unavailable. Please try again later or contact us directly.';
+                }
+                if (isCoaching && paymentUrl) {
                     response += '\n\n' + MESSAGES.COACHING_BOOKED;
                 }
                 newState = STATES.NEWSLETTER_PROMPT;
-                newData = { paymentMethod: 'credit_card' };
-            } else if (input.includes('paypal') || input.includes('3')) {
-                response = `Please complete your payment here:\n${paymentLink}`;
-                if (userState.state === STATES.COACHING_PAYMENT) {
-                    response += '\n\n' + MESSAGES.COACHING_BOOKED;
-                }
-                newState = STATES.NEWSLETTER_PROMPT;
-                newData = { paymentMethod: 'paypal' };
+                newData = { paymentMethod: input.includes('paypal') ? 'paypal' : 'credit_card' };
             } else if (input.includes('afford') || input.includes('expensive') || input.includes('money') || input.includes('cannot') || input.includes("can't")) {
                 response = MESSAGES.CANNOT_AFFORD;
                 newState = STATES.CANNOT_AFFORD;
@@ -256,10 +321,9 @@ exports.handler = async (event, context) => {
                                     // Get environment variables
                                     const phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID;
                                     const accessToken = process.env.WHATSAPP_ACCESS_TOKEN;
-                                    const paymentLink = process.env.WHATSAPP_PAYMENT_LINK || 'https://forbidden-yoga.com/payment';
 
                                     // Process the message and get response
-                                    const responseText = processMessage(from, text, paymentLink);
+                                    const responseText = await processMessage(from, text);
 
                                     // Send response
                                     if (responseText) {
