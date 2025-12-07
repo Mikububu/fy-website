@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Onboarding Setup - ForbiddenYoga</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f3f2de;
+            color: #31302C;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .setup-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            color: #6B4423;
+            font-size: 28px;
+        }
+        .logo p {
+            color: #666;
+            margin-top: 5px;
+        }
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+        .step-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            transition: background 0.3s;
+        }
+        .step-dot.active {
+            background: #B8D4D4;
+        }
+        .step-dot.completed {
+            background: #6B4423;
+        }
+        .step {
+            display: none;
+        }
+        .step.active {
+            display: block;
+        }
+        .step h2 {
+            font-family: 'Playfair Display', serif;
+            color: #6B4423;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        .step p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .step label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #31302C;
+        }
+        .step input, .step select, .step textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            margin-bottom: 20px;
+        }
+        .step input:focus, .step select:focus, .step textarea:focus {
+            outline: none;
+            border-color: #B8D4D4;
+        }
+        .step textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .help-text {
+            font-size: 13px;
+            color: #888;
+            margin-top: -15px;
+            margin-bottom: 20px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+        }
+        .btn-primary {
+            background: #6B4423;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #5a3a1e;
+        }
+        .btn-secondary {
+            background: #ddd;
+            color: #31302C;
+        }
+        .btn-secondary:hover {
+            background: #ccc;
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .success-message {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .success-message .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        .success-message h2 {
+            color: #6B4423;
+            margin-bottom: 15px;
+        }
+        .config-output {
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .config-output pre {
+            font-size: 12px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .warning strong {
+            color: #856404;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="setup-container">
+        <div class="logo">
+            <h1>ForbiddenYoga</h1>
+            <p>WhatsApp Onboarding Setup</p>
+        </div>
+
+        <div class="step-indicator">
+            <div class="step-dot active" data-step="1"></div>
+            <div class="step-dot" data-step="2"></div>
+            <div class="step-dot" data-step="3"></div>
+            <div class="step-dot" data-step="4"></div>
+            <div class="step-dot" data-step="5"></div>
+            <div class="step-dot" data-step="6"></div>
+            <div class="step-dot" data-step="7"></div>
+            <div class="step-dot" data-step="8"></div>
+            <div class="step-dot" data-step="9"></div>
+            <div class="step-dot" data-step="10"></div>
+        </div>
+
+        <!-- Step 1: WhatsApp Business Account ID -->
+        <div class="step active" data-step="1">
+            <h2>WhatsApp Business Account ID</h2>
+            <p>Enter your WhatsApp Business Account ID. You can find this in your Meta Business Suite under WhatsApp Manager → Account Tools → Phone Numbers.</p>
+            <label for="waba_id">WhatsApp Business Account ID</label>
+            <input type="text" id="waba_id" placeholder="e.g., 123456789012345" required>
+            <p class="help-text">This is a 15-digit number identifying your business account.</p>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 2: Phone Number ID -->
+        <div class="step" data-step="2">
+            <h2>Phone Number ID</h2>
+            <p>Enter the Phone Number ID associated with your WhatsApp Business number. This is different from the actual phone number.</p>
+            <label for="phone_number_id">Phone Number ID</label>
+            <input type="text" id="phone_number_id" placeholder="e.g., 109876543210987" required>
+            <p class="help-text">Found in Meta Business Suite under the phone number settings.</p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 3: Permanent Access Token -->
+        <div class="step" data-step="3">
+            <h2>Permanent Access Token</h2>
+            <p>Enter your permanent access token for the WhatsApp Business API. This is generated in the Meta Developer Portal.</p>
+            <div class="warning">
+                <strong>Security Note:</strong> This token provides full access to your WhatsApp Business account. Keep it secure and never share it publicly.
+            </div>
+            <label for="access_token">Permanent Access Token</label>
+            <textarea id="access_token" placeholder="EAAxxxxxxx..." required></textarea>
+            <p class="help-text">Generate this in Meta Developer Portal → Your App → WhatsApp → API Setup.</p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 4: Webhook Verify Token -->
+        <div class="step" data-step="4">
+            <h2>Webhook Verify Token</h2>
+            <p>Create a verify token for your webhook. This is a secret string that Meta will use to verify your webhook endpoint.</p>
+            <label for="verify_token">Webhook Verify Token</label>
+            <input type="text" id="verify_token" placeholder="e.g., my_secret_verify_token_2024" required>
+            <p class="help-text">Create any secure string. You'll need to enter the same token in Meta's webhook configuration.</p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 5: Webhook URL -->
+        <div class="step" data-step="5">
+            <h2>Webhook URL</h2>
+            <p>Your webhook URL will be where Meta sends incoming WhatsApp messages. For this site, the webhook will be:</p>
+            <label for="webhook_url">Webhook URL</label>
+            <input type="text" id="webhook_url" value="https://www.forbidden-yoga.com/.netlify/functions/whatsapp-webhook" readonly>
+            <p class="help-text">This URL is pre-configured for your Netlify deployment. Copy this to Meta's webhook settings.</p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 6: Hosting Environment -->
+        <div class="step" data-step="6">
+            <h2>Hosting Environment</h2>
+            <p>Confirm your preferred hosting environment for the webhook.</p>
+            <label for="hosting_env">Hosting Environment</label>
+            <select id="hosting_env">
+                <option value="netlify" selected>Netlify (Recommended - Already configured)</option>
+                <option value="vercel">Vercel</option>
+                <option value="aws">AWS Lambda</option>
+                <option value="custom">Custom Server</option>
+            </select>
+            <p class="help-text">Netlify is pre-configured for this site. Other options require additional setup.</p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 7: PayPal Client ID -->
+        <div class="step" data-step="7">
+            <h2>PayPal Client ID</h2>
+            <p>Enter your PayPal API Client ID for processing credit card and PayPal payments.</p>
+            <label for="paypal_client_id">PayPal Client ID</label>
+            <input type="text" id="paypal_client_id" placeholder="AZqId-uWx1sohQqiIQF7wTO8..." required>
+            <p class="help-text">Found in PayPal Developer Dashboard → Apps & Credentials.</p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 8: PayPal Client Secret -->
+        <div class="step" data-step="8">
+            <h2>PayPal Client Secret</h2>
+            <p>Enter your PayPal API Client Secret.</p>
+            <div class="warning">
+                <strong>Security Note:</strong> This secret provides access to your PayPal account. Keep it secure and never share it publicly.
+            </div>
+            <label for="paypal_client_secret">PayPal Client Secret</label>
+            <input type="password" id="paypal_client_secret" placeholder="EOKhIP21derBegXsi_04aDCT..." required>
+            <p class="help-text">Found alongside the Client ID in PayPal Developer Dashboard.</p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 9: WhatsApp Phone Number -->
+        <div class="step" data-step="9">
+            <h2>WhatsApp Phone Number</h2>
+            <p>Enter your WhatsApp Business phone number in international format (without + or spaces).</p>
+            <label for="whatsapp_phone">WhatsApp Phone Number</label>
+            <input type="text" id="whatsapp_phone" placeholder="e.g., 14155551234" required>
+            <p class="help-text">This is the number users will message. Format: country code + number (no spaces or symbols).</p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+            </div>
+        </div>
+
+        <!-- Step 10: WhatsApp Broadcast List/Group -->
+        <div class="step" data-step="10">
+            <h2>WhatsApp Broadcast List / Group</h2>
+            <p>Enter the ID or link for your WhatsApp broadcast list or group where interested users will be added.</p>
+            <label for="broadcast_list">Broadcast List ID or Group Invite Link</label>
+            <input type="text" id="broadcast_list" placeholder="e.g., https://chat.whatsapp.com/... or list ID">
+            <p class="help-text">Optional: Leave blank if you'll manage subscriptions manually.</p>
+            <div class="btn-group">
+                <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+                <button class="btn btn-primary" onclick="completeSetup()">Complete Setup</button>
+            </div>
+        </div>
+
+        <!-- Success Step -->
+        <div class="step" data-step="success">
+            <div class="success-message">
+                <div class="icon">✓</div>
+                <h2>Setup Complete!</h2>
+                <p>Your WhatsApp onboarding configuration has been generated. Add these environment variables to your Netlify dashboard.</p>
+                <div class="config-output">
+                    <p><strong>Netlify Environment Variables:</strong></p>
+                    <pre id="env-output"></pre>
+                </div>
+                <div class="btn-group" style="margin-top: 30px;">
+                    <button class="btn btn-primary" onclick="copyConfig()">Copy Configuration</button>
+                </div>
+                <p style="margin-top: 20px; font-size: 14px; color: #666;">
+                    Go to Netlify Dashboard → Site Settings → Environment Variables and add each variable.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 10;
+
+        function updateStepIndicators() {
+            document.querySelectorAll('.step-dot').forEach((dot, index) => {
+                dot.classList.remove('active', 'completed');
+                if (index + 1 === currentStep) {
+                    dot.classList.add('active');
+                } else if (index + 1 < currentStep) {
+                    dot.classList.add('completed');
+                }
+            });
+        }
+
+        function showStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            const targetStep = document.querySelector(`.step[data-step="${step}"]`);
+            if (targetStep) {
+                targetStep.classList.add('active');
+            }
+            updateStepIndicators();
+        }
+
+        function validateCurrentStep() {
+            const stepEl = document.querySelector(`.step[data-step="${currentStep}"]`);
+            const inputs = stepEl.querySelectorAll('input[required], textarea[required]');
+            for (let input of inputs) {
+                if (!input.value.trim()) {
+                    input.focus();
+                    input.style.borderColor = '#e74c3c';
+                    return false;
+                }
+                input.style.borderColor = '#ddd';
+            }
+            return true;
+        }
+
+        function nextStep() {
+            if (!validateCurrentStep()) return;
+            if (currentStep < totalSteps) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+        function completeSetup() {
+            const config = {
+                WHATSAPP_BUSINESS_ACCOUNT_ID: document.getElementById('waba_id').value.trim(),
+                WHATSAPP_PHONE_NUMBER_ID: document.getElementById('phone_number_id').value.trim(),
+                WHATSAPP_ACCESS_TOKEN: document.getElementById('access_token').value.trim(),
+                WHATSAPP_VERIFY_TOKEN: document.getElementById('verify_token').value.trim(),
+                WHATSAPP_WEBHOOK_URL: document.getElementById('webhook_url').value.trim(),
+                WHATSAPP_HOSTING_ENV: document.getElementById('hosting_env').value,
+                PAYPAL_CLIENT_ID: document.getElementById('paypal_client_id').value.trim(),
+                PAYPAL_CLIENT_SECRET: document.getElementById('paypal_client_secret').value.trim(),
+                WHATSAPP_PHONE_NUMBER: document.getElementById('whatsapp_phone').value.trim(),
+                WHATSAPP_BROADCAST_LIST: document.getElementById('broadcast_list').value.trim()
+            };
+
+            let envOutput = '';
+            for (const [key, value] of Object.entries(config)) {
+                if (value) {
+                    envOutput += `${key}=${value}\n`;
+                }
+            }
+
+            document.getElementById('env-output').textContent = envOutput;
+            showStep('success');
+        }
+
+        function copyConfig() {
+            const configText = document.getElementById('env-output').textContent;
+            navigator.clipboard.writeText(configText).then(() => {
+                alert('Configuration copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = configText;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('Configuration copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+</html>
