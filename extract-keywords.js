@@ -158,15 +158,19 @@ const importantTerms = new Set([
 
     // Psychological and shadow work
     'shadow', 'shadow work', 'projection', 'archetype', 'archetypes',
-    'jung', 'jungian', 'freud', 'freudian', 'psyche',
+    'jung', 'jungian', 'freud', 'freudian', 'sigmund freud', 'psyche',
     'subconscious', 'unconscious', 'collective unconscious',
     'individuation', 'integration', 'wholeness',
+    'sapolsky', 'robert sapolsky', 'behave', 'baboons',
 
     // Relational and intimacy practices
     'intimacy', 'sacred intimacy', 'conscious relationship', 'relational',
     'boundaries', 'consent', 'agency', 'autonomy',
     'vulnerability', 'authenticity', 'presence',
     'eros', 'erotic', 'sexuality', 'sacred sexuality',
+    'bdsm', 'roleplay', 'role play', 'dominance', 'submission',
+    'power exchange', 'kink', 'fetish', 'shibari', 'bondage',
+    'pornography', 'porn', 'humiliation', 'sadism', 'masochism',
 
     // Retreat and teaching terminology
     'retreat', 'retreats', 'intensive', 'workshop', 'immersion',
