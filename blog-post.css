@@ -70,7 +70,7 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 0px; /* Remove space between date and headline */
     padding-bottom: 20px;
     border-bottom: 1px solid #e0e0e0;
 }
