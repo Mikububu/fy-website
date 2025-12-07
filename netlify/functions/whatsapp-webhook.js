@@ -9,10 +9,10 @@ const crypto = require('crypto');
 // CONFIGURATION
 // ============================================
 const CONFIG = {
-  VERIFY_TOKEN: process.env.WEBHOOK_VERIFY_TOKEN,
+  VERIFY_TOKEN: process.env.WEBHOOK_VERIFY_TOKEN || process.env.WHATSAPP_VERIFY_TOKEN,
   ACCESS_TOKEN: process.env.WHATSAPP_ACCESS_TOKEN,
   PHONE_NUMBER_ID: process.env.WHATSAPP_PHONE_NUMBER_ID,
-  APP_SECRET: process.env.WHATSAPP_APP_SECRET,
+  APP_SECRET: process.env.WHATSAPP_APP_SECRET || '1503be87b8baa00cf4221f2d406987d4',
   CRYPTO_WALLET: process.env.CRYPTO_WALLET_ADDRESS || '0x450d6188aadd0f6f4d167cfc8d092842903b36d6',
   WHATSAPP_API_URL: 'https://graph.facebook.com/v18.0'
 };
