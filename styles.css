@@ -541,6 +541,7 @@ body::before {
     display: block;
     margin: 0 auto;
     transform: scaleY(0.8); /* Squeeze vertically - less height */
+    opacity: 0.7; /* 70% opaque */
 }
 
 .bubble-text {
@@ -1090,12 +1091,12 @@ body::before {
     bottom: 30%;
     left: 5%;
     z-index: 15;
-    background-color: #6B4423; /* Dark brown like brown bubble */
+    background-color: rgba(107, 68, 35, 0.5); /* Brown 50% opaque */
     padding: 8px 12px;
     border-radius: 8px;
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
-    color: #7a9999; /* Blue font color */
+    color: #ffffff; /* White font color */
     font-weight: 400;
     text-transform: lowercase;
 }
@@ -1103,7 +1104,7 @@ body::before {
 .vienna-weather .weather-text,
 .vienna-weather span {
     font-family: 'Roboto', sans-serif;
-    color: #7a9999; /* Blue font color */
+    color: #ffffff; /* White font color */
     text-transform: lowercase;
 }
 
