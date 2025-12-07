@@ -167,6 +167,7 @@ button[aria-label*="Share"],
 }
 
 /* Force correct fonts on all headings */
+article h1,
 .post-header h1,
 h1[class*="title"],
 h1[dir="auto"] {
@@ -395,7 +396,37 @@ h3[class*="subtitle"] {
     display: block;
 }
 
-/* Clickable keywords */
+/* Shared keywords - appearing in 2+ posts (colored, clickable) */
+.shared-keyword {
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.shared-keyword:hover {
+    background: rgba(122, 153, 153, 0.6) !important;
+    transform: scale(1.08) translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(122, 153, 153, 0.4) !important;
+}
+
+.shared-keyword:active {
+    transform: scale(1.02) !important;
+}
+
+/* Unique keywords - appearing in only 1 post (plain text, no color) */
+.unique-keyword {
+    background: transparent !important;
+    border: 2px solid rgba(184, 212, 212, 0.3) !important;
+    color: #666 !important;
+    cursor: default !important;
+}
+
+.unique-keyword:hover {
+    background: transparent !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Legacy class support */
 .clickable-keyword {
     cursor: pointer !important;
     transition: all 0.2s ease !important;
