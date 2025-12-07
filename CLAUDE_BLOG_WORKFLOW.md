@@ -39,16 +39,41 @@ cd /Volumes/LaCie/CLAUDE
 
 **When Claude sees SEODEEP, perform these steps:**
 
-#### A. Analyze the Image/Video
-1. Read the post HTML file
-2. Identify the featured image
-3. Read/view the image to understand content
-4. Determine:
-   - Main subject (deity, concept, person, etc.)
+#### A. Analyze the Post Content
+1. Read the post HTML file completely
+2. Analyze the main themes, concepts, and teachings
+3. Identify the featured image (if exists)
+4. Read/view the image to understand visual content
+5. Determine:
+   - Main subject (deity, concept, person, practice, etc.)
+   - Specific traditions mentioned (Shakta Tantra, Kaula, White Tigress, etc.)
+   - Key philosophical concepts
+   - Practices or techniques discussed
    - Visual style (AI-generated, photo, artwork)
-   - Relevant keywords for SEO
 
-#### B. Optimize Filename
+#### B. Generate 8-12 Semantic Keywords
+**CRITICAL:** Replace ALL existing keyword tags with proper semantic keywords.
+
+**Rules for semantic keywords:**
+- Use SPECIFIC concepts, NOT generic words
+- ✅ GOOD: "Yogini", "Shakta Tantra", "Chamunda Devi", "Kaula Tradition", "White Tigress", "Kundalini Shakti"
+- ❌ BAD: "man", "power", "came", "entire", "heart", "love", "deep", "spiritual", "energy"
+- Each keyword must be clickable and meaningful
+- Focus on tantric deities, traditions, practices, and philosophical concepts
+- Use proper names and technical terms from the tradition
+- Aim for 8-12 keywords total
+
+**Example semantic keywords:**
+```html
+<span class="keyword-tag clickable-keyword" data-keyword="Chamunda Devi">Chamunda Devi</span>
+<span class="keyword-tag clickable-keyword" data-keyword="Shakta Tantra">Shakta Tantra</span>
+<span class="keyword-tag clickable-keyword" data-keyword="Yogini Tradition">Yogini Tradition</span>
+<span class="keyword-tag clickable-keyword" data-keyword="Kaula Practice">Kaula Practice</span>
+<span class="keyword-tag clickable-keyword" data-keyword="Left-Hand Path">Left-Hand Path</span>
+<span class="keyword-tag clickable-keyword" data-keyword="Kundalini Shakti">Kundalini Shakti</span>
+```
+
+#### C. Optimize Filename
 Rename image with SEO-friendly hyphenated keywords:
 ```bash
 # Example:
@@ -56,7 +81,7 @@ chamunda-devi-tantric-goddess-yogini-visualization.jpg
 # NOT: IMG_1234.jpg or generic-image.jpg
 ```
 
-#### C. Update HTML Meta Tags
+#### D. Update HTML Meta Tags
 
 Add/update these in `<head>`:
 
@@ -79,7 +104,7 @@ Add/update these in `<head>`:
 <meta property="article:tag" content="Tradition/System">
 ```
 
-#### D. Update Schema.org Markup
+#### E. Update Schema.org Markup
 
 Upgrade image from simple URL to full ImageObject:
 
@@ -99,7 +124,7 @@ Upgrade image from simple URL to full ImageObject:
 </script>
 ```
 
-#### E. Add Featured Image to Post Content
+#### F. Add Featured Image to Post Content
 
 Insert image at top of post content (inside `.post-content` div):
 
