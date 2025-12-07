@@ -3,8 +3,8 @@
  * Handles incoming WhatsApp messages and manages conversation flow
  */
 
-// In-memory conversation state (for serverless, consider using a database for production)
-// For now, we'll use a simple state machine approach
+const { getStore } = require('@netlify/blobs');
+
 const CRYPTO_ADDRESS = '0x450d6188aadd0f6f4d167cfc8d092842903b36d6';
 const PAYPAL_API_BASE = 'https://api-m.paypal.com'; // Use https://api-m.sandbox.paypal.com for testing
 
@@ -81,21 +81,27 @@ const STATES = {
 
 // Message templates
 const MESSAGES = {
-    WELCOME: `Welcome to ForbiddenYoga. If you have a question about a Sensual Liberation Retreat please leave your message. If you are interested in private coaching or if you want to learn Tantra or understand the Tantric lineage of Michael Vogenberg you can apply for the one month intense coaching program with Michael. The program costs 5,000 USD and the full amount is paid in advance. We also offer psychic cleansing and channel opening with our Forbidden Yoga psychic Stanislav. This is a video session with a translator from Russian into your language. The price is 500 USD.
+    WELCOME: `Hi there sweetheart, lovely to see you!
 
-Which of these are you interested in?
-1. One month intense coaching with Michael
+Welcome to ForbiddenYoga.
+
+What brings you here today?
+1. Coaching with Michael
 2. Psychic cleansing with Stanislav
-3. General questions only`,
+3. General questions`,
 
-    COACHING_PAYMENT_PROMPT: `The one month intense coaching program with Michael costs 5,000 USD, paid in advance.
+    COACHING_PAYMENT_PROMPT: `One month intense coaching with Michael.
+
+Learn Tantra and understand the Tantric lineage of Michael Vogenberg. The program costs 5,000 USD, paid in advance.
 
 How would you like to pay?
 1. Crypto
 2. Credit card
 3. PayPal`,
 
-    PSYCHIC_INTRO: `This is a 500 USD video session with a translator from Russian into your language.
+    PSYCHIC_INTRO: `Psychic cleansing and channel opening with Stanislav.
+
+Video session with a translator from Russian into your language. Price: 500 USD.
 
 How would you like to pay?
 1. Crypto
@@ -123,15 +129,27 @@ Reply YES or NO`,
     GENERAL_QUESTION_RESPONSE: `Thank you for your message. We will get back to you as soon as possible.`
 };
 
-// Simple state storage (in production, use a database like FaunaDB, Supabase, etc.)
-const userStates = new Map();
-
-function getUserState(userId) {
-    return userStates.get(userId) || { state: STATES.WELCOME, data: {} };
+// Persistent state storage using Netlify Blobs
+async function getUserState(userId) {
+    try {
+        const store = getStore('whatsapp-states');
+        const data = await store.get(userId, { type: 'json' });
+        return data || { state: STATES.WELCOME, data: {} };
+    } catch (error) {
+        console.log('Error getting user state:', error);
+        return { state: STATES.WELCOME, data: {} };
+    }
 }
 
-function setUserState(userId, state, data = {}) {
-    userStates.set(userId, { state, data: { ...getUserState(userId).data, ...data } });
+async function setUserState(userId, state, data = {}) {
+    try {
+        const store = getStore('whatsapp-states');
+        const currentState = await getUserState(userId);
+        const newState = { state, data: { ...currentState.data, ...data } };
+        await store.setJSON(userId, newState);
+    } catch (error) {
+        console.log('Error setting user state:', error);
+    }
 }
 
 async function sendWhatsAppMessage(to, message, phoneNumberId, accessToken) {
@@ -161,7 +179,7 @@ function normalizeInput(text) {
 }
 
 async function processMessage(userId, messageText) {
-    const userState = getUserState(userId);
+    const userState = await getUserState(userId);
     const input = normalizeInput(messageText);
 
     let response = '';
@@ -265,7 +283,7 @@ async function processMessage(userId, messageText) {
             newState = STATES.AWAITING_CHOICE;
     }
 
-    setUserState(userId, newState, newData);
+    await setUserState(userId, newState, newData);
     return response;
 }
 

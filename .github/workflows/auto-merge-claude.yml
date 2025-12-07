@@ -4,51 +4,50 @@ on:
   push:
     branches:
       - 'claude/**'
-  pull_request:
-    types: [opened, synchronize]
-    branches:
-      - main
 
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
-  create-pr:
-    if: github.event_name == 'push'
+  auto-merge:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Create PR
+      - name: Create and Merge PR
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          echo "Processing branch: $BRANCH"
 
-          # Check if PR already exists
-          EXISTING_PR=$(gh pr list --head "$BRANCH_NAME" --state open --json number -q '.[0].number')
+          # Check for existing PR
+          EXISTING=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number' 2>/dev/null || echo "")
 
-          if [ -z "$EXISTING_PR" ]; then
+          if [ -z "$EXISTING" ]; then
+            echo "Creating new PR..."
             gh pr create \
-              --title "Auto-merge: $BRANCH_NAME" \
-              --body "Automated PR from Claude Code session." \
+              --title "Auto: $BRANCH" \
+              --body "Automated PR" \
               --base main \
-              --head "$BRANCH_NAME" || echo "PR may already exist"
+              --head "$BRANCH" || echo "PR creation failed or already exists"
+          else
+            echo "PR #$EXISTING already exists"
           fi
 
-  auto-merge:
-    if: github.event_name == 'pull_request' && startsWith(github.head_ref, 'claude/')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+          sleep 3
 
-      - name: Merge PR
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          PR_NUMBER=${{ github.event.pull_request.number }}
-          echo "Merging PR #$PR_NUMBER"
-          gh pr merge "$PR_NUMBER" --merge --admin || gh pr merge "$PR_NUMBER" --merge || echo "Merge failed - check repo settings"
+          # Get PR number
+          PR=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number' 2>/dev/null || echo "")
+
+          if [ -n "$PR" ]; then
+            echo "Attempting to merge PR #$PR..."
+            gh pr merge "$PR" --squash --delete-branch 2>&1 || \
+            gh pr merge "$PR" --merge --delete-branch 2>&1 || \
+            gh pr merge "$PR" --squash 2>&1 || \
+            gh pr merge "$PR" --merge 2>&1 || \
+            echo "Merge failed - branch protection may be enabled"
+          else
+            echo "No open PR found"
+          fi
