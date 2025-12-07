@@ -40,7 +40,7 @@ const STATES = {
 // MESSAGE TEMPLATES
 // ============================================
 const MESSAGES = {
-  WELCOME: `Welcome to ForbiddenYoga. If you have a question about a Sensual Liberation Retreat please leave your message.
+  WELCOME: `Hi sweet Forbidden Yoga people. If you have a question about a Sensual Liberation Retreat please leave your message.
 
 If you are interested in private coaching or if you want to learn Tantra or understand the Tantric lineage of Michael Vogenberg you can apply for the one month intense coaching program with Michael. The program costs 5,000 USD and the full amount is paid in advance.
 
