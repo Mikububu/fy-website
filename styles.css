@@ -1090,7 +1090,7 @@ body::before {
 .vienna-weather {
     position: absolute;
     bottom: 30%;
-    left: 5%;
+    left: 20px;
     z-index: 15;
     padding: 8px 12px;
     border-radius: 8px;
@@ -1112,8 +1112,8 @@ body::before {
 /* Bali Weather Widget - Video 1 */
 .bali-weather-video1 {
     position: absolute;
-    top: 5%;
-    left: 5%;
+    top: 20px;
+    left: 20px;
     z-index: 15;
     padding: 8px 12px;
     border-radius: 8px;
@@ -1137,8 +1137,8 @@ body::before {
 /* Mongolia Weather Widget */
 .mongolia-weather {
     position: absolute;
-    top: 5%;
-    left: 5%;
+    top: 20px;
+    left: 20px;
     z-index: 15;
     padding: 8px 12px;
     border-radius: 8px;
