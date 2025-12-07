@@ -15,32 +15,65 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Create PR and Merge
+      - name: Create or Update PR
+        id: create-pr
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
 
           # Check if PR already exists
-          EXISTING_PR=$(gh pr list --head "$BRANCH_NAME" --state open --json number -q '.[0].number')
+          EXISTING_PR=$(gh pr list --head "$BRANCH_NAME" --state open --json number -q '.[0].number' 2>/dev/null || echo "")
 
           if [ -z "$EXISTING_PR" ]; then
-            # Create PR
+            echo "Creating new PR..."
             gh pr create \
               --title "Auto-merge: $BRANCH_NAME" \
               --body "Automated PR from Claude Code session." \
               --base main \
-              --head "$BRANCH_NAME"
-
-            # Wait a moment for PR to be created
-            sleep 2
+              --head "$BRANCH_NAME" 2>&1 || true
+            sleep 3
+          else
+            echo "PR #$EXISTING_PR already exists"
           fi
 
-          # Get the PR number
-          PR_NUMBER=$(gh pr list --head "$BRANCH_NAME" --state open --json number -q '.[0].number')
+          # Get PR number
+          PR_NUMBER=$(gh pr list --head "$BRANCH_NAME" --state open --json number -q '.[0].number' 2>/dev/null || echo "")
+          echo "pr_number=$PR_NUMBER" >> $GITHUB_OUTPUT
+          echo "Found PR: $PR_NUMBER"
 
-          if [ -n "$PR_NUMBER" ]; then
-            echo "Merging PR #$PR_NUMBER"
-            gh pr merge "$PR_NUMBER" --merge --admin || gh pr merge "$PR_NUMBER" --merge || echo "Merge may require manual approval"
-          fi
+      - name: Enable Auto-Merge
+        if: steps.create-pr.outputs.pr_number != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PR_NUMBER="${{ steps.create-pr.outputs.pr_number }}"
+          echo "Enabling auto-merge for PR #$PR_NUMBER"
+          gh pr merge "$PR_NUMBER" --auto --merge 2>&1 || true
+
+      - name: Direct Merge Attempt
+        if: steps.create-pr.outputs.pr_number != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          PR_NUMBER="${{ steps.create-pr.outputs.pr_number }}"
+          echo "Attempting direct merge of PR #$PR_NUMBER"
+
+          # Try multiple merge strategies
+          gh pr merge "$PR_NUMBER" --merge --admin 2>&1 || \
+          gh pr merge "$PR_NUMBER" --merge 2>&1 || \
+          gh pr merge "$PR_NUMBER" --squash 2>&1 || \
+          echo "All merge attempts completed - check PR status"
+
+      - name: Check Final Status
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BRANCH_NAME="${{ steps.create-pr.outputs.branch }}"
+          echo "Checking PR status..."
+          gh pr list --head "$BRANCH_NAME" --json number,state,mergeable,mergeStateStatus || true
+          echo "Done"
