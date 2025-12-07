@@ -11,3 +11,12 @@ node_modules/
 # Large screenshots (not needed for deployment)
 screencapture.png
 screencapture*.jpg
+
+# Environment variables (NEVER commit these!)
+.env
+.env.local
+.env.production
+
+# Package lock files
+package-lock.json
+yarn.lock
