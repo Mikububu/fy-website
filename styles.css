@@ -1092,10 +1092,9 @@ body::before {
     bottom: 30%;
     left: 5%;
     z-index: 15;
-    background-color: rgba(107, 68, 35, 0.5); /* Brown 50% opaque */
     padding: 8px 12px;
     border-radius: 8px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'bluunext', serif;
     font-size: 15px;
     color: #ffffff; /* White font color */
     font-weight: 400;
@@ -1104,7 +1103,7 @@ body::before {
 
 .vienna-weather .weather-text,
 .vienna-weather span {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'bluunext', serif;
     color: #ffffff; /* White font color */
     text-transform: lowercase;
 }
@@ -1115,10 +1114,9 @@ body::before {
     top: 5%;
     left: 5%;
     z-index: 15;
-    background-color: rgba(107, 68, 35, 0.5); /* Brown 50% opaque */
     padding: 8px 12px;
     border-radius: 8px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'bluunext', serif;
     font-size: 15px;
     color: #ffffff; /* White font color */
     font-weight: 400;
@@ -1129,7 +1127,7 @@ body::before {
 
 .bali-weather-video1 .weather-text,
 .bali-weather-video1 span {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'bluunext', serif;
     color: #ffffff; /* White font color */
     text-transform: lowercase;
 }
@@ -1140,10 +1138,9 @@ body::before {
     top: 5%;
     left: 5%;
     z-index: 15;
-    background-color: rgba(107, 68, 35, 0.5); /* Brown 50% opaque */
     padding: 8px 12px;
     border-radius: 8px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'bluunext', serif;
     font-size: 15px;
     color: #ffffff; /* White font color */
     font-weight: 400;
@@ -1154,7 +1151,7 @@ body::before {
 
 .mongolia-weather .weather-text,
 .mongolia-weather span {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'bluunext', serif;
     color: #ffffff; /* White font color */
     text-transform: lowercase;
 }
