@@ -2435,6 +2435,30 @@ iframe .jw-title-secondary {
     margin-bottom: 10px;
 }
 
+.footer-booking {
+    margin-bottom: 20px;
+}
+
+.book-guru-button {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-family: 'Bluu Next', serif;
+    font-weight: 700;
+    color: #ffffff;
+    background-color: #6B4423;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.book-guru-button:hover {
+    background-color: #8B5A2B;
+    transform: scale(1.05);
+}
+
 .footer-copyright {
     font-family: 'Bluu Next', serif;
     font-weight: 700;
