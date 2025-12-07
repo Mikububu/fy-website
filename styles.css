@@ -1094,18 +1094,19 @@ body::before {
     z-index: 15;
     padding: 8px 12px;
     border-radius: 8px;
-    font-family: 'bluunext', serif;
+    background-color: rgba(128, 128, 128, 0.5); /* Grey 50% opaque */
+    font-family: 'Roboto', sans-serif;
     font-size: 15px;
     color: #ffffff; /* White font color */
     font-weight: 400;
-    text-transform: lowercase;
+    text-transform: uppercase;
 }
 
 .vienna-weather .weather-text,
 .vienna-weather span {
-    font-family: 'bluunext', serif;
+    font-family: 'Roboto', sans-serif;
     color: #ffffff; /* White font color */
-    text-transform: lowercase;
+    text-transform: uppercase;
 }
 
 /* Bali Weather Widget - Video 1 */
@@ -1116,20 +1117,21 @@ body::before {
     z-index: 15;
     padding: 8px 12px;
     border-radius: 8px;
-    font-family: 'bluunext', serif;
+    background-color: rgba(128, 128, 128, 0.5); /* Grey 50% opaque */
+    font-family: 'Roboto', sans-serif;
     font-size: 15px;
     color: #ffffff; /* White font color */
     font-weight: 400;
-    text-transform: lowercase;
+    text-transform: uppercase;
     width: fit-content; /* Prevent background from extending */
     max-width: 90%; /* Prevent overflow */
 }
 
 .bali-weather-video1 .weather-text,
 .bali-weather-video1 span {
-    font-family: 'bluunext', serif;
+    font-family: 'Roboto', sans-serif;
     color: #ffffff; /* White font color */
-    text-transform: lowercase;
+    text-transform: uppercase;
 }
 
 /* Mongolia Weather Widget */
@@ -1140,20 +1142,21 @@ body::before {
     z-index: 15;
     padding: 8px 12px;
     border-radius: 8px;
-    font-family: 'bluunext', serif;
+    background-color: rgba(128, 128, 128, 0.5); /* Grey 50% opaque */
+    font-family: 'Roboto', sans-serif;
     font-size: 15px;
     color: #ffffff; /* White font color */
     font-weight: 400;
-    text-transform: lowercase;
+    text-transform: uppercase;
     width: fit-content; /* Prevent background from extending */
     max-width: 90%; /* Prevent overflow */
 }
 
 .mongolia-weather .weather-text,
 .mongolia-weather span {
-    font-family: 'bluunext', serif;
+    font-family: 'Roboto', sans-serif;
     color: #ffffff; /* White font color */
-    text-transform: lowercase;
+    text-transform: uppercase;
 }
 
 /* Freud Section Mobile Responsive */

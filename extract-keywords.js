@@ -138,6 +138,8 @@ const importantTerms = new Set([
 
     // Forbidden yoga specific
     'forbidden', 'forbidden yoga', 'michael', 'perin', 'wogenburg',
+    'testimonial', 'testimonials', 'sensual liberation retreat', 'slr',
+    'sensual massage', 'ayurvedic', 'ayurveda', 'aggression',
 
     // Modern spirituality/science
     'neuroscience', 'neuroplasticity', 'psychedelics', 'entheogens', 'ayahuasca',
@@ -262,6 +264,25 @@ const sortedPhrases = Object.entries(phraseCounts)
         return (count >= 2 || normalizedImportantTerms.has(phrase)) && !uiPhrases.has(phrase);
     })
     .slice(0, 100);
+
+// Merge SLR and Sensual Liberation Retreat
+const slrCount = wordCounts['slr'] || 0;
+const sensualLiberationRetreatCount = phraseCounts['sensual liberation retreat'] || 0;
+const totalSLRCount = slrCount + sensualLiberationRetreatCount;
+
+if (totalSLRCount > 0) {
+    // Remove individual entries
+    const slrWordIndex = sortedWords.findIndex(([word]) => word === 'slr');
+    if (slrWordIndex !== -1) sortedWords.splice(slrWordIndex, 1);
+
+    const slrPhraseIndex = sortedPhrases.findIndex(([phrase]) => phrase === 'sensual liberation retreat');
+    if (slrPhraseIndex !== -1) sortedPhrases.splice(slrPhraseIndex, 1);
+
+    // Add merged entry to phrases
+    sortedPhrases.unshift(['sensual liberation retreat (slr)', totalSLRCount]);
+    sortedPhrases.sort((a, b) => b[1] - a[1]);
+    sortedPhrases.splice(100); // Keep top 100
+}
 
 console.log('\n=== TOP 50 KEYWORDS ===\n');
 sortedWords.slice(0, 50).forEach(([word, count], i) => {
