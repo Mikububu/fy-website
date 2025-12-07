@@ -1,0 +1,119 @@
+{
+  "timestamp": "2025-12-06T18:38:14.680Z",
+  "totalPosts": 43,
+  "healthScore": 100,
+  "issues": {
+    "noText": [],
+    "lowText": [
+      {
+        "slug": "krama-rishi-nyasa-with-iya",
+        "textLength": 498,
+        "file": "krama-rishi-nyasa-with-iya.html"
+      }
+    ],
+    "substackImages": [],
+    "brokenImages": [],
+    "noImages": [],
+    "missingThumbnails": [],
+    "substackThumbnails": [],
+    "embeddedMedia": [
+      {
+        "slug": "beyond-the-naked-surface",
+        "embeds": [
+          "Spotify"
+        ],
+        "textLength": 5660,
+        "possibleIssue": false
+      },
+      {
+        "slug": "from-language-modulation-to-rolegame",
+        "embeds": [
+          "Spotify"
+        ],
+        "textLength": 10529,
+        "possibleIssue": false
+      },
+      {
+        "slug": "indian-tantra-mahavidyas-versus-nityas",
+        "embeds": [
+          "Substack Video"
+        ],
+        "textLength": 7261,
+        "possibleIssue": false
+      },
+      {
+        "slug": "run-away-from-tantra",
+        "embeds": [
+          "Spotify"
+        ],
+        "textLength": 15108,
+        "possibleIssue": false
+      },
+      {
+        "slug": "soulmates-among-the-stars-the-ultimate",
+        "embeds": [
+          "Spotify"
+        ],
+        "textLength": 22079,
+        "possibleIssue": false
+      },
+      {
+        "slug": "the-breath-of-god",
+        "embeds": [
+          "Spotify"
+        ],
+        "textLength": 17263,
+        "possibleIssue": false
+      },
+      {
+        "slug": "the-distant-god-fallacy",
+        "embeds": [
+          "Spotify"
+        ],
+        "textLength": 9504,
+        "possibleIssue": false
+      },
+      {
+        "slug": "the-parallel-self",
+        "embeds": [
+          "Spotify"
+        ],
+        "textLength": 14302,
+        "possibleIssue": false
+      },
+      {
+        "slug": "what-you-can-expect-booking-forbidden",
+        "embeds": [
+          "Substack Video"
+        ],
+        "textLength": 8495,
+        "possibleIssue": false
+      },
+      {
+        "slug": "why-a-woman-initiated-in-the-left",
+        "embeds": [
+          "Spotify"
+        ],
+        "textLength": 14920,
+        "possibleIssue": false
+      },
+      {
+        "slug": "why-our-society-cannot-heal",
+        "embeds": [
+          "Substack Video"
+        ],
+        "textLength": 5223,
+        "possibleIssue": false
+      },
+      {
+        "slug": "yogic-transmission-in-raja-yoga",
+        "embeds": [
+          "Spotify"
+        ],
+        "textLength": 35385,
+        "possibleIssue": false
+      }
+    ],
+    "notInPostsData": []
+  }
+}
