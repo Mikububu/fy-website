@@ -1123,6 +1123,8 @@ body::before {
     color: #ffffff; /* White font color */
     font-weight: 400;
     text-transform: lowercase;
+    width: fit-content; /* Prevent background from extending */
+    max-width: 90%; /* Prevent overflow */
 }
 
 .bali-weather-video1 .weather-text,
@@ -1146,6 +1148,8 @@ body::before {
     color: #ffffff; /* White font color */
     font-weight: 400;
     text-transform: lowercase;
+    width: fit-content; /* Prevent background from extending */
+    max-width: 90%; /* Prevent overflow */
 }
 
 .mongolia-weather .weather-text,
