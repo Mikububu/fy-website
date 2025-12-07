@@ -64,22 +64,55 @@
     background-color: #f3f2de !important;
 }
 
+/* Calendar day cells */
+#supersaas .ss-day,
+#supersaas .ss-calendar-day,
+#supersaas td.ss-available,
+#supersaas td.ss-booked,
+#supersaas button.ss-day-btn {
+    background-color: #6B4423 !important;
+    color: #ffffff !important;
+    border-color: #6B4423 !important;
+}
+
+#supersaas .ss-day:hover,
+#supersaas .ss-calendar-day:hover,
+#supersaas td.ss-available:hover,
+#supersaas button.ss-day-btn:hover {
+    background-color: #8B5A2B !important;
+}
+
+/* Unavailable/disabled days */
+#supersaas .ss-day.ss-disabled,
+#supersaas td.ss-disabled,
+#supersaas button.ss-day-btn:disabled {
+    background-color: #e8e7d3 !important;
+    color: #999 !important;
+    opacity: 0.6 !important;
+}
+
+/* Time slots */
 #supersaas .ss-slot,
-#supersaas .ss-appointment {
-    background-color: #bad4d4 !important;
-    border-color: #7a9999 !important;
-    color: #31302C !important;
+#supersaas .ss-appointment,
+#supersaas .ss-time-slot {
+    background-color: #6B4423 !important;
+    border-color: #6B4423 !important;
+    color: #ffffff !important;
 }
 
 #supersaas .ss-slot:hover,
-#supersaas .ss-appointment:hover {
-    background-color: #7a9999 !important;
+#supersaas .ss-appointment:hover,
+#supersaas .ss-time-slot:hover {
+    background-color: #8B5A2B !important;
 }
 
 /* Selected slot */
-#supersaas .ss-selected {
-    background-color: #6B4423 !important;
+#supersaas .ss-selected,
+#supersaas .ss-slot.ss-selected,
+#supersaas button.ss-selected {
+    background-color: #8B5A2B !important;
     color: #ffffff !important;
+    border: 2px solid #31302C !important;
 }
 
 /* Labels and text */
