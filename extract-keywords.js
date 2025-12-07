@@ -141,6 +141,38 @@ const importantTerms = new Set([
     'testimonial', 'testimonials', 'sensual liberation retreat', 'slr',
     'sensual massage', 'ayurvedic', 'ayurveda', 'aggression',
 
+    // Additional tantric and spiritual practices
+    'shakti', 'shiva', 'kundalini', 'chakras', 'tantrika', 'sadhaka',
+    'guru', 'disciple', 'initiation', 'diksha', 'abhisheka',
+    'prana', 'apana', 'udana', 'vyana', 'samana',
+    'bandhas', 'mula bandha', 'uddiyana bandha', 'jalandhara bandha',
+    'trataka', 'nyasa', 'bhuta shuddhi', 'tattva shuddhi',
+    'kriya', 'kriyas', 'shatkarma', 'shat kriyas',
+    'nondual', 'nonduality', 'advaita', 'dvaita',
+
+    // Somatic and body-based practices
+    'embodiment', 'somatic', 'somatics', 'breathwork', 'pranayama',
+    'polyvagal', 'vagus nerve', 'nervous system', 'parasympathetic', 'sympathetic',
+    'trauma', 'trauma release', 'ptsd', 'cptsd', 'complex trauma',
+    'bodywork', 'bodyworker', 'touch', 'sacred touch', 'conscious touch',
+
+    // Psychological and shadow work
+    'shadow', 'shadow work', 'projection', 'archetype', 'archetypes',
+    'jung', 'jungian', 'freud', 'freudian', 'psyche',
+    'subconscious', 'unconscious', 'collective unconscious',
+    'individuation', 'integration', 'wholeness',
+
+    // Relational and intimacy practices
+    'intimacy', 'sacred intimacy', 'conscious relationship', 'relational',
+    'boundaries', 'consent', 'agency', 'autonomy',
+    'vulnerability', 'authenticity', 'presence',
+    'eros', 'erotic', 'sexuality', 'sacred sexuality',
+
+    // Retreat and teaching terminology
+    'retreat', 'retreats', 'intensive', 'workshop', 'immersion',
+    'facilitator', 'facilitators', 'guide', 'teacher', 'lineage',
+    'transmission', 'empowerment', 'shaktipat',
+
     // Modern spirituality/science
     'neuroscience', 'neuroplasticity', 'psychedelics', 'entheogens', 'ayahuasca',
     'psilocybin', 'mycology', 'mushrooms', 'dmt', 'lsd', 'mdma',
@@ -169,7 +201,52 @@ const importantTerms = new Set([
     // Additional tantric technical terms
     'yoni', 'lingam', 'yoni puja', 'linga puja', 'yoni worship',
     'sexual alchemy', 'sexual magic', 'sacred prostitution',
-    'cremation ground', 'charnel ground', 'shmashana', 'shamshan'
+    'cremation ground', 'charnel ground', 'shmashana', 'shamshan',
+
+    // Shakta and goddess worship
+    'shakta', 'shaktism', 'goddess', 'goddesses', 'devi',
+    'mahakali', 'bhadrakali', 'kalikula', 'shrikula',
+    'mahavidya', 'dasha mahavidya', 'ten mahavidyas',
+    'divine mother', 'mother goddess', 'black goddess',
+
+    // Tantric texts and lineages
+    'kaula', 'kaula tantra', 'kaulachara', 'kula',
+    'vama', 'vama marga', 'dakshina marga', 'madhyama marg a',
+    'agama', 'agamas', 'nigama', 'nigamas',
+    'samhita', 'samhitas', 'sastra', 'sastras',
+
+    // Advanced yogic practices
+    'kundalini awakening', 'kundalini rising', 'kundalini yoga',
+    'chakra activation', 'chakra balancing', 'subtle body',
+    'energy body', 'astral body', 'causal body',
+    'sushumna', 'ida', 'pingala', 'central channel',
+    'bindu', 'nada', 'kala', 'amrita', 'nectar',
+
+    // States and experiences
+    'samadhi', 'nirvikalpa samadhi', 'savikalpa samadhi',
+    'turiya', 'turiyatita', 'sahaja',
+    'bliss', 'ecstasy', 'rapture', 'divine union',
+    'non-dual awareness', 'pure consciousness', 'witness consciousness',
+
+    // Practice-related terms
+    'sadhana', 'tapas', 'tapasya', 'austerity',
+    'japa', 'mantra practice', 'mantra repetition',
+    'meditation', 'dhyana', 'contemplation',
+    'visualization', 'deity yoga', 'ishta devata',
+    'offerings', 'puja', 'ritual', 'ceremony',
+
+    // Body and energy terms
+    'subtle energy', 'chi', 'qi', 'prana shakti',
+    'kundalini shakti', 'sexual energy', 'life force',
+    'orgasm', 'orgasmic', 'ejaculation', 'retention',
+    'tantric sex', 'sacred union', 'hieros gamos',
+
+    // Cultural and contextual terms
+    'india', 'indian', 'bengal', 'bengali', 'kashmir', 'kashmiri',
+    'tibet', 'tibetan', 'nepal', 'nepalese',
+    'sanskrit', 'pali', 'prakrit',
+    'hinduism', 'hindu', 'buddhism', 'buddhist',
+    'yoga tradition', 'tantric tradition', 'spiritual lineage'
 ]);
 
 const wordCounts = {};
