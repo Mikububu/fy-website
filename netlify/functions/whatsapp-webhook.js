@@ -83,21 +83,25 @@ const STATES = {
 const MESSAGES = {
     WELCOME: `Hi there sweetheart, lovely to see you!
 
-Welcome to ForbiddenYoga. If you have a question about a Sensual Liberation Retreat please leave your message. If you are interested in private coaching or if you want to learn Tantra or understand the Tantric lineage of Michael Vogenberg you can apply for the one month intense coaching program with Michael. The program costs 5,000 USD and the full amount is paid in advance. We also offer psychic cleansing and channel opening with our Forbidden Yoga psychic Stanislav. This is a video session with a translator from Russian into your language. The price is 500 USD.
+Welcome to ForbiddenYoga.
 
-Which of these are you interested in?
-1. One month intense coaching with Michael
+What brings you here today?
+1. Coaching with Michael
 2. Psychic cleansing with Stanislav
-3. General questions only`,
+3. General questions`,
 
-    COACHING_PAYMENT_PROMPT: `The one month intense coaching program with Michael costs 5,000 USD, paid in advance.
+    COACHING_PAYMENT_PROMPT: `One month intense coaching with Michael.
+
+Learn Tantra and understand the Tantric lineage of Michael Vogenberg. The program costs 5,000 USD, paid in advance.
 
 How would you like to pay?
 1. Crypto
 2. Credit card
 3. PayPal`,
 
-    PSYCHIC_INTRO: `This is a 500 USD video session with a translator from Russian into your language.
+    PSYCHIC_INTRO: `Psychic cleansing and channel opening with Stanislav.
+
+Video session with a translator from Russian into your language. Price: 500 USD.
 
 How would you like to pay?
 1. Crypto
