@@ -535,6 +535,30 @@ body::before {
     z-index: 5;
 }
 
+/* Organic breathing animation for brown bubble */
+@keyframes organicBreathe {
+    0% {
+        transform: scaleY(0.8) scaleX(1);
+        opacity: 0.7;
+    }
+    25% {
+        transform: scaleY(0.82) scaleX(1.02);
+        opacity: 0.72;
+    }
+    50% {
+        transform: scaleY(0.85) scaleX(0.98);
+        opacity: 0.75;
+    }
+    75% {
+        transform: scaleY(0.82) scaleX(1.01);
+        opacity: 0.72;
+    }
+    100% {
+        transform: scaleY(0.8) scaleX(1);
+        opacity: 0.7;
+    }
+}
+
 .brown-bubble {
     width: clamp(500px, 50%, 700px); /* Elastic: scales between 500-700px based on viewport */
     height: auto;
@@ -542,6 +566,7 @@ body::before {
     margin: 0 auto;
     transform: scaleY(0.8); /* Squeeze vertically - less height */
     opacity: 0.7; /* 70% opaque */
+    animation: organicBreathe 8s ease-in-out infinite; /* Slow, organic breathing loop */
 }
 
 .bubble-text {
