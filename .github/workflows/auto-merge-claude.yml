@@ -99,3 +99,4 @@ jobs:
           gh pr merge "$PR_NUMBER" --merge 2>&1 || \
           gh pr merge "$PR_NUMBER" --squash 2>&1 || \
           echo "Merge requires manual intervention"
+# Auto-merge trigger 1765120964
