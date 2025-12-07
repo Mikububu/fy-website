@@ -179,8 +179,23 @@ node build-keyword-frequency.js
 
 ## Post-SEODEEP Next Steps
 
-1. **Git Commit** - Commit HTML + images
-2. **Push to Deploy** - Triggers Netlify deployment
+### IMPORTANT: Git Worktree Workflow
+
+**Repository Structure:**
+- Main repo: `/Volumes/LaCie/CLAUDE` (Netlify builds from here)
+- Worktree: `/Users/michaelperinwogenburg/.claude-worktrees/CLAUDE/[branch-name]`
+
+**⚠️ CRITICAL:** Always commit and push from **main repo**, NOT from worktree!
+
+**Correct Workflow:**
+1. Make changes in worktree
+2. `cd /Volumes/LaCie/CLAUDE` (switch to main repo)
+3. Commit and push from main repo
+4. Netlify will then build from the pushed changes
+
+**Deployment Steps:**
+1. **Git Commit** - Commit HTML + images FROM MAIN REPO (`/Volumes/LaCie/CLAUDE`)
+2. **Push to Deploy** - Triggers Netlify deployment (waits 1-2 minutes)
 3. **Verify Deployment** - Compare live vs local code (see below)
 4. **Test Keywords** - Verify shared keywords are clickable, unique keywords are plain text
 
