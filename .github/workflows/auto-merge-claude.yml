@@ -19,29 +19,35 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          set -x  # Debug mode
           BRANCH="${GITHUB_REF#refs/heads/}"
-          echo "Branch: $BRANCH"
+          echo "Processing branch: $BRANCH"
 
-          # Create PR if it doesn't exist
-          if ! gh pr list --head "$BRANCH" --state open | grep -q .; then
-            echo "Creating PR..."
-            gh pr create --title "Auto: $BRANCH" --body "Auto PR" --base main --head "$BRANCH"
+          # Check for existing PR
+          EXISTING=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number' 2>/dev/null || echo "")
+
+          if [ -z "$EXISTING" ]; then
+            echo "Creating new PR..."
+            gh pr create \
+              --title "Auto: $BRANCH" \
+              --body "Automated PR" \
+              --base main \
+              --head "$BRANCH" || echo "PR creation failed or already exists"
+          else
+            echo "PR #$EXISTING already exists"
           fi
 
-          # Get PR number
-          sleep 2
-          PR=$(gh pr list --head "$BRANCH" --state open --json number -q '.[0].number')
-          echo "PR Number: $PR"
+          sleep 3
 
-          # Merge PR
+          # Get PR number
+          PR=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number' 2>/dev/null || echo "")
+
           if [ -n "$PR" ]; then
-            echo "Merging PR #$PR..."
-            gh pr merge "$PR" --squash --delete-branch || \
-            gh pr merge "$PR" --merge --delete-branch || \
-            gh pr merge "$PR" --squash || \
-            gh pr merge "$PR" --merge || \
-            echo "Could not merge - check branch protection"
+            echo "Attempting to merge PR #$PR..."
+            gh pr merge "$PR" --squash --delete-branch 2>&1 || \
+            gh pr merge "$PR" --merge --delete-branch 2>&1 || \
+            gh pr merge "$PR" --squash 2>&1 || \
+            gh pr merge "$PR" --merge 2>&1 || \
+            echo "Merge failed - branch protection may be enabled"
           else
-            echo "No PR found to merge"
+            echo "No open PR found"
           fi
