@@ -585,7 +585,7 @@ body::before {
 }
 
 .brown-bubble {
-    width: clamp(500px, 50%, 700px); /* Elastic: scales between 500-700px based on viewport */
+    width: clamp(600px, 60%, 850px); /* Elastic: scales between 600-850px based on viewport */
     height: auto;
     display: block;
     margin: 0 auto;
