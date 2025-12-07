@@ -1,0 +1,140 @@
+/* Forbidden Yoga Custom SuperSaaS Styling */
+
+/* Main container background */
+#supersaas {
+    background-color: #f3f2de !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+/* Header styling */
+#supersaas .ss-header,
+#supersaas h1,
+#supersaas h2,
+#supersaas h3 {
+    color: #31302C !important;
+    font-family: 'Bluu Next', serif !important;
+}
+
+/* Button styling - brown theme */
+#supersaas input[type="submit"],
+#supersaas button,
+#supersaas .ss-button {
+    background-color: #6B4423 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 12px 24px !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 400 !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease !important;
+}
+
+#supersaas input[type="submit"]:hover,
+#supersaas button:hover,
+#supersaas .ss-button:hover {
+    background-color: #8B5A2B !important;
+}
+
+/* Input fields */
+#supersaas input[type="text"],
+#supersaas input[type="email"],
+#supersaas input[type="tel"],
+#supersaas textarea,
+#supersaas select {
+    border: 1px solid #bad4d4 !important;
+    border-radius: 4px !important;
+    padding: 8px 12px !important;
+    background-color: #ffffff !important;
+    color: #31302C !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+#supersaas input[type="text"]:focus,
+#supersaas input[type="email"]:focus,
+#supersaas input[type="tel"]:focus,
+#supersaas textarea:focus,
+#supersaas select:focus {
+    border-color: #6B4423 !important;
+    outline: none !important;
+}
+
+/* Calendar/schedule view */
+#supersaas .ss-calendar {
+    background-color: #f3f2de !important;
+}
+
+#supersaas .ss-slot,
+#supersaas .ss-appointment {
+    background-color: #bad4d4 !important;
+    border-color: #7a9999 !important;
+    color: #31302C !important;
+}
+
+#supersaas .ss-slot:hover,
+#supersaas .ss-appointment:hover {
+    background-color: #7a9999 !important;
+}
+
+/* Selected slot */
+#supersaas .ss-selected {
+    background-color: #6B4423 !important;
+    color: #ffffff !important;
+}
+
+/* Labels and text */
+#supersaas label,
+#supersaas .ss-label {
+    color: #31302C !important;
+    font-family: 'Roboto', sans-serif !important;
+}
+
+/* Links */
+#supersaas a {
+    color: #6B4423 !important;
+}
+
+#supersaas a:hover {
+    color: #8B5A2B !important;
+}
+
+/* Price display */
+#supersaas .ss-price,
+#supersaas .ss-amount {
+    color: #6B4423 !important;
+    font-weight: 700 !important;
+    font-size: 1.2rem !important;
+}
+
+/* Modal/popup styling */
+#supersaas .ss-modal,
+#supersaas .ss-popup {
+    background-color: #f3f2de !important;
+    border: 2px solid #6B4423 !important;
+    border-radius: 12px !important;
+}
+
+/* Table styling */
+#supersaas table {
+    background-color: #ffffff !important;
+}
+
+#supersaas th {
+    background-color: #bad4d4 !important;
+    color: #31302C !important;
+    font-family: 'Bluu Next', serif !important;
+}
+
+#supersaas td {
+    border-color: #bad4d4 !important;
+}
+
+/* Error messages */
+#supersaas .ss-error {
+    color: #d32f2f !important;
+}
+
+/* Success messages */
+#supersaas .ss-success {
+    color: #388e3c !important;
+}
