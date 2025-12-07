@@ -2,11 +2,11 @@
   "words": [
     {
       "text": "yoga",
-      "count": 286
+      "count": 317
     },
     {
       "text": "forbidden",
-      "count": 227
+      "count": 245
     },
     {
       "text": "practice",
@@ -22,7 +22,7 @@
     },
     {
       "text": "sexual",
-      "count": 159
+      "count": 160
     },
     {
       "text": "body",
@@ -49,8 +49,16 @@
       "count": 107
     },
     {
+      "text": "love",
+      "count": 99
+    },
+    {
       "text": "tantra",
       "count": 99
+    },
+    {
+      "text": "posts",
+      "count": 89
     },
     {
       "text": "traditions",
@@ -59,10 +67,6 @@
     {
       "text": "human",
       "count": 82
-    },
-    {
-      "text": "love",
-      "count": 81
     },
     {
       "text": "experience",
@@ -113,6 +117,10 @@
       "count": 64
     },
     {
+      "text": "transformation",
+      "count": 62
+    },
+    {
       "text": "space",
       "count": 62
     },
@@ -153,6 +161,10 @@
       "count": 54
     },
     {
+      "text": "terms",
+      "count": 54
+    },
+    {
       "text": "practitioner",
       "count": 53
     },
@@ -181,6 +193,14 @@
       "count": 50
     },
     {
+      "text": "yoni",
+      "count": 49
+    },
+    {
+      "text": "sensual",
+      "count": 48
+    },
+    {
       "text": "previous",
       "count": 48
     },
@@ -189,11 +209,11 @@
       "count": 48
     },
     {
-      "text": "texts",
+      "text": "awareness",
       "count": 48
     },
     {
-      "text": "yoni",
+      "text": "texts",
       "count": 48
     },
     {
@@ -201,20 +221,12 @@
       "count": 47
     },
     {
-      "text": "inner",
+      "text": "breathwork",
       "count": 47
     },
     {
-      "text": "sensual",
-      "count": 46
-    },
-    {
-      "text": "posts",
-      "count": 46
-    },
-    {
-      "text": "awareness",
-      "count": 46
+      "text": "inner",
+      "count": 47
     },
     {
       "text": "away",
@@ -233,6 +245,10 @@
       "count": 45
     },
     {
+      "text": "wellness",
+      "count": 45
+    },
+    {
       "text": "touch",
       "count": 44
     },
@@ -242,10 +258,6 @@
     },
     {
       "text": "approach",
-      "count": 44
-    },
-    {
-      "text": "wellness",
       "count": 44
     },
     {
@@ -273,10 +285,6 @@
       "count": 42
     },
     {
-      "text": "transformation",
-      "count": 41
-    },
-    {
       "text": "subtle",
       "count": 41
     },
@@ -290,6 +298,10 @@
     },
     {
       "text": "states",
+      "count": 41
+    },
+    {
+      "text": "feminine",
       "count": 41
     },
     {
@@ -310,10 +322,6 @@
     },
     {
       "text": "handed",
-      "count": 40
-    },
-    {
-      "text": "feminine",
       "count": 40
     },
     {
@@ -381,6 +389,10 @@
       "count": 36
     },
     {
+      "text": "therapy",
+      "count": 35
+    },
+    {
       "text": "sometimes",
       "count": 35
     },
@@ -399,12 +411,200 @@
     {
       "text": "experiences",
       "count": 34
+    },
+    {
+      "text": "beyond",
+      "count": 34
+    },
+    {
+      "text": "luxury",
+      "count": 33
+    },
+    {
+      "text": "breathing",
+      "count": 33
+    },
+    {
+      "text": "participants",
+      "count": 33
+    },
+    {
+      "text": "cultural",
+      "count": 33
+    },
+    {
+      "text": "makes",
+      "count": 32
+    },
+    {
+      "text": "shadow",
+      "count": 32
+    },
+    {
+      "text": "sadhana",
+      "count": 32
+    },
+    {
+      "text": "trataka",
+      "count": 32
+    },
+    {
+      "text": "lives",
+      "count": 32
+    },
+    {
+      "text": "three",
+      "count": 32
+    },
+    {
+      "text": "deeper",
+      "count": 31
+    },
+    {
+      "text": "nyasa",
+      "count": 31
+    },
+    {
+      "text": "together",
+      "count": 31
+    },
+    {
+      "text": "society",
+      "count": 31
+    },
+    {
+      "text": "long",
+      "count": 31
+    },
+    {
+      "text": "today",
+      "count": 31
+    },
+    {
+      "text": "control",
+      "count": 31
+    },
+    {
+      "text": "mental",
+      "count": 31
+    },
+    {
+      "text": "complex",
+      "count": 31
+    },
+    {
+      "text": "kali",
+      "count": 31
+    },
+    {
+      "text": "sadhri",
+      "count": 31
+    },
+    {
+      "text": "doesn",
+      "count": 30
+    },
+    {
+      "text": "massage",
+      "count": 30
+    },
+    {
+      "text": "operates",
+      "count": 30
+    },
+    {
+      "text": "internal",
+      "count": 30
+    },
+    {
+      "text": "individual",
+      "count": 30
+    },
+    {
+      "text": "non",
+      "count": 30
+    },
+    {
+      "text": "fire",
+      "count": 30
+    },
+    {
+      "text": "methods",
+      "count": 30
+    },
+    {
+      "text": "bodies",
+      "count": 30
+    },
+    {
+      "text": "true",
+      "count": 30
+    },
+    {
+      "text": "alone",
+      "count": 30
+    },
+    {
+      "text": "primary",
+      "count": 29
+    },
+    {
+      "text": "masculine",
+      "count": 29
+    },
+    {
+      "text": "came",
+      "count": 29
+    },
+    {
+      "text": "animal",
+      "count": 29
+    },
+    {
+      "text": "white",
+      "count": 28
+    },
+    {
+      "text": "private",
+      "count": 28
+    },
+    {
+      "text": "spirituality",
+      "count": 28
+    },
+    {
+      "text": "begins",
+      "count": 28
+    },
+    {
+      "text": "inside",
+      "count": 28
+    },
+    {
+      "text": "divine",
+      "count": 28
+    },
+    {
+      "text": "happens",
+      "count": 28
+    },
+    {
+      "text": "puja",
+      "count": 28
+    },
+    {
+      "text": "movement",
+      "count": 27
+    },
+    {
+      "text": "performance",
+      "count": 27
     }
   ],
   "phrases": [
     {
       "text": "forbidden yoga",
-      "count": 189
+      "count": 207
     },
     {
       "text": "michael perin",
@@ -417,6 +617,10 @@
     {
       "text": "michael perin wogenburg",
       "count": 64
+    },
+    {
+      "text": "posts love",
+      "count": 43
     },
     {
       "text": "sexual energy",
@@ -459,6 +663,22 @@
       "count": 15
     },
     {
+      "text": "handed tantric",
+      "count": 14
+    },
+    {
+      "text": "advaita vedanta",
+      "count": 14
+    },
+    {
+      "text": "transformation breathwork",
+      "count": 13
+    },
+    {
+      "text": "non dual",
+      "count": 13
+    },
+    {
       "text": "liberation retreat",
       "count": 13
     },
@@ -479,11 +699,23 @@
       "count": 12
     },
     {
+      "text": "hatha yoga",
+      "count": 12
+    },
+    {
       "text": "sexual teachings",
       "count": 12
     },
     {
-      "text": "non dual",
+      "text": "kriya yoga",
+      "count": 11
+    },
+    {
+      "text": "sparsha puja",
+      "count": 11
+    },
+    {
+      "text": "kularnava tantra",
       "count": 11
     },
     {
@@ -491,7 +723,7 @@
       "count": 10
     },
     {
-      "text": "sparsha puja",
+      "text": "laya yoga",
       "count": 10
     },
     {
@@ -500,10 +732,6 @@
     },
     {
       "text": "shakta tantra",
-      "count": 9
-    },
-    {
-      "text": "hatha yoga",
       "count": 9
     },
     {
@@ -516,6 +744,10 @@
     },
     {
       "text": "wellness industry",
+      "count": 8
+    },
+    {
+      "text": "animal puja",
       "count": 8
     },
     {
@@ -536,10 +768,6 @@
     },
     {
       "text": "dark song",
-      "count": 7
-    },
-    {
-      "text": "advaita vedanta",
       "count": 7
     },
     {
@@ -595,12 +823,184 @@
       "count": 6
     },
     {
+      "text": "dual awareness",
+      "count": 6
+    },
+    {
+      "text": "non dual awareness",
+      "count": 6
+    },
+    {
       "text": "ancient practices",
       "count": 6
     },
     {
       "text": "cultural appropriation",
       "count": 6
+    },
+    {
+      "text": "rio janeiro",
+      "count": 6
+    },
+    {
+      "text": "energetic exchange",
+      "count": 6
+    },
+    {
+      "text": "relational field",
+      "count": 6
+    },
+    {
+      "text": "breath patterns",
+      "count": 6
+    },
+    {
+      "text": "belief system",
+      "count": 6
+    },
+    {
+      "text": "mental institution",
+      "count": 6
+    },
+    {
+      "text": "distant god",
+      "count": 6
+    },
+    {
+      "text": "michael says",
+      "count": 6
+    },
+    {
+      "text": "michael explains",
+      "count": 6
+    },
+    {
+      "text": "spiritual growth",
+      "count": 6
+    },
+    {
+      "text": "male practitioner",
+      "count": 6
+    },
+    {
+      "text": "tantric lineage",
+      "count": 5
+    },
+    {
+      "text": "conventional spirituality",
+      "count": 5
+    },
+    {
+      "text": "five elements",
+      "count": 5
+    },
+    {
+      "text": "spiritual traditions",
+      "count": 5
+    },
+    {
+      "text": "yoga michael",
+      "count": 5
+    },
+    {
+      "text": "mahavidya goddesses",
+      "count": 5
+    },
+    {
+      "text": "modern tantra",
+      "count": 5
+    },
+    {
+      "text": "shakta tantric",
+      "count": 5
+    },
+    {
+      "text": "handed tantra",
+      "count": 5
+    },
+    {
+      "text": "wogenburg calls",
+      "count": 5
+    },
+    {
+      "text": "tantric tradition",
+      "count": 5
+    },
+    {
+      "text": "ancient tantric",
+      "count": 5
+    },
+    {
+      "text": "subtle body",
+      "count": 5
+    },
+    {
+      "text": "yoga lineage",
+      "count": 5
+    },
+    {
+      "text": "bengali shakta",
+      "count": 5
+    },
+    {
+      "text": "yoni tantra",
+      "count": 5
+    },
+    {
+      "text": "richard williams",
+      "count": 5
+    },
+    {
+      "text": "texts describe",
+      "count": 5
+    },
+    {
+      "text": "yoga breathwork",
+      "count": 5
+    },
+    {
+      "text": "forbidden yoga lineage",
+      "count": 5
+    },
+    {
+      "text": "therapy luxury",
+      "count": 5
+    },
+    {
+      "text": "sigmund freud",
+      "count": 5
+    },
+    {
+      "text": "hsi lai",
+      "count": 5
+    },
+    {
+      "text": "spa menu",
+      "count": 5
+    },
+    {
+      "text": "personal growth",
+      "count": 5
+    },
+    {
+      "text": "energetic reality",
+      "count": 5
+    },
+    {
+      "text": "heart center",
+      "count": 5
+    },
+    {
+      "text": "family systems",
+      "count": 5
+    },
+    {
+      "text": "tantra mahavidyas",
+      "count": 5
+    },
+    {
+      "text": "mahavidyas versus",
+      "count": 5
     }
   ]
 }

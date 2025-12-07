@@ -78,7 +78,11 @@ const stopWords = new Set([
 
     // Additional meaningless words
     'cannot', 'don', 'next', 'within', 'share', 'years', 'person', 'world', 'life',
-    'com', 'nov', 'ready', 'placeholder', 'actors', 'ava', 'kular'
+    'com', 'nov', 'ready', 'placeholder', 'actors',
+
+    // Footer/UI spam
+    'nospam', 'antispam', 'relatespace', 'llc', 'monica', 'usa', 'keywords',
+    'privacy', 'policy', 'santa', 'conditions'
 ]);
 
 // Sophisticated terms that should always be included (domain-specific and intellectual)
@@ -138,11 +142,41 @@ const importantTerms = new Set([
     // Modern spirituality/science
     'neuroscience', 'neuroplasticity', 'psychedelics', 'entheogens', 'ayahuasca',
     'psilocybin', 'mycology', 'mushrooms', 'dmt', 'lsd', 'mdma',
-    'phenomenology', 'epistemology', 'ontology', 'metaphysics', 'cosmology'
+    'phenomenology', 'epistemology', 'ontology', 'metaphysics', 'cosmology',
+
+    // Left-handed tantra and transgressive practices
+    'left-handed', 'left handed', 'vama marga', 'transgression', 'transgressive',
+    'bondage', 'bdsm', 'kink', 'dominance', 'submission', 'sadomasochism',
+    'restraint', 'control', 'power exchange',
+
+    // Deity and text names
+    'kali', 'maa kali', 'durga', 'tara', 'chinnamasta', 'dhumavati', 'bagalamukhi',
+    'matangi', 'kamala', 'bhuvaneshwari', 'tripura sundari', 'mahavidya', 'mahavidyas',
+    'kularnava', 'kularṇava', 'kularnava tantra', 'kularṇava tantra',
+    'mahanirvana', 'mahanirvana tantra', 'rudrayamala', 'tantrasara',
+
+    // Psychological and somatic terms
+    'samskara', 'samskaras', 'vasana', 'vasanas', 'klesha', 'kleshas',
+    'catharsis', 'abreaction', 'integration', 'dissociation', 'embodiment',
+
+    // Bodily substances and transgressive elements
+    'menstrual', 'menstrual blood', 'menstruation', 'blood', 'semen', 'sexual fluids',
+    'bodily fluids', 'transgressive substances', 'panchamakara', 'five ms',
+    'maithuna', 'mudra', 'matsya', 'mamsa', 'madya',
+
+    // Additional tantric technical terms
+    'yoni', 'lingam', 'yoni puja', 'linga puja', 'yoni worship',
+    'sexual alchemy', 'sexual magic', 'sacred prostitution',
+    'cremation ground', 'charnel ground', 'shmashana', 'shamshan'
 ]);
 
 const wordCounts = {};
 const phraseCounts = {};
+
+// Function to normalize text (remove diacritics)
+function normalizeText(text) {
+    return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
 
 files.forEach(file => {
     const filepath = path.join(postsDir, file);
@@ -154,11 +188,12 @@ files.forEach(file => {
     content = content.replace(/<[^>]+>/g, ' ');
     content = content.replace(/&[a-z]+;/gi, ' ');
 
-    // Convert to lowercase
+    // Convert to lowercase and normalize diacritics
     content = content.toLowerCase();
+    const normalizedContent = normalizeText(content);
 
-    // Extract words
-    const words = content.match(/\b[a-z]{3,}\b/g) || [];
+    // Extract words (from normalized content for better matching)
+    const words = normalizedContent.match(/\b[a-z]{3,}\b/g) || [];
 
     words.forEach(word => {
         if (!stopWords.has(word)) {
@@ -181,13 +216,35 @@ files.forEach(file => {
             phraseCounts[phrase] = (phraseCounts[phrase] || 0) + 1;
         }
     }
+
+    // Extract 4-word phrases
+    for (let i = 0; i < words.length - 3; i++) {
+        const phrase = `${words[i]} ${words[i + 1]} ${words[i + 2]} ${words[i + 3]}`;
+        if (!stopWords.has(words[i]) && !stopWords.has(words[i + 1]) &&
+            !stopWords.has(words[i + 2]) && !stopWords.has(words[i + 3])) {
+            phraseCounts[phrase] = (phraseCounts[phrase] || 0) + 1;
+        }
+    }
+
+    // Extract 5-word phrases
+    for (let i = 0; i < words.length - 4; i++) {
+        const phrase = `${words[i]} ${words[i + 1]} ${words[i + 2]} ${words[i + 3]} ${words[i + 4]}`;
+        if (!stopWords.has(words[i]) && !stopWords.has(words[i + 1]) &&
+            !stopWords.has(words[i + 2]) && !stopWords.has(words[i + 3]) && !stopWords.has(words[i + 4])) {
+            phraseCounts[phrase] = (phraseCounts[phrase] || 0) + 1;
+        }
+    }
 });
 
-// Sort and filter
+// Sort and filter - LOWERED thresholds and normalize important terms
+const normalizedImportantTerms = new Set(
+    Array.from(importantTerms).map(term => normalizeText(term))
+);
+
 const sortedWords = Object.entries(wordCounts)
     .sort((a, b) => b[1] - a[1])
-    .filter(([word, count]) => count >= 5 || importantTerms.has(word))
-    .slice(0, 100);
+    .filter(([word, count]) => count >= 2 || normalizedImportantTerms.has(word))
+    .slice(0, 150);
 
 // Filter out UI/navigation phrases and meaningless phrases
 const uiPhrases = new Set([
@@ -195,14 +252,16 @@ const uiPhrases = new Set([
     'yoga com share', 'com share previous', 'nov share', 'wogenburg nov share',
     'posts questions', 'questions ready', 'posts questions ready',
     'yoga com', 'forbidden yoga com', 'wogenburg nov', 'perin wogenburg nov',
-    'love forbidden', 'love forbidden yoga', 'placeholder actors', 'kular ava',
-    'handed tantric'
+    'love forbidden', 'love forbidden yoga', 'placeholder actors'
 ]);
 
 const sortedPhrases = Object.entries(phraseCounts)
     .sort((a, b) => b[1] - a[1])
-    .filter(([phrase, count]) => count >= 3 && !uiPhrases.has(phrase))
-    .slice(0, 50);
+    .filter(([phrase, count]) => {
+        // Include if it appears 2+ times OR is in important terms
+        return (count >= 2 || normalizedImportantTerms.has(phrase)) && !uiPhrases.has(phrase);
+    })
+    .slice(0, 100);
 
 console.log('\n=== TOP 50 KEYWORDS ===\n');
 sortedWords.slice(0, 50).forEach(([word, count], i) => {
