@@ -2141,6 +2141,11 @@ iframe .jw-title-secondary {
     padding: 60px 20px 60px;
     background-color: #f3f2de;
     margin-top: 0;
+    scroll-margin-top: 20px; /* Fix iOS hash anchor navigation */
+}
+
+#blog-section {
+    scroll-margin-top: 20px; /* Fix iOS Safari hash link scrolling */
 }
 
 .blog-container {
