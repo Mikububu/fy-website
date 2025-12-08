@@ -124,6 +124,7 @@ def download_jwplayer_poster(media_id, slug):
             'ffmpeg', '-i', temp_poster,
             '-vf', "scale='min(1000,iw)':'min(1000*ih/iw,ih)':force_original_aspect_ratio=decrease",
             '-q:v', '2',
+            '-update', '1',
             featured_path, '-y'
         ], capture_output=True, check=True)
 
@@ -135,6 +136,7 @@ def download_jwplayer_poster(media_id, slug):
             'ffmpeg', '-i', temp_poster,
             '-vf', 'scale=600:600:force_original_aspect_ratio=decrease',
             '-q:v', '2',
+            '-update', '1',
             thumbnail_path, '-y'
         ], capture_output=True, check=True)
 
@@ -229,6 +231,9 @@ def clean_substack_html(html_content):
         date_display = date_match.group(1).strip() if date_match else ''
         date_iso = datetime.now().isoformat() + 'Z'
 
+    # Check if this is a podcast post
+    is_podcast = 'class="typography podcast-post post' in html_content or '"@type":"NewsArticle"' in html_content
+
     # Extract main content from <div class="available-content"> or <div class="body markup">
     content_match = re.search(r'<div class="available-content"[^>]*>(.*?)</div>\s*<div', html_content, re.DOTALL)
     if not content_match:
@@ -239,7 +244,31 @@ def clean_substack_html(html_content):
     else:
         # Fallback: try to extract everything between available-content and discussion
         content_match = re.search(r'<div class="available-content">(.*?)<div id="discussion"', html_content, re.DOTALL)
-        main_content = content_match.group(1) if content_match else '<p>Content not available</p>'
+        main_content = content_match.group(1) if content_match else ''
+
+    # If content is empty/minimal and this is a podcast, extract description from JSON-LD metadata
+    if (not main_content or len(main_content.strip()) < 100) and is_podcast:
+        print("  ! Podcast post with no article content - extracting description from metadata")
+        # Extract description from JSON-LD structured data
+        jsonld_match = re.search(r'<script type="application/ld\+json">(.*?)</script>', html_content, re.DOTALL)
+        if jsonld_match:
+            try:
+                jsonld = json.loads(jsonld_match.group(1))
+                description = jsonld.get('description', '')
+                if description and subtitle:
+                    # Create simple content from subtitle and description
+                    main_content = f'<p>{description}</p>'
+                elif subtitle:
+                    main_content = f'<p>{subtitle}</p>'
+                elif description:
+                    main_content = f'<p>{description}</p>'
+                else:
+                    main_content = '<p>Listen to this episode to explore these themes.</p>'
+                print(f"  ✓ Extracted podcast description: {len(description)} chars")
+            except json.JSONDecodeError:
+                main_content = '<p>Listen to this episode to explore these themes.</p>'
+        else:
+            main_content = '<p>Listen to this episode to explore these themes.</p>'
 
     # Clean the main content
     # Remove all Substack UI elements
