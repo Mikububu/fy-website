@@ -1,0 +1,31 @@
+BLOG POSTS MISSING CONTENT - NEED RE-IMPORT FROM SUBSTACK
+===========================================================
+
+Total: 23 posts with less than 50 words of content
+
+1. 5-karmendriyas-and-5-jnanendriyas.html (16 words)
+2. a-holistic-approach-to-divorce.html (9 words)
+3. beyond-the-naked-surface.html (11 words)
+4. forbidden-yoga-embracing-the-unconventional.html (8 words)
+5. from-a-shakta-tantra-stream-to-forbidden.html (0 words)
+6. from-language-modulation-to-rolegame.html (8 words)
+7. hermanns-story-of-his-sensual-liberation.html (5 words)
+8. how-to-deliver-visionary-idea-in.html (0 words)
+9. krama-rishi-nyasa-with-iya.html (8 words)
+10. muladhara-chakra-petals.html (10 words)
+11. my-new-approach-to-therapy.html (10 words)
+12. our-brains-urge-for-mystical-experiences.html (11 words)
+13. reclaiming-your-voice-working-through.html (8 words)
+14. run-away-from-tantra.html (9 words)
+15. soulmates-among-the-stars-the-ultimate.html (10 words)
+16. string-theory-tantric-secrets-and.html (0 words)
+17. the-breath-of-god.html (0 words)
+18. the-distant-god-fallacy.html (0 words)
+19. the-joy-of-torture.html (10 words)
+20. the-parallel-self.html (16 words)
+21. the-sexual-teachings-of-the-white.html (0 words)
+22. why-our-society-cannot-heal.html (6 words)
+23. yogic-transmission-in-raja-yoga.html (10 words)
+
+These posts need to be re-imported using convert-blog-post-full.py with their Substack URLs:
+https://forbiddenyoga.substack.com/p/[slug-name]
