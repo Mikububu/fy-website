@@ -8,6 +8,29 @@ body {
     padding: 40px 20px;
 }
 
+/* Header with logo */
+.header {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.logo-link {
+    display: block;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+    filter: invert(1) brightness(0.3); /* Convert white logo to dark */
+    transition: filter 0.3s ease;
+}
+
+.logo:hover {
+    filter: invert(1) brightness(0.5);
+}
+
 .post-container {
     max-width: 900px;
     margin: 0 auto;

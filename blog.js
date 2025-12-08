@@ -1,3 +1,18 @@
+// Fix iOS Safari hash anchor navigation
+// iOS Safari doesn't reliably scroll to hash anchors when navigating from external pages
+(function() {
+    if (window.location.hash) {
+        // Wait for DOM and layout to be ready
+        setTimeout(function() {
+            const hash = window.location.hash;
+            const target = document.querySelector(hash);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 100);
+    }
+})();
+
 // TEMPORARY: Complete mapping of all 43 local URLs to Substack URLs
 const substackMapping = {
   "/posts/run-away-from-tantra.html": "https://forbiddenyoga.substack.com/p/run-away-from-tantra",
