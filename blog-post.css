@@ -166,9 +166,11 @@ button[aria-label*="Share"],
     display: none !important;
 }
 
-/* Hide duplicate H1s inside Substack post-header divs */
+/* Hide duplicate H1s and H3 subtitles inside Substack post-header divs */
 .post-header h1,
-div[aria-label="Post header"] h1 {
+div[aria-label="Post header"] h1,
+.post-header h3,
+div[aria-label="Post header"] h3 {
     display: none !important;
 }
 
