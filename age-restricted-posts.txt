@@ -1,0 +1,12 @@
+# Age-Restricted Posts Needing Manual Content
+
+These posts were detected as age-restricted during SEODEEP processing.
+The script could only extract minimal metadata - full content needs manual upload.
+
+## Posts List:
+
+- beyond-the-naked-surface
+- forbidden-yoga-embracing-the-unconventional
+- 5-karmendriyas-and-5-jnanendriyas
+- a-holistic-approach-to-divorce
+- my-new-approach-to-therapy
