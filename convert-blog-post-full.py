@@ -205,21 +205,50 @@ def extract_and_download_images(html_content, slug):
 def clean_substack_html(html_content):
     """Remove all Substack-specific HTML/CSS and extract clean content"""
 
-    # Extract title
+    # Extract title from HTML or fallback to JSON-LD metadata
     title_match = re.search(r'<h2[^>]*class="[^"]*pencraft[^"]*title[^"]*"[^>]*>(.*?)</h2>', html_content, re.DOTALL)
     if not title_match:
         title_match = re.search(r'<title>(.*?)</title>', html_content)
-    title = title_match.group(1) if title_match else 'Untitled'
-    title = re.sub(r'<[^>]+>', '', title)  # Strip HTML tags
-    title = title.replace(' | Forbidden Yoga', '').strip()
-    title = unescape(title)
 
-    # Extract subtitle
+    title = ''
+    if title_match:
+        title = title_match.group(1)
+        title = re.sub(r'<[^>]+>', '', title)  # Strip HTML tags
+        title = title.replace(' | Forbidden Yoga', '').strip()
+        title = unescape(title)
+
+    # If title is still empty, try JSON-LD metadata
+    if not title:
+        jsonld_match = re.search(r'<script type="application/ld\+json">(.*?)</script>', html_content, re.DOTALL)
+        if jsonld_match:
+            try:
+                jsonld = json.loads(jsonld_match.group(1))
+                title = jsonld.get('headline', 'Untitled')
+            except json.JSONDecodeError:
+                title = 'Untitled'
+
+    if not title:
+        title = 'Untitled'
+
+    # Extract subtitle from HTML or JSON-LD
     subtitle_match = re.search(r'<div[^>]*class="[^"]*subtitle[^"]*"[^>]*>(.*?)</div>', html_content, re.DOTALL)
     subtitle = ''
     if subtitle_match:
         subtitle = re.sub(r'<[^>]+>', '', subtitle_match.group(1)).strip()
         subtitle = unescape(subtitle)
+
+    # If subtitle is empty, try to get it from JSON-LD description
+    if not subtitle:
+        jsonld_match = re.search(r'<script type="application/ld\+json">(.*?)</script>', html_content, re.DOTALL)
+        if jsonld_match:
+            try:
+                jsonld = json.loads(jsonld_match.group(1))
+                # Some posts have subtitle-like descriptions
+                desc = jsonld.get('description', '')
+                if desc and len(desc) < 100:  # Short descriptions are likely subtitles
+                    subtitle = desc
+            except json.JSONDecodeError:
+                pass
 
     # Extract date
     date_match = re.search(r'<time[^>]*datetime="([^"]+)"[^>]*>([^<]+)</time>', html_content)
