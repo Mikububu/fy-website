@@ -300,6 +300,12 @@ User uploads videos to external platforms (because Substack Mux videos can't be 
 
 ## Common Issues
 
+### Issue: Age-restricted Substack post (empty content)
+- **Cause:** Post has age-restriction gate, content hidden behind "Verify age" button
+- **Detection:** `<div class="available-content"><div dir="auto" class="body markup"></div></div>` is empty
+- **Solution:** User must provide the full text content manually - script cannot extract it automatically
+- **Warning:** Alert user immediately if empty content detected, don't attempt multiple extraction methods
+
 ### Issue: Video not embedding
 - **Cause:** Video link not at end of Substack post
 - **Solution:** Check Substack post source, look for video URL manually
