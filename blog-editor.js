@@ -2,10 +2,32 @@
 let allPosts = [];
 let currentPost = null;
 let uploadedFiles = [];
+let ageRestrictedPosts = [
+    'beyond-the-naked-surface',
+    'forbidden-yoga-embracing-the-unconventional',
+    '5-karmendriyas-and-5-jnanendriyas',
+    'a-holistic-approach-to-divorce',
+    'my-new-approach-to-therapy',
+    'from-language-modulation-to-rolegame',
+    'hermanns-story-of-his-sensual-liberation',
+    'indian-tantra-mahavidyas-versus-nityas',
+    'krama-rishi-nyasa-with-iya',
+    'muladhara-chakra-petals',
+    'our-brains-urge-for-mystical-experiences',
+    'reclaiming-your-voice-working-through',
+    'run-away-from-tantra',
+    'soulmates-among-the-stars-the-ultimate',
+    'tantra-online',
+    'the-joy-of-torture',
+    'the-parallel-self',
+    'why-a-woman-initiated-in-the-left',
+    'yogic-transmission-in-raja-yoga'
+];
 
 document.addEventListener('DOMContentLoaded', () => {
     loadPosts();
     setupSearchFilter();
+    setupKeyboardShortcuts();
 });
 
 async function loadPosts() {
@@ -27,12 +49,19 @@ function renderPostList(posts) {
         return;
     }
 
-    postList.innerHTML = posts.map((post, index) => `
-        <li class="post-item" data-index="${index}" onclick="selectPost(${index})">
-            <div class="post-item-title">${escapeHtml(post.title || 'Untitled')}</div>
-            <div class="post-item-meta">${formatDate(post.date)}</div>
-        </li>
-    `).join('');
+    postList.innerHTML = posts.map((post, index) => {
+        const slug = post.url.split('/').pop().replace('.html', '');
+        const isAgeRestricted = ageRestrictedPosts.includes(slug);
+        const badge = isAgeRestricted ? '<span class="age-restricted-badge">⚠️ Needs Content</span>' : '';
+        const itemClass = isAgeRestricted ? 'post-item age-restricted' : 'post-item';
+
+        return `
+            <li class="${itemClass}" data-index="${index}" onclick="selectPost(${index})">
+                <div class="post-item-title">${escapeHtml(post.title || 'Untitled')} ${badge}</div>
+                <div class="post-item-meta">${formatDate(post.date)}</div>
+            </li>
+        `;
+    }).join('');
 }
 
 function formatDate(dateString) {
@@ -51,6 +80,27 @@ function setupSearchFilter() {
         );
         renderPostList(filtered);
     });
+}
+
+let currentFilter = 'all';
+
+function filterPosts(filter) {
+    currentFilter = filter;
+
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    let filtered = allPosts;
+
+    if (filter === 'age-restricted') {
+        filtered = allPosts.filter(post => {
+            const slug = post.url.split('/').pop().replace('.html', '');
+            return ageRestrictedPosts.includes(slug);
+        });
+    }
+
+    renderPostList(filtered);
 }
 
 async function selectPost(index) {
@@ -573,3 +623,66 @@ function escapeHtml(text) {
     div.textContent = text;
     return div.innerHTML;
 }
+
+// Keyboard shortcuts for faster editing
+function setupKeyboardShortcuts() {
+    document.addEventListener('keydown', (e) => {
+        // Ctrl/Cmd + S to save
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+            e.preventDefault();
+            const form = document.getElementById('editForm');
+            if (form) {
+                savePost(new Event('submit'));
+            }
+        }
+
+        // Ctrl/Cmd + P to preview
+        if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+            e.preventDefault();
+            previewPost();
+        }
+
+        // Escape to reset form
+        if (e.key === 'Escape') {
+            const contentTextarea = document.getElementById('postContent');
+            if (contentTextarea && document.activeElement === contentTextarea) {
+                return; // Don't reset if typing in textarea
+            }
+            if (confirm('Reset form?')) {
+                resetForm();
+            }
+        }
+    });
+}
+
+// Add word count and character count
+function updateContentStats() {
+    const textarea = document.getElementById('postContent');
+    if (!textarea) return;
+
+    textarea.addEventListener('input', () => {
+        const text = textarea.value;
+        const wordCount = text.trim().split(/\s+/).filter(w => w.length > 0).length;
+        const charCount = text.length;
+
+        let statsDiv = document.getElementById('contentStats');
+        if (!statsDiv) {
+            statsDiv = document.createElement('div');
+            statsDiv.id = 'contentStats';
+            statsDiv.style.cssText = 'margin-top: 10px; color: #666; font-size: 14px;';
+            textarea.parentElement.appendChild(statsDiv);
+        }
+
+        statsDiv.textContent = `📊 ${wordCount} words • ${charCount} characters`;
+    });
+
+    // Trigger initial count
+    textarea.dispatchEvent(new Event('input'));
+}
+
+// Enhanced load post content with stats
+const originalLoadPostContent = loadPostContent;
+loadPostContent = async function(post) {
+    await originalLoadPostContent(post);
+    updateContentStats();
+};
