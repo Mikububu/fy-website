@@ -161,8 +161,8 @@ button[aria-label*="Share"],
     display: none !important;
 }
 
-/* Hide duplicate h1 heading that appears outside post-header */
-.post-container > h1:not(.post-header h1) {
+/* Hide duplicate h1 heading that appears outside post-header (but not the main post-title) */
+.post-container > h1:not(.post-header h1):not(.post-title) {
     display: none !important;
 }
 
