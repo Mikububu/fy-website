@@ -3,7 +3,9 @@
 
 set -e  # Exit on error
 
-cd /Volumes/LaCie/CLAUDE
+# Get script directory and cd there (works on any system)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
 
 echo "Starting re-import of 23 posts with missing content..."
 echo ""

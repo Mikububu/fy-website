@@ -3,9 +3,12 @@
 # Fix all image scaling and paths across all blog posts
 # This script ensures all images use local paths and have proper width/height attributes
 
+# Get script directory (works on any system)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 echo "🖼️  Fixing images in all blog posts..."
 
-for file in /Volumes/LaCie/CLAUDE/posts/*.html; do
+for file in "$SCRIPT_DIR/posts"/*.html; do
     filename=$(basename "$file")
     echo "Processing: $filename"
 
