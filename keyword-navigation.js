@@ -21,6 +21,24 @@
         });
     }
 
+    // Handle back button clicks from blog posts
+    const backLinks = document.querySelectorAll('a[href="/#blog-section"]');
+    if (backLinks.length > 0) {
+        backLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const savedScroll = sessionStorage.getItem('blogScrollPosition');
+                if (savedScroll) {
+                    e.preventDefault();
+                    window.location.href = '/#blog-section';
+                    setTimeout(() => {
+                        window.scrollTo(0, parseInt(savedScroll));
+                        sessionStorage.removeItem('blogScrollPosition');
+                    }, 100);
+                }
+            });
+        });
+    }
+
     // Load keyword index and frequency data
     let keywordIndex = null;
     let keywordFrequency = null;
