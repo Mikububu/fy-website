@@ -413,12 +413,21 @@ h3[class*="subtitle"] {
 }
 
 .post-content img {
-    max-width: 1000px;
-    width: 100%;
-    height: auto;
+    max-width: 1000px !important;
+    width: 100% !important;
+    height: auto !important;
     margin: 2em auto;
     border-radius: 8px;
     display: block;
+}
+
+/* Force proper scaling for captioned images */
+.captioned-image-container img,
+.captioned-image-container picture,
+.captioned-image-container figure img {
+    max-width: 1000px !important;
+    width: 100% !important;
+    height: auto !important;
 }
 
 /* Shared keywords - appearing in 2+ posts (colored, clickable) */
