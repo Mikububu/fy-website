@@ -1,27 +1,64 @@
 // Keyword navigation system - click keywords to see related posts
 (function() {
-    // Load keyword index
-    let keywordIndex = null;
+    // Save scroll position when navigating away
+    const blogSection = document.getElementById('blog-section');
+    if (blogSection) {
+        // Restore scroll position when page loads
+        const savedScroll = sessionStorage.getItem('blogScrollPosition');
+        if (savedScroll) {
+            setTimeout(() => {
+                window.scrollTo(0, parseInt(savedScroll));
+                sessionStorage.removeItem('blogScrollPosition');
+            }, 100);
+        }
 
-    fetch('/keyword-index.json')
-        .then(response => response.json())
-        .then(data => {
-            keywordIndex = data;
-            initKeywordNavigation();
-        })
-        .catch(err => console.log('Keyword index not loaded:', err));
+        // Save scroll position when clicking blog links
+        const blogLinks = document.querySelectorAll('a[href^="/posts/"]');
+        blogLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                sessionStorage.setItem('blogScrollPosition', window.scrollY);
+            });
+        });
+    }
+
+    // Load keyword index and frequency data
+    let keywordIndex = null;
+    let keywordFrequency = null;
+
+    // Load both data files
+    Promise.all([
+        fetch('/keyword-index.json').then(r => r.json()).catch(err => null),
+        fetch('/keyword-frequency.json').then(r => r.json()).catch(err => null)
+    ]).then(([indexData, frequencyData]) => {
+        keywordIndex = indexData;
+        keywordFrequency = frequencyData;
+        initKeywordNavigation();
+    });
 
     function initKeywordNavigation() {
-        // Add click handlers to all clickable keywords
+        // Get all keyword elements
         const keywords = document.querySelectorAll('.clickable-keyword');
 
         keywords.forEach(keyword => {
-            keyword.style.cursor = 'pointer';
+            const keywordText = keyword.getAttribute('data-keyword');
 
-            keyword.addEventListener('click', function() {
-                const keywordText = this.getAttribute('data-keyword');
-                showRelatedPosts(keywordText);
-            });
+            // Check if this keyword appears in 2+ posts (shared keyword)
+            const isShared = keywordFrequency &&
+                            keywordFrequency.shared.some(item => item.keyword === keywordText);
+
+            if (isShared) {
+                // Shared keywords: make them clickable and styled
+                keyword.classList.add('shared-keyword');
+                keyword.style.cursor = 'pointer';
+
+                keyword.addEventListener('click', function() {
+                    showRelatedPosts(keywordText);
+                });
+            } else {
+                // Unique keywords: remove clickable styling, keep as plain text
+                keyword.classList.add('unique-keyword');
+                keyword.classList.remove('clickable-keyword');
+            }
         });
     }
 
@@ -55,6 +92,13 @@
         `;
 
         document.body.appendChild(modal);
+
+        // Save scroll position when clicking modal links
+        modal.querySelectorAll('.related-post-item').forEach(link => {
+            link.addEventListener('click', () => {
+                sessionStorage.setItem('blogScrollPosition', window.scrollY);
+            });
+        });
 
         // Close on click outside or close button
         modal.addEventListener('click', function(e) {
