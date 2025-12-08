@@ -18,15 +18,21 @@ import json
 import os
 import sys
 import subprocess
+import ssl
 from pathlib import Path
 from html import unescape
 from datetime import datetime
+
+# Create SSL context that doesn't verify certificates
+ssl_context = ssl.create_default_context()
+ssl_context.check_hostname = False
+ssl_context.verify_mode = ssl.CERT_NONE
 
 def fetch_post_html(url):
     """Fetch individual post HTML from Substack"""
     print(f"Fetching post from: {url}")
     req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-    with urllib.request.urlopen(req) as response:
+    with urllib.request.urlopen(req, context=ssl_context) as response:
         return response.read().decode('utf-8')
 
 def extract_slug_from_url(url):
@@ -58,7 +64,7 @@ def download_image(image_url, slug, img_index):
     try:
         print(f"  Downloading image {img_index}: {image_url[:80]}...")
         req = urllib.request.Request(image_url, headers={'User-Agent': 'Mozilla/5.0'})
-        with urllib.request.urlopen(req) as response:
+        with urllib.request.urlopen(req, context=ssl_context) as response:
             image_data = response.read()
 
         with open(local_path, 'wb') as f:
@@ -94,7 +100,7 @@ def download_jwplayer_poster(media_id, slug):
     req = urllib.request.Request(metadata_url, headers={'User-Agent': 'Mozilla/5.0'})
 
     try:
-        with urllib.request.urlopen(req) as response:
+        with urllib.request.urlopen(req, context=ssl_context) as response:
             metadata = json.loads(response.read().decode('utf-8'))
 
         # Get highest quality poster image
@@ -104,7 +110,7 @@ def download_jwplayer_poster(media_id, slug):
         # Download to temp file
         temp_poster = '/tmp/jwplayer-poster.jpg'
         req = urllib.request.Request(poster_url, headers={'User-Agent': 'Mozilla/5.0'})
-        with urllib.request.urlopen(req) as response:
+        with urllib.request.urlopen(req, context=ssl_context) as response:
             poster_data = response.read()
 
         with open(temp_poster, 'wb') as f:
