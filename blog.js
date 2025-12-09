@@ -97,7 +97,7 @@ async function loadBlogPosts() {
             // Link to Substack posts (temporary while blog migration is in progress)
             const localUrl = post.url || post.link;
             const postUrl = substackMapping[localUrl] || localUrl;
-            const isExternal = substackMapping[localUrl] ? true : false;
+            const isExternal = false;  // Don't open in new tab, stay in main website
 
             // Format date for display
             let displayDate = post.date;
