@@ -114,6 +114,10 @@ async function loadPostContent(post) {
         const content = contentDiv ? contentDiv.innerText : '';
 
         editorContent.innerHTML = `
+            <div class="editor-tabs">
+                <button type="button" class="editor-tab active" onclick="switchEditorTab(event, 'edit')">✏️ Edit</button>
+                <button type="button" class="editor-tab" onclick="switchEditorTab(event, 'preview')">👁️ Preview</button>
+            </div>
             <div id="statusMessage" class="status-message"></div>
 
             <h2>Edit: ${escapeHtml(title)}</h2>
