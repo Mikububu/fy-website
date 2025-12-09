@@ -46,16 +46,16 @@
             max-width: 1200px;
             margin: 80px auto 0;
             padding: 60px 40px;
-            background: white;
+            background: #000;
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
         }
 
         .tag-cloud-title {
             font-family: 'Bluu Next', serif;
             font-size: 3rem;
             font-weight: 700;
-            color: #423737;
+            color: #fff;
             text-align: center;
             margin-bottom: 40px;
             text-transform: lowercase;
@@ -64,7 +64,7 @@
         .tag-cloud {
             display: flex;
             flex-wrap: wrap;
-            gap: 2px;
+            gap: 0px;
             justify-content: center;
             align-items: center;
             padding: 20px;
@@ -118,14 +118,24 @@
         .tag-cloud .keyword-tag {
             font-family: 'Playfair Display', serif !important;
             font-size: 0.85rem !important;
-            padding: 0.25rem 0.5rem !important;
+            padding: 0.2rem 0.4rem !important;
             border: none !important;
             margin: 0 !important;
             line-height: 1 !important;
+            background: none !important;
+            color: #fff !important;
+            box-shadow: none !important;
+        }
+
+        .tag-cloud .keyword-tag.shared-keyword {
+            color: #ff0000 !important;
+            cursor: pointer;
         }
 
         .tag-cloud .keyword-tag.unique-keyword {
             border: none !important;
+            background: none !important;
+            color: #fff !important;
         }
 
         .tag-cloud .keyword-tag:nth-child(3n+1),
@@ -133,7 +143,7 @@
         .tag-cloud .keyword-tag:nth-child(3n+3) {
             font-family: 'Playfair Display', serif !important;
             font-size: 0.85rem !important;
-            padding: 0.25rem 0.5rem !important;
+            padding: 0.2rem 0.4rem !important;
         }
     </style>
 </head>
