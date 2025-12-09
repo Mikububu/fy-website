@@ -94,10 +94,10 @@ async function loadBlogPosts() {
             const card = document.createElement('article');
             card.className = 'blog-card';
 
-            // Link to local posts
+            // Link to Substack posts (temporary while blog migration is in progress)
             const localUrl = post.url || post.link;
-            const postUrl = localUrl;
-            const isExternal = false;
+            const postUrl = substackMapping[localUrl] || localUrl;
+            const isExternal = substackMapping[localUrl] ? true : false;
 
             // Format date for display
             let displayDate = post.date;
