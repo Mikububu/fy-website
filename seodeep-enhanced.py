@@ -20,7 +20,7 @@ from urllib.parse import urlparse, unquote
 import subprocess
 
 # Configuration
-BASE_DIR = Path('/home/user/fy-website')
+BASE_DIR = Path('/Volumes/LaCie/CLAUDE')
 POSTS_DIR = BASE_DIR / 'posts'
 BLOG_IMAGES_DIR = BASE_DIR / 'blog-images'
 THUMBNAILS_DIR = BASE_DIR / 'blog-thumbnails'
