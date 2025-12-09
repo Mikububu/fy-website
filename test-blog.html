@@ -62,13 +62,10 @@
         }
 
         .tag-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0px;
-            justify-content: center;
-            align-items: center;
+            display: block;
+            text-align: left;
             padding: 20px;
-            line-height: 1;
+            line-height: 1.4;
         }
 
         .tag {
@@ -206,14 +203,20 @@
                     const tag = document.createElement('span');
 
                     if (item.isShared) {
-                        // Shared keywords: clickable
+                        // Shared keywords: clickable (modal)
                         tag.className = 'keyword-tag clickable-keyword shared-keyword';
                         tag.title = `${item.count} posts`;
                         tag.setAttribute('data-keyword', item.keyword);
+                        tag.style.cursor = 'pointer';
                     } else {
-                        // Unique keywords: plain text
+                        // Unique keywords: direct link to post
                         tag.className = 'keyword-tag unique-keyword';
-                        tag.title = '1 post';
+                        tag.title = '1 post - click to view';
+                        tag.style.cursor = 'pointer';
+                        const postSlug = item.posts[0].replace('.html', '');
+                        tag.addEventListener('click', () => {
+                            window.location.href = `/posts/${item.posts[0]}`;
+                        });
                     }
 
                     tag.textContent = item.keyword;
