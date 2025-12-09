@@ -64,10 +64,11 @@
         .tag-cloud {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 2px;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            line-height: 1;
         }
 
         .tag {
@@ -113,11 +114,14 @@
             .tag-size-5 { font-size: 1.4rem; }
         }
 
-        /* Tag cloud specific overrides - smaller, uniform size, no borders */
+        /* Tag cloud specific overrides - smaller, uniform size, no borders, Playfair font */
         .tag-cloud .keyword-tag {
+            font-family: 'Playfair Display', serif !important;
             font-size: 0.85rem !important;
-            padding: 0.35rem 0.7rem !important;
+            padding: 0.25rem 0.5rem !important;
             border: none !important;
+            margin: 0 !important;
+            line-height: 1 !important;
         }
 
         .tag-cloud .keyword-tag.unique-keyword {
@@ -127,8 +131,9 @@
         .tag-cloud .keyword-tag:nth-child(3n+1),
         .tag-cloud .keyword-tag:nth-child(3n+2),
         .tag-cloud .keyword-tag:nth-child(3n+3) {
+            font-family: 'Playfair Display', serif !important;
             font-size: 0.85rem !important;
-            padding: 0.35rem 0.7rem !important;
+            padding: 0.25rem 0.5rem !important;
         }
     </style>
 </head>
@@ -181,10 +186,10 @@
                     return;
                 }
 
-                // Shuffle for visual variety
-                const shuffled = [...allKeywords].sort(() => Math.random() - 0.5);
+                // Sort alphabetically
+                const sorted = [...allKeywords].sort((a, b) => a.keyword.localeCompare(b.keyword));
 
-                shuffled.forEach(item => {
+                sorted.forEach(item => {
                     const tag = document.createElement('span');
 
                     if (item.isShared) {
