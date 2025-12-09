@@ -45,10 +45,27 @@ async function updateLivePreview() {
     previewPanel.innerHTML = `
         <link rel="stylesheet" href="/blog-post.css">
         <article class="post-container" style="max-width: 800px; margin: 0 auto; padding: 40px 20px; background: white; border-radius: 8px;">
-            <h1 class="post-title">${escapedTitle}</h1>
-            <div class="post-content">
+            <h1 class="post-title" contenteditable="true" id="previewTitle" style="outline: 2px dashed transparent; transition: outline 0.2s;" onfocus="this.style.outline='2px dashed #B8D4D4'" onblur="this.style.outline='2px dashed transparent'; syncTitleToEdit()">${escapedTitle}</h1>
+            <div class="post-content" contenteditable="true" id="previewContent" style="outline: 2px dashed transparent; transition: outline 0.2s;" onfocus="this.style.outline='2px dashed #B8D4D4'" onblur="this.style.outline='2px dashed transparent'; syncContentToEdit()">
                 ${htmlContent}
             </div>
         </article>
     `;
+}
+
+// Sync edited preview back to edit mode
+function syncTitleToEdit() {
+    const previewTitle = document.getElementById('previewTitle');
+    const editTitle = document.getElementById('postTitle');
+    if (previewTitle && editTitle) {
+        editTitle.value = previewTitle.textContent;
+    }
+}
+
+function syncContentToEdit() {
+    const previewContent = document.getElementById('previewContent');
+    const editContent = document.getElementById('postContent');
+    if (previewContent && editContent) {
+        editContent.value = previewContent.innerHTML;
+    }
 }
