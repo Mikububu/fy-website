@@ -33,19 +33,8 @@ async function updateLivePreview() {
     const title = document.getElementById('postTitle')?.value || '';
     const content = document.getElementById('postContent')?.value || '';
 
-    // Convert plain text to HTML paragraphs
-    const htmlContent = content
-        .split('\n\n')
-        .filter(p => p.trim())
-        .map(p => {
-            const escaped = p.trim()
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;');
-            return `<p>${escaped}</p>`;
-        })
-        .join('\n');
+    // Content is already HTML, use it directly
+    const htmlContent = content;
 
     const escapedTitle = title
         .replace(/&/g, '&amp;')

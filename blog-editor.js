@@ -111,7 +111,7 @@ async function loadPostContent(post) {
         const titleElement = doc.querySelector('.post-title');
 
         const title = titleElement ? titleElement.textContent : post.title;
-        const content = contentDiv ? contentDiv.innerText : '';
+        const content = contentDiv ? contentDiv.innerHTML : '';
 
         editorContent.innerHTML = `
             <div class="editor-tabs">
