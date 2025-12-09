@@ -64,7 +64,7 @@
         .tag-cloud {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 8px;
             justify-content: center;
             align-items: center;
             padding: 20px;
@@ -111,6 +111,24 @@
             .tag-size-3 { font-size: 1rem; }
             .tag-size-4 { font-size: 1.2rem; }
             .tag-size-5 { font-size: 1.4rem; }
+        }
+
+        /* Tag cloud specific overrides - smaller, uniform size, no borders */
+        .tag-cloud .keyword-tag {
+            font-size: 0.85rem !important;
+            padding: 0.35rem 0.7rem !important;
+            border: none !important;
+        }
+
+        .tag-cloud .keyword-tag.unique-keyword {
+            border: none !important;
+        }
+
+        .tag-cloud .keyword-tag:nth-child(3n+1),
+        .tag-cloud .keyword-tag:nth-child(3n+2),
+        .tag-cloud .keyword-tag:nth-child(3n+3) {
+            font-size: 0.85rem !important;
+            padding: 0.35rem 0.7rem !important;
         }
     </style>
 </head>
