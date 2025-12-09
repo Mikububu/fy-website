@@ -131,33 +131,56 @@
 
     <script src="blog-standalone.js"></script>
     <script>
-        // Load and display semantic keyword cloud
+        // Load and display ALL semantic keywords (shared + unique)
         fetch('/keyword-frequency.json')
             .then(res => res.json())
             .then(data => {
                 const tagCloud = document.getElementById('tag-cloud');
 
-                // Use shared keywords (those appearing in 2+ posts)
-                const sharedKeywords = data.shared || [];
+                // Combine all keywords (shared 2+ posts AND unique 1 post)
+                const allKeywords = [];
 
-                if (sharedKeywords.length === 0) {
-                    tagCloud.innerHTML = '<p style="opacity: 0.6;">No shared keywords available</p>';
+                // Add shared keywords (clickable with colored background)
+                (data.shared || []).forEach(item => {
+                    allKeywords.push({
+                        keyword: item.keyword,
+                        count: item.count,
+                        isShared: true
+                    });
+                });
+
+                // Add unique keywords (plain text)
+                (data.unique || []).forEach(item => {
+                    allKeywords.push({
+                        keyword: item.keyword,
+                        count: 1,
+                        isShared: false
+                    });
+                });
+
+                if (allKeywords.length === 0) {
+                    tagCloud.innerHTML = '<p style="opacity: 0.6;">No keywords available</p>';
                     return;
                 }
 
-                const maxCount = Math.max(...sharedKeywords.map(w => w.count));
-                const minCount = Math.min(...sharedKeywords.map(w => w.count));
-
                 // Shuffle for visual variety
-                const shuffled = [...sharedKeywords].sort(() => Math.random() - 0.5);
+                const shuffled = [...allKeywords].sort(() => Math.random() - 0.5);
 
                 shuffled.forEach(item => {
                     const tag = document.createElement('span');
-                    tag.className = 'keyword-tag shared-keyword';
-                    tag.textContent = item.keyword;
-                    tag.title = `${item.count} posts`;
-                    tag.setAttribute('data-keyword', item.keyword);
 
+                    if (item.isShared) {
+                        // Shared keywords: clickable with colored background
+                        tag.className = 'keyword-tag shared-keyword';
+                        tag.title = `${item.count} posts`;
+                        tag.setAttribute('data-keyword', item.keyword);
+                    } else {
+                        // Unique keywords: plain text with border
+                        tag.className = 'keyword-tag unique-keyword';
+                        tag.title = '1 post';
+                    }
+
+                    tag.textContent = item.keyword;
                     tagCloud.appendChild(tag);
                 });
             })
