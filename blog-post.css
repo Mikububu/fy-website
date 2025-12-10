@@ -444,55 +444,18 @@ h3[class*="subtitle"] {
     display: block;
 }
 
-/* Force proper scaling for captioned images */
-.captioned-image-container img,
-.captioned-image-container picture,
-.captioned-image-container figure img {
-    max-width: 1000px !important;
-    width: 100% !important;
-    height: auto !important;
-}
-
-/* Shared keywords - appearing in 2+ posts (colored, clickable) */
-.shared-keyword {
-    cursor: pointer !important;
-    transition: all 0.2s ease !important;
-}
-
-.shared-keyword:hover {
-    background: rgba(122, 153, 153, 0.6) !important;
-    transform: scale(1.08) translateY(-2px) !important;
-    box-shadow: 0 4px 12px rgba(122, 153, 153, 0.4) !important;
-}
-
-.shared-keyword:active {
-    transform: scale(1.02) !important;
-}
-
-/* Unique keywords - appearing in only 1 post (plain text, no color) */
-.unique-keyword {
-    background: transparent !important;
-    border: 2px solid rgba(184, 212, 212, 0.3) !important;
-    color: #666 !important;
-    cursor: default !important;
-}
-
-.unique-keyword:hover {
-    background: transparent !important;
-    transform: none !important;
-    box-shadow: none !important;
-}
-
-/* Legacy class support */
+/* Clickable keywords - different background for keywords with 2+ instances */
 .clickable-keyword {
+    background: rgba(122, 153, 153, 0.45) !important;
+    border-color: rgba(122, 153, 153, 0.6) !important;
     cursor: pointer !important;
     transition: all 0.2s ease !important;
 }
 
 .clickable-keyword:hover {
-    background: rgba(122, 153, 153, 0.6) !important;
+    background: rgba(122, 153, 153, 0.7) !important;
     transform: scale(1.08) translateY(-2px) !important;
-    box-shadow: 0 4px 12px rgba(122, 153, 153, 0.4) !important;
+    box-shadow: 0 4px 12px rgba(122, 153, 153, 0.5) !important;
 }
 
 .clickable-keyword:active {
@@ -635,5 +598,96 @@ h3[class*="subtitle"] {
 
     .related-post-item h3 {
         font-size: 1.1rem;
+    }
+}
+
+/* Related Posts Grid - Blog Matrix Style */
+.related-posts-grid {
+    margin: 3rem 0 2rem;
+}
+
+.related-posts-grid h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #423737;
+    margin: 0 0 2rem 0;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.post-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    aspect-ratio: 1 / 1;
+    text-decoration: none;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.post-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.post-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    padding: 20px 15px 15px;
+    color: white;
+    transition: opacity 0.3s ease;
+}
+
+.post-card:hover .post-card-overlay {
+    opacity: 0.95;
+}
+
+.post-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.3;
+    color: white;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .related-posts-grid h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .post-card-title {
+        font-size: 0.9rem;
+    }
+
+    .post-card-overlay {
+        padding: 15px 10px 10px;
     }
 }
