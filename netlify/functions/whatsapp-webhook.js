@@ -1,356 +1,475 @@
 /**
- * ForbiddenYoga WhatsApp Onboarding Webhook
- * Handles incoming WhatsApp messages and manages conversation flow
+ * WhatsApp Business API Webhook for Forbidden Yoga
+ * Handles incoming messages and implements conversational flow
  */
 
-// In-memory conversation state (for serverless, consider using a database for production)
-// For now, we'll use a simple state machine approach
-const CRYPTO_ADDRESS = '0x450d6188aadd0f6f4d167cfc8d092842903b36d6';
-const PAYPAL_API_BASE = 'https://api-m.paypal.com'; // Use https://api-m.sandbox.paypal.com for testing
+const crypto = require('crypto');
 
-// PayPal integration functions
-async function getPayPalAccessToken() {
-    const clientId = process.env.PAYPAL_CLIENT_ID;
-    const clientSecret = process.env.PAYPAL_CLIENT_SECRET;
-
-    if (!clientId || !clientSecret) {
-        console.error('PayPal credentials not configured');
-        return null;
-    }
-
-    const auth = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
-
-    const response = await fetch(`${PAYPAL_API_BASE}/v1/oauth2/token`, {
-        method: 'POST',
-        headers: {
-            'Authorization': `Basic ${auth}`,
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'grant_type=client_credentials'
-    });
-
-    const data = await response.json();
-    return data.access_token;
-}
-
-async function createPayPalOrder(amount, description) {
-    const accessToken = await getPayPalAccessToken();
-    if (!accessToken) return null;
-
-    const response = await fetch(`${PAYPAL_API_BASE}/v2/checkout/orders`, {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            intent: 'CAPTURE',
-            purchase_units: [{
-                amount: {
-                    currency_code: 'USD',
-                    value: amount.toString()
-                },
-                description: description
-            }],
-            application_context: {
-                brand_name: 'ForbiddenYoga',
-                landing_page: 'BILLING',
-                user_action: 'PAY_NOW',
-                return_url: 'https://www.forbidden-yoga.com/payment-success.html',
-                cancel_url: 'https://www.forbidden-yoga.com/payment-cancelled.html'
-            }
-        })
-    });
-
-    const order = await response.json();
-    const approvalUrl = order.links?.find(link => link.rel === 'approve')?.href;
-    return approvalUrl;
-}
-
-// Conversation states
-const STATES = {
-    WELCOME: 'welcome',
-    AWAITING_CHOICE: 'awaiting_choice',
-    COACHING_PAYMENT: 'coaching_payment',
-    PSYCHIC_PAYMENT: 'psychic_payment',
-    GENERAL_QUESTION: 'general_question',
-    CANNOT_AFFORD: 'cannot_afford',
-    NEWSLETTER_PROMPT: 'newsletter_prompt',
-    COMPLETED: 'completed'
+// ============================================
+// CONFIGURATION
+// ============================================
+const CONFIG = {
+  VERIFY_TOKEN: process.env.WHATSAPP_VERIFY_TOKEN || process.env.WEBHOOK_VERIFY_TOKEN || 'fy_webhook_2024',
+  ACCESS_TOKEN: process.env.WHATSAPP_ACCESS_TOKEN,
+  PHONE_NUMBER_ID: process.env.WHATSAPP_PHONE_NUMBER_ID,
+  APP_SECRET: process.env.WHATSAPP_APP_SECRET || '1503be87b8baa00cf4221f2d406987d4',
+  CRYPTO_WALLET: process.env.CRYPTO_WALLET_ADDRESS || '0x450d6188aadd0f6f4d167cfc8d092842903b36d6',
+  WHATSAPP_API_URL: 'https://graph.facebook.com/v18.0'
 };
 
-// Message templates
+// ============================================
+// CONVERSATION STATE MANAGEMENT
+// ============================================
+// In production, use a database (Redis, DynamoDB, etc.)
+// For now, using in-memory storage (will reset on function cold start)
+const conversationState = new Map();
+
+const STATES = {
+  INITIAL: 'INITIAL',
+  MENU_SENT: 'MENU_SENT',
+  COACHING_PAYMENT: 'COACHING_PAYMENT',
+  PSYCHIC_PAYMENT: 'PSYCHIC_PAYMENT',
+  COACHING_PAYMENT_PENDING: 'COACHING_PAYMENT_PENDING',
+  PSYCHIC_PAYMENT_PENDING: 'PSYCHIC_PAYMENT_PENDING',
+  BROADCAST_OPTIN: 'BROADCAST_OPTIN',
+  COMPLETED: 'COMPLETED',
+  GENERAL_QUESTIONS: 'GENERAL_QUESTIONS'
+};
+
+// ============================================
+// MESSAGE TEMPLATES
+// ============================================
 const MESSAGES = {
-    WELCOME: `Welcome to ForbiddenYoga. If you have a question about a Sensual Liberation Retreat please leave your message. If you are interested in private coaching or if you want to learn Tantra or understand the Tantric lineage of Michael Vogenberg you can apply for the one month intense coaching program with Michael. The program costs 5,000 USD and the full amount is paid in advance. We also offer psychic cleansing and channel opening with our Forbidden Yoga psychic Stanislav. This is a video session with a translator from Russian into your language. The price is 500 USD.
+  WELCOME: `Hi sweet Forbidden Yoga people. If you have a question about a Sensual Liberation Retreat please leave your message.
 
-Which of these are you interested in?
-1. One month intense coaching with Michael
-2. Psychic cleansing with Stanislav
-3. General questions only`,
+If you are interested in private coaching or if you want to learn Tantra or understand the Tantric lineage of Michael Vogenberg you can apply for the one month intense coaching program with Michael. The program costs 5,000 USD and the full amount is paid in advance.
 
-    COACHING_PAYMENT_PROMPT: `The one month intense coaching program with Michael costs 5,000 USD, paid in advance.
+We also offer psychic cleansing and channel opening with our Forbidden Yoga psychic Stanislav. This is a video session with a translator from Russian into your language. The price is 500 USD.`,
+
+  MENU: `Which of these are you interested in?
+
+1️⃣ One month intense coaching with Michael
+2️⃣ Psychic cleansing with Stanislav
+3️⃣ General questions only
+
+Reply with 1, 2, or 3`,
+
+  COACHING_PAYMENT_METHOD: `Great! The one month intense coaching program costs $5,000 USD.
 
 How would you like to pay?
-1. Crypto
-2. Credit card
-3. PayPal`,
 
-    PSYCHIC_INTRO: `This is a 500 USD video session with a translator from Russian into your language.
+1️⃣ Crypto
+2️⃣ Credit card
+3️⃣ PayPal
+4️⃣ I cannot afford this
+
+Reply with 1, 2, 3, or 4`,
+
+  PSYCHIC_PAYMENT_METHOD: `The psychic cleansing session with Stanislav costs $500 USD. This is a video session with a translator.
 
 How would you like to pay?
-1. Crypto
-2. Credit card
-3. PayPal`,
 
-    CRYPTO_PAYMENT: `Please send your payment to the following address:
+1️⃣ Crypto
+2️⃣ Credit card
+3️⃣ PayPal
 
-${CRYPTO_ADDRESS}
+Reply with 1, 2, or 3`,
 
-Once payment is confirmed, we will be in touch.`,
+  CRYPTO_PAYMENT: (amount) => `Please send $${amount} USD in crypto to this address:
 
-    CANNOT_AFFORD: `We understand. Please leave a message explaining your situation and what support you are looking for.`,
+\`${CONFIG.CRYPTO_WALLET}\`
 
-    NEWSLETTER_PROMPT: `Do you want to stay on the ForbiddenYoga WhatsApp list to receive information, news, and updates about upcoming projects?
+Reply "PAID" once you've completed the transaction, and I'll verify it.`,
+
+  CREDIT_CARD_PAYMENT: (link) => `Please click this link to pay with credit card:
+
+${link}
+
+Reply "PAID" once you've completed the payment.`,
+
+  PAYPAL_PAYMENT: (link) => `Please click this link to pay with PayPal:
+
+${link}
+
+Reply "PAID" once you've completed the payment.`,
+
+  CANNOT_AFFORD: `Please leave a message explaining your situation and what support you are looking for.`,
+
+  BROADCAST_OPTIN: `Do you want to stay on the ForbiddenYoga WhatsApp list to receive information, news and updates about upcoming projects?
 
 Reply YES or NO`,
 
-    COACHING_BOOKED: `Michael will contact you directly on WhatsApp. There are no fixed appointment slots. Michael initiates the contact when appropriate.`,
+  FINAL_MESSAGE: `Michael will contact you directly on WhatsApp. There are no fixed appointment slots. Michael initiates the contact when appropriate.`,
 
-    NEWSLETTER_CONFIRMED: `You have been added to the ForbiddenYoga updates list. Thank you!`,
+  GENERAL_QUESTIONS: `Thank you for your message. Feel free to leave your question and Michael will respond when available.`,
 
-    NEWSLETTER_DECLINED: `No problem. Thank you for your interest in ForbiddenYoga.`,
+  PAYMENT_PENDING: `Thank you! I'm verifying your payment. This may take a few moments...`,
 
-    GENERAL_QUESTION_RESPONSE: `Thank you for your message. We will get back to you as soon as possible.`
+  PAYMENT_VERIFIED: `✅ Payment verified! Thank you.`,
+
+  INVALID_CHOICE: `I didn't understand that. Please reply with the number of your choice.`
 };
 
-// Simple state storage (in production, use a database like FaunaDB, Supabase, etc.)
-const userStates = new Map();
+// ============================================
+// HELPER FUNCTIONS
+// ============================================
 
-function getUserState(userId) {
-    return userStates.get(userId) || { state: STATES.WELCOME, data: {} };
+/**
+ * Verify webhook signature from Meta
+ */
+function verifyWebhookSignature(signature, body) {
+  if (!signature) return false;
+
+  const expectedSignature = crypto
+    .createHmac('sha256', CONFIG.APP_SECRET)
+    .update(body)
+    .digest('hex');
+
+  const signatureHash = signature.split('sha256=')[1];
+  return crypto.timingSafeEqual(
+    Buffer.from(signatureHash, 'hex'),
+    Buffer.from(expectedSignature, 'hex')
+  );
 }
 
-function setUserState(userId, state, data = {}) {
-    userStates.set(userId, { state, data: { ...getUserState(userId).data, ...data } });
+/**
+ * Send WhatsApp message
+ */
+async function sendWhatsAppMessage(to, message) {
+  const url = `${CONFIG.WHATSAPP_API_URL}/${CONFIG.PHONE_NUMBER_ID}/messages`;
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${CONFIG.ACCESS_TOKEN}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      messaging_product: 'whatsapp',
+      to: to,
+      type: 'text',
+      text: { body: message }
+    })
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    console.error('WhatsApp API Error:', error);
+    throw new Error(`WhatsApp API error: ${error}`);
+  }
+
+  return await response.json();
 }
 
-async function sendWhatsAppMessage(to, message, phoneNumberId, accessToken) {
-    const url = `https://graph.facebook.com/v18.0/${phoneNumberId}/messages`;
+/**
+ * Mark message as read
+ */
+async function markMessageAsRead(messageId) {
+  const url = `${CONFIG.WHATSAPP_API_URL}/${CONFIG.PHONE_NUMBER_ID}/messages`;
 
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${accessToken}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            messaging_product: 'whatsapp',
-            recipient_type: 'individual',
-            to: to,
-            type: 'text',
-            text: { body: message }
-        })
+  await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${CONFIG.ACCESS_TOKEN}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      messaging_product: 'whatsapp',
+      status: 'read',
+      message_id: messageId
+    })
+  });
+}
+
+/**
+ * Get or create conversation state
+ */
+function getConversationState(phone) {
+  if (!conversationState.has(phone)) {
+    conversationState.set(phone, {
+      state: STATES.INITIAL,
+      choice: null,
+      paymentMethod: null,
+      data: {}
     });
-
-    const result = await response.json();
-    return result;
+  }
+  return conversationState.get(phone);
 }
 
-function normalizeInput(text) {
-    return text.toLowerCase().trim();
+/**
+ * Update conversation state
+ */
+function updateConversationState(phone, updates) {
+  const current = getConversationState(phone);
+  conversationState.set(phone, { ...current, ...updates });
 }
 
-async function processMessage(userId, messageText) {
-    const userState = getUserState(userId);
-    const input = normalizeInput(messageText);
-
-    let response = '';
-    let newState = userState.state;
-    let newData = {};
-
-    switch (userState.state) {
-        case STATES.WELCOME:
-            // First message - send welcome and menu
-            response = MESSAGES.WELCOME;
-            newState = STATES.AWAITING_CHOICE;
-            break;
-
-        case STATES.AWAITING_CHOICE:
-            // User choosing between coaching, psychic, or general
-            if (input.includes('1') || input.includes('coaching') || input.includes('michael') || input.includes('one month')) {
-                response = MESSAGES.COACHING_PAYMENT_PROMPT;
-                newState = STATES.COACHING_PAYMENT;
-                newData = { service: 'coaching', amount: 5000 };
-            } else if (input.includes('2') || input.includes('psychic') || input.includes('stanislav') || input.includes('cleansing')) {
-                response = MESSAGES.PSYCHIC_INTRO;
-                newState = STATES.PSYCHIC_PAYMENT;
-                newData = { service: 'psychic', amount: 500 };
-            } else if (input.includes('3') || input.includes('general') || input.includes('question')) {
-                response = MESSAGES.GENERAL_QUESTION_RESPONSE;
-                newState = STATES.NEWSLETTER_PROMPT;
-            } else {
-                // Treat as general question
-                response = MESSAGES.GENERAL_QUESTION_RESPONSE;
-                newState = STATES.NEWSLETTER_PROMPT;
-            }
-            break;
-
-        case STATES.COACHING_PAYMENT:
-        case STATES.PSYCHIC_PAYMENT:
-            // User choosing payment method
-            const isCoaching = userState.state === STATES.COACHING_PAYMENT;
-            const amount = isCoaching ? 5000 : 500;
-            const description = isCoaching
-                ? 'ForbiddenYoga - One Month Intense Coaching with Michael'
-                : 'ForbiddenYoga - Psychic Cleansing Session with Stanislav';
-
-            if (input.includes('crypto') || input.includes('1') || input.includes('bitcoin') || input.includes('eth')) {
-                response = MESSAGES.CRYPTO_PAYMENT;
-                if (isCoaching) {
-                    response += '\n\n' + MESSAGES.COACHING_BOOKED;
-                }
-                newState = STATES.NEWSLETTER_PROMPT;
-                newData = { paymentMethod: 'crypto' };
-            } else if (input.includes('credit') || input.includes('card') || input.includes('2') || input.includes('paypal') || input.includes('3')) {
-                // Create PayPal checkout for both credit card and PayPal
-                const paymentUrl = await createPayPalOrder(amount, description);
-                if (paymentUrl) {
-                    response = `Please complete your payment here:\n${paymentUrl}`;
-                } else {
-                    response = 'Payment system temporarily unavailable. Please try again later or contact us directly.';
-                }
-                if (isCoaching && paymentUrl) {
-                    response += '\n\n' + MESSAGES.COACHING_BOOKED;
-                }
-                newState = STATES.NEWSLETTER_PROMPT;
-                newData = { paymentMethod: input.includes('paypal') ? 'paypal' : 'credit_card' };
-            } else if (input.includes('afford') || input.includes('expensive') || input.includes('money') || input.includes('cannot') || input.includes("can't")) {
-                response = MESSAGES.CANNOT_AFFORD;
-                newState = STATES.CANNOT_AFFORD;
-            } else {
-                // Unknown payment choice, ask again
-                response = 'Please choose a payment method:\n1. Crypto\n2. Credit card\n3. PayPal';
-            }
-            break;
-
-        case STATES.CANNOT_AFFORD:
-            // User explaining their situation
-            response = `Thank you for sharing. We have received your message and will review it.\n\n${MESSAGES.NEWSLETTER_PROMPT}`;
-            newState = STATES.NEWSLETTER_PROMPT;
-            break;
-
-        case STATES.NEWSLETTER_PROMPT:
-            // User responding to newsletter prompt
-            if (input.includes('yes') || input.includes('y') || input === '1') {
-                response = MESSAGES.NEWSLETTER_CONFIRMED;
-                newState = STATES.COMPLETED;
-                newData = { newsletter: true };
-            } else if (input.includes('no') || input.includes('n') || input === '2') {
-                response = MESSAGES.NEWSLETTER_DECLINED;
-                newState = STATES.COMPLETED;
-                newData = { newsletter: false };
-            } else {
-                response = 'Please reply YES or NO to join our updates list.';
-            }
-            break;
-
-        case STATES.COMPLETED:
-            // Conversation completed, restart if they message again
-            response = MESSAGES.WELCOME;
-            newState = STATES.AWAITING_CHOICE;
-            break;
-
-        default:
-            response = MESSAGES.WELCOME;
-            newState = STATES.AWAITING_CHOICE;
-    }
-
-    setUserState(userId, newState, newData);
-    return response;
+/**
+ * Generate payment link (placeholder - integrate with your payment processor)
+ */
+function generatePaymentLink(amount, type) {
+  // TODO: Integrate with Stripe/PayPal API
+  // For now, return placeholder
+  if (type === 'card') {
+    return `https://pay.forbidden-yoga.com/checkout?amount=${amount}&type=coaching`;
+  } else if (type === 'paypal') {
+    return `https://www.paypal.com/paypalme/forbiddenyoga/${amount}`;
+  }
+  return '';
 }
+
+/**
+ * Verify crypto payment (placeholder - integrate with blockchain API)
+ */
+async function verifyCryptoPayment(amount) {
+  // TODO: Integrate with blockchain explorer API (Etherscan, etc.)
+  // Check if transaction to CONFIG.CRYPTO_WALLET exists
+  // For now, return false (manual verification required)
+  return false;
+}
+
+// ============================================
+// CONVERSATION FLOW HANDLER
+// ============================================
+
+async function handleIncomingMessage(from, message, messageId) {
+  const state = getConversationState(from);
+  const text = message.toLowerCase().trim();
+
+  console.log(`Message from ${from}, current state: ${state.state}, text: "${text}"`);
+
+  // Mark message as read
+  await markMessageAsRead(messageId);
+
+  // State machine for conversation flow
+  switch (state.state) {
+    case STATES.INITIAL:
+      // Send welcome message and menu
+      await sendWhatsAppMessage(from, MESSAGES.WELCOME);
+      await new Promise(resolve => setTimeout(resolve, 1000)); // 1 second delay
+      await sendWhatsAppMessage(from, MESSAGES.MENU);
+      updateConversationState(from, { state: STATES.MENU_SENT });
+      break;
+
+    case STATES.MENU_SENT:
+      // Handle menu choice
+      if (text === '1' || text.includes('coaching') || text.includes('michael')) {
+        await sendWhatsAppMessage(from, MESSAGES.COACHING_PAYMENT_METHOD);
+        updateConversationState(from, {
+          state: STATES.COACHING_PAYMENT,
+          choice: 'coaching'
+        });
+      } else if (text === '2' || text.includes('psychic') || text.includes('stanislav')) {
+        await sendWhatsAppMessage(from, MESSAGES.PSYCHIC_PAYMENT_METHOD);
+        updateConversationState(from, {
+          state: STATES.PSYCHIC_PAYMENT,
+          choice: 'psychic'
+        });
+      } else if (text === '3' || text.includes('question') || text.includes('general')) {
+        await sendWhatsAppMessage(from, MESSAGES.GENERAL_QUESTIONS);
+        updateConversationState(from, { state: STATES.GENERAL_QUESTIONS });
+      } else {
+        await sendWhatsAppMessage(from, MESSAGES.INVALID_CHOICE);
+      }
+      break;
+
+    case STATES.COACHING_PAYMENT:
+      // Handle coaching payment method
+      if (text === '1' || text.includes('crypto')) {
+        await sendWhatsAppMessage(from, MESSAGES.CRYPTO_PAYMENT(5000));
+        updateConversationState(from, {
+          state: STATES.COACHING_PAYMENT_PENDING,
+          paymentMethod: 'crypto'
+        });
+      } else if (text === '2' || text.includes('credit') || text.includes('card')) {
+        const link = generatePaymentLink(5000, 'card');
+        await sendWhatsAppMessage(from, MESSAGES.CREDIT_CARD_PAYMENT(link));
+        updateConversationState(from, {
+          state: STATES.COACHING_PAYMENT_PENDING,
+          paymentMethod: 'card'
+        });
+      } else if (text === '3' || text.includes('paypal')) {
+        const link = generatePaymentLink(5000, 'paypal');
+        await sendWhatsAppMessage(from, MESSAGES.PAYPAL_PAYMENT(link));
+        updateConversationState(from, {
+          state: STATES.COACHING_PAYMENT_PENDING,
+          paymentMethod: 'paypal'
+        });
+      } else if (text === '4' || text.includes('cannot') || text.includes('afford')) {
+        await sendWhatsAppMessage(from, MESSAGES.CANNOT_AFFORD);
+        updateConversationState(from, { state: STATES.GENERAL_QUESTIONS });
+      } else {
+        await sendWhatsAppMessage(from, MESSAGES.INVALID_CHOICE);
+      }
+      break;
+
+    case STATES.PSYCHIC_PAYMENT:
+      // Handle psychic payment method
+      if (text === '1' || text.includes('crypto')) {
+        await sendWhatsAppMessage(from, MESSAGES.CRYPTO_PAYMENT(500));
+        updateConversationState(from, {
+          state: STATES.PSYCHIC_PAYMENT_PENDING,
+          paymentMethod: 'crypto'
+        });
+      } else if (text === '2' || text.includes('credit') || text.includes('card')) {
+        const link = generatePaymentLink(500, 'card');
+        await sendWhatsAppMessage(from, MESSAGES.CREDIT_CARD_PAYMENT(link));
+        updateConversationState(from, {
+          state: STATES.PSYCHIC_PAYMENT_PENDING,
+          paymentMethod: 'card'
+        });
+      } else if (text === '3' || text.includes('paypal')) {
+        const link = generatePaymentLink(500, 'paypal');
+        await sendWhatsAppMessage(from, MESSAGES.PAYPAL_PAYMENT(link));
+        updateConversationState(from, {
+          state: STATES.PSYCHIC_PAYMENT_PENDING,
+          paymentMethod: 'paypal'
+        });
+      } else {
+        await sendWhatsAppMessage(from, MESSAGES.INVALID_CHOICE);
+      }
+      break;
+
+    case STATES.COACHING_PAYMENT_PENDING:
+    case STATES.PSYCHIC_PAYMENT_PENDING:
+      // Handle payment confirmation
+      if (text.includes('paid') || text.includes('done') || text.includes('completed')) {
+        await sendWhatsAppMessage(from, MESSAGES.PAYMENT_PENDING);
+
+        // TODO: Verify payment based on method
+        // For now, assume verified (manual verification required)
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        await sendWhatsAppMessage(from, MESSAGES.PAYMENT_VERIFIED);
+
+        // Ask about broadcast list
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        await sendWhatsAppMessage(from, MESSAGES.BROADCAST_OPTIN);
+        updateConversationState(from, { state: STATES.BROADCAST_OPTIN });
+      }
+      break;
+
+    case STATES.BROADCAST_OPTIN:
+      // Handle broadcast list opt-in
+      if (text.includes('yes') || text.includes('sure') || text.includes('okay')) {
+        // TODO: Add to broadcast list
+        updateConversationState(from, {
+          state: STATES.COMPLETED,
+          data: { ...state.data, broadcastOptin: true }
+        });
+        await sendWhatsAppMessage(from, MESSAGES.FINAL_MESSAGE);
+      } else if (text.includes('no') || text.includes('not')) {
+        updateConversationState(from, {
+          state: STATES.COMPLETED,
+          data: { ...state.data, broadcastOptin: false }
+        });
+        await sendWhatsAppMessage(from, MESSAGES.FINAL_MESSAGE);
+      } else {
+        await sendWhatsAppMessage(from, 'Please reply YES or NO');
+      }
+      break;
+
+    case STATES.GENERAL_QUESTIONS:
+      // Just acknowledge - no automated response needed
+      // Michael will respond manually
+      break;
+
+    case STATES.COMPLETED:
+      // Conversation complete, forward to manual handling
+      break;
+
+    default:
+      // Unknown state, reset
+      updateConversationState(from, { state: STATES.INITIAL });
+      await sendWhatsAppMessage(from, MESSAGES.WELCOME);
+  }
+}
+
+// ============================================
+// NETLIFY FUNCTION HANDLER
+// ============================================
 
 exports.handler = async (event, context) => {
-    // Handle webhook verification (GET request from Meta)
-    if (event.httpMethod === 'GET') {
-        const params = event.queryStringParameters || {};
-        const mode = params['hub.mode'];
-        const token = params['hub.verify_token'];
-        const challenge = params['hub.challenge'];
+  console.log('Webhook called:', event.httpMethod);
 
-        const verifyToken = process.env.WHATSAPP_VERIFY_TOKEN;
+  // Handle GET request (webhook verification)
+  if (event.httpMethod === 'GET') {
+    const params = event.queryStringParameters;
+    const mode = params['hub.mode'];
+    const token = params['hub.verify_token'];
+    const challenge = params['hub.challenge'];
 
-        if (mode === 'subscribe' && token === verifyToken) {
-            console.log('Webhook verified successfully');
-            return {
-                statusCode: 200,
-                body: challenge
-            };
-        } else {
-            console.log('Webhook verification failed');
-            return {
-                statusCode: 403,
-                body: 'Verification failed'
-            };
-        }
+    if (mode === 'subscribe' && token === CONFIG.VERIFY_TOKEN) {
+      console.log('Webhook verified');
+      return {
+        statusCode: 200,
+        body: challenge
+      };
+    } else {
+      console.error('Webhook verification failed');
+      return {
+        statusCode: 403,
+        body: 'Forbidden'
+      };
+    }
+  }
+
+  // Handle POST request (incoming messages)
+  if (event.httpMethod === 'POST') {
+    // Verify webhook signature
+    const signature = event.headers['x-hub-signature-256'];
+    if (!verifyWebhookSignature(signature, event.body)) {
+      console.error('Invalid webhook signature');
+      return {
+        statusCode: 403,
+        body: 'Invalid signature'
+      };
     }
 
-    // Handle incoming messages (POST request)
-    if (event.httpMethod === 'POST') {
-        try {
-            const body = JSON.parse(event.body);
+    try {
+      const body = JSON.parse(event.body);
 
-            // Check if this is a WhatsApp message
-            if (body.object === 'whatsapp_business_account') {
-                const entries = body.entry || [];
+      // WhatsApp sends test messages on webhook setup
+      if (body.object === 'whatsapp_business_account') {
+        const entry = body.entry?.[0];
+        const changes = entry?.changes?.[0];
+        const value = changes?.value;
 
-                for (const entry of entries) {
-                    const changes = entry.changes || [];
+        // Check for messages
+        if (value?.messages && value.messages.length > 0) {
+          const message = value.messages[0];
+          const from = message.from; // Phone number
+          const messageId = message.id;
+          const messageText = message.text?.body || '';
 
-                    for (const change of changes) {
-                        if (change.field === 'messages') {
-                            const value = change.value;
-                            const messages = value.messages || [];
+          console.log(`New message from ${from}: ${messageText}`);
 
-                            for (const message of messages) {
-                                if (message.type === 'text') {
-                                    const from = message.from; // User's phone number
-                                    const text = message.text.body;
-
-                                    console.log(`Received message from ${from}: ${text}`);
-
-                                    // Get environment variables
-                                    const phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID;
-                                    const accessToken = process.env.WHATSAPP_ACCESS_TOKEN;
-
-                                    // Process the message and get response
-                                    const responseText = await processMessage(from, text);
-
-                                    // Send response
-                                    if (responseText) {
-                                        await sendWhatsAppMessage(from, responseText, phoneNumberId, accessToken);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            return {
-                statusCode: 200,
-                body: JSON.stringify({ status: 'ok' })
-            };
-        } catch (error) {
-            console.error('Error processing webhook:', error);
-            return {
-                statusCode: 500,
-                body: JSON.stringify({ error: 'Internal server error' })
-            };
+          // Process message asynchronously
+          await handleIncomingMessage(from, messageText, messageId);
         }
-    }
 
-    return {
-        statusCode: 405,
-        body: 'Method not allowed'
-    };
+        // Check for message status updates (delivered, read, etc.)
+        if (value?.statuses) {
+          console.log('Status update:', value.statuses);
+        }
+      }
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify({ success: true })
+      };
+
+    } catch (error) {
+      console.error('Error processing webhook:', error);
+      return {
+        statusCode: 500,
+        body: JSON.stringify({ error: error.message })
+      };
+    }
+  }
+
+  // Invalid method
+  return {
+    statusCode: 405,
+    body: 'Method Not Allowed'
+  };
 };

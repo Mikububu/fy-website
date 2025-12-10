@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "dotenv": "^17.2.3",
+    "jsdom": "^27.3.0"
+  }
+}
