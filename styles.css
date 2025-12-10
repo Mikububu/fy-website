@@ -2450,17 +2450,18 @@ iframe .jw-title-secondary {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     color: #ffffff;
-    background-color: #6B4423;
+    background-color: red;
     border-radius: 12px;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    text-decoration: none;
 }
 
 .book-guru-button:hover {
-    background-color: #8B5A2B;
+    background-color: darkred;
     transform: scale(1.05);
 }
 
