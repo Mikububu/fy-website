@@ -458,16 +458,17 @@ h3[class*="subtitle"] {
 
 /* Clickable keywords - different background for keywords with 2+ instances */
 .clickable-keyword {
-    background: rgba(122, 153, 153, 0.45) !important;
-    border-color: rgba(122, 153, 153, 0.6) !important;
+    background: rgba(66, 102, 102, 0.75) !important;
+    border-color: rgba(66, 102, 102, 0.9) !important;
+    color: #ffffff !important;
     cursor: pointer !important;
     transition: all 0.2s ease !important;
 }
 
 .clickable-keyword:hover {
-    background: rgba(122, 153, 153, 0.7) !important;
+    background: rgba(66, 102, 102, 0.95) !important;
     transform: scale(1.08) translateY(-2px) !important;
-    box-shadow: 0 4px 12px rgba(122, 153, 153, 0.5) !important;
+    box-shadow: 0 4px 12px rgba(66, 102, 102, 0.6) !important;
 }
 
 .clickable-keyword:active {
