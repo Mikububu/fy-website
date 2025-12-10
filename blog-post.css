@@ -438,10 +438,22 @@ h3[class*="subtitle"] {
     color: rgba(255, 255, 255, 0.5);
 }
 
-.post-content img {
-    max-width: 1000px !important;
-    width: 100% !important;
-    height: auto !important;
+/* Full-width images (first image in posts) */
+.post-content img.sizing-fullscreen {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    margin: 2em auto;
+    border-radius: 8px;
+    display: block;
+}
+
+/* Normal-sized images (content images) */
+.post-content img.sizing-normal,
+.post-content img:not(.sizing-fullscreen) {
+    max-width: 728px;
+    width: auto;
+    height: auto;
     margin: 2em auto;
     border-radius: 8px;
     display: block;
