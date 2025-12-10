@@ -9,13 +9,30 @@ const crypto = require('crypto');
 // CONFIGURATION
 // ============================================
 const CONFIG = {
-  VERIFY_TOKEN: process.env.WHATSAPP_VERIFY_TOKEN || process.env.WEBHOOK_VERIFY_TOKEN || 'fy_webhook_2024',
+  VERIFY_TOKEN: process.env.WHATSAPP_VERIFY_TOKEN || process.env.WEBHOOK_VERIFY_TOKEN,
   ACCESS_TOKEN: process.env.WHATSAPP_ACCESS_TOKEN,
   PHONE_NUMBER_ID: process.env.WHATSAPP_PHONE_NUMBER_ID,
-  APP_SECRET: process.env.WHATSAPP_APP_SECRET || '1503be87b8baa00cf4221f2d406987d4',
-  CRYPTO_WALLET: process.env.CRYPTO_WALLET_ADDRESS || '0x450d6188aadd0f6f4d167cfc8d092842903b36d6',
+  APP_SECRET: process.env.WHATSAPP_APP_SECRET,
+  CRYPTO_WALLET: process.env.CRYPTO_WALLET_ADDRESS,
   WHATSAPP_API_URL: 'https://graph.facebook.com/v18.0'
 };
+
+// Validate required environment variables
+if (!CONFIG.VERIFY_TOKEN) {
+  throw new Error('WHATSAPP_VERIFY_TOKEN or WEBHOOK_VERIFY_TOKEN environment variable is required');
+}
+if (!CONFIG.ACCESS_TOKEN) {
+  throw new Error('WHATSAPP_ACCESS_TOKEN environment variable is required');
+}
+if (!CONFIG.PHONE_NUMBER_ID) {
+  throw new Error('WHATSAPP_PHONE_NUMBER_ID environment variable is required');
+}
+if (!CONFIG.APP_SECRET) {
+  throw new Error('WHATSAPP_APP_SECRET environment variable is required');
+}
+if (!CONFIG.CRYPTO_WALLET) {
+  throw new Error('CRYPTO_WALLET_ADDRESS environment variable is required');
+}
 
 // ============================================
 // CONVERSATION STATE MANAGEMENT

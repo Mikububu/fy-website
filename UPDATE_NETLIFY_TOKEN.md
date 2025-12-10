@@ -10,9 +10,9 @@
 
 4. Click **"Edit"**
 
-5. Replace the value with this permanent token:
+5. Replace the value with your permanent token:
 ```
-EAAT0NJPTJ0sBQMFOSTMmg9yDNRpZC6nZCcbUuEynW4lkv9TjMtD0iHTROGWLpgImY7xO81GyAqUsDxAZB0D9IYtOG7pZB0JbixPuOWZBeZCv8ecZBl0ZAmebcNlp7S5r5lHnZBaVX0Vomn94ggP9PHok5ivYpPZC1SWVhbICi1mgXed91bPOQikHFjwLGiGdBut3jS2AZDZD
+YOUR_PERMANENT_ACCESS_TOKEN_HERE
 ```
 
 6. Click **"Save"**

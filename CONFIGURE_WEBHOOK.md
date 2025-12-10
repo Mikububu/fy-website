@@ -31,7 +31,7 @@ https://forbidden-yoga.com/.netlify/functions/whatsapp-webhook
 
 **Verify Token:**
 ```
-fy_webhook_2024
+YOUR_WEBHOOK_VERIFY_TOKEN
 ```
 
 4. Click "Verify and Save"
@@ -61,8 +61,8 @@ If it fails:
 #### Option A: Send Test Message via API
 
 ```bash
-curl -X POST "https://graph.facebook.com/v18.0/863457346858125/messages" \
-  -H "Authorization: Bearer EAAT0NJPTJ0sBQE7mfdbtZCHDujZAHeu2EJJsPB1RZAA8K70mwQVazZAdLUoKXOXdFyaKTmIjwRQb5jhfMmJy0RZCd7YiUBDTivfeOHqhG7ZBiYQufAlVRMnAr77CFY8l0uzoa48MB6ZBFKZBsCTj8NmChKyfpo5er7OAF0mTlSG3eKq5eGJTm6bV5aL6MbJi2H8HCtsYGHh7ZCedUaFhQk1dZCafvAOvGIyUaNBZAZBMiqYGWvXj8Ng1Wkfv78ZCNCIRW08dYmTEaJXporxCO6A9BU4a3QtPz" \
+curl -X POST "https://graph.facebook.com/v18.0/YOUR_PHONE_NUMBER_ID/messages" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
     "messaging_product": "whatsapp",
