@@ -438,25 +438,22 @@ h3[class*="subtitle"] {
     color: rgba(255, 255, 255, 0.5);
 }
 
-/* Full-width images (first image in posts) */
-.post-content img.sizing-fullscreen {
-    max-width: 100%;
-    width: 100%;
-    height: auto;
+.post-content img {
+    max-width: 1000px !important;
+    width: 100% !important;
+    height: auto !important;
     margin: 2em auto;
     border-radius: 8px;
     display: block;
 }
 
-/* Normal-sized images (content images) */
-.post-content img.sizing-normal,
-.post-content img:not(.sizing-fullscreen) {
-    max-width: 728px !important;
-    width: 728px !important;
+/* Force proper scaling for captioned images */
+.captioned-image-container img,
+.captioned-image-container picture,
+.captioned-image-container figure img {
+    max-width: 1000px !important;
+    width: 100% !important;
     height: auto !important;
-    margin: 2em auto !important;
-    border-radius: 8px;
-    display: block;
 }
 
 /* Clickable keywords - different background for keywords with 2+ instances */
