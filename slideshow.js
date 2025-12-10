@@ -63,19 +63,15 @@ function handleSwipe() {
 
 const slideshowContainer = document.querySelector('.slideshow-container');
 
-if (slideshowContainer) {
-    slideshowContainer.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
+slideshowContainer.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+});
 
-    slideshowContainer.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    });
-}
+slideshowContainer.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
 
 // Initialize slideshow
-if (slides.length > 0) {
-    showSlide(currentSlide);
-    startAutoPlay();
-}
+showSlide(currentSlide);
+startAutoPlay();
