@@ -1,0 +1,663 @@
+# WhatsApp Business Integration - Project Handoff to Cursor
+
+## 📋 Project Context
+
+This is a **WhatsApp Business API integration** for the Forbidden Yoga website (https://forbidden-yoga.com). The project replaces the previous Calendly/SuperSaaS booking system with an automated WhatsApp conversational onboarding flow.
+
+**Owner:** Michael Perin Wogenburg
+**Website:** https://forbidden-yoga.com
+**Repository:** https://github.com/Mikububu/fy-website
+**Hosting:** Netlify
+**Status:** Production-ready, deployed, webhook configured
+
+---
+
+## 🎯 What This Project Does
+
+### Business Goal
+Automate customer onboarding for three services:
+1. **One-month intense coaching with Michael** ($5,000 USD)
+2. **Psychic cleansing with Stanislav** ($500 USD)
+3. **General questions** (free form)
+
+### Technical Implementation
+- **Serverless webhook** running on Netlify Functions
+- **WhatsApp Business API** (Meta Cloud API) for messaging
+- **State machine** conversation flow with payment handling
+- **Multi-payment options:** Crypto, Credit Card, PayPal
+- **Broadcast list opt-in** for marketing
+
+---
+
+## 🏗️ Architecture Overview
+
+```
+User clicks button on website
+    ↓
+Opens WhatsApp with pre-filled message
+    ↓
+User sends message to WhatsApp Business number
+    ↓
+Meta WhatsApp API receives message
+    ↓
+Meta sends webhook POST to Netlify Function
+    ↓
+netlify/functions/whatsapp-webhook.js processes:
+  1. Verifies webhook signature (security)
+  2. Parses incoming message
+  3. Retrieves conversation state (in-memory Map)
+  4. Runs state machine logic
+  5. Sends response via WhatsApp API
+  6. Updates conversation state
+    ↓
+User receives response in WhatsApp
+    ↓
+Conversation continues until completion
+```
+
+### Key Files
+
+**Main Logic:**
+- `netlify/functions/whatsapp-webhook.js` - Core webhook handler (475 lines)
+
+**Configuration:**
+- `netlify.toml` - Netlify Functions configuration
+- `.env` - Environment variables (LOCAL ONLY, not committed)
+- `netlify/functions/package.json` - Dependencies (qs, @upstash/redis, stripe)
+
+**Documentation:**
+- `WHATSAPP_README.md` - Complete overview and quick start
+- `WHATSAPP_SETUP_GUIDE.md` - Meta Business setup instructions
+- `DEPLOYMENT_GUIDE.md` - Deployment procedures
+- `PAYMENT_INTEGRATION_GUIDE.md` - Payment processor integration
+- `TESTING_GUIDE.md` - Testing procedures
+
+**Website Integration:**
+- `index.html` (lines 523-539) - WhatsApp button in footer
+
+---
+
+## 🔑 Environment Variables
+
+These are configured in **Netlify Dashboard → Site Settings → Environment Variables**:
+
+```bash
+# WhatsApp API Credentials (from Meta Business)
+WHATSAPP_ACCESS_TOKEN=EAAWs...           # Permanent access token
+WHATSAPP_PHONE_NUMBER_ID=531554543389172  # From WhatsApp Manager
+WHATSAPP_BUSINESS_ACCOUNT_ID=6708c9456e59b608121e4b46
+WHATSAPP_APP_SECRET=1503be87b8baa00cf4221f2d406987d4  # From App Settings
+
+# Webhook Security (custom token for verification)
+WEBHOOK_VERIFY_TOKEN=fy_webhook_2024     # Created by us, matched in Meta
+
+# Payment Configuration
+CRYPTO_WALLET_ADDRESS=0x450d6188aadd0f6f4d167cfc8d092842903b36d6
+
+# Optional - Payment Integration (not yet implemented)
+STRIPE_SECRET_KEY=sk_test_...            # For credit card verification
+STRIPE_WEBHOOK_SECRET=whsec_...          # For payment webhooks
+PAYPAL_CLIENT_ID=...                     # For PayPal verification
+PAYPAL_CLIENT_SECRET=...                 # For PayPal API
+UPSTASH_REDIS_URL=...                    # For persistent state (optional)
+UPSTASH_REDIS_TOKEN=...                  # For Redis auth
+```
+
+### How to Get These Values
+
+**WhatsApp Credentials:**
+1. Go to https://developers.facebook.com/apps/
+2. Select app ID: 3824621794449091
+3. WhatsApp → Configuration → API Setup
+4. Copy Phone Number ID, Access Token
+5. App Settings → Basic → Copy App Secret
+
+**New Phone Number (December 2024):**
+- Old number: +31 6 11451625 (discontinued)
+- New number: +1 (531) 554-3389 (current production number)
+- Phone Number ID: 531554543389172
+
+---
+
+## 📱 Conversation Flow State Machine
+
+The webhook implements a **finite state machine** with these states:
+
+### States Enum
+```javascript
+const STATES = {
+  INITIAL: 'INITIAL',                              // First message received
+  MENU_SENT: 'MENU_SENT',                          // Menu displayed
+  COACHING_PAYMENT: 'COACHING_PAYMENT',            // Asking payment method (coaching)
+  PSYCHIC_PAYMENT: 'PSYCHIC_PAYMENT',              // Asking payment method (psychic)
+  COACHING_PAYMENT_PENDING: 'COACHING_PAYMENT_PENDING',  // Waiting for payment
+  PSYCHIC_PAYMENT_PENDING: 'PSYCHIC_PAYMENT_PENDING',    // Waiting for payment
+  BROADCAST_OPTIN: 'BROADCAST_OPTIN',              // Asking about broadcast list
+  COMPLETED: 'COMPLETED',                          // Conversation finished
+  GENERAL_QUESTIONS: 'GENERAL_QUESTIONS'           // Free-form questions mode
+};
+```
+
+### Flow Diagram
+
+```
+User: Hello
+    ↓
+[INITIAL → MENU_SENT]
+Bot: Welcome message
+Bot: Menu (1/2/3)
+    ↓
+User: 1 (Coaching)
+    ↓
+[MENU_SENT → COACHING_PAYMENT]
+Bot: Payment method? (1: Crypto, 2: Card, 3: PayPal, 4: Can't afford)
+    ↓
+User: 1 (Crypto)
+    ↓
+[COACHING_PAYMENT → COACHING_PAYMENT_PENDING]
+Bot: Send $5000 to 0x450d6188aadd0f6f4d167cfc8d092842903b36d6
+Bot: Reply PAID when done
+    ↓
+User: PAID
+    ↓
+[COACHING_PAYMENT_PENDING → BROADCAST_OPTIN]
+Bot: Verifying... (2 sec delay)
+Bot: Payment verified ✅
+Bot: Join broadcast list? (YES/NO)
+    ↓
+User: YES
+    ↓
+[BROADCAST_OPTIN → COMPLETED]
+Bot: Michael will contact you directly
+```
+
+### Alternative Paths
+
+**Psychic Cleansing ($500):**
+- Menu choice 2 → Same flow but $500 amount
+
+**General Questions:**
+- Menu choice 3 → No payment, just acknowledge
+
+**Cannot Afford:**
+- Payment choice 4 → Ask to explain situation → General questions mode
+
+---
+
+## 🛠️ Current Implementation Status
+
+### ✅ Implemented
+- [x] WhatsApp Business API integration
+- [x] Webhook verification (security)
+- [x] Conversation state management (in-memory)
+- [x] Full conversation flow (all 3 paths)
+- [x] Message sending/receiving
+- [x] Payment method selection
+- [x] Crypto wallet display
+- [x] Broadcast list opt-in
+- [x] Production deployment on Netlify
+- [x] Webhook configured and working
+- [x] New phone number registered (+1 531-554-3389)
+
+### ⚠️ Partially Implemented
+- [~] Payment verification - **Manual only** (admin checks wallet/PayPal)
+- [~] Payment links - **Placeholders only** (not real Stripe/PayPal links)
+- [~] Conversation state - **In-memory Map** (resets on cold start)
+
+### ❌ Not Yet Implemented
+- [ ] Stripe integration (auto-verify credit card payments)
+- [ ] PayPal API integration (auto-verify PayPal payments)
+- [ ] Etherscan integration (auto-verify crypto payments)
+- [ ] Upstash Redis (persistent conversation state)
+- [ ] Broadcast list management (add/remove users)
+- [ ] Admin notification system (email/SMS on payment claims)
+- [ ] Analytics tracking
+- [ ] Rate limiting (spam protection)
+
+---
+
+## 🚨 Known Limitations
+
+### 1. Payment Verification is Manual
+**Problem:** Bot says "payment verified" after 2 seconds, but doesn't actually check.
+
+**Current Flow:**
+1. Bot sends payment link/address
+2. User claims "PAID"
+3. Bot simulates verification (just waits 2 seconds)
+4. Bot says "verified" (no actual check)
+5. Michael must manually check wallet/PayPal/Stripe
+
+**To Fix:** Integrate payment webhooks (see PAYMENT_INTEGRATION_GUIDE.md)
+
+### 2. Conversation State is Not Persistent
+**Problem:** In-memory Map resets on Netlify Function cold start (after ~15 min idle).
+
+**Current State Storage:**
+```javascript
+const conversationState = new Map();  // Resets on cold start
+```
+
+**Impact:**
+- If user starts conversation, waits 20 minutes, then continues → State lost
+- User must restart from beginning
+
+**To Fix:** Migrate to Upstash Redis (see code example in PAYMENT_INTEGRATION_GUIDE.md)
+
+### 3. Message Templates Not Using Pre-Approved Templates
+**Problem:** Currently sending free-form text. Meta requires template approval for:
+- Messages sent >24 hours after user's last message
+- Marketing messages
+
+**Current Status:**
+- Works fine because all messages are within 24-hour window
+- Will fail if trying to send proactive messages
+
+**To Fix:** Create and submit message templates in Meta Business Manager
+
+### 4. No Admin Dashboard
+**Problem:** No way to see active conversations, payment claims, etc.
+
+**Current Monitoring:**
+- Netlify Functions logs (text only)
+- Michael checks WhatsApp manually
+
+**To Add:** Admin panel showing:
+- Active conversations
+- Payment claims awaiting verification
+- Completed conversions
+- Error logs
+
+---
+
+## 🔐 Security Considerations
+
+### Implemented Security
+✅ **Webhook signature verification** - Prevents spoofed requests
+```javascript
+function verifyWebhookSignature(signature, body) {
+  const expectedSignature = crypto
+    .createHmac('sha256', CONFIG.APP_SECRET)
+    .update(body)
+    .digest('hex');
+  return crypto.timingSafeEqual(...);  // Timing-safe comparison
+}
+```
+
+✅ **Environment variables** - Secrets not in code
+✅ **HTTPS only** - Netlify enforces TLS
+✅ **No sensitive data in logs** - Phone numbers logged, but not payment details
+
+### Security TODOs
+- [ ] Rate limiting (prevent spam/DoS)
+- [ ] PCI compliance (if storing card data - use Stripe, never store cards)
+- [ ] Privacy policy update (mention WhatsApp data collection)
+- [ ] GDPR compliance (if EU users - right to deletion)
+- [ ] Input sanitization (prevent injection attacks)
+
+---
+
+## 📞 WhatsApp Business Account Details
+
+### Account Information
+- **Business Name:** Forbidden Yoga
+- **Business Email:** Michael's email (check Meta Business account)
+- **App ID:** 3824621794449091
+- **App Name:** FY WhatsApp Integration
+
+### Phone Number (Current)
+- **Number:** +1 (531) 554-3389
+- **Phone Number ID:** 531554543389172
+- **Status:** Active, webhook configured
+- **Display Name:** Forbidden Yoga
+
+### Phone Number (Previous - Discontinued)
+- **Number:** +31 6 11451625
+- **Status:** Deprecated December 2024
+- **Reason:** Switched to US number
+
+### API Access
+- **API Version:** v18.0
+- **Endpoint:** https://graph.facebook.com/v18.0/531554543389172/messages
+- **Access Token:** Permanent (non-expiring)
+- **Permissions:** whatsapp_business_messaging, whatsapp_business_management
+
+### Rate Limits
+- **Free Tier:** 1,000 conversations/month
+- **Messages per conversation:** Unlimited within 24-hour window
+- **Quality Rating:** High (new account, no violations)
+
+---
+
+## 🧪 Testing
+
+### Test via Website
+1. Go to https://forbidden-yoga.com
+2. Scroll to footer
+3. Click "ONBOARDING THE FORBIDDEN" button
+4. Should open WhatsApp to +1 531-554-3389
+5. Send "Hello"
+6. Expect welcome message + menu within 5 seconds
+
+### Test Directly via WhatsApp
+Add contact: +1 (531) 554-3389
+Send: "Hi"
+Expected response:
+```
+Hi sweet Forbidden Yoga people. If you have a question about a Sensual Liberation Retreat please leave your message.
+
+If you are interested in private coaching or if you want to learn Tantra or understand the Tantric lineage of Michael Vogenberg you can apply for the one month intense coaching program with Michael. The program costs 5,000 USD and the full amount is paid in advance.
+
+We also offer psychic cleansing and channel opening with our Forbidden Yoga psychic Stanislav. This is a video session with a translator from Russian into your language. The price is 500 USD.
+
+---
+
+Which of these are you interested in?
+
+1️⃣ One month intense coaching with Michael
+2️⃣ Psychic cleansing with Stanislav
+3️⃣ General questions only
+
+Reply with 1, 2, or 3
+```
+
+### Test Full Flow
+Follow testing procedures in `TESTING_GUIDE.md`:
+- Test coaching flow ($5,000)
+- Test psychic flow ($500)
+- Test general questions flow
+- Test "cannot afford" flow
+- Test invalid inputs
+- Test state persistence
+
+### Monitor Logs
+**Netlify Dashboard:**
+1. Go to https://app.netlify.com/sites/YOUR_SITE/functions
+2. Click `whatsapp-webhook`
+3. Watch real-time logs
+
+**Expected log output:**
+```
+Webhook called: POST
+Message from 15315543389: hello
+Message from 15315543389, current state: INITIAL, text: "hello"
+Message from 15315543389, current state: MENU_SENT, text: "1"
+```
+
+---
+
+## 🐛 Common Issues and Solutions
+
+### Issue: "Webhook verification failed"
+**Symptoms:** Webhook not connecting in Meta Business Manager
+
+**Check:**
+1. `WEBHOOK_VERIFY_TOKEN` in Netlify exactly matches Meta
+2. Webhook URL is: `https://forbidden-yoga.com/.netlify/functions/whatsapp-webhook`
+3. Function deployed (check Netlify Functions tab)
+4. No typos in URL or token
+
+**Fix:**
+```bash
+# Check current deployment
+netlify functions:list
+
+# Check environment variable
+netlify env:list | grep WEBHOOK_VERIFY_TOKEN
+
+# Redeploy if needed
+git push origin main
+```
+
+### Issue: "Not receiving messages"
+**Symptoms:** User sends message, no response
+
+**Check:**
+1. Webhook subscribed to `messages` field (Meta → WhatsApp → Configuration)
+2. `WHATSAPP_ACCESS_TOKEN` is permanent token (not temporary)
+3. Phone Number ID correct
+4. Netlify function logs show incoming requests
+
+**Debug:**
+```bash
+# Check Netlify logs
+netlify functions:log whatsapp-webhook --follow
+
+# Test webhook directly
+curl -X POST https://forbidden-yoga.com/.netlify/functions/whatsapp-webhook \
+  -H "Content-Type: application/json" \
+  -d '{"test": true}'
+```
+
+### Issue: "Can't send messages"
+**Symptoms:** Bot receives message but doesn't reply
+
+**Check:**
+1. `WHATSAPP_PHONE_NUMBER_ID` correct (531554543389172)
+2. `WHATSAPP_ACCESS_TOKEN` valid
+3. Not hitting rate limits (1,000 conv/month)
+4. Check Netlify logs for API errors
+
+**Common error:**
+```
+WhatsApp API Error: {"error":{"message":"Invalid OAuth access token","type":"OAuthException"}}
+```
+**Fix:** Regenerate access token in Meta Business Manager
+
+### Issue: "State lost mid-conversation"
+**Symptoms:** User replies, bot forgets context
+
+**Cause:** Netlify Function cold start reset in-memory Map
+
+**Temporary Fix:** User must restart conversation
+
+**Permanent Fix:** Implement Redis (see below)
+
+---
+
+## 🚀 Next Steps / Roadmap
+
+### High Priority (Do First)
+
+**1. Implement Upstash Redis for Persistent State**
+**Why:** Prevent conversation state loss on cold starts
+**Effort:** 2-3 hours
+**Guide:** See PAYMENT_INTEGRATION_GUIDE.md → Upstash Redis section
+
+**Code changes needed:**
+```javascript
+// Replace this:
+const conversationState = new Map();
+
+// With this:
+const { Redis } = require('@upstash/redis');
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_URL,
+  token: process.env.UPSTASH_REDIS_TOKEN
+});
+
+async function getConversationState(phone) {
+  const state = await redis.get(`conversation:${phone}`);
+  return state || { state: STATES.INITIAL, choice: null, paymentMethod: null, data: {} };
+}
+
+async function updateConversationState(phone, updates) {
+  const current = await getConversationState(phone);
+  const updated = { ...current, ...updates };
+  await redis.set(`conversation:${phone}`, updated, { ex: 86400 });  // 24h expiry
+}
+```
+
+**2. Implement Stripe Payment Verification**
+**Why:** Automate credit card payment verification
+**Effort:** 4-6 hours
+**Guide:** See PAYMENT_INTEGRATION_GUIDE.md → Stripe Integration
+
+**Steps:**
+1. Create Stripe account
+2. Generate Payment Link or Checkout Session
+3. Add webhook listener (`netlify/functions/stripe-webhook.js`)
+4. Update conversation flow to use real links
+5. Test with Stripe test cards
+
+**3. Implement Etherscan Crypto Verification**
+**Why:** Automate crypto payment verification
+**Effort:** 3-4 hours
+**Guide:** See PAYMENT_INTEGRATION_GUIDE.md → Etherscan Integration
+
+**API to use:**
+- https://api.etherscan.io/api?module=account&action=txlist&address=0x450d6188aadd0f6f4d167cfc8d092842903b36d6
+
+### Medium Priority
+
+**4. Add Admin Notifications**
+**Why:** Alert Michael when payment claimed
+**Effort:** 1-2 hours
+**Options:** Email (SendGrid), SMS (Twilio), Telegram bot
+
+**5. Create Broadcast List Management**
+**Why:** Store opt-ins and enable mass messaging
+**Effort:** 3-4 hours
+**Storage:** Upstash Redis or Supabase
+
+### Low Priority
+
+**6. Analytics Dashboard**
+**Why:** Track conversion rates, funnel metrics
+**Effort:** 8-12 hours
+**Tools:** Mixpanel, Amplitude, or custom with Supabase
+
+**7. Message Template Approval**
+**Why:** Enable proactive messaging (>24hr window)
+**Effort:** 2-3 days (Meta approval time)
+
+---
+
+## 💰 Cost Breakdown
+
+### Current Monthly Costs (Production)
+
+**Hosting & Functions:**
+- Netlify (free tier): $0
+- Netlify Functions: Free up to 125k invocations/month
+
+**WhatsApp API:**
+- First 1,000 conversations: $0 (Meta free tier)
+- After 1,000: ~$0.005 - $0.09 per conversation (varies by country)
+
+**Estimated volume:**
+- ~50-200 conversations/month → **$0/month**
+
+### If Scaling Up (>1,000 conversations)
+
+**With full automation:**
+- Upstash Redis: $0.20/month (10k requests/day free tier)
+- Stripe fees: 2.9% + $0.30 per transaction
+- PayPal fees: 2.9% + $0.30 per transaction
+- Etherscan API: Free (up to 5 calls/sec)
+- SendGrid email: Free (100 emails/day)
+
+**Estimated monthly cost at 1,000 conversations:** ~$50-100/month
+
+---
+
+## 📚 Additional Resources
+
+### Official Documentation
+- **WhatsApp Cloud API:** https://developers.facebook.com/docs/whatsapp/cloud-api
+- **Netlify Functions:** https://docs.netlify.com/functions/overview/
+- **Meta Business Manager:** https://business.facebook.com/
+
+### Internal Documentation
+- `WHATSAPP_README.md` - Complete project overview
+- `WHATSAPP_SETUP_GUIDE.md` - Meta Business setup walkthrough
+- `DEPLOYMENT_GUIDE.md` - Step-by-step deployment
+- `PAYMENT_INTEGRATION_GUIDE.md` - Payment automation guides
+- `TESTING_GUIDE.md` - Testing procedures
+
+### Code References
+- Main webhook: `netlify/functions/whatsapp-webhook.js:235-385` (handleIncomingMessage)
+- State machine: `netlify/functions/whatsapp-webhook.js:27-37` (STATES enum)
+- Message templates: `netlify/functions/whatsapp-webhook.js:42-111` (MESSAGES object)
+- Webhook handler: `netlify/functions/whatsapp-webhook.js:391-475` (exports.handler)
+
+---
+
+## 🎯 Key Questions to Ask When Continuing
+
+### Before Making Changes
+1. **What's the current production status?**
+   - Is webhook receiving messages?
+   - Any error rate spike in Netlify logs?
+   - Any user complaints?
+
+2. **What's the priority?**
+   - Payment automation? (Stripe/Etherscan)
+   - State persistence? (Redis)
+   - New features? (Broadcast, analytics)
+
+3. **What's the budget?**
+   - Staying on free tier? (stick to manual verification)
+   - Willing to pay? (add Stripe, Redis, etc.)
+
+### When Debugging
+1. **Check Netlify function logs first** - Most issues show up there
+2. **Verify environment variables** - Missing/wrong tokens cause 90% of issues
+3. **Test webhook signature** - Meta won't send if signature fails
+4. **Check WhatsApp API status** - Sometimes Meta has outages
+
+### When Adding Features
+1. **Does it need persistent storage?** → Add Redis first
+2. **Does it involve payments?** → Read PAYMENT_INTEGRATION_GUIDE.md
+3. **Does it send proactive messages?** → Need message template approval
+4. **Will it increase costs?** → Review pricing pages first
+
+---
+
+## 🤝 Handoff Summary
+
+### What's Working
+- ✅ WhatsApp webhook receiving messages
+- ✅ Conversation flow all 3 paths
+- ✅ Message sending working
+- ✅ Production deployment stable
+- ✅ New phone number configured
+
+### What Needs Work
+- ⚠️ Payment verification is manual
+- ⚠️ State resets on cold start
+- ⚠️ No admin notifications
+
+### What's Missing
+- ❌ Stripe integration
+- ❌ Redis persistence
+- ❌ Broadcast list storage
+- ❌ Analytics
+
+### Where to Start
+1. Read `WHATSAPP_README.md` for overview
+2. Check Netlify logs to ensure everything working
+3. If adding features, prioritize Redis → Stripe → Admin notifications
+4. Refer to `PAYMENT_INTEGRATION_GUIDE.md` for implementation details
+
+---
+
+## 📧 Support Contacts
+
+**Project Owner:** Michael Perin Wogenburg
+**GitHub Repo:** https://github.com/Mikububu/fy-website
+**Live Site:** https://forbidden-yoga.com
+**Netlify Dashboard:** https://app.netlify.com (requires login)
+**Meta Business Manager:** https://business.facebook.com (requires login)
+
+**For Issues:**
+1. Check Netlify function logs
+2. Review TROUBLESHOOTING section in WHATSAPP_README.md
+3. Check WhatsApp API status page
+4. Review Meta Business Help Center
+
+---
+
+**Last Updated:** December 2024
+**Claude Code Session:** Context continuation after previous session
+**Status:** Production-ready, webhook configured and working
