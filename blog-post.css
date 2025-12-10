@@ -551,3 +551,94 @@ h3[class*="subtitle"] {
         font-size: 1.1rem;
     }
 }
+
+/* Related Posts Grid - Blog Matrix Style */
+.related-posts-grid {
+    margin: 3rem 0 2rem;
+}
+
+.related-posts-grid h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #423737;
+    margin: 0 0 2rem 0;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.post-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    aspect-ratio: 1 / 1;
+    text-decoration: none;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.post-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.post-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    padding: 20px 15px 15px;
+    color: white;
+    transition: opacity 0.3s ease;
+}
+
+.post-card:hover .post-card-overlay {
+    opacity: 0.95;
+}
+
+.post-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.3;
+    color: white;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .posts-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .related-posts-grid h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .post-card-title {
+        font-size: 0.9rem;
+    }
+
+    .post-card-overlay {
+        padding: 15px 10px 10px;
+    }
+}
