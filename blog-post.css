@@ -161,11 +161,6 @@ button[aria-label*="Share"],
     display: none !important;
 }
 
-/* Hide duplicate h1 heading that appears outside post-header */
-.post-container > h1:not(.post-title) {
-    display: none !important;
-}
-
 /* Force correct fonts on all headings */
 .post-header h1,
 h1[class*="title"],
