@@ -696,3 +696,20 @@ h3[class*="subtitle"] {
         padding: 15px 10px 10px;
     }
 }
+
+/* Spotify Embed Styling */
+iframe.spotify-wrap,
+iframe.podcast,
+iframe[src*="spotify.com"] {
+    width: 100%;
+    height: 352px;
+    border-radius: 12px;
+    margin: 2em 0;
+    border: none;
+}
+
+/* Compact Spotify player for shorter embeds */
+iframe.spotify-wrap.compact,
+iframe[src*="spotify.com/embed/track"] {
+    height: 152px;
+}
