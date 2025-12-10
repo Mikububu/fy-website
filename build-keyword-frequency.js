@@ -6,8 +6,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const POSTS_DIR = '/Volumes/LaCie/CLAUDE/posts';
-const OUTPUT_FILE = '/Volumes/LaCie/CLAUDE/keyword-frequency.json';
+const POSTS_DIR = path.join(__dirname, 'posts');
+const OUTPUT_FILE = path.join(__dirname, 'keyword-frequency.json');
 
 function extractKeywordsFromHTML(html) {
     const keywords = [];
