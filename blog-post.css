@@ -184,36 +184,6 @@ button[aria-label*="Share"],
     display: none !important;
 }
 
-/* Hide duplicate h1 heading that appears outside post-header */
-.post-container > h1:not(.post-title) {
-    display: none !important;
-}
-
-/* Hide duplicate H1s and H3 subtitles inside Substack post-header divs */
-.post-header h1,
-div[aria-label="Post header"] h1,
-.post-header h3,
-div[aria-label="Post header"] h3 {
-    display: none !important;
-}
-
-/* Hide Substack audio players (don't work on our domain) */
-div[aria-label="Audio embed player"],
-div[data-component-name="AudioEmbedPlayer"] {
-    display: none !important;
-}
-
-/* Style bold paragraph text as section headers when they're section titles */
-.post-content p > strong:only-child {
-    display: block;
-    font-family: 'Playfair Display', serif !important;
-    font-size: 1.8rem !important;
-    font-weight: 700 !important;
-    color: #423737 !important;
-    margin: 2.5rem 0 1.5rem 0 !important;
-    line-height: 1.3 !important;
-}
-
 /* Force correct fonts on all headings */
 article h1,
 .post-header h1,
