@@ -166,7 +166,7 @@ files.forEach(file => {
     }
 
     const keywordTags = keywords.map(keyword =>
-        `            <span class="keyword-tag">${keyword}</span>`
+        `            <span class="keyword-tag" data-keyword="${keyword}">${keyword}</span>`
     ).join('\n');
 
     html = html.replace(keywordCloudRegex, `$1\n${keywordTags}\n            $3`);
