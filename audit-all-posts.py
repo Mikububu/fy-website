@@ -13,7 +13,7 @@ import sys
 from bs4 import BeautifulSoup
 from pathlib import Path
 
-POSTS_DIR = Path("/Volumes/LaCie/CLAUDE/posts")
+POSTS_DIR = Path(__file__).parent / "posts"
 
 def audit_post(html_file):
     """Audit a single blog post for common issues."""

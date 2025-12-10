@@ -20,13 +20,15 @@ files.forEach(file => {
     const titleMatch = html.match(/<title>([^<]+)<\/title>/);
     const title = titleMatch ? titleMatch[1].replace(' | Forbidden Yoga', '') : file.replace('.html', '');
 
-    // Extract keywords from the keyword cloud
-    const keywordMatches = html.match(/<span class="keyword-tag">([^<]+)<\/span>/g);
+    // Extract keywords from the keyword cloud (handle both old and new format)
+    const keywordMatches = html.match(/<span[^>]*class="[^"]*keyword-tag[^"]*"[^>]*>([^<]+)<\/span>/g);
 
     if (keywordMatches) {
-        const keywords = keywordMatches.map(match =>
-            match.replace(/<span class="keyword-tag">([^<]+)<\/span>/, '$1')
-        );
+        const keywords = keywordMatches.map(match => {
+            // Extract keyword text from either format
+            const textMatch = match.match(/>([^<]+)</);
+            return textMatch ? textMatch[1] : '';
+        }).filter(k => k);
 
         // Store post metadata
         postMetadata[file] = {
