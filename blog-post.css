@@ -434,7 +434,7 @@ h3[class*="subtitle"] {
     width: 100% !important;
     height: auto !important;
     margin: 2em auto;
-    border-radius: 8px;
+    border-radius: 20px;
     display: block;
 }
 
@@ -445,6 +445,7 @@ h3[class*="subtitle"] {
     max-width: 1000px !important;
     width: 100% !important;
     height: auto !important;
+    border-radius: 20px;
 }
 
 /* Clickable keywords - different background for keywords with 2+ instances */
