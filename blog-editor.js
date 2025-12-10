@@ -111,9 +111,13 @@ async function loadPostContent(post) {
         const titleElement = doc.querySelector('.post-title');
 
         const title = titleElement ? titleElement.textContent : post.title;
-        const content = contentDiv ? contentDiv.innerText : '';
+        const content = contentDiv ? contentDiv.innerHTML : '';
 
         editorContent.innerHTML = `
+            <div class="editor-tabs">
+                <button type="button" class="editor-tab active" onclick="switchEditorTab(event, 'edit')">✏️ Edit</button>
+                <button type="button" class="editor-tab" onclick="switchEditorTab(event, 'preview')">👁️ Preview</button>
+            </div>
             <div id="statusMessage" class="status-message"></div>
 
             <h2>Edit: ${escapeHtml(title)}</h2>
