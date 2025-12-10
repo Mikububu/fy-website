@@ -22,8 +22,11 @@ function getSmartKeywords(html, title, description) {
         // Forbidden Yoga Specific
         'forbidden yoga': /\bforbidden\s+yoga/i,
         'vamachara tantra': /\b(vamachara|left.?hand\s+path|left.?hand\s+tantra)/i,
-        'andhakaara path': /\b(andhakaara|andhakarra)/i,
-        'mahavidyas': /\b(mahavidya|ten\s+mahavidya)/i,
+        'Andhakaara Path To Power': /\b(andhakaara|andhakarra)\s+path\s+to\s+power/i,
+        'Mahavidya': /\b(mahavidya|ten\s+mahavidya)/i,
+        'White Tigress': /\bwhite\s+tigress\b/i,
+        'Jade Dragon': /\bjade\s+dragon\b/i,
+        'Taoist': /\btaoist\b/i,
 
         // Practices & Modalities
         'kundalini awakening': /\b(kundalini\s+awaken|kundalini\s+rising|kundalini\s+energy)/i,

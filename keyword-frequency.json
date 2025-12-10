@@ -159,6 +159,14 @@
       ]
     },
     {
+      "keyword": "Mahavidya",
+      "count": 2,
+      "posts": [
+        "beyond-the-naked-surface.html",
+        "tantra-online.html"
+      ]
+    },
+    {
       "keyword": "Bengal Tantra",
       "count": 2,
       "posts": [
@@ -438,12 +446,6 @@
       "keyword": "Undifferentiated Desire",
       "posts": [
         "anais-nin-the-house-of-incest.html"
-      ]
-    },
-    {
-      "keyword": "Mahavidya",
-      "posts": [
-        "beyond-the-naked-surface.html"
       ]
     },
     {
@@ -1509,19 +1511,13 @@
       ]
     },
     {
-      "keyword": "Andhakaara Path",
+      "keyword": "Andhakaara Path To Power",
       "posts": [
         "tantra-online.html"
       ]
     },
     {
       "keyword": "365-Day Training",
-      "posts": [
-        "tantra-online.html"
-      ]
-    },
-    {
-      "keyword": "Mahavidya System",
       "posts": [
         "tantra-online.html"
       ]
@@ -2007,19 +2003,19 @@
       ]
     },
     {
-      "keyword": "White Tigress Tradition",
+      "keyword": "White Tigress",
       "posts": [
         "the-sexual-teachings-of-the-white.html"
       ]
     },
     {
-      "keyword": "Jade Dragon Practice",
+      "keyword": "Jade Dragon",
       "posts": [
         "the-sexual-teachings-of-the-white.html"
       ]
     },
     {
-      "keyword": "Taoist Sexual Cultivation",
+      "keyword": "Taoist",
       "posts": [
         "the-sexual-teachings-of-the-white.html"
       ]
@@ -2520,7 +2516,8 @@
       "our-brains-urge-for-mystical-experiences.html"
     ],
     "Mahavidya": [
-      "beyond-the-naked-surface.html"
+      "beyond-the-naked-surface.html",
+      "tantra-online.html"
     ],
     "Shodhana": [
       "beyond-the-naked-surface.html"
@@ -3108,13 +3105,10 @@
     "Vibrational Reality": [
       "string-theory-tantric-secrets-and.html"
     ],
-    "Andhakaara Path": [
+    "Andhakaara Path To Power": [
       "tantra-online.html"
     ],
     "365-Day Training": [
-      "tantra-online.html"
-    ],
-    "Mahavidya System": [
       "tantra-online.html"
     ],
     "Kundalini Sadhana": [
@@ -3381,13 +3375,13 @@
     "Energy Double": [
       "the-parallel-self.html"
     ],
-    "White Tigress Tradition": [
+    "White Tigress": [
       "the-sexual-teachings-of-the-white.html"
     ],
-    "Jade Dragon Practice": [
+    "Jade Dragon": [
       "the-sexual-teachings-of-the-white.html"
     ],
-    "Taoist Sexual Cultivation": [
+    "Taoist": [
       "the-sexual-teachings-of-the-white.html"
     ],
     "Hsi Lai Teachings": [
@@ -3563,5 +3557,5 @@
     ]
   },
   "totalPosts": 44,
-  "generatedAt": "2025-12-10T17:51:54.517Z"
+  "generatedAt": "2025-12-10T18:08:49.348Z"
 }
