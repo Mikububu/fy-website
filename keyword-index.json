@@ -1,140 +1,331 @@
 {
   "keywords": {
-    "Sensual Liberation": [
+    "forbidden yoga": [
       "4-paths-into-the-forbidden.html",
+      "5-karmendriyas-and-5-jnanendriyas.html",
+      "a-holistic-approach-to-divorce.html",
+      "anais-nin-the-house-of-incest.html",
+      "beyond-the-naked-surface.html",
+      "dark-alchemy.html",
+      "forbidden-yoga-embracing-the-unconventional.html",
+      "from-a-shakta-tantra-stream-to-forbidden.html",
+      "from-emptiness-to-ecstasy-my-journey.html",
+      "from-freud-to-taoism-and-tantra-sexual.html",
+      "from-language-modulation-to-rolegame.html",
       "hermanns-story-of-his-sensual-liberation.html",
+      "how-to-deliver-visionary-idea-in.html",
+      "indian-tantra-mahavidyas-versus-nityas.html",
+      "krama-rishi-nyasa-with-iya.html",
+      "muladhara-chakra-petals.html",
+      "my-new-approach-to-therapy.html",
+      "not-a-john-baldessari-artwork.html",
+      "our-brains-urge-for-mystical-experiences.html",
+      "reclaiming-your-voice-working-through.html",
+      "run-away-from-tantra.html",
+      "sensual-liberation-retreats-with.html",
       "soulmates-among-the-stars-the-ultimate.html",
+      "sparsha-puja-in-a-mental-institution.html",
+      "string-theory-tantric-secrets-and.html",
+      "tantra-online.html",
+      "the-animal-puja.html",
       "the-breath-of-god.html",
+      "the-compass-of-zen.html",
+      "the-distant-god-fallacy.html",
+      "the-eight-limitations-of-man-according.html",
+      "the-energetic-anatomist.html",
+      "the-forgotten-gateways-of-the-human.html",
       "the-joy-of-torture.html",
       "the-next-generation-of-wellness-retreats.html",
+      "the-parallel-self.html",
+      "the-sexual-teachings-of-the-white.html",
+      "the-solace-of-the-scene.html",
+      "what-you-can-expect-booking-forbidden.html",
+      "why-a-woman-initiated-in-the-left.html",
+      "why-i-teach-taoist-sensual-bodywork.html",
+      "why-our-society-cannot-heal.html",
+      "yogic-transmission-in-raja-yoga.html"
+    ],
+    "Taoist": [
+      "4-paths-into-the-forbidden.html",
+      "from-freud-to-taoism-and-tantra-sexual.html",
+      "the-next-generation-of-wellness-retreats.html",
+      "the-sexual-teachings-of-the-white.html",
       "why-i-teach-taoist-sensual-bodywork.html"
     ],
-    "Kriya Yoga": [
+    "tantra yoga": [
       "4-paths-into-the-forbidden.html",
-      "beyond-the-naked-surface.html",
-      "tantra-online.html",
-      "the-animal-puja.html"
+      "anais-nin-the-house-of-incest.html",
+      "from-freud-to-taoism-and-tantra-sexual.html",
+      "from-language-modulation-to-rolegame.html",
+      "run-away-from-tantra.html",
+      "soulmates-among-the-stars-the-ultimate.html",
+      "sparsha-puja-in-a-mental-institution.html",
+      "the-breath-of-god.html",
+      "the-distant-god-fallacy.html",
+      "the-parallel-self.html",
+      "the-solace-of-the-scene.html",
+      "why-a-woman-initiated-in-the-left.html",
+      "yogic-transmission-in-raja-yoga.html"
     ],
-    "Shadow Work": [
+    "transformation": [
+      "4-paths-into-the-forbidden.html",
+      "a-holistic-approach-to-divorce.html",
+      "dark-alchemy.html",
+      "from-a-shakta-tantra-stream-to-forbidden.html",
+      "hermanns-story-of-his-sensual-liberation.html",
+      "indian-tantra-mahavidyas-versus-nityas.html",
+      "not-a-john-baldessari-artwork.html",
+      "our-brains-urge-for-mystical-experiences.html",
+      "run-away-from-tantra.html",
+      "soulmates-among-the-stars-the-ultimate.html",
+      "sparsha-puja-in-a-mental-institution.html",
+      "string-theory-tantric-secrets-and.html",
+      "the-breath-of-god.html",
+      "the-compass-of-zen.html",
+      "the-distant-god-fallacy.html",
+      "the-eight-limitations-of-man-according.html",
+      "the-forgotten-gateways-of-the-human.html",
+      "the-joy-of-torture.html",
+      "the-next-generation-of-wellness-retreats.html",
+      "the-parallel-self.html",
+      "the-sexual-teachings-of-the-white.html",
+      "the-solace-of-the-scene.html",
+      "what-you-can-expect-booking-forbidden.html",
+      "yogic-transmission-in-raja-yoga.html"
+    ],
+    "shadow work": [
       "4-paths-into-the-forbidden.html",
       "dark-alchemy.html",
       "the-joy-of-torture.html",
       "what-you-can-expect-booking-forbidden.html"
     ],
-    "Spiritual Crisis": [
+    "kriya yoga": [
       "4-paths-into-the-forbidden.html",
-      "run-away-from-tantra.html"
+      "beyond-the-naked-surface.html",
+      "tantra-online.html",
+      "the-animal-puja.html",
+      "the-next-generation-of-wellness-retreats.html",
+      "why-a-woman-initiated-in-the-left.html"
     ],
-    "Indriyas": [
+    "indriyas": [
       "5-karmendriyas-and-5-jnanendriyas.html",
       "forbidden-yoga-embracing-the-unconventional.html"
     ],
-    "Pratyahara": [
-      "5-karmendriyas-and-5-jnanendriyas.html",
-      "beyond-the-naked-surface.html"
-    ],
-    "Subtle Body": [
-      "5-karmendriyas-and-5-jnanendriyas.html",
-      "krama-rishi-nyasa-with-iya.html",
-      "string-theory-tantric-secrets-and.html",
-      "why-i-teach-taoist-sensual-bodywork.html"
-    ],
-    "Mahabhutas": [
+    "manas": [
       "5-karmendriyas-and-5-jnanendriyas.html",
       "forbidden-yoga-embracing-the-unconventional.html"
     ],
-    "Death Meditation": [
+    "samadhi": [
+      "5-karmendriyas-and-5-jnanendriyas.html",
+      "hermanns-story-of-his-sensual-liberation.html"
+    ],
+    "mahabhutas": [
+      "5-karmendriyas-and-5-jnanendriyas.html",
+      "forbidden-yoga-embracing-the-unconventional.html",
+      "run-away-from-tantra.html",
+      "tantra-online.html"
+    ],
+    "Chinnamasta": [
       "a-holistic-approach-to-divorce.html",
-      "run-away-from-tantra.html"
+      "from-freud-to-taoism-and-tantra-sexual.html",
+      "indian-tantra-mahavidyas-versus-nityas.html"
     ],
-    "Left-Hand Path": [
+    "kundalini": [
+      "a-holistic-approach-to-divorce.html",
       "anais-nin-the-house-of-incest.html",
-      "from-a-shakta-tantra-stream-to-forbidden.html"
+      "from-a-shakta-tantra-stream-to-forbidden.html",
+      "from-freud-to-taoism-and-tantra-sexual.html",
+      "from-language-modulation-to-rolegame.html",
+      "muladhara-chakra-petals.html",
+      "run-away-from-tantra.html",
+      "soulmates-among-the-stars-the-ultimate.html",
+      "tantra-online.html",
+      "the-breath-of-god.html",
+      "the-distant-god-fallacy.html",
+      "the-next-generation-of-wellness-retreats.html",
+      "the-parallel-self.html",
+      "the-solace-of-the-scene.html",
+      "what-you-can-expect-booking-forbidden.html",
+      "why-a-woman-initiated-in-the-left.html",
+      "yogic-transmission-in-raja-yoga.html"
     ],
-    "Sadhana": [
-      "beyond-the-naked-surface.html",
-      "our-brains-urge-for-mystical-experiences.html"
+    "Matangi": [
+      "a-holistic-approach-to-divorce.html",
+      "from-freud-to-taoism-and-tantra-sexual.html",
+      "indian-tantra-mahavidyas-versus-nityas.html"
     ],
-    "Mahavidya": [
-      "beyond-the-naked-surface.html",
-      "tantra-online.html"
+    "nyasa": [
+      "a-holistic-approach-to-divorce.html",
+      "from-a-shakta-tantra-stream-to-forbidden.html",
+      "krama-rishi-nyasa-with-iya.html",
+      "reclaiming-your-voice-working-through.html",
+      "the-next-generation-of-wellness-retreats.html"
     ],
-    "Bengal Tantra": [
-      "beyond-the-naked-surface.html",
-      "the-animal-puja.html"
+    "couples therapy": [
+      "a-holistic-approach-to-divorce.html",
+      "the-breath-of-god.html"
     ],
-    "Bija Mantras": [
+    "chakra": [
+      "anais-nin-the-house-of-incest.html",
       "beyond-the-naked-surface.html",
-      "tantra-online.html"
+      "from-a-shakta-tantra-stream-to-forbidden.html",
+      "from-freud-to-taoism-and-tantra-sexual.html",
+      "from-language-modulation-to-rolegame.html",
+      "hermanns-story-of-his-sensual-liberation.html",
+      "muladhara-chakra-petals.html",
+      "our-brains-urge-for-mystical-experiences.html",
+      "run-away-from-tantra.html",
+      "soulmates-among-the-stars-the-ultimate.html",
+      "tantra-online.html",
+      "the-distant-god-fallacy.html",
+      "the-energetic-anatomist.html",
+      "the-next-generation-of-wellness-retreats.html",
+      "the-parallel-self.html",
+      "why-a-woman-initiated-in-the-left.html",
+      "yogic-transmission-in-raja-yoga.html"
+    ],
+    "vishuddha": [
+      "anais-nin-the-house-of-incest.html",
+      "from-a-shakta-tantra-stream-to-forbidden.html",
+      "the-next-generation-of-wellness-retreats.html",
+      "yogic-transmission-in-raja-yoga.html"
+    ],
+    "breathwork": [
+      "anais-nin-the-house-of-incest.html",
+      "from-freud-to-taoism-and-tantra-sexual.html",
+      "from-language-modulation-to-rolegame.html",
+      "indian-tantra-mahavidyas-versus-nityas.html",
+      "krama-rishi-nyasa-with-iya.html",
+      "run-away-from-tantra.html",
+      "soulmates-among-the-stars-the-ultimate.html",
+      "sparsha-puja-in-a-mental-institution.html",
+      "the-breath-of-god.html",
+      "the-distant-god-fallacy.html",
+      "the-parallel-self.html",
+      "why-a-woman-initiated-in-the-left.html",
+      "why-our-society-cannot-heal.html",
+      "yogic-transmission-in-raja-yoga.html"
+    ],
+    "sacred sexuality": [
+      "anais-nin-the-house-of-incest.html",
+      "from-freud-to-taoism-and-tantra-sexual.html",
+      "from-language-modulation-to-rolegame.html",
+      "run-away-from-tantra.html",
+      "soulmates-among-the-stars-the-ultimate.html",
+      "the-distant-god-fallacy.html",
+      "the-parallel-self.html",
+      "why-a-woman-initiated-in-the-left.html",
+      "yogic-transmission-in-raja-yoga.html"
+    ],
+    "kundalini yoga": [
+      "anais-nin-the-house-of-incest.html",
+      "from-language-modulation-to-rolegame.html",
+      "run-away-from-tantra.html",
+      "soulmates-among-the-stars-the-ultimate.html",
+      "tantra-online.html",
+      "the-breath-of-god.html",
+      "the-distant-god-fallacy.html",
+      "the-next-generation-of-wellness-retreats.html",
+      "the-parallel-self.html",
+      "why-a-woman-initiated-in-the-left.html",
+      "yogic-transmission-in-raja-yoga.html"
+    ],
+    "Kali": [
+      "beyond-the-naked-surface.html",
+      "from-freud-to-taoism-and-tantra-sexual.html",
+      "from-language-modulation-to-rolegame.html",
+      "hermanns-story-of-his-sensual-liberation.html",
+      "indian-tantra-mahavidyas-versus-nityas.html",
+      "run-away-from-tantra.html",
+      "the-breath-of-god.html",
+      "the-next-generation-of-wellness-retreats.html",
+      "the-parallel-self.html"
+    ],
+    "non-dual awareness": [
+      "forbidden-yoga-embracing-the-unconventional.html",
+      "how-to-deliver-visionary-idea-in.html"
+    ],
+    "vaikrita": [
+      "forbidden-yoga-embracing-the-unconventional.html",
+      "from-language-modulation-to-rolegame.html",
+      "krama-rishi-nyasa-with-iya.html",
+      "the-next-generation-of-wellness-retreats.html"
+    ],
+    "prathamika": [
+      "forbidden-yoga-embracing-the-unconventional.html",
+      "krama-rishi-nyasa-with-iya.html"
+    ],
+    "manonasha": [
+      "forbidden-yoga-embracing-the-unconventional.html",
+      "how-to-deliver-visionary-idea-in.html",
+      "soulmates-among-the-stars-the-ultimate.html"
     ],
     "Advaita Vedanta": [
       "forbidden-yoga-embracing-the-unconventional.html",
+      "from-freud-to-taoism-and-tantra-sexual.html",
+      "from-language-modulation-to-rolegame.html",
+      "how-to-deliver-visionary-idea-in.html",
       "reclaiming-your-voice-working-through.html",
       "tantra-online.html"
     ],
-    "Shakta Tantra": [
+    "Kaula": [
       "from-a-shakta-tantra-stream-to-forbidden.html",
-      "indian-tantra-mahavidyas-versus-nityas.html",
+      "the-eight-limitations-of-man-according.html",
+      "what-you-can-expect-booking-forbidden.html",
+      "why-a-woman-initiated-in-the-left.html"
+    ],
+    "Shakti": [
+      "from-a-shakta-tantra-stream-to-forbidden.html",
       "muladhara-chakra-petals.html",
       "not-a-john-baldessari-artwork.html",
+      "the-next-generation-of-wellness-retreats.html",
       "the-parallel-self.html",
-      "why-a-woman-initiated-in-the-left.html"
+      "why-a-woman-initiated-in-the-left.html",
+      "why-i-teach-taoist-sensual-bodywork.html"
+    ],
+    "hatha yoga": [
+      "from-a-shakta-tantra-stream-to-forbidden.html",
+      "not-a-john-baldessari-artwork.html",
+      "our-brains-urge-for-mystical-experiences.html"
     ],
     "Vamachara": [
       "from-a-shakta-tantra-stream-to-forbidden.html",
+      "muladhara-chakra-petals.html",
       "not-a-john-baldessari-artwork.html",
-      "the-eight-limitations-of-man-according.html"
-    ],
-    "Tantric Initiation": [
-      "from-a-shakta-tantra-stream-to-forbidden.html",
-      "run-away-from-tantra.html",
       "tantra-online.html",
-      "why-a-woman-initiated-in-the-left.html"
-    ],
-    "Sensual Liberation Retreat": [
-      "from-emptiness-to-ecstasy-my-journey.html",
-      "sensual-liberation-retreats-with.html"
-    ],
-    "Role-Play Therapy": [
-      "from-freud-to-taoism-and-tantra-sexual.html",
-      "from-language-modulation-to-rolegame.html"
-    ],
-    "Laya Yoga": [
-      "krama-rishi-nyasa-with-iya.html",
-      "tantra-online.html",
-      "the-breath-of-god.html"
-    ],
-    "Left-Handed Tantra": [
-      "not-a-john-baldessari-artwork.html",
-      "soulmates-among-the-stars-the-ultimate.html",
       "the-eight-limitations-of-man-according.html",
-      "why-a-woman-initiated-in-the-left.html"
+      "the-sexual-teachings-of-the-white.html"
     ],
-    "Synchronized Breathing": [
-      "sparsha-puja-in-a-mental-institution.html",
+    "White Tigress": [
+      "from-freud-to-taoism-and-tantra-sexual.html",
+      "the-sexual-teachings-of-the-white.html"
+    ],
+    "moksha": [
+      "from-freud-to-taoism-and-tantra-sexual.html",
+      "the-sexual-teachings-of-the-white.html"
+    ],
+    "Tara": [
+      "indian-tantra-mahavidyas-versus-nityas.html",
       "the-breath-of-god.html"
     ],
-    "Kundalini Sadhana": [
-      "tantra-online.html",
-      "what-you-can-expect-booking-forbidden.html"
-    ],
-    "Animal Puja": [
-      "the-animal-puja.html",
+    "Bagalamukhi": [
+      "indian-tantra-mahavidyas-versus-nityas.html",
       "the-joy-of-torture.html"
     ],
-    "Kaula Tantra": [
-      "the-eight-limitations-of-man-according.html",
-      "what-you-can-expect-booking-forbidden.html"
+    "laya yoga": [
+      "krama-rishi-nyasa-with-iya.html",
+      "tantra-online.html",
+      "the-breath-of-god.html",
+      "the-next-generation-of-wellness-retreats.html"
     ],
-    "Somatic Awakening": [
-      "the-forgotten-gateways-of-the-human.html",
-      "why-our-society-cannot-heal.html"
+    "Shiva": [
+      "our-brains-urge-for-mystical-experiences.html",
+      "run-away-from-tantra.html",
+      "string-theory-tantric-secrets-and.html",
+      "why-a-woman-initiated-in-the-left.html",
+      "why-i-teach-taoist-sensual-bodywork.html"
     ],
-    "Embodied Transformation": [
-      "the-forgotten-gateways-of-the-human.html",
-      "what-you-can-expect-booking-forbidden.html"
-    ],
-    "Esalen Massage": [
+    "sensual bodywork": [
       "the-next-generation-of-wellness-retreats.html",
       "why-i-teach-taoist-sensual-bodywork.html"
     ]
@@ -144,689 +335,543 @@
       "title": "4 Paths Into the Forbidden",
       "slug": "4-paths-into-the-forbidden",
       "keywords": [
-        "Private Initiation",
-        "Sensual Liberation",
-        "Tantric Retreats",
-        "Kriya Yoga",
-        "Online Coaching",
-        "Group Retreats",
-        "Shadow Work",
-        "Energy Healing",
-        "Mahavidya Practice",
-        "Spiritual Crisis"
+        "forbidden yoga",
+        "Taoist",
+        "tantra yoga",
+        "transformation",
+        "shadow work",
+        "kriya yoga"
       ]
     },
     "5-karmendriyas-and-5-jnanendriyas.html": {
       "title": "5 Karmendriyas and 5 Jnanendriyas",
       "slug": "5-karmendriyas-and-5-jnanendriyas",
       "keywords": [
-        "Karmendriyas",
-        "Jnanendriyas",
-        "Samkhya Philosophy",
-        "Tanmatras",
-        "Indriyas",
-        "Sense Organs",
-        "Action Organs",
-        "Pratyahara",
-        "Subtle Body",
-        "Mahabhutas"
+        "karmendriyas",
+        "indriyas",
+        "forbidden yoga",
+        "manas",
+        "jnanendriyas",
+        "samadhi",
+        "mahabhutas"
       ]
     },
     "a-holistic-approach-to-divorce.html": {
       "title": "Divorce without Discord?",
       "slug": "a-holistic-approach-to-divorce",
       "keywords": [
-        "Divorce Retreat",
-        "De-coupling",
+        "forbidden yoga",
         "Chinnamasta",
-        "Death Meditation",
-        "Conscious Separation",
-        "Matangi Nyasa",
-        "Shadow Gazing",
-        "Funeral Ceremonies",
-        "Couples Therapy",
-        "Tantric Divorce"
+        "kundalini",
+        "Matangi",
+        "nyasa",
+        "transformation",
+        "couples therapy"
       ]
     },
     "anais-nin-the-house-of-incest.html": {
       "title": "Water Consciousness and the Forbidden Realm",
       "slug": "anais-nin-the-house-of-incest",
       "keywords": [
-        "Svadhisthana Chakra",
-        "Water Element",
-        "Anais Nin",
-        "Left-Hand Path",
-        "Rasa",
-        "Tanmatra",
-        "Prakṛti",
-        "Atlantis Symbolism",
-        "Fluid Consciousness",
-        "Vishuddha Chakra",
-        "Synesthetic Perception",
-        "Undifferentiated Desire"
+        "forbidden yoga",
+        "chakra",
+        "svadhisthana",
+        "kundalini",
+        "tantra yoga",
+        "vishuddha",
+        "breathwork",
+        "sacred sexuality",
+        "kundalini yoga"
       ]
     },
     "beyond-the-naked-surface.html": {
       "title": "Beyond the Naked Surface",
       "slug": "beyond-the-naked-surface",
       "keywords": [
-        "Sadhana",
-        "Mahavidya",
-        "Pratyahara",
-        "Shodhana",
-        "Kriya Yoga",
-        "Darkness Meditation",
-        "Bengal Tantra",
-        "Dharmic Blueprint",
-        "Tantric Ritual",
-        "Embodiment Practice",
-        "Lineage Transmission",
-        "Bija Mantras"
+        "forbidden yoga",
+        "Kali",
+        "chakra",
+        "kriya yoga"
       ]
     },
     "dark-alchemy.html": {
       "title": "Movie: A DARK SONG - Not everything can be forgiven",
       "slug": "dark-alchemy",
       "keywords": [
-        "Abramelin Operation",
-        "Holy Guardian Angel",
-        "Shadow Work",
-        "Jungian Psychology",
-        "Western Esotericism",
-        "Individuation",
-        "Spiritual Alchemy",
-        "Transformative Ritual",
-        "Dark Night of Soul",
-        "Anima and Animus"
+        "transformation",
+        "forbidden yoga",
+        "shadow work"
       ]
     },
     "forbidden-yoga-embracing-the-unconventional.html": {
       "title": "Forbidden Yoga: Embracing the Unconventional Path to Non-Dual Awareness ",
       "slug": "forbidden-yoga-embracing-the-unconventional",
       "keywords": [
+        "forbidden yoga",
+        "non-dual awareness",
+        "chitta",
+        "manas",
+        "vaikrita",
+        "prathamika",
+        "vrittis",
+        "manonasha",
+        "indriyas",
+        "mahabhutas",
         "Advaita Vedanta",
-        "Chit",
-        "Chitta",
-        "Manas",
-        "Vrittis",
-        "Mano Nasha",
-        "Indriyas",
-        "Mahabhutas",
-        "Kevala Kumbhaka",
-        "Non-Dual Awareness",
-        "Prathamika",
-        "Vaikrita"
+        "kevala kumbhaka"
       ]
     },
     "from-a-shakta-tantra-stream-to-forbidden.html": {
       "title": "From a Shakta Tantra Stream to Forbidden Yoga",
       "slug": "from-a-shakta-tantra-stream-to-forbidden",
       "keywords": [
-        "Shakta Tantra",
-        "West Bengal Tradition",
-        "Left-Hand Path",
-        "Vamachara",
-        "Kaula Lineage",
-        "Panchamakara",
-        "Shakti Worship",
-        "Kula Tradition",
-        "Cultural Appropriation",
-        "Authentic Lineage",
-        "Tantric Initiation"
+        "forbidden yoga",
+        "transformation",
+        "Kaula",
+        "chakra",
+        "Shakti",
+        "nyasa",
+        "kundalini",
+        "vishuddha",
+        "hatha yoga",
+        "Vamachara"
       ]
     },
     "from-emptiness-to-ecstasy-my-journey.html": {
       "title": "From Burnout to Ecstasy: My Journey with Forbidden Yoga - a Testimonial ",
       "slug": "from-emptiness-to-ecstasy-my-journey",
       "keywords": [
-        "Sensual Liberation Retreat",
-        "Mula Bandha",
-        "Five Senses Ritual",
-        "Placeholder Practice",
-        "Burnout Recovery",
-        "Sexual Awakening",
-        "Masculine Energy",
-        "Inner Orgasm",
-        "Testimonial",
-        "Thailand Retreat",
-        "Ritual Practice"
+        "forbidden yoga"
       ]
     },
     "from-freud-to-taoism-and-tantra-sexual.html": {
       "title": "From Freud to Taoism and Tantra: Sexual Therapy in Luxury Wellness",
       "slug": "from-freud-to-taoism-and-tantra-sexual",
       "keywords": [
-        "Sigmund Freud",
-        "Taoist Sexual Bodywork",
-        "White Tigress Teaching",
-        "Ma Concept",
-        "Chi Nei Tsang",
-        "Luxury Wellness",
-        "Sexual Therapy",
-        "Game Therapy",
-        "Bespoke Retreats",
-        "Role-Play Therapy",
-        "Mahavidya Goddesses"
+        "forbidden yoga",
+        "Taoist",
+        "White Tigress",
+        "kundalini",
+        "tantra yoga",
+        "Chinnamasta",
+        "breathwork",
+        "chakra",
+        "Kali",
+        "Matangi",
+        "Advaita Vedanta",
+        "moksha",
+        "sexual wellness",
+        "sacred sexuality",
+        "luxury spa"
       ]
     },
     "from-language-modulation-to-rolegame.html": {
       "title": "From Language Modulation To Rolegame Scripts",
       "slug": "from-language-modulation-to-rolegame",
       "keywords": [
-        "Primary Thought",
-        "Secondary Thought",
-        "Language Modulation",
-        "Role-Play Therapy",
-        "Yin Yang Energy",
-        "Sadhana Practice",
-        "Conscious Communication",
-        "Energetic Exchange",
-        "Therapeutic Roleplay"
+        "forbidden yoga",
+        "kundalini",
+        "tantra yoga",
+        "vaikrita",
+        "chakra",
+        "Kali",
+        "Advaita Vedanta",
+        "breathwork",
+        "sacred sexuality",
+        "kundalini yoga"
       ]
     },
     "hermanns-story-of-his-sensual-liberation.html": {
       "title": "Hermann’s FY Yoga retreat in Rio de Janeiro ",
       "slug": "hermanns-story-of-his-sensual-liberation",
       "keywords": [
-        "Sensual Liberation",
-        "Testimonial Hermann",
-        "Eye Contact Ritual",
-        "Sacred Touch",
-        "Feminine Energy",
-        "Retreat Experience",
-        "Bodywork Tantra",
-        "Transformation Story",
-        "Koh Phangan Retreat"
+        "forbidden yoga",
+        "chakra",
+        "Kali",
+        "samadhi",
+        "transformation"
       ]
     },
     "how-to-deliver-visionary-idea-in.html": {
       "title": "On Relationships and Tantra: The Energetic Debt You Carry",
       "slug": "how-to-deliver-visionary-idea-in",
       "keywords": [
-        "Energetic Debt",
-        "Karmic Balance",
-        "Samskara Patterns",
-        "Bert Hellinger Method",
-        "Family Constellation",
-        "Masculine-Feminine Balance",
-        "Kshobh Cosmology",
-        "Anahata Heart Practice",
-        "Manonasha",
-        "Relationship Karma"
+        "forbidden yoga",
+        "Advaita Vedanta",
+        "non-dual awareness",
+        "manonasha",
+        "anahata"
       ]
     },
     "indian-tantra-mahavidyas-versus-nityas.html": {
       "title": "Indian Tantra - Mahavidyas versus Nityas",
       "slug": "indian-tantra-mahavidyas-versus-nityas",
       "keywords": [
-        "Mahavidyas",
-        "Nityas",
-        "Kriya Sadhana",
-        "Sri Vidya",
-        "Shakta Tantra",
-        "Kameshvari",
-        "Nityaklinna",
+        "forbidden yoga",
         "Kali",
+        "Tara",
+        "Chinnamasta",
+        "Bagalamukhi",
+        "Matangi",
         "Tripura Sundari",
-        "Pranayama",
-        "Ten Wisdom Goddesses",
-        "Sixteen Lunar Goddesses"
+        "breathwork",
+        "transformation",
+        "Bhairavi",
+        "Dhumavati",
+        "Kamala"
       ]
     },
     "krama-rishi-nyasa-with-iya.html": {
       "title": "Krama Rishi Nyasa with Iya",
       "slug": "krama-rishi-nyasa-with-iya",
       "keywords": [
-        "Krama Nyasa",
-        "Rishi Nyasa",
-        "Iya Mantra",
-        "Laya Yoga",
-        "Tantric Breathwork",
-        "Mantra Installation",
-        "Subtle Body",
-        "Nyasa Ritual",
-        "Sanskrit Practice"
+        "forbidden yoga",
+        "nyasa",
+        "Krama",
+        "vaikrita",
+        "prathamika",
+        "breathwork",
+        "laya yoga"
       ]
     },
     "muladhara-chakra-petals.html": {
       "title": "Muladhara Chakra Petals",
       "slug": "muladhara-chakra-petals",
       "keywords": [
-        "Muladhara Chakra",
-        "Root Chakra Petals",
-        "Vam Seed Syllable",
-        "Shakta Tantra",
-        "Kundalini Activation",
-        "Subtle Body Anatomy",
-        "Chakra Petals",
-        "Inner Space Mapping",
-        "Grounding Practice"
+        "muladhara",
+        "chakra",
+        "forbidden yoga",
+        "Vamachara",
+        "kundalini",
+        "Shakti"
       ]
     },
     "my-new-approach-to-therapy.html": {
       "title": "Wogenburg‘s unconventional approach to therapy",
       "slug": "my-new-approach-to-therapy",
       "keywords": [
-        "Trauma Therapy",
-        "Somatic Healing",
-        "Ritual Therapy",
-        "Ancient Methods",
-        "Holistic Approach",
-        "Tantric Therapy",
-        "Experiential Healing",
-        "Psycho-Spiritual Work",
-        "Alternative Therapy"
+        "forbidden yoga"
       ]
     },
     "not-a-john-baldessari-artwork.html": {
       "title": "Yoni Trataka: Gazing at the Source",
       "slug": "not-a-john-baldessari-artwork",
       "keywords": [
-        "Yoni Trataka",
-        "Shatkarma Purification",
-        "Gheranda Samhita",
-        "Hatha Yoga Pradipika",
+        "forbidden yoga",
         "Vamachara",
-        "Witness Consciousness",
-        "Yoni Tantra Text",
-        "Sacred Gazing",
-        "Left-Handed Tantra",
-        "Shakta Tantra"
+        "hatha yoga",
+        "transformation",
+        "Shakti",
+        "yoni mudra",
+        "Durga"
       ]
     },
     "our-brains-urge-for-mystical-experiences.html": {
       "title": "Our Brains' Urge for Mystical Experiences",
       "slug": "our-brains-urge-for-mystical-experiences",
       "keywords": [
-        "Mystical Experience",
-        "Neuroscience",
-        "Trataka",
-        "Meditation",
-        "Fire Gazing",
-        "Consciousness",
-        "Brain Patterns",
-        "Sadhana",
-        "Hatha Yoga",
-        "Spiritual Practice"
+        "forbidden yoga",
+        "hatha yoga",
+        "chakra",
+        "transformation",
+        "Shiva",
+        "Vijñāna Bhairava"
       ]
     },
     "reclaiming-your-voice-working-through.html": {
       "title": "Reclaiming Your Voice - Working through Trauma",
       "slug": "reclaiming-your-voice-working-through",
       "keywords": [
-        "Kramarishi Nyasa",
-        "Trauma Release Therapy",
-        "Placeholder Actor Therapy",
-        "Primary Emotions",
-        "Secondary Emotions",
-        "Advaita Vedanta",
-        "Emotional Catharsis",
-        "Somatic Projection",
-        "Women's Coaching",
-        "Voice Reclamation"
+        "forbidden yoga",
+        "nyasa",
+        "Advaita Vedanta"
       ]
     },
     "run-away-from-tantra.html": {
       "title": "Run Away From Tantra",
       "slug": "run-away-from-tantra",
       "keywords": [
-        "Dark Retreats",
-        "Intense Tantra",
-        "Fire Ritual",
-        "Death Meditation",
-        "Feminine Divine",
-        "Spiritual Crisis",
-        "Tantric Initiation",
-        "Solo Practice",
-        "Authentic Tradition"
+        "forbidden yoga",
+        "kundalini",
+        "tantra yoga",
+        "mahabhutas",
+        "Kali",
+        "chakra",
+        "Shiva",
+        "breathwork",
+        "sacred sexuality",
+        "kundalini yoga",
+        "transformation"
       ]
     },
     "sensual-liberation-retreats-with.html": {
       "title": "Sensual Liberation retreats with the Brazilians",
       "slug": "sensual-liberation-retreats-with",
       "keywords": [
-        "Brazilian Placeholder Actors",
-        "Candomblé Syncretism",
-        "Umbanda Tradition",
-        "Orixá Spirituality",
-        "Capoeira Embodiment",
-        "Trance Healing",
-        "Flying Circus Casting",
-        "Spirit-Flesh Unity",
-        "Sensual Liberation Retreat",
-        "Rio de Janeiro Retreat"
+        "forbidden yoga"
       ]
     },
     "soulmates-among-the-stars-the-ultimate.html": {
       "title": "The Last Thing Money Can Buy",
       "slug": "soulmates-among-the-stars-the-ultimate",
       "keywords": [
-        "High Net Worth Retreat",
-        "Manonasha Practice",
-        "Placeholder Actors",
-        "Rage Release Work",
-        "Controller Dissolution",
-        "Left-Handed Tantra",
-        "Caste Transgression",
-        "Talking Cure Alternative",
-        "Ritual Witnessing",
-        "Sensual Liberation"
+        "forbidden yoga",
+        "kundalini",
+        "tantra yoga",
+        "manonasha",
+        "chakra",
+        "breathwork",
+        "sacred sexuality",
+        "kundalini yoga",
+        "transformation"
       ]
     },
     "sparsha-puja-in-a-mental-institution.html": {
       "title": "Sparsha Puja in a Mental Institution",
       "slug": "sparsha-puja-in-a-mental-institution",
       "keywords": [
-        "Sparsha Puja",
-        "Touch Ritual",
-        "Mental Institution",
-        "Synchronized Breathing",
-        "Institutional Healing",
-        "Sacred Touch Practice",
-        "Societal Madness",
-        "Breathwork Tantra",
-        "Human Connection"
+        "sparsha puja",
+        "forbidden yoga",
+        "tantra yoga",
+        "transformation",
+        "Yoga Sutras",
+        "breathwork"
       ]
     },
     "string-theory-tantric-secrets-and.html": {
       "title": "Everything Vibrates",
       "slug": "string-theory-tantric-secrets-and",
       "keywords": [
-        "Chhayopasana",
-        "Shadow Worship Practice",
-        "Tanmatra System",
-        "String Theory Tantra",
-        "Sankhya Philosophy",
-        "Kapila Teachings",
-        "Pranic Movement",
-        "Five Elements Practice",
-        "Vibrational Reality",
-        "Subtle Body"
+        "forbidden yoga",
+        "transformation",
+        "Shiva",
+        "prakriti",
+        "purusha",
+        "ahamkara"
       ]
     },
     "tantra-online.html": {
       "title": "ONLINE STUDY - A Forbidden Yoga Lineage",
       "slug": "tantra-online",
       "keywords": [
-        "Andhakaara Path To Power",
-        "365-Day Training",
-        "Laya Yoga",
-        "Kriya Yoga",
-        "Mahavidya",
-        "Kundalini Sadhana",
-        "Vamachara Tantra",
-        "Vajroli Mudra",
+        "forbidden yoga",
+        "kundalini",
         "Advaita Vedanta",
-        "WhatsApp Mentorship",
-        "Tantric Initiation",
-        "Bija Mantras"
+        "kriya yoga",
+        "mahabhutas",
+        "chakra",
+        "Vamachara",
+        "Andhakaara Path To Power",
+        "kundalini yoga",
+        "laya yoga",
+        "vajroli mudra"
       ]
     },
     "the-animal-puja.html": {
       "title": "The Animal Pūjā",
       "slug": "the-animal-puja",
       "keywords": [
-        "Animal Puja",
-        "Primal Ritual",
-        "Kriya Yoga",
-        "Bengal Tantra",
-        "Evolutionary Memory",
-        "Bodymind Integration",
-        "Animalistic Play",
-        "Non-Penetrative Ritual",
-        "Sacred Playground"
+        "forbidden yoga",
+        "kriya yoga"
       ]
     },
     "the-breath-of-god.html": {
       "title": "The Breath of God",
       "slug": "the-breath-of-god",
       "keywords": [
-        "Sadhri Practice",
-        "Partnered Pranayama",
-        "Couples Breathwork",
-        "Laya Yoga",
-        "Synchronized Breathing",
-        "Three Bodies Tantra",
-        "Mahavidya Kriyas",
-        "Homa Kriya",
-        "Relational Field Work",
-        "Sensual Liberation"
+        "forbidden yoga",
+        "breathwork",
+        "kundalini",
+        "laya yoga",
+        "transformation",
+        "Kali",
+        "Tara",
+        "couples therapy",
+        "kundalini yoga",
+        "tantra yoga",
+        "somatic therapy"
       ]
     },
     "the-compass-of-zen.html": {
       "title": "Bodhisattva Sexuality: When Sex Becomes Sacred Service",
       "slug": "the-compass-of-zen",
       "keywords": [
-        "Zen Buddhism",
-        "Zazen",
-        "Koan Practice",
-        "Sudden Awakening",
-        "Mindfulness",
-        "Seung Sahn",
-        "Korean Zen",
-        "Dharma Transmission"
+        "forbidden yoga",
+        "transformation"
       ]
     },
     "the-distant-god-fallacy.html": {
       "title": "The Distant God Fallacy",
       "slug": "the-distant-god-fallacy",
       "keywords": [
-        "Distant God Fallacy",
-        "Immanent Divinity",
-        "Nervous System Spirituality",
-        "Amygdala Activation",
-        "Sacred Sexuality",
-        "Atman Brahman",
-        "War Replacement Ritual",
-        "Orgasm as Interface",
-        "Post-Religious Spirituality",
-        "Integration Rites"
+        "forbidden yoga",
+        "kundalini",
+        "tantra yoga",
+        "chakra",
+        "breathwork",
+        "sacred sexuality",
+        "kundalini yoga",
+        "transformation"
       ]
     },
     "the-eight-limitations-of-man-according.html": {
       "title": "The Eight Limitations of Man According to the Kularṇava Tantra",
       "slug": "the-eight-limitations-of-man-according",
       "keywords": [
-        "Kularnava Tantra",
-        "Eight Pashas",
-        "Kaula Tantra",
-        "Left-Handed Tantra",
-        "Vamachara",
-        "Cremation Ground Sadhana",
-        "Shakta Scripture",
-        "Pashubhava",
-        "Transgressive Ritual",
-        "Tantric Liberation"
+        "Kaula",
+        "forbidden yoga",
+        "transformation",
+        "Vamachara"
       ]
     },
     "the-energetic-anatomist.html": {
       "title": "The Energetic Anatomist",
       "slug": "the-energetic-anatomist",
       "keywords": [
-        "Subtle Anatomy",
-        "Nadi System",
-        "Chakra Architecture",
-        "Pranic Channels",
-        "Energy Body",
-        "Kosha Model",
-        "Marma Points"
+        "forbidden yoga",
+        "chakra"
       ]
     },
     "the-forgotten-gateways-of-the-human.html": {
       "title": "The Forgotten Gateways of the Human Body",
       "slug": "the-forgotten-gateways-of-the-human",
       "keywords": [
-        "Body Portal Practice",
-        "Consciousness Hologram",
-        "Sacred Architecture",
-        "Ancient Yogic Technologies",
-        "Exposed Energy Work",
-        "Awareness Current",
-        "Somatic Awakening",
-        "Sacred Nudity Practice",
-        "Consciousness Stream",
-        "Embodied Transformation"
+        "forbidden yoga",
+        "transformation"
       ]
     },
     "the-joy-of-torture.html": {
       "title": "The Joy of Torture?",
       "slug": "the-joy-of-torture",
       "keywords": [
-        "Bagalamukhi Practice",
-        "Aggression Rechanneling",
-        "Freudian Aggression Theory",
-        "Sapolsky Primate Studies",
-        "Structured Role Play",
-        "Pratyayasarga",
-        "Shadow Work",
-        "Dominance Psychology",
-        "Animal Puja",
-        "Sensual Liberation"
+        "forbidden yoga",
+        "transformation",
+        "Bagalamukhi",
+        "shadow work"
       ]
     },
     "the-next-generation-of-wellness-retreats.html": {
       "title": "The Next Generation of Wellness Retreats",
       "slug": "the-next-generation-of-wellness-retreats",
       "keywords": [
-        "Spa China Interview",
-        "Shakti Peetha Nyasa",
-        "Kundalini Kriya",
-        "Pratyayasarga Sadhana",
-        "Candle Trataka",
-        "Esalen Massage",
-        "Nitya Goddess Kriyas",
-        "Bahir Bhuta Dharana",
-        "Yogini Nyasa Vishuddha",
-        "Sensual Liberation"
+        "nyasa",
+        "forbidden yoga",
+        "kundalini",
+        "transformation",
+        "chakra",
+        "vishuddha",
+        "Kali",
+        "Shakti",
+        "kundalini yoga",
+        "vaikrita",
+        "Taoist",
+        "sensual bodywork",
+        "kriya yoga",
+        "laya yoga"
       ]
     },
     "the-parallel-self.html": {
       "title": "The Parallel Self",
       "slug": "the-parallel-self",
       "keywords": [
-        "Second Attention",
-        "Parallel Personality",
-        "Smashana Kali",
-        "Cremation Ground Tantra",
-        "Don Juan Teachings",
-        "Assemblage Point",
-        "Tonal and Nagual",
-        "Shakta Tantra",
-        "Castaneda Sorcery",
-        "Energy Double"
+        "forbidden yoga",
+        "Kali",
+        "kundalini",
+        "tantra yoga",
+        "Shakti",
+        "chakra",
+        "breathwork",
+        "sacred sexuality",
+        "kundalini yoga",
+        "transformation"
       ]
     },
     "the-sexual-teachings-of-the-white.html": {
       "title": "The Sexual Teachings of the White Tigress",
       "slug": "the-sexual-teachings-of-the-white",
       "keywords": [
-        "White Tigress",
         "Jade Dragon",
+        "White Tigress",
+        "forbidden yoga",
         "Taoist",
-        "Hsi Lai Teachings",
-        "Jing Transformation",
-        "Semen Retention Practice",
-        "Green Dragon",
-        "Ching Cultivation",
-        "Taoist Immortality",
-        "Sexual Alchemy"
+        "transformation",
+        "Vamachara",
+        "moksha"
       ]
     },
     "the-solace-of-the-scene.html": {
       "title": "The Solace of the Scene",
       "slug": "the-solace-of-the-scene",
       "keywords": [
-        "Attachment Style Therapy",
-        "BDSM Role Play",
-        "Humiliation Alchemy",
-        "Bowlby Attachment Theory",
-        "Anxious Attachment",
-        "Avoidant Attachment",
-        "Disorganized Attachment",
-        "Scene Ritual",
-        "Power Exchange",
-        "Psychodynamic BDSM"
+        "forbidden yoga",
+        "kundalini",
+        "tantra yoga",
+        "transformation"
       ]
     },
     "what-you-can-expect-booking-forbidden.html": {
       "title": "What you can expect booking Forbidden Yoga experiences",
       "slug": "what-you-can-expect-booking-forbidden",
       "keywords": [
-        "Paradise on Earth Consciousness",
-        "Dasha Mahavidyas",
-        "Shadow Work",
-        "Tantric Kriyas",
-        "Samskara Release",
-        "Kaula Tantra",
-        "Left-Handed Path",
-        "Somatic Trauma Release",
-        "Kundalini Sadhana",
-        "Embodied Transformation"
+        "forbidden yoga",
+        "kundalini",
+        "Kaula",
+        "shadow work",
+        "transformation"
       ]
     },
     "why-a-woman-initiated-in-the-left.html": {
       "title": "When the Source Becomes the Destroyer",
       "slug": "why-a-woman-initiated-in-the-left",
       "keywords": [
-        "Yogini",
-        "Shakta Tantra",
-        "Left-Handed Tantra",
-        "Kaula Tradition",
-        "Chamunda Devi",
-        "Feminine Power",
-        "Vama Marga",
-        "Tantric Initiation",
+        "forbidden yoga",
+        "Kaula",
+        "kundalini",
+        "tantra yoga",
+        "chakra",
+        "Shiva",
         "Shakti",
-        "Brahmayamala",
-        "Kularnava"
+        "breathwork",
+        "sacred sexuality",
+        "kundalini yoga",
+        "kriya yoga",
+        "divine feminine"
       ]
     },
     "why-i-teach-taoist-sensual-bodywork.html": {
       "title": "Why We Teach Chinese Sensual Massage",
       "slug": "why-i-teach-taoist-sensual-bodywork",
       "keywords": [
-        "Taoist Sensual Massage",
-        "Stephen Russell Bodywork",
-        "Esalen Massage",
-        "Ayurvedic Touch",
-        "Masculine-Feminine Polarity",
-        "Subtle Body",
-        "Cross-Gender Bodywork",
-        "Trance Inducing Touch",
-        "Sensual Liberation",
-        "Energy Polarity Work"
+        "forbidden yoga",
+        "Taoist",
+        "Shakti",
+        "Shiva",
+        "sensual bodywork"
       ]
     },
     "why-our-society-cannot-heal.html": {
       "title": "Why our society cannot heal",
       "slug": "why-our-society-cannot-heal",
       "keywords": [
-        "Laghu Puja",
-        "Collective Healing",
-        "Belief System Dissolution",
-        "Tribal Identity",
-        "Self-Other Boundary",
-        "Embodied Practice",
-        "Naked Ritual",
-        "Breathwork Practice",
-        "Spiritual Tribalism",
-        "Somatic Awakening"
+        "forbidden yoga",
+        "breathwork"
       ]
     },
     "yogic-transmission-in-raja-yoga.html": {
       "title": "The Five Sub-Chakras of the Heart",
       "slug": "yogic-transmission-in-raja-yoga",
       "keywords": [
-        "Sahaj Marg",
-        "Heartfulness Meditation",
-        "Pranahuti Transmission",
-        "Naqshbandi Sufism",
-        "Heart Chakra System",
-        "Raja Yoga Lineage",
-        "Silent Dhikr",
-        "Sufi Transmission",
-        "Babuji Teachings",
-        "Five Heart Points"
+        "chakra",
+        "forbidden yoga",
+        "raja yoga",
+        "kundalini",
+        "transformation",
+        "tantra yoga",
+        "vishuddha",
+        "breathwork",
+        "sacred sexuality",
+        "kundalini yoga",
+        "sahasrara"
       ]
     }
   }
