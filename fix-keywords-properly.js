@@ -78,8 +78,11 @@ function extractMeaningfulKeywords(html, title, description) {
 
         // Forbidden Yoga Specific
         'forbidden yoga': /\bforbidden\s+yoga/i,
-        'Andhakaara Path': /\b(andhakaara|andhakarra)\s+path/i,
-        'mahavidyas': /\bmahavidya/i,
+        'Andhakaara Path To Power': /\b(andhakaara|andhakarra)\s+path\s+to\s+power/i,
+        'Mahavidya': /\bmahavidya/i,
+        'White Tigress': /\bwhite\s+tigress\b/i,
+        'Jade Dragon': /\bjade\s+dragon\b/i,
+        'Taoist': /\btaoist\b/i,
         'nityas': /\bnitya/i,
     };
 

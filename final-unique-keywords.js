@@ -67,7 +67,10 @@ function extractRareKeywords(html, title) {
         'Kaula': /\bkaula\b/i,
         'Krama': /\bkrama\b/i,
         'Trika': /\btrika\b/i,
-        'Andhakaara': /\b(andhakaara|andhakarra)\b/i,
+        'Andhakaara Path To Power': /\b(andhakaara|andhakarra)\s+path\s+to\s+power/i,
+        'White Tigress': /\bwhite\s+tigress\b/i,
+        'Jade Dragon': /\bjade\s+dragon\b/i,
+        'Taoist': /\btaoist\b/i,
 
         // Specific rare practices
         'sparsha puja': /\bsparsha.?puj/i,
