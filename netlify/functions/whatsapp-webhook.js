@@ -9,7 +9,7 @@ const crypto = require('crypto');
 // CONFIGURATION
 // ============================================
 const CONFIG = {
-  VERIFY_TOKEN: process.env.WEBHOOK_VERIFY_TOKEN || process.env.WHATSAPP_VERIFY_TOKEN,
+  VERIFY_TOKEN: process.env.WHATSAPP_VERIFY_TOKEN || process.env.WEBHOOK_VERIFY_TOKEN || 'fy_webhook_2024',
   ACCESS_TOKEN: process.env.WHATSAPP_ACCESS_TOKEN,
   PHONE_NUMBER_ID: process.env.WHATSAPP_PHONE_NUMBER_ID,
   APP_SECRET: process.env.WHATSAPP_APP_SECRET || '1503be87b8baa00cf4221f2d406987d4',
