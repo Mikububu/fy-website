@@ -427,10 +427,10 @@ h3[class*="subtitle"] {
 /* Normal-sized images (content images) */
 .post-content img.sizing-normal,
 .post-content img:not(.sizing-fullscreen) {
-    max-width: 728px;
-    width: auto;
-    height: auto;
-    margin: 2em auto;
+    max-width: 728px !important;
+    width: 728px !important;
+    height: auto !important;
+    margin: 2em auto !important;
     border-radius: 8px;
     display: block;
 }
