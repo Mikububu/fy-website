@@ -10,33 +10,39 @@
 
 **WHATSAPP_ACCESS_TOKEN**
 ```
-EAAT0NJPTJ0sBQE7mfdbtZCHDujZAHeu2EJJsPB1RZAA8K70mwQVazZAdLUoKXOXdFyaKTmIjwRQb5jhfMmJy0RZCd7YiUBDTivfeOHqhG7ZBiYQufAlVRMnAr77CFY8l0uzoa48MB6ZBFKZBsCTj8NmChKyfpo5er7OAF0mTlSG3eKq5eGJTm6bV5aL6MbJi2H8HCtsYGHh7ZCedUaFhQk1dZCafvAOvGIyUaNBZAZBMiqYGWvXj8Ng1Wkfv78ZCNCIRW08dYmTEaJXporxCO6A9BU4a3QtPz
+YOUR_WHATSAPP_ACCESS_TOKEN_HERE
 ```
+Get this from Meta Business Manager (System User with whatsapp_business_messaging permissions)
 
 **WHATSAPP_PHONE_NUMBER_ID**
 ```
-863457346858125
+YOUR_PHONE_NUMBER_ID_HERE
 ```
+Get this from your WhatsApp Business API settings in Meta Developer Console
 
 **WHATSAPP_BUSINESS_ACCOUNT_ID**
 ```
-2058340678311162
+YOUR_BUSINESS_ACCOUNT_ID_HERE
 ```
+Get this from your WhatsApp Business Account in Meta Business Manager
 
 **WHATSAPP_APP_SECRET**
 ```
-1503be87b8baa00cf4221f2d406987d4
+YOUR_APP_SECRET_HERE
 ```
+Get this from your App Settings > Basic in Meta Developer Console
 
 **WEBHOOK_VERIFY_TOKEN**
 ```
-ForbiddenYoga_Secure_2025_Token_XYZ789
+YOUR_WEBHOOK_VERIFY_TOKEN_HERE
 ```
+Create a secure random string (e.g., use: openssl rand -base64 32)
 
 **CRYPTO_WALLET_ADDRESS**
 ```
-0x450d6188aadd0f6f4d167cfc8d092842903b36d6
+YOUR_CRYPTO_WALLET_ADDRESS_HERE
 ```
+Your Ethereum/crypto wallet address for receiving payments
 
 3. Click "Save" after adding each one
 

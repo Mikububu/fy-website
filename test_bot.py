@@ -3,11 +3,12 @@
 
 import requests
 import json
+import os
 
-# Configuration
-ACCESS_TOKEN = "EAAT0NJPTJ0sBQMFOSTMmg9yDNRpZC6nZCcbUuEynW4lkv9TjMtD0iHTROGWLpgImY7xO81GyAqUsDxAZB0D9IYtOG7pZB0JbixPuOWZBeZCv8ecZBl0ZAmebcNlp7S5r5lHnZBaVX0Vomn94ggP9PHok5ivYpPZC1SWVhbICi1mgXed91bPOQikHFjwLGiGdBut3jS2AZDZD"
-PHONE_NUMBER_ID = "863457346858125"
-YOUR_WHATSAPP = "6285190247022"
+# Configuration - USE ENVIRONMENT VARIABLES
+ACCESS_TOKEN = os.environ.get("WHATSAPP_ACCESS_TOKEN", "YOUR_ACCESS_TOKEN_HERE")
+PHONE_NUMBER_ID = os.environ.get("WHATSAPP_PHONE_NUMBER_ID", "YOUR_PHONE_NUMBER_ID_HERE")
+YOUR_WHATSAPP = os.environ.get("YOUR_WHATSAPP_NUMBER", "YOUR_WHATSAPP_NUMBER_HERE")
 
 print("🧘 Forbidden Yoga Bot Test")
 print("=" * 50)
@@ -63,7 +64,7 @@ webhook_test = requests.get(
     "https://forbidden-yoga.com/.netlify/functions/whatsapp-webhook",
     params={
         "hub.mode": "subscribe",
-        "hub.verify_token": "fy_webhook_2024",
+        "hub.verify_token": os.environ.get("WEBHOOK_VERIFY_TOKEN", "YOUR_VERIFY_TOKEN_HERE"),
         "hub.challenge": "test_challenge_123"
     }
 )
