@@ -113,14 +113,16 @@ POST_KEYWORDS = {
 
     "from-freud-to-taoism-and-tantra-sexual": [
         "Sigmund Freud",
+        "Vienna",
+        "Gustav Klimt",
+        "Totem and Taboo",
+        "The Game (movie)",
+        "Hayao Miyazaki",
         "Wilhelm Reich",
         "Taoist Sexual Practice",
         "Psychoanalysis",
-        "Orgone Energy",
-        "Sexual Repression",
-        "Libido Theory",
-        "Body Armor",
-        "Bioenergetics"
+        "White Tigress",
+        "Mahavidya"
     ],
 
     "from-language-modulation-to-rolegame": [
