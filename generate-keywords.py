@@ -7,46 +7,58 @@ Based on tantric/spiritual/psychological terms and notable people names
 import re
 from pathlib import Path
 
-# Keyword mappings for each post based on content analysis
+# Keyword mappings for each post based on deep semantic analysis
+# Keywords include: specific texts, scholars, Sanskrit terms, practices, and people mentioned
 POST_KEYWORDS = {
     "4-paths-into-the-forbidden": [
-        "Tantric Initiation",
-        "Kriya Yoga",
         "Sensual Liberation Retreats",
-        "Shadow Work",
-        "Psychosexual Transformation",
-        "Somatic Practices",
+        "Private Initiations",
+        "Kriya Yoga",
         "Direct Transmission",
         "Taoist Sensual Massage",
-        "Sacred Container",
-        "Embodied Healing"
+        "Shadow Gazing",
+        "Placeholder Actors",
+        "Online Coaching"
     ],
 
     "5-karmendriyas-and-5-jnanendriyas": [
         "Karmendriyas",
-        "Jnanendriyas",
+        "Jñānendriyas",
         "Indriyas",
         "Samkhya",
         "Puruṣa",
+        "Prakṛti",
         "Tanmātras",
         "Mahābhūtas",
+        "Manas",
         "Trataka",
         "Nāda Yoga",
-        "Mahāvidyā",
-        "Prakṛti"
+        "Mātaṅgī"
     ],
 
     "a-holistic-approach-to-divorce": [
         "Chinnamasta",
         "Mahāvidyā",
-        "Decoupling Rituals",
         "Matangi Nyasa",
-        "Kundalini Rising",
         "Sushumna Nadi",
         "Ida Pingala",
-        "Tejas Element",
+        "Tejas",
         "Klaus Bo",
-        "Death Meditation"
+        "Death and Alive Project",
+        "DAZ 3D",
+        "Decoupling Rituals"
+    ],
+
+    "anais-nin-the-house-of-incest": [
+        "Anaïs Nin",
+        "House of Incest",
+        "Svadhisthana",
+        "Vishuddha",
+        "Atlantis",
+        "Tanmātra",
+        "Rasa",
+        "Prakṛti",
+        "Water Consciousness"
     ],
 
     "beyond-the-naked-surface": [
@@ -56,22 +68,23 @@ POST_KEYWORDS = {
         "Kriya Traditions",
         "Mahāvidyā",
         "Bija Mantra",
-        "Tantric Cosmology",
         "Darkness Meditation",
         "Left-Hand Tantra",
-        "Bengal Tantra"
+        "Bengal Tantra",
+        "Laya Yoga"
     ],
 
     "dark-alchemy": [
-        "Shadow Integration",
-        "Alchemical Transformation",
-        "Dark Night",
-        "Psycho-Spiritual Crisis",
-        "Nigredo",
-        "Unconscious Material",
+        "A Dark Song",
+        "Liam Gavin",
+        "Abramelin Operation",
+        "Holy Guardian Angel",
         "Carl Jung",
-        "Depth Psychology",
-        "Transmutation"
+        "Shadow Integration",
+        "Nigredo",
+        "Individuation",
+        "Wales",
+        "Jungian Psychology"
     ],
 
     "forbidden-yoga-embracing-the-unconventional": [
@@ -89,15 +102,17 @@ POST_KEYWORDS = {
     ],
 
     "from-a-shakta-tantra-stream-to-forbidden": [
-        "Shakta Tantra",
-        "Mahāvidyā",
-        "Śrī Vidyā",
-        "Kaula Tradition",
-        "Vamachara",
-        "Bengal School",
-        "Tantric Lineage",
-        "Guru Parampara",
-        "Tantric Transmission"
+        "Arthur Avalon",
+        "John Woodroffe",
+        "David Gordon White",
+        "Alexis Sanderson",
+        "Abhinavagupta",
+        "Pratyayasarga Sādhana",
+        "Sandhyā Bhāṣā",
+        "Śakti Pīṭha Nyāsa",
+        "Vāma Mārga",
+        "Kaula",
+        "Kashmir Shaivism"
     ],
 
     "from-emptiness-to-ecstasy-my-journey": [
@@ -114,15 +129,15 @@ POST_KEYWORDS = {
     "from-freud-to-taoism-and-tantra-sexual": [
         "Sigmund Freud",
         "Vienna",
+        "Berggasse 19",
         "Gustav Klimt",
         "Totem and Taboo",
-        "The Game (movie)",
+        "The Game (film)",
         "Hayao Miyazaki",
-        "Wilhelm Reich",
-        "Taoist Sexual Practice",
-        "Psychoanalysis",
-        "White Tigress",
-        "Mahavidya"
+        "Stephen Russell",
+        "Mantak Chia",
+        "Chi Nei Tsang",
+        "Advaita Vedanta"
     ],
 
     "from-language-modulation-to-rolegame": [
@@ -160,16 +175,14 @@ POST_KEYWORDS = {
     "indian-tantra-mahavidyas-versus-nityas": [
         "Mahāvidyā",
         "Nitya Devis",
+        "Śrī Vidyā",
+        "Kriya Sādhana",
         "Kali",
         "Tara",
         "Tripura Sundari",
-        "Bhuvaneshvari",
-        "Chinnamasta",
-        "Bhairavi",
-        "Dhumavati",
-        "Bagalamukhi",
-        "Matangi",
-        "Kamala"
+        "Kameshvari",
+        "Nityaklinna",
+        "Lunar Tithis"
     ],
 
     "krama-rishi-nyasa-with-iya": [
@@ -184,14 +197,14 @@ POST_KEYWORDS = {
     ],
 
     "muladhara-chakra-petals": [
-        "Muladhara Chakra",
-        "Root Chakra",
-        "Bija Mantra",
+        "Muladhara",
+        "Beeja Mantra",
         "Chakra Petals",
-        "Sanskrit Seed Syllables",
-        "Kundalini Awakening",
-        "Pranic Body",
-        "Chakra Meditation"
+        "Kundalini",
+        "Vamachara",
+        "Shakta Tantra",
+        "Nadas",
+        "Shakti"
     ],
 
     "my-new-approach-to-therapy": [
@@ -308,25 +321,26 @@ POST_KEYWORDS = {
     ],
 
     "the-breath-of-god": [
-        "Pranayama",
-        "Breath Work",
-        "Prana",
-        "Vital Force",
-        "Respiratory Mysticism",
-        "Kevala Kumbhaka",
-        "Breath Retention",
-        "Life Force"
+        "Sadhri",
+        "Laya Yoga",
+        "Sthula Sharira",
+        "Sukshma Sharira",
+        "Karana Sharira",
+        "Homa Kriya",
+        "Agnisara",
+        "Ashvini Mudra",
+        "Couples Pranayama"
     ],
 
     "the-compass-of-zen": [
-        "Zen Buddhism",
-        "Zazen",
-        "Koan Practice",
-        "Sudden Awakening",
-        "Mindfulness",
+        "Avatamsaka-sutra",
+        "Pass-a-Million",
+        "Bodhisattva",
         "Seung Sahn",
+        "Do ban",
+        "Dharma",
         "Korean Zen",
-        "Dharma Transmission"
+        "Compassion of Zen"
     ],
 
     "the-distant-god-fallacy": [
@@ -340,13 +354,16 @@ POST_KEYWORDS = {
     ],
 
     "the-eight-limitations-of-man-according": [
+        "Kularṇava Tantra",
         "Aṣṭa Pāśa",
-        "Eight Bondages",
-        "Kashmir Shaivism",
-        "Māyā",
-        "Spiritual Limitations",
-        "Tattva Philosophy",
-        "Liberation Path"
+        "Dveṣa",
+        "Saṁśaya",
+        "Bhaya",
+        "Lajjā",
+        "Ghṛṇā",
+        "Śmaśāna-sādhana",
+        "Cakrapūjā",
+        "Kaula"
     ],
 
     "the-energetic-anatomist": [
@@ -401,12 +418,15 @@ POST_KEYWORDS = {
 
     "the-sexual-teachings-of-the-white": [
         "White Tigress",
-        "Taoist Sexual Alchemy",
-        "Female Sexual Cultivation",
-        "Jing Essence",
-        "Yin Practice",
-        "Sexual Energetics",
-        "Hsi Lai"
+        "Hsi Lai",
+        "Jade Dragon",
+        "Green Dragon",
+        "Jing",
+        "Ching",
+        "Qi",
+        "Shen",
+        "Three Treasures",
+        "Taoist Sexual Alchemy"
     ],
 
     "the-solace-of-the-scene": [
@@ -434,13 +454,16 @@ POST_KEYWORDS = {
     ],
 
     "why-a-woman-initiated-in-the-left": [
-        "Left-Hand Path",
-        "Vamachara",
-        "Female Initiation",
-        "Tantric Empowerment",
-        "Shakti Activation",
-        "Transgressive Practice",
-        "Feminine Authority"
+        "Brahmayāmala",
+        "Netra Tantra",
+        "David Gordon White",
+        "Kulāmṛta",
+        "Yoni-tattva",
+        "Yoginī",
+        "Melāpa",
+        "Vīrya",
+        "Kaula",
+        "Vāma Mārga"
     ],
 
     "why-i-teach-taoist-sensual-bodywork": [
@@ -466,14 +489,16 @@ POST_KEYWORDS = {
     ],
 
     "yogic-transmission-in-raja-yoga": [
-        "Raja Yoga",
-        "Yogic Transmission",
-        "Shaktipat",
-        "Guru-Disciple",
-        "Energy Transfer",
-        "Spiritual Initiation",
-        "Patanjali",
-        "Eight Limbs"
+        "Sahaj Marg",
+        "Heartfulness",
+        "Lalaji",
+        "Babuji",
+        "Naqshbandi Sufism",
+        "Pranahuti",
+        "Tawajjuh",
+        "Pind Pradesh",
+        "Kanha Shanti Vanam",
+        "SRCM"
     ]
 }
 
@@ -528,7 +553,7 @@ def add_keywords_to_post(post_path):
 
 
 def main():
-    posts_dir = Path('/Volumes/LaCie/CLAUDE/posts')
+    posts_dir = Path('./posts')
 
     print("Adding keywords to blog posts...\n")
 
