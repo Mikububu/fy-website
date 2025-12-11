@@ -78,14 +78,13 @@
     },
     {
       "keyword": "Kundalini",
-      "count": 27,
+      "count": 26,
       "posts": [
         "4-paths-into-the-forbidden.html",
         "a-holistic-approach-to-divorce.html",
         "anais-nin-the-house-of-incest.html",
         "dark-alchemy.html",
         "from-a-shakta-tantra-stream-to-forbidden.html",
-        "from-emptiness-to-ecstasy-my-journey.html",
         "from-freud-to-taoism-and-tantra-sexual.html",
         "from-language-modulation-to-rolegame.html",
         "how-to-deliver-visionary-idea-in.html",
@@ -179,6 +178,20 @@
       ]
     },
     {
+      "keyword": "Sensual Liberation Retreat",
+      "count": 8,
+      "posts": [
+        "from-a-shakta-tantra-stream-to-forbidden.html",
+        "from-emptiness-to-ecstasy-my-journey.html",
+        "from-language-modulation-to-rolegame.html",
+        "hermanns-story-of-his-sensual-liberation.html",
+        "my-new-approach-to-therapy.html",
+        "not-a-john-baldessari-artwork.html",
+        "the-animal-puja.html",
+        "the-joy-of-torture.html"
+      ]
+    },
+    {
       "keyword": "Advaita Vedanta",
       "count": 6,
       "posts": [
@@ -225,6 +238,15 @@
       ]
     },
     {
+      "keyword": "Sensual Liberation Retreats",
+      "count": 3,
+      "posts": [
+        "4-paths-into-the-forbidden.html",
+        "from-emptiness-to-ecstasy-my-journey.html",
+        "sensual-liberation-retreats-with.html"
+      ]
+    },
+    {
       "keyword": "Indriyas",
       "count": 3,
       "posts": [
@@ -252,11 +274,11 @@
       ]
     },
     {
-      "keyword": "Sensual Liberation Retreats",
+      "keyword": "Placeholder Actors",
       "count": 2,
       "posts": [
         "4-paths-into-the-forbidden.html",
-        "sensual-liberation-retreats-with.html"
+        "from-emptiness-to-ecstasy-my-journey.html"
       ]
     },
     {
@@ -407,12 +429,6 @@
     },
     {
       "keyword": "Shadow Gazing",
-      "posts": [
-        "4-paths-into-the-forbidden.html"
-      ]
-    },
-    {
-      "keyword": "Placeholder Actors",
       "posts": [
         "4-paths-into-the-forbidden.html"
       ]
@@ -760,49 +776,37 @@
       ]
     },
     {
-      "keyword": "Śūnyatā",
+      "keyword": "Testimonial",
       "posts": [
         "from-emptiness-to-ecstasy-my-journey.html"
       ]
     },
     {
-      "keyword": "Bliss States",
+      "keyword": "Thailand Retreat",
       "posts": [
         "from-emptiness-to-ecstasy-my-journey.html"
       ]
     },
     {
-      "keyword": "Spiritual Bypassing",
+      "keyword": "Sexual Energy",
       "posts": [
         "from-emptiness-to-ecstasy-my-journey.html"
       ]
     },
     {
-      "keyword": "Embodied Awakening",
+      "keyword": "Inner Orgasm",
       "posts": [
         "from-emptiness-to-ecstasy-my-journey.html"
       ]
     },
     {
-      "keyword": "Non-Dual Realization",
+      "keyword": "Non-Ejaculation",
       "posts": [
         "from-emptiness-to-ecstasy-my-journey.html"
       ]
     },
     {
-      "keyword": "Somatic Integration",
-      "posts": [
-        "from-emptiness-to-ecstasy-my-journey.html"
-      ]
-    },
-    {
-      "keyword": "Mystical Experience",
-      "posts": [
-        "from-emptiness-to-ecstasy-my-journey.html"
-      ]
-    },
-    {
-      "keyword": "Consciousness Exploration",
+      "keyword": "Masculine Energy",
       "posts": [
         "from-emptiness-to-ecstasy-my-journey.html"
       ]
@@ -2293,6 +2297,7 @@
   "map": {
     "Sensual Liberation Retreats": [
       "4-paths-into-the-forbidden.html",
+      "from-emptiness-to-ecstasy-my-journey.html",
       "sensual-liberation-retreats-with.html"
     ],
     "Private Initiations": [
@@ -2311,7 +2316,8 @@
       "4-paths-into-the-forbidden.html"
     ],
     "Placeholder Actors": [
-      "4-paths-into-the-forbidden.html"
+      "4-paths-into-the-forbidden.html",
+      "from-emptiness-to-ecstasy-my-journey.html"
     ],
     "Online Coaching": [
       "4-paths-into-the-forbidden.html"
@@ -2361,7 +2367,6 @@
       "anais-nin-the-house-of-incest.html",
       "dark-alchemy.html",
       "from-a-shakta-tantra-stream-to-forbidden.html",
-      "from-emptiness-to-ecstasy-my-journey.html",
       "from-freud-to-taoism-and-tantra-sexual.html",
       "from-language-modulation-to-rolegame.html",
       "how-to-deliver-visionary-idea-in.html",
@@ -2707,28 +2712,32 @@
       "the-joy-of-torture.html",
       "why-our-society-cannot-heal.html"
     ],
-    "Śūnyatā": [
+    "Sensual Liberation Retreat": [
+      "from-a-shakta-tantra-stream-to-forbidden.html",
+      "from-emptiness-to-ecstasy-my-journey.html",
+      "from-language-modulation-to-rolegame.html",
+      "hermanns-story-of-his-sensual-liberation.html",
+      "my-new-approach-to-therapy.html",
+      "not-a-john-baldessari-artwork.html",
+      "the-animal-puja.html",
+      "the-joy-of-torture.html"
+    ],
+    "Testimonial": [
       "from-emptiness-to-ecstasy-my-journey.html"
     ],
-    "Bliss States": [
+    "Thailand Retreat": [
       "from-emptiness-to-ecstasy-my-journey.html"
     ],
-    "Spiritual Bypassing": [
+    "Sexual Energy": [
       "from-emptiness-to-ecstasy-my-journey.html"
     ],
-    "Embodied Awakening": [
+    "Inner Orgasm": [
       "from-emptiness-to-ecstasy-my-journey.html"
     ],
-    "Non-Dual Realization": [
+    "Non-Ejaculation": [
       "from-emptiness-to-ecstasy-my-journey.html"
     ],
-    "Somatic Integration": [
-      "from-emptiness-to-ecstasy-my-journey.html"
-    ],
-    "Mystical Experience": [
-      "from-emptiness-to-ecstasy-my-journey.html"
-    ],
-    "Consciousness Exploration": [
+    "Masculine Energy": [
       "from-emptiness-to-ecstasy-my-journey.html"
     ],
     "Sigmund Freud": [
@@ -3506,5 +3515,5 @@
     ]
   },
   "totalPosts": 44,
-  "generatedAt": "2025-12-11T04:49:41.376Z"
+  "generatedAt": "2025-12-11T05:09:33.219Z"
 }

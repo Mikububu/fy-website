@@ -2,7 +2,12 @@
   "keywords": {
     "Sensual Liberation Retreats": [
       "4-paths-into-the-forbidden.html",
+      "from-emptiness-to-ecstasy-my-journey.html",
       "sensual-liberation-retreats-with.html"
+    ],
+    "Placeholder Actors": [
+      "4-paths-into-the-forbidden.html",
+      "from-emptiness-to-ecstasy-my-journey.html"
     ],
     "Taoist": [
       "4-paths-into-the-forbidden.html",
@@ -49,7 +54,6 @@
       "anais-nin-the-house-of-incest.html",
       "dark-alchemy.html",
       "from-a-shakta-tantra-stream-to-forbidden.html",
-      "from-emptiness-to-ecstasy-my-journey.html",
       "from-freud-to-taoism-and-tantra-sexual.html",
       "from-language-modulation-to-rolegame.html",
       "how-to-deliver-visionary-idea-in.html",
@@ -226,6 +230,16 @@
       "the-animal-puja.html",
       "the-joy-of-torture.html",
       "why-our-society-cannot-heal.html"
+    ],
+    "Sensual Liberation Retreat": [
+      "from-a-shakta-tantra-stream-to-forbidden.html",
+      "from-emptiness-to-ecstasy-my-journey.html",
+      "from-language-modulation-to-rolegame.html",
+      "hermanns-story-of-his-sensual-liberation.html",
+      "my-new-approach-to-therapy.html",
+      "not-a-john-baldessari-artwork.html",
+      "the-animal-puja.html",
+      "the-joy-of-torture.html"
     ],
     "Sexual Healing": [
       "hermanns-story-of-his-sensual-liberation.html",
@@ -417,24 +431,25 @@
         "Shakti",
         "Tantra",
         "Chakra",
-        "Mantra"
+        "Mantra",
+        "Sensual Liberation Retreat"
       ]
     },
     "from-emptiness-to-ecstasy-my-journey.html": {
       "title": "From Burnout to Ecstasy: My Journey with Forbidden Yoga - a Testimonial ",
       "slug": "from-emptiness-to-ecstasy-my-journey",
       "keywords": [
-        "Śūnyatā",
-        "Bliss States",
-        "Spiritual Bypassing",
-        "Embodied Awakening",
-        "Non-Dual Realization",
-        "Somatic Integration",
-        "Mystical Experience",
-        "Consciousness Exploration",
+        "Sensual Liberation Retreats",
+        "Testimonial",
+        "Thailand Retreat",
+        "Sexual Energy",
+        "Inner Orgasm",
+        "Non-Ejaculation",
+        "Placeholder Actors",
+        "Masculine Energy",
         "Ritual",
-        "Kundalini",
-        "Tantra"
+        "Tantra",
+        "Sensual Liberation Retreat"
       ]
     },
     "from-freud-to-taoism-and-tantra-sexual.html": {
@@ -475,7 +490,8 @@
         "Sadhana",
         "Kundalini",
         "Tantra",
-        "Mantra"
+        "Mantra",
+        "Sensual Liberation Retreat"
       ]
     },
     "hermanns-story-of-his-sensual-liberation.html": {
@@ -492,7 +508,8 @@
         "Sacred Intimacy",
         "Ritual",
         "Tantra",
-        "Chakra"
+        "Chakra",
+        "Sensual Liberation Retreat"
       ]
     },
     "how-to-deliver-visionary-idea-in.html": {
@@ -579,7 +596,8 @@
         "Therapeutic Presence",
         "Integrative Healing",
         "Ritual",
-        "Tantra"
+        "Tantra",
+        "Sensual Liberation Retreat"
       ]
     },
     "not-a-john-baldessari-artwork.html": {
@@ -595,7 +613,8 @@
         "Contemporary Spirituality",
         "Kundalini",
         "Shakti",
-        "Tantra"
+        "Tantra",
+        "Sensual Liberation Retreat"
       ]
     },
     "our-brains-urge-for-mystical-experiences.html": {
@@ -748,7 +767,8 @@
         "Ritual",
         "Puja",
         "Kundalini",
-        "Tantra"
+        "Tantra",
+        "Sensual Liberation Retreat"
       ]
     },
     "the-breath-of-god.html": {
@@ -863,7 +883,8 @@
         "Ritual",
         "Puja",
         "Kundalini",
-        "Tantra"
+        "Tantra",
+        "Sensual Liberation Retreat"
       ]
     },
     "the-next-generation-of-wellness-retreats.html": {
