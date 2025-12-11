@@ -208,8 +208,7 @@ div[data-component-name="AudioEmbedPlayer"] {
 
 /* Style bold paragraph text as section headers when they're section titles */
 .post-content p > strong:only-child,
-.post-content p > em:only-child > strong:only-child,
-.post-content p > em:only-child {
+.post-content p > em:only-child > strong:only-child {
     display: block;
     font-family: 'Playfair Display', serif !important;
     font-size: 1.8rem !important;
