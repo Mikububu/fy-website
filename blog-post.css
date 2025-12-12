@@ -406,6 +406,49 @@ h3[class*="subtitle"] {
     visibility: visible !important;
 }
 
+/* Footer */
+.footer {
+    width: 100%;
+    background-color: #bad4d4;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.footer-booking {
+    margin-bottom: 20px;
+}
+
+.book-guru-button {
+    padding: 10px 25px;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #ffffff;
+    background-color: red;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.book-guru-button:hover {
+    background-color: #cc0000;
+    transform: scale(1.05);
+}
+
+.footer-copyright {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: #31302C;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
 /* Footer links */
 .footer-links {
     margin: 10px 0;
@@ -413,19 +456,19 @@ h3[class*="subtitle"] {
 }
 
 .footer-links a {
-    color: rgba(255, 255, 255, 0.8);
+    color: #31302C;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-    color: #ffffff;
+    color: #000000;
     text-decoration: underline;
 }
 
 .footer-links span {
     margin: 0 10px;
-    color: rgba(255, 255, 255, 0.5);
+    color: #31302C;
 }
 
 .post-content img {
