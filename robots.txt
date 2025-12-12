@@ -1,0 +1,18 @@
+# Robots.txt for forbidden-yoga.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://forbidden-yoga.com/sitemap.xml
+
+# Disallow admin/private areas (if any)
+Disallow: /admin/
+Disallow: /private/
+
+# Allow all crawlers to index blog posts
+Allow: /posts/
+
+# Allow images for rich snippets
+Allow: /blog-images/
+Allow: /images/
