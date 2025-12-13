@@ -5,6 +5,32 @@
 [functions]
   node_bundler = "esbuild"
 
+# Blog redirects
+[[redirects]]
+  from = "/blog"
+  to = "/#blog-section"
+  status = 301
+
+[[redirects]]
+  from = "/blog/"
+  to = "/#blog-section"
+  status = 301
+
+[[redirects]]
+  from = "/BLOG"
+  to = "/#blog-section"
+  status = 301
+
+[[redirects]]
+  from = "/zh-tw/blog"
+  to = "/zh-tw/#blog-section"
+  status = 301
+
+[[redirects]]
+  from = "/zh-tw/blog/"
+  to = "/zh-tw/#blog-section"
+  status = 301
+
 # Redirect rules for functions
 [[redirects]]
   from = "/api/*"
